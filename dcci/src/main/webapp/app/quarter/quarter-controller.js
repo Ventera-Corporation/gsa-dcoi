@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	
-	dcciApp.controller('QuarterController', QuarterController);
+	angular.module('dcciApp').controller('QuarterController', QuarterController);
 	
 	QuarterController.$inject = [];
 	

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-ng-app="dhsFlashApp">
+<html lang="en" data-ng-app="dcciApp">
 <head>
 	<title>Data Center Optimization Initiative (DCOi)</title>
 
@@ -51,7 +51,7 @@
 
 </head>
 
-<body data-ng-cloak data-ng-controller="">
+<body data-ng-cloak>
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -99,13 +99,13 @@
 	<script type="text/javascript" src="plugins/angularjs/angular-sanitize.min.js"></script>
 	<script type="text/javascript" src="plugins/angularjs/angular-resource.min.js"></script>
 	<script type="text/javascript" src="plugins/angularjs/ui-bootstrap-2.0.2.min.js"></script>
-
-    <!-- Custom JS -->
-
-    <script type="text/javascript" src="assets/js/ui-scripts.js"></script>
 	
 	<!-- App libs -->
 	<script type="text/javascript" src="app/module.js"></script>
+	<script type="text/javascript" src="app/module-config.js"></script>
+	
+	<script type="text/javascript" src="app/quarter/quarter-controller.js"></script>
+	<script type="text/javascript" src="app/quarter/quarter-service.js"></script>
 			
 </body>
 </html>
