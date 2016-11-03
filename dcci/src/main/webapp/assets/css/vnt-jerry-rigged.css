@@ -1,0 +1,169 @@
+﻿@charset "utf-8";
+/* > VNT JERRY RIGGED CSS: START
+***********************************************************************************************************************/
+	/**************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+	/* >> NOTES: START
+	***************************************************************************************************************/
+
+	/* TOC:
+	-	VNT JERRY-RIGGED CSS
+	-		- NOTES
+			- BOOTSTRAP
+	-		- US WEB DESIGN STANDARDS
+	*/
+
+	/* NOTES: END
+	***************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+	/* >> BOOTSTRAP: START
+	***************************************************************************************************************/
+
+        /*
+        # Navbar */
+        .navbar-default {
+            background: #205493;
+            background-color: #205493;
+            color: white;
+            font-size: .8em;
+            height: 50px;
+            border: 0;
+            z-index: 110;
+        }     
+
+        .navbar-default .navbar-nav > li > a {
+            cursor: pointer;
+            text-decoration: none;
+            color: #ffffff;
+            opacity: .8;
+        }
+
+        .navbar-default .navbar-nav > li > a:hover,
+        .navbar-default .navbar-nav > li > a:focus,
+        .navbar-default .navbar-brand,
+        .navbar-default .navbar-brand:hover,
+        .navbar-default .navbar-brand:focus {
+            color: white;
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .navbar-default .navbar-toggle {
+            display: none;
+        }
+
+        .navbar-default .dropdown-menu {
+            background: #205493;
+            background-color: #205493;
+            color: #ffffff;
+        }
+
+        .navbar-default .dropdown li a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .navbar-default .dropdown li a:hover {
+            text-decoration: none;
+            color: #333333;
+        }
+
+        /* 
+        # Page Header */
+        .page-header {
+            width: 100%;
+            position: fixed;
+            background: #ffffff;
+            background-color: #ffffff;
+            margin-top: 50px;
+            padding: 10px 15px 10px 15px;
+            font-size: 1.4em;
+            font-weight: 400;
+            color: #333333;
+            z-index: 100;
+            -webkit-box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+               -moz-box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+                    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 
+        # Panel Heading */
+        .panel-heading {
+            cursor: pointer;
+            border-radius: 0;
+        }
+
+        /*
+        # Validation States */
+        .has-success .form-control {
+            border: 1px #48a463 solid;
+        }
+
+        .has-warning .form-control {
+            border: 1px #fcb71c solid;
+        }
+
+        .has-error .form-control {
+            border: 1px #cd2026 solid;
+        }
+
+        /* 
+        # Mobile Responsive */
+        @media screen and (max-width: 768px){
+            .navbar-default {
+                height: auto;
+            }
+            .navbar-default .navbar-toggle {
+                display: block;
+                background: #ffffff;
+                background-color: #ffffff;
+            }
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+                text-decoration: none;
+                color: #ffffff;
+            }
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+                text-decoration: none;
+                background: #f1f1f1;
+            }
+        }
+
+    /* BOOTSTRAP: END
+	***************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+    /* >> US WEB DESIGN STANDARDS: START
+	***************************************************************************************************************/
+
+        .usa-button {
+            margin: 0;
+        }
+
+        .usa-button:hover {
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+
+    /* US WEB DESIGN STANDARDS: END
+	***************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+
+/* VNT JERRY RIGGED CSS: END
+***********************************************************************************************************************/
