@@ -1,0 +1,202 @@
+@charset "utf-8";
+/* > VNT COMPONENTS FROM SCRATCH CSS: START
+***********************************************************************************************************************/
+	/**************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+	/* >> NOTES: START
+	***************************************************************************************************************/
+
+	/* TOC:
+	-	VNT COMPONENTS FROM SCRATCH CSS
+                        - NOTES
+                        - CALENDAR CHIP
+                        - PILL BOXES
+                        - PIN LINE BLOCKED TEXT
+                        - PAGE TITLE BAR
+	*/
+
+	/* NOTES: END
+	***************************************************************************************************************/
+        /*
+	********
+	********
+	********
+	*/
+	/* >> CALENDAR CHIP: START
+	***************************************************************************************************************/
+        
+        .vnt-calendar-chip {
+                background-clip: padding-box;        
+                padding: 20px;
+        
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgba(0,0,0,.13);
+                
+                background-color: #ffffff;
+                margin-bottom: 30px;
+                
+                height: 155px;
+        }
+        
+        
+        .vnt-calendar-chip.vnt-calendar-chip--creator {
+                background-clip: padding-box;        
+                padding: 20px;
+        
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgba(0,0,0,.13);
+                
+                
+                background-color: rgba(0, 0, 0, 0.03);
+                margin-bottom: 30px;
+                
+                height: 155px;
+        }
+        
+        .vnt-calendar-chip:hover {
+                border-width: 1px;
+                border-style: solid;
+                border-color: #205493;
+                
+                cursor: pointer;
+        }
+        
+                .vnt-calendar-chip > h1,
+                .vnt-calendar-chip > h2,
+                .vnt-calendar-chip > h3,
+                .vnt-calendar-chip > h4,
+                .vnt-calendar-chip > h5,
+                .vnt-calendar-chip > h6 {
+                        margin-top: 0;
+                        margin-bottom: 4px;
+                }
+        
+                .vnt-calendar-chip__niche {
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        top: 21px;
+                        
+                        width: 6px;
+                        height: 22px;
+                        
+                        background-color: #0071bc;
+                }
+                .vnt-calendar-chip:hover .vnt-calendar-chip__niche {
+                        background-color: #205493;
+                }
+        
+        
+        .vnt-calendar-chip-row-head {    
+                padding: 30px;
+                margin-bottom: 30px;
+                height: 150px;
+        }
+        
+        
+        
+        /* CALENDAR CHIP: END
+	***************************************************************************************************************/
+        /*
+	********
+	********
+	********
+	*/
+	/* >> PILL BOXES: START
+	***************************************************************************************************************/
+        
+        .vnt-light-grey-pill-box {
+        
+                background-clip: padding-box;        
+                padding: 30px;
+        
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgba(0,0,0,.13);
+                
+                background-color: #f1f1f1;
+                margin-bottom: 30px;
+        }
+        
+
+        
+        /* PILL BOXES: END
+	***************************************************************************************************************/
+        /*
+	********
+	********
+	********
+	*/
+	/* >> PIN LINE BLOCKED TEXT: START
+	***************************************************************************************************************/
+        
+        /* # Component: 
+        pin-line-blocked-text */
+        .vnt-pin-line-blocked-text {
+                display: block;
+                width: 100%;
+                
+                
+        }
+                .vnt-pin-line-blocked-text__line {
+                        
+                        height: 1px;
+                        background-color: rgba(0, 0, 0, 0.2);
+                        
+                        display: block;        
+                }
+                
+                .vnt-pin-line-blocked-text__text {
+                        
+                        display: inline-block;
+                        
+                        position: relative;
+                        background-color: #ffffff;
+                        
+                        top: -25px;
+                        padding: 15px;        
+                }
+                
+        /* ## Modifiers */
+        .vnt-pin-line-blocked-text--center {
+                text-align: center;
+        }
+        
+        
+        
+        /* PIN LINE BLOCKED TEXT: END
+	***************************************************************************************************************/
+        /*
+	********
+	********
+	********
+	*/
+	/* >> PAGE TITLE BAR: START
+	***************************************************************************************************************/
+        
+        .vnt-page-title-bar {
+                display: block;
+                padding: 15px;
+                width: 100%;
+                margin: 0;
+                
+                background-color: #ffffff;
+                box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+                
+                margin-bottom: 30px;
+        }
+
+        
+        /* PAGE TITLE BAR: END
+	***************************************************************************************************************/
+        
+        
+        
+/* VNT COMPONENTS FROM SCRATCH CSS: END
+***********************************************************************************************************************/

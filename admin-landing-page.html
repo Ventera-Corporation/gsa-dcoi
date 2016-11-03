@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dcciApp">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>
+                Data Center Optimization Initiative (DCOI)
+        </title>
+
+        <head>
+                
+                <!-- CSS
+                *********************************************************************************************************************** -->
+                        
+                        <!-- # Third Party CSS -->
+                        
+                                <!-- Bootstrap CSS -->
+                                <link rel="stylesheet" href="3rd-party-code/bootstrap-3.3.7-custom-usa/css/bootstrap.css">
+
+                                <!-- Bootstrap Custom USA Theme -->
+                                <link rel="stylesheet" href="3rd-party-code/bootstrap-3.3.7-custom-usa/css/bootstrap-theme.css">
+                                
+                                <!-- US Web Design Standards -->
+                                <link rel="stylesheet" href="3rd-party-code/uswds-0.13.1/css/uswds.css">
+                
+                                <!-- Font Awesome -->
+                                <link rel="stylesheet" href="3rd-party-code/font-awesome-4.7.0/css/font-awesome.min.css">
+                                
+                                
+                        <!-- # Custom CSS -->
+                        
+                                <!-- Globals -->
+                                <link rel="stylesheet" href="css/vnt-globals.css">
+                                
+                                <!-- [ Bootstrap ] - Component ModEx -->
+                                <link rel="stylesheet" href="css/vnt-bootstrap-component-modex.css">
+                                
+                                <!-- [ US Web Design Standards ] - Component ModEx -->
+                                <link rel="stylesheet" href="css/vnt-uswds-component-modex.css">
+
+                                <!-- Collections Components -->
+                                <link rel="stylesheet" href="css/vnt-collections-components.css">
+                                
+                                <!-- Components from Scratch -->
+                                <link rel="stylesheet" href="css/vnt-components-from-scratch.css">
+                                
+                                <!-- Jerry Rigged -->
+                                <link rel="stylesheet" href="css/vnt-jerry-rigged.css">
+
+
+
+                <!-- JS
+                *********************************************************************************************************************** -->
+                
+                        <!-- jQuery JS -->
+                        <script src="3rd-party-code/jquery-2.1.1/jquery-2.1.1.js"></script>
+
+                        <!-- Bootstrap JS -->
+                        <script src="3rd-party-code/bootstrap-3.3.7-custom-usa/js/bootstrap.js"></script>
+                        
+                        <!-- US Web Design Standards JS -->
+                        <script src="3rd-party-code/uswds-0.13.1/js/uswds.js"></script>
+                        
+                
+        </head>
+
+
+        <body ng-controller="MainController" class="vnt-lightest-gray-bg">
+                
+                <main-header-directive></main-header-directive>
+                
+                <div class="vnt-page-title-bar">
+                        <h4 class="vnt-alt-heading-2" style="padding:0; margin:0;">Admin Dashboard</h4>
+                </div>
+                
+                <!-- container: START -->
+                <div class="container" style="height:100%;">
+                        
+                        
+                        <div class="row">
+                                <div class="col-xs-1">
+                                        
+                                        
+                                        <div class="vnt-bs-col--less-padding">
+                                        
+                                                <!-- -->
+                                                <div class="row">
+                                                        <div class="col-xs-12">
+                                                                <div class="vnt-calendar-chip-row-head">
+                                                                        2016
+                                                                </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col-xs-12">
+                                                                <div class="vnt-calendar-chip-row-head">
+                                                                        2015
+                                                                </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col-xs-12">
+                                                                <div class="vnt-calendar-chip-row-head">
+                                                                        2014
+                                                                </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col-xs-12">
+                                                                <div class="vnt-calendar-chip-row-head">
+                                                                        2013
+                                                                </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col-xs-12">
+                                                                <div class="vnt-calendar-chip-row-head">
+                                                                        2012
+                                                                </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                <!-- -->
+                                                
+                                        </div>
+                                        
+                                </div>
+                                <div class="col-xs-11">
+                                        
+                                        
+                                        <div class="vnt-bs-col--less-padding">
+                                                
+                                                <!-- -->
+                                                <div class="row">
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q1 2016</h4>
+                                                                        <small class="text-muted">January 1 &ndash; March 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                17 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q2 2016</h4>
+                                                                        <small class="text-muted">April 1 &ndash; June 30</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                12 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0; color:#cd2026;">
+                                                                                In progress
+                                                                        </small>
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip vnt-calendar-chip--creator" style="text-align:center;">
+                                                                        
+                                                                        
+                                                                        <div style="border-radius:50%; border-style:solid; border-width:2px; border-color:rgba(0,0,0,.25); text-align:center; height:50px; width:50px; display:inline-block; margin-top: 12px;">
+                                                                                <span class="glyphicon glyphicon-plus vnt-prominence-1" aria-hidden="true" style="top:13px;"></span>
+                                                                        </div>
+                                                                        
+                                                                        
+                                                                        <p style="margin-bottom:0; margin-top:12px; text-align:center;">
+                                                                                Create new quarter
+                                                                        </p>
+                                                                        
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <!-- 
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q4 2016</h4>
+                                                                        <small class="text-muted">Oct. 1 &ndash; Dec. 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                8 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                                -->
+                                                        </div>
+                                                        
+                                                </div>
+                                                <!-- -->
+                                                
+                                                
+                                                <!-- -->
+                                                <div class="row">
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q1 2015</h4>
+                                                                        <small class="text-muted">January 1 &ndash; March 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                17 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q2 2015</h4>
+                                                                        <small class="text-muted">April 1 &ndash; June 30</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                12 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q3 2015</h4>
+                                                                        <small class="text-muted">July 1 &ndash; Sept. 30</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                10 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                        
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q4 2015</h4>
+                                                                        <small class="text-muted">Oct. 1 &ndash; Dec. 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                8 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                <!-- -->
+                                                
+                                                <!-- -->
+                                                <div class="row">
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q1 2014</h4>
+                                                                        <small class="text-muted">January 1 &ndash; March 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                17 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q2 2014</h4>
+                                                                        <small class="text-muted">April 1 &ndash; June 30</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                12 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q3 2014</h4>
+                                                                        <small class="text-muted">July 1 &ndash; Sept. 30</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                10 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                        
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q4 2014</h4>
+                                                                        <small class="text-muted">Oct. 1 &ndash; Dec. 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                8 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                <!-- -->
+                                                
+                                                <!-- -->
+                                                <div class="row">
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q1 2013</h4>
+                                                                        <small class="text-muted">January 1 &ndash; March 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                17 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q2 2013</h4>
+                                                                        <small class="text-muted">April 1 &ndash; June 30</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                12 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q3 2013</h4>
+                                                                        <small class="text-muted">July 1 &ndash; Sept. 30</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                10 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                        
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q4 2013</h4>
+                                                                        <small class="text-muted">Oct. 1 &ndash; Dec. 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                8 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                <!-- -->
+                                                
+                                                <!-- -->
+                                                <div class="row">
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q1 2012</h4>
+                                                                        <small class="text-muted">January 1 &ndash; March 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                17 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q2 2012</h4>
+                                                                        <small class="text-muted">April 1 &ndash; June 30</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                12 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q3 2012</h4>
+                                                                        <small class="text-muted">July 1 &ndash; Sept. 30</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                10 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                        
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                                <div class="vnt-calendar-chip">
+                                                                        
+                                                                        <div class="vnt-calendar-chip__niche"></div>
+                                                                        
+                                                                        <h4 class="vnt-alt-heading-2">Q4 2012</h4>
+                                                                        <small class="text-muted">Oct. 1 &ndash; Dec. 31</small>
+                                                                        <p style="margin-bottom:0; margin-top:12px;">
+                                                                                8 Data centers
+                                                                        </p>
+                                                                        <small style="margin-top:0;" class="vnt-primary-text-color">
+                                                                                Complete
+                                                                        </small>
+                                                                </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                                <!-- -->
+                                                
+                                        </div>
+                                        
+                                </div>
+                        </div>
+                        
+                        
+                        
+                        
+                
+                </div>
+                <!-- container: END -->
+                
+                
+                <!-- AngularJS
+                *********************************************************************************************************************** -->
+                
+                        <!-- # AngularJS -->
+        		<script src="3rd-party-code/angular-js-1.4.7/angular.js"></script>
+                        <script src="3rd-party-code/angular-js-1.4.7/angular-route.js"></script>
+                                                    	
+        		<!-- # Custom AngularJS Code -->
+                		<script src="app/app.js"></script>
+                                
+                                <!-- Main header -->
+                                <script src="app/common-includes/mainHeaderDirective.js"></script>
+                        
+                        
+                <!-- Some Adhoc JavaScript
+                *********************************************************************************************************************** -->
+                
+                <script>
+                /*
+                        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                                
+                                var target = this.href.split('#');
+                                $('.nav a').filter('[href="#' + target[ 1 ] + '"]').tab('show');
+                        });
+                */
+                </script>
+                
+                
+                
+        </body>
+
+</html>

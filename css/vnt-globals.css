@@ -1,0 +1,324 @@
+@charset "utf-8";
+/* > VNT GLOBALS CSS: START
+***********************************************************************************************************************/
+	/**************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+	/* >> NOTES: START
+	***************************************************************************************************************/
+
+	/* TOC:
+	-	VNT GLOBALS CSS
+	-		- NOTES
+			- GENERAL GLOBALS
+	-		- HELPERS
+	*/
+
+	/* NOTES: END
+	***************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+	/* >> GENERAL GLOBALS: START
+	***************************************************************************************************************/
+        html, body {
+                height: 100%;
+        }
+
+        /* 
+        # Basic global font setting. Forcing USWDS to override Bootstrap */
+        html {
+                font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+                font-size: 10px;
+        }
+        body {
+                font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+                font-size: 17px;
+                font-weight: 400;
+        }
+        
+        /* 
+        # Mapping font families and weights to specific classes ( The fonts themselves are embedded via uswds.css ) */
+        .vnt-source-sans-pro-light {
+		font-family:'Source Sans Pro';
+		font-weight: 300;
+	}
+	.vnt-source-sans-pro-regular {
+		font-family:'Source Sans Pro';
+		font-weight: 400;
+	}
+	.vnt-source-sans-pro-bold {
+		font-family:'Source Sans Pro';
+		font-weight: 700;
+	}
+	.vnt-source-sans-pro-italic {
+		font-family:'Source Sans Pro';
+		font-style: italic;
+		font-weight: 400;
+	}
+        
+        /* 
+        # Copying/rewriting typography that is already written in the USWDS *//* 
+                This needed to be done to override other stuff */
+        h1 {
+                font-family:'Source Sans Pro' !important;
+                font-weight: 700 !important;
+                font-size: 44px !important;
+                line-height: 110% !important;
+        }
+        h2 {
+                font-family:'Source Sans Pro' !important;
+                font-weight: 700 !important;
+                font-size: 34px !important;
+                line-height: 110% !important;
+        }
+        h3 {
+                font-family:'Source Sans Pro' !important;
+                font-weight: 700 !important;
+                font-size: 24px !important;
+                line-height: 110% !important;
+        }
+        h4 {
+                font-family:'Source Sans Pro' !important;
+                font-weight: 700 !important;
+                font-size: 19px !important;
+                line-height: 125% !important;
+        }
+        h5 {
+                font-family:'Source Sans Pro' !important;
+                font-weight: 700 !important;
+                font-size: 16px !important;
+                line-height: 125% !important;
+        }
+        h6 {
+                font-family:'Source Sans Pro' !important;
+                font-weight: 700 !important;
+                font-size: 13px !important;
+                line-height: 110% !important;
+                text-transform: uppercase !important;
+        }
+        .usa-font-lead, .lead {
+                font-family:'Source Sans Pro' !important;
+                font-weight: 300 !important;
+                font-size: 22px !important;
+                line-height: 110% !important;
+        }
+        
+        /*
+        # Heading Alternatives */
+        /*      ## Blue and normal weight */
+        	h1.vnt-alt-heading-1,
+        	h2.vnt-alt-heading-1,
+        	h3.vnt-alt-heading-1,
+        	h4.vnt-alt-heading-1,
+        	h5.vnt-alt-heading-1,
+        	h6.vnt-alt-heading-1 {
+        		font-weight: 400 !important;
+        		color: #205493 !important;
+        	}
+        /*      ## Default color and normal weight */
+        	h1.vnt-alt-heading-2,
+        	h2.vnt-alt-heading-2,
+        	h3.vnt-alt-heading-2,
+        	h4.vnt-alt-heading-2,
+        	h5.vnt-alt-heading-2,
+        	h6.vnt-alt-heading-2 {
+        		font-weight: 400 !important;
+        		color: inherit !important;
+        	}
+        /*      ## Blue and bold weight */
+        	h1.vnt-alt-heading-3,
+        	h2.vnt-alt-heading-3,
+        	h3.vnt-alt-heading-3,
+        	h4.vnt-alt-heading-3,
+        	h5.vnt-alt-heading-3,
+        	h6.vnt-alt-heading-3 {
+        		font-weight: 700 !important;
+        		color: #205493 !important;
+        	}
+        
+        /* 
+        # Misc. */
+        label {
+		font-weight: 400;
+	}
+
+
+
+	/* GENERAL GLOBALS: END
+	***************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+	/* >> LOGO FONT EMBEDDING: START
+	***************************************************************************************************************/
+	
+
+                
+	
+	/* LOGO FONT EMBEDDING: END
+	***************************************************************************************************************/
+        /*
+	********
+	********
+	********
+	*/
+	/* >> HELPERS: START
+	***************************************************************************************************************/
+        
+        /* 
+        # Misc. */
+                .vnt-inverse-mode * {
+        		color: #ffffff;
+        	}
+                
+                /* Sans-serif helper */
+                .vnt-sans-style {
+                        font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif !important;
+                }
+
+        /* 
+        # Padding */
+        .vnt-fat-padding {
+                padding: 30px;
+        }
+        .vnt-fatter-padding {
+                padding: 45px;
+        }
+        .vnt-fattest-padding {
+                padding: 68px;
+        }
+
+        /* 
+        # Colors */
+        
+        /*      ## Text colors */
+                /*      ## Brand ( primary, secondary, tertiary ) */
+                        /*      ### Brand text */
+                        
+                                /*      - Primary */
+                                        .vnt-primary-text-color {
+                                                color: #0071bc;
+                                        }
+                                        .vnt-darker-primary-text-color {
+                                                color: #205493;
+                                        }
+                                        .vnt-darkest-primary-text-color {
+                                                color: #112e51;
+                                        }
+                                
+                                
+                                
+                        /*      ### Inverted brand text ( light ) */
+                
+                /*      ## Meaning */
+                        /*      ### Text by meaning */
+                        /*      ### Inverted text by meaning ( light ) */
+                        
+                /*      ## Name */
+                        /*      - Red (example) */
+                                .vnt-red-text {}
+                                            
+                                .vnt-white-text {
+                                        color: #ffffff;
+                                }
+                                
+                        /*      - Grays */
+                                .vnt-light-gray-text {
+                                        color: #aeb0b5 !important;
+                                }
+                                .vnt-dark-gray-text {
+                                        color: #323a45 !important;
+                                }
+                                
+                
+                /*      ## Brightness */        
+                        /*      - Red (example) */
+                                .vnt-red-text--light {}
+                                .vnt-red-text--lighter {}
+                                .vnt-red-text--lightest {}
+                                
+                                .vnt-red-text--dark {}
+                                .vnt-red-text--darker {}
+                                .vnt-red-text--darkest {}
+                
+        /*      ## Background colors */
+                /*      ## Brand ( primary, secondary, tertiary ) */
+                        /*      ### Brand background */
+                        
+                                /*      - Primary */
+                                        .vnt-primary-bg-color {
+                                                background-color: #0071bc;
+                                        }
+                                        .vnt-darker-primary-bg-color {
+                                                background-color: #205493;
+                                        }
+                                        .vnt-darkest-primary-bg-color {
+                                                background-color: #112e51;
+                                        }
+                                
+                                
+                                
+                        /*      ### Inverted brand background ( dark ) */
+                
+                /*      ## Meaning */
+                        /*      ### Background by meaning */
+                        /*      ### Inverted background by meaning ( dark ) */
+                        
+                /*      ## Name */
+                        /*      - Red (example) */
+                                .vnt-red-bg {}
+                                        
+                        /*      - Grays */
+                                .vnt-lightest-gray-bg {
+                                        background-color: #f1f1f1;
+                                }
+                                .vnt-dark-gray-bg {
+                                        background-color: #323a45;
+                                }
+                        
+                        
+                                .vnt-white-bg {
+                                        background-color: #ffffff;
+                                }
+                
+                /*      ## Brightness */        
+                        /*      - Red (example) */
+                                .vnt-red-bg--light {}
+                                .vnt-red-bg--lighter {}
+                                .vnt-red-bg--lightest {}
+                                
+                                .vnt-red-bg--dark {}
+                                .vnt-red-bg--darker {}
+                                .vnt-red-bg--darkest {}
+                
+        /*      ## Background Gradients ... */
+                
+                        
+        /* 
+        # Visual prominence */
+        .vnt-prominence-1 {
+                opacity: .25;
+        }
+        .vnt-prominence-2 {
+                opacity: .42;
+        }
+        .vnt-prominence-3 {
+                opacity: .7;
+        }
+        .vnt-prominence-4 {
+                opacity: 1;
+        }
+
+        
+	/* HELPERS: END
+	***************************************************************************************************************/
+/* VNT GLOBALS CSS: END
+***********************************************************************************************************************/

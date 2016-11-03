@@ -1,0 +1,351 @@
+@charset "utf-8";
+/* CSS Document */
+
+/**********************************************************************************************************************/
+/*
+********
+********
+********
+*/
+/* > NOTES: START
+***********************************************************************************************************************/
+
+	/* TOC:
+		- NOTES
+		- GENERAL SETTINGS
+		- SIMPLE SCAFFOL
+	*/
+
+/* NOTES: END
+***********************************************************************************************************************/
+/*
+********
+********
+********
+*/
+/* > GENERAL SETTINGS: START
+***********************************************************************************************************************/
+
+/* GENERAL SETTINGS: END
+***********************************************************************************************************************/
+/*
+********
+********
+********
+*/
+/* > SIMPLE SCAFFOL: START
+***********************************************************************************************************************/
+
+/* # Notes and warnings described at the bottom of this section */
+
+/* # Component: ss-scaffolding */
+/* Generally, always used with either --fat-stroke, --regular-stroke, or --pin-stroke, modifier. */
+.ss-scaffolding {
+	display:table;
+	
+	width:100%;
+	height:100%;
+	
+	background-clip:border-box;
+}
+	.ss-scaffolding > .row {
+		display:table-row;
+	}
+	.ss-scaffolding > .row::before,
+	.ss-scaffolding > .row::after {
+		content:initial;
+	}
+		.ss-scaffolding > .row > [class^="col-"], 
+		.ss-scaffolding > .row > [class^=" col-"] {
+			display:table-cell;
+			padding:15px;
+			
+			vertical-align:top;
+			text-align:left;
+			
+			float:none;
+			height:100%;
+			background-color:#ffffff;
+		}
+		
+/* 	## Extra padding modifier */
+	/* Used on the light shaded scaffold, whenever extra padding looks nice. */
+	.ss-scaffolding.ss-scaffolding--extra-padding > .row > [class^="col-"], 
+	.ss-scaffolding.ss-scaffolding--extra-padding > .row > [class^=" col-"] {
+		padding:30px;
+	}
+	
+/*	## Open celled modifier */
+	/* Create a parenting header out a dark shaded scaffold cell. 
+	   (Note: Light shaded scaffolds don't need a modifier to create a parenting header.) */
+	.ss-scaffolding > .row > .ss-scaffolding--open-celled {
+		padding:0;
+		background-clip:padding-box;
+		
+		background-color:rgba(0, 0, 0, .04);
+	}
+		
+/* 	## Transparent background modifier */
+	/* Used when just griding things out. */
+	.ss-scaffolding--transparent-bg > .row > [class^="col-"], 
+	.ss-scaffolding--transparent-bg > .row > [class^=" col-"] {
+		background-color:transparent;
+	}
+
+/* 	## Stroke modifiers */
+/*	 	### Fat-stroke modifier */
+		.ss-scaffolding--fat-stroke {
+			border-collapse:separate;
+		}
+				.ss-scaffolding--fat-stroke > .row > [class^="col-"], 
+				.ss-scaffolding--fat-stroke > .row > [class^=" col-"] {
+					border-width:30px;
+					border-style:solid;
+					border-color:rgba(0, 0, 0, .04);
+				}
+		
+				/* Remove top border */
+				.ss-scaffolding--fat-stroke > .row + .row > [class^="col-"], 
+				.ss-scaffolding--fat-stroke > .row + .row > [class^=" col-"] {
+					border-top-width:0;
+				}
+		
+				/* Remove left border */
+				.ss-scaffolding--fat-stroke > .row > [class^="col-"] + [class^="col-"], 
+				.ss-scaffolding--fat-stroke > .row > [class^="col-"] + [class^=" col-"], 
+				.ss-scaffolding--fat-stroke > .row > [class^=" col-"] + [class^=" col-"],
+				.ss-scaffolding--fat-stroke > .row > [class^=" col-"] + [class^="col-"] {
+					border-left-width:0;
+				}
+
+/*	 	### Regular-stroke modifier */
+		.ss-scaffolding--regular-stroke {
+			border-collapse:separate;
+		}
+				.ss-scaffolding--regular-stroke > .row > [class^="col-"], 
+				.ss-scaffolding--regular-stroke > .row > [class^=" col-"] {
+					border-width:6px;
+					border-style:solid;
+					border-color:rgba(0,0,0,.12);
+				}
+				
+				/* Remove top border */
+				.ss-scaffolding--regular-stroke > .row + .row > [class^="col-"], 
+				.ss-scaffolding--regular-stroke > .row + .row > [class^=" col-"] {
+					border-top-width:0;
+				}
+				
+				/* Remove left border */
+				.ss-scaffolding--regular-stroke > .row > [class^="col-"] + [class^="col-"], 
+				.ss-scaffolding--regular-stroke > .row > [class^="col-"] + [class^=" col-"], 
+				.ss-scaffolding--regular-stroke > .row > [class^=" col-"] + [class^=" col-"],
+				.ss-scaffolding--regular-stroke > .row > [class^=" col-"] + [class^="col-"] {
+					border-left-width:0;
+				}	
+	
+/* 		### Pin-stroke modifier */
+		.ss-scaffolding--pin-stroke {
+			border-collapse:separate;
+		}
+				.ss-scaffolding--pin-stroke > .row > [class^="col-"], 
+				.ss-scaffolding--pin-stroke > .row > [class^=" col-"] {
+					border-width:1px;
+					border-style:solid;
+					border-color:rgba(0,0,0,.2);
+				}
+				
+				/* Remove top border */
+				.ss-scaffolding--pin-stroke > .row + .row > [class^="col-"], 
+				.ss-scaffolding--pin-stroke > .row + .row > [class^=" col-"] {
+					border-top-width:0;
+				}
+				
+				/* Remove left border */
+				.ss-scaffolding--pin-stroke > .row > [class^="col-"] + [class^="col-"], 
+				.ss-scaffolding--pin-stroke > .row > [class^="col-"] + [class^=" col-"], 
+				.ss-scaffolding--pin-stroke > .row > [class^=" col-"] + [class^=" col-"],
+				.ss-scaffolding--pin-stroke > .row > [class^=" col-"] + [class^="col-"] {
+					border-left-width:0;
+				}
+
+/* 	## Removed perimeter modifiers */
+	/* Used when nesting scaffolds, so that perimeter borders do not double up. */
+	
+/* 		### Fat-stroke perimeter modifier */
+		.ss-scaffolding--removed-fat-perimeter > .row > [class^="col-"], 
+		.ss-scaffolding--removed-fat-perimeter > .row > [class^=" col-"] {
+			border-width:0;
+		}
+
+		/* Add top border */
+		.ss-scaffolding--removed-fat-perimeter > .row + .row > [class^="col-"], 
+		.ss-scaffolding--removed-fat-perimeter > .row + .row > [class^=" col-"] {
+			border-top-width:30px;
+		}
+		
+		/* Add left border */
+		.ss-scaffolding--removed-fat-perimeter > .row > [class^="col-"] + [class^="col-"], 
+		.ss-scaffolding--removed-fat-perimeter > .row > [class^="col-"] + [class^=" col-"], 
+		.ss-scaffolding--removed-fat-perimeter > .row > [class^=" col-"] + [class^=" col-"],
+		.ss-scaffolding--removed-fat-perimeter > .row > [class^=" col-"] + [class^="col-"] {
+			border-left-width:30px;
+		}
+
+/* 		### Regular-stroke perimeter modifier */
+		.ss-scaffolding--removed-regular-perimeter > .row > [class^="col-"], 
+		.ss-scaffolding--removed-regular-perimeter > .row > [class^=" col-"] {
+			border-width:0;
+		}
+		
+		/* Add top border */
+		.ss-scaffolding--removed-regular-perimeter > .row + .row > [class^="col-"], 
+		.ss-scaffolding--removed-regular-perimeter > .row + .row > [class^=" col-"] {
+			border-top-width:6px;
+		}
+		
+		/* Add left border */
+		.ss-scaffolding--removed-regular-perimeter > .row > [class^="col-"] + [class^="col-"], 
+		.ss-scaffolding--removed-regular-perimeter > .row > [class^="col-"] + [class^=" col-"], 
+		.ss-scaffolding--removed-regular-perimeter > .row > [class^=" col-"] + [class^=" col-"],
+		.ss-scaffolding--removed-regular-perimeter > .row > [class^=" col-"] + [class^="col-"] {
+			border-left-width:6px;
+		}
+		
+/* 		### Pin-stroke perimeter modifier */
+		.ss-scaffolding--removed-pin-perimeter > .row > [class^="col-"], 
+		.ss-scaffolding--removed-pin-perimeter > .row > [class^=" col-"] {
+			border-width:0;
+		}
+		
+		/* Add top border */
+		.ss-scaffolding--removed-pin-perimeter > .row + .row > [class^="col-"], 
+		.ss-scaffolding--removed-pin-perimeter > .row + .row > [class^=" col-"] {
+			border-top-width:1px;
+		}
+		
+		/* Add left border */
+		.ss-scaffolding--removed-pin-perimeter > .row > [class^="col-"] + [class^="col-"], 
+		.ss-scaffolding--removed-pin-perimeter > .row > [class^="col-"] + [class^=" col-"], 
+		.ss-scaffolding--removed-pin-perimeter > .row > [class^=" col-"] + [class^=" col-"],
+		.ss-scaffolding--removed-pin-perimeter > .row > [class^=" col-"] + [class^="col-"] {
+			border-left-width:1px;
+		}
+		
+/* 
+*/
+
+/* 	## Responsive modifiers */
+/*		### Modifier for "with perimeter" scaffolding */
+		@media (max-width: 769px) {
+			
+			/* Basic shared styles */
+			.ss-scaffolding.ss-scaffolding--responsive-with-perimeter > .row > [class^="col-"], 
+			.ss-scaffolding.ss-scaffolding--responsive-with-perimeter > .row > [class^=" col-"] {
+				display:block;
+				float:left;
+				/*border-width:0;*/
+				width:100%;
+			}
+			
+			/* Fat-stroke: Add bottom and side strokes */
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--fat-stroke > .row > [class^="col-"] + [class^="col-"], 
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--fat-stroke > .row > [class^=" col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--fat-stroke > .row > [class^="col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--fat-stroke > .row > [class^=" col-"] + [class^="col-"] {
+				border-bottom-width:30px;
+				border-left-width:30px;
+				border-right-width:30px;
+				
+				border-top-width:0;
+			}
+			
+			/* Regular-stroke: Add bottom and side strokes */
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--regular-stroke > .row > [class^="col-"] + [class^="col-"], 
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--regular-stroke > .row > [class^=" col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--regular-stroke > .row > [class^="col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--regular-stroke > .row > [class^=" col-"] + [class^="col-"] {
+				border-bottom-width:6px;
+				border-left-width:6px;
+				border-right-width:6px;
+				
+				border-top-width:0;
+			}
+			
+			/* Pin-stroke: Add bottom and side strokes */
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--pin-stroke > .row > [class^="col-"] + [class^="col-"], 
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--pin-stroke > .row > [class^=" col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--pin-stroke > .row > [class^="col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-with-perimeter.ss-scaffolding--pin-stroke > .row > [class^=" col-"] + [class^="col-"] {
+				border-bottom-width:1px;
+				border-left-width:1px;
+				border-right-width:1px;
+				
+				border-top-width:0;
+			}
+			
+			
+			
+			
+		}
+	
+	
+/*		### Modifier for "without perimeter" scaffolding */
+		@media (max-width: 769px) {
+			
+			/* Basic shared styles */
+			.ss-scaffolding.ss-scaffolding--responsive-without-perimeter > .row > [class^="col-"], 
+			.ss-scaffolding.ss-scaffolding--responsive-without-perimeter > .row > [class^=" col-"] {
+				display:block;
+				float:left;
+				border-width:0;
+				width:100%;
+			}
+			
+			/* Fat-stroke: Add top strokes */
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--fat-stroke > .row > [class^="col-"] + [class^="col-"], 
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--fat-stroke > .row > [class^=" col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--fat-stroke > .row > [class^="col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--fat-stroke > .row > [class^=" col-"] + [class^="col-"] {
+				border-top-width:30px;
+			}
+			
+			/* Regular-stroke: Add top strokes */
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--regular-stroke > .row > [class^="col-"] + [class^="col-"], 
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--regular-stroke > .row > [class^=" col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--regular-stroke > .row > [class^="col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--regular-stroke > .row > [class^=" col-"] + [class^="col-"] {
+				border-top-width:6px;
+			}
+			
+			/* Pin-stroke: Add top strokes */
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--pin-stroke > .row > [class^="col-"] + [class^="col-"], 
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--pin-stroke > .row > [class^=" col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--pin-stroke > .row > [class^="col-"] + [class^=" col-"], 
+			.ss-scaffolding--responsive-without-perimeter.ss-scaffolding--pin-stroke > .row > [class^=" col-"] + [class^="col-"] {
+				border-top-width:1px;
+			}
+		}
+
+
+
+
+
+/* # Warnings */
+/*	- IE has problems with applying 100% height to the scaffolding. 
+	  In particular layouts, this is less than desirable. 
+	  
+	  Possible solutions could be:
+	  - * { height:100%; } // This works, but causes havoc all elsewhere.
+	  - Give fixed heights to the scaffolding whenever needed.
+*/
+
+
+
+
+/* SIMPLE SCAFFOL: END
+***********************************************************************************************************************/
+/*
+********
+********
+********
+*/

@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* > VNT JERRY RIGGED CSS: START
+***********************************************************************************************************************/
+
+/* 
+# Skinning Bootstrap's "navbar navbar-inverse" */
+.navbar-inverse {
+        background-image: none;
+        border-radius: 0;
+        border-width: 0;
+        
+        background-color: #205493;
+        
+        padding-top: 5px;
+        
+        margin-bottom: 0;
+}
+        /*
+        */
+        .navbar-inverse .navbar-text,
+        .navbar-inverse .navbar-brand,
+        .navbar-inverse .navbar-nav > li > a,
+        .navbar-inverse * {
+                color: #ffffff;
+                text-decoration: none;
+        }
+        
+        
+/* 
+# Dropdowns inside of the inverted navbar  */
+        .navbar-inverse .navbar-nav > .dropdown.open > a, 
+        .navbar-inverse .navbar-nav > .dropdown.open > a:hover, 
+        .navbar-inverse .navbar-nav > .dropdown > a:hover,
+        .navbar-inverse .navbar-nav > .dropdown.open > a:focus {
+                background-color: transparent;
+                background-image: none !important;
+                box-shadow: none !important;
+                
+                background-color: rgba(255, 255, 255, 0.1);
+                opacity: 1;
+        }
+        
+        
+        .navbar-inverse .navbar-nav > .open > a,
+        .navbar-inverse .navbar-nav > .open > a:hover, 
+        .navbar-inverse .navbar-nav > .active > a {
+                opacity: 1;
+        }
+        
+
+
+/* VNT JERRY RIGGED CSS: END
+***********************************************************************************************************************/
