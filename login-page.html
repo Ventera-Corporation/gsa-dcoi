@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dcciApp">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>
+                Data Center Optimization Initiative (DCOI)
+        </title>
+
+        <head>
+                
+                <!-- CSS
+                *********************************************************************************************************************** -->
+                        
+                        <!-- # Third Party CSS -->
+                        
+                                <!-- Bootstrap CSS -->
+                                <link rel="stylesheet" href="3rd-party-code/bootstrap-3.3.7-custom-usa/css/bootstrap.css">
+
+                                <!-- Bootstrap Custom USA Theme -->
+                                <link rel="stylesheet" href="3rd-party-code/bootstrap-3.3.7-custom-usa/css/bootstrap-theme.css">
+                                
+                                <!-- US Web Design Standards -->
+                                <link rel="stylesheet" href="3rd-party-code/uswds-0.13.1/css/uswds.css">
+                
+                                <!-- Font Awesome -->
+                                <link rel="stylesheet" href="3rd-party-code/font-awesome-4.7.0/css/font-awesome.min.css">
+                                
+                                
+                        <!-- # Custom CSS -->
+                        
+                                <!-- Globals -->
+                                <link rel="stylesheet" href="css/vnt-globals.css">
+                                
+                                <!-- [ Bootstrap ] - Component ModEx -->
+                                <link rel="stylesheet" href="css/vnt-bootstrap-component-modex.css">
+                                
+                                <!-- [ US Web Design Standards ] - Component ModEx -->
+                                <link rel="stylesheet" href="css/vnt-uswds-component-modex.css">
+
+                                <!-- Collections Components -->
+                                <link rel="stylesheet" href="css/vnt-collections-components.css">
+                                
+                                <!-- Components from Scratch -->
+                                <link rel="stylesheet" href="css/vnt-components-from-scratch.css">
+                                
+                                <!-- Jerry Rigged -->
+                                <link rel="stylesheet" href="css/vnt-jerry-rigged.css">
+
+
+
+                <!-- JS
+                *********************************************************************************************************************** -->
+                
+                        <!-- jQuery JS -->
+                        <script src="3rd-party-code/jquery-2.1.1/jquery-2.1.1.js"></script>
+
+                        <!-- Bootstrap JS -->
+                        <script src="3rd-party-code/bootstrap-3.3.7-custom-usa/js/bootstrap.js"></script>
+                        
+                        <!-- US Web Design Standards JS -->
+                        <script src="3rd-party-code/uswds-0.13.1/js/uswds.js"></script>
+                        
+                
+        </head>
+
+
+        <body ng-controller="MainLoginController" class="vnt-lightest-gray-bg">
+                
+                
+                
+                <main-header-directive></main-header-directive>
+                
+                
+                
+                <br>
+                <br>
+                <!-- container: START -->
+                <div class="container" style="height:100%;">
+                        
+                        
+                        
+                        <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                                        
+                                        
+                                        <form class="usa-form" id="login-form-id">
+                                                <fieldset>
+                                                        <legend class="usa-drop_text">Sign in</legend>
+                                                        <span>or <a href="javascript:void(0);">create an account</a></span>
+
+                                                        <label for="username">Username or email address</label>
+                                                        <input id="user-id" name="username" type="text" autocapitalize="off" autocorrect="off">
+
+                                                        <label for="password">Password</label>
+                                                        <input id="password-id" name="password" type="{{ loginPasswordType }}">
+                                                        
+                                                        <p class="usa-form-note">
+                                                                <a title="Show password" href="javascript:void(0);" class="usa-show_password" aria-controls="password" ng-model="passwordCheckbox" ng-click="hideShowPassword()">
+                                                                        Show password
+                                                                </a>
+                                                        </p>
+
+                                                        <input type="submit" value="Sign in" id="login-button-id">
+                                                        
+                                                        <div class="usa-alert usa-alert-error hidden" role="alert" style="margin:0;" id="failed-login-notice-id">
+                                                                <div class="usa-alert-body">
+                                                                        <h3 class="usa-alert-heading">Error:</h3>
+                                                                        
+                                                                        <p class="usa-alert-text">
+                                                                                Enter a valid user ID and password
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+                                                        
+                                                        <p>
+                                                                <a href="javascript:void(0);" title="Forgot username">
+                                                                        Forgot username?
+                                                                </a>
+                                                        </p>
+                                                        <p>
+                                                                <a href="javascript:void(0);" title="Forgot password">
+                                                                        Forgot password?
+                                                                </a>
+                                                        </p>
+                                                </fieldset>
+                                        </form>
+                                        
+                                        
+                                        
+                                </div>
+                                
+                        </div>
+                        
+                        
+                
+                </div>
+                <!-- container: END -->
+                
+                
+                <!-- AngularJS
+                *********************************************************************************************************************** -->
+                
+                        <!-- # AngularJS -->
+        		<script src="3rd-party-code/angular-js-1.4.7/angular.js"></script>
+                        <script src="3rd-party-code/angular-js-1.4.7/angular-route.js"></script>
+                                                    	
+        		<!-- # Custom AngularJS Code -->
+                		<script src="app/app.js"></script>
+                                
+                                <!-- Main header -->
+                                <script src="app/common-includes/mainHeaderDirective.js"></script>
+                        
+                        
+                <!-- Some Adhoc JavaScript
+                *********************************************************************************************************************** -->
+                
+                <script>
+                /*
+                        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                                
+                                var target = this.href.split('#');
+                                $('.nav a').filter('[href="#' + target[ 1 ] + '"]').tab('show');
+                        });
+                */
+                </script>
+                
+                
+                
+        </body>
+
+</html>

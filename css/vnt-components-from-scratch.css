@@ -28,7 +28,8 @@
 	*/
 	/* >> CALENDAR CHIP: START
 	***************************************************************************************************************/
-        
+        /* 
+        # Component: vnt-calendar-chip */
         .vnt-calendar-chip {
                 background-clip: padding-box;        
                 padding: 20px;
@@ -42,31 +43,6 @@
                 
                 height: 155px;
         }
-        
-        
-        .vnt-calendar-chip.vnt-calendar-chip--creator {
-                background-clip: padding-box;        
-                padding: 20px;
-        
-                border-width: 1px;
-                border-style: solid;
-                border-color: rgba(0,0,0,.13);
-                
-                
-                background-color: rgba(0, 0, 0, 0.03);
-                margin-bottom: 30px;
-                
-                height: 155px;
-        }
-        
-        .vnt-calendar-chip:hover {
-                border-width: 1px;
-                border-style: solid;
-                border-color: #205493;
-                
-                cursor: pointer;
-        }
-        
                 .vnt-calendar-chip > h1,
                 .vnt-calendar-chip > h2,
                 .vnt-calendar-chip > h3,
@@ -77,7 +53,32 @@
                         margin-bottom: 4px;
                 }
         
-                .vnt-calendar-chip__niche {
+        /*      ## Pseudo state classes */
+                .vnt-calendar-chip:hover {
+                        border-width: 1px;
+                        border-style: solid;
+                        border-color: #205493;
+                        
+                        cursor: pointer;
+                }
+        
+        /*      ## Modifiers */
+                .vnt-calendar-chip.vnt-calendar-chip--creator {
+                        background-clip: padding-box;        
+                        padding: 20px;
+                
+                        border-width: 1px;
+                        border-style: solid;
+                        border-color: rgba(0,0,0,.13);
+                        
+                        background-color: rgba(0, 0, 0, 0.03);
+                        margin-bottom: 30px;
+                        
+                        height: 155px;
+                }
+                
+        /*      ## Subcomponents */
+                .vnt-calendar-chip.vnt-calendar-chip__niche {
                         display: block;
                         position: absolute;
                         left: 0;
@@ -88,11 +89,15 @@
                         
                         background-color: #0071bc;
                 }
-                .vnt-calendar-chip:hover .vnt-calendar-chip__niche {
-                        background-color: #205493;
-                }
+                
+        /*              ### Pseudo state classes */
+                        .vnt-calendar-chip:hover .vnt-calendar-chip__niche {
+                                background-color: #205493;
+                        }
         
         
+        /* 
+        # Component: vnt-calendar-chip-row-head */
         .vnt-calendar-chip-row-head {    
                 padding: 30px;
                 margin-bottom: 30px;
@@ -111,6 +116,8 @@
 	/* >> PILL BOXES: START
 	***************************************************************************************************************/
         
+        /* 
+        # Component: vnt-light-grey-pill-box */
         .vnt-light-grey-pill-box {
         
                 background-clip: padding-box;        
@@ -125,7 +132,6 @@
         }
         
 
-        
         /* PILL BOXES: END
 	***************************************************************************************************************/
         /*
@@ -180,6 +186,8 @@
 	/* >> PAGE TITLE BAR: START
 	***************************************************************************************************************/
         
+        /* 
+        # Component: vnt-page-title-bar */
         .vnt-page-title-bar {
                 display: block;
                 padding: 15px;
@@ -195,8 +203,6 @@
         
         /* PAGE TITLE BAR: END
 	***************************************************************************************************************/
-        
-        
         
 /* VNT COMPONENTS FROM SCRATCH CSS: END
 ***********************************************************************************************************************/

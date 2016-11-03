@@ -49,5 +49,24 @@
         
 
 
+/* # 
+Min height on navbar */
+.navbar {
+        min-height: 64px;
+}
+
+
+
+/* 
+# Overriding some USWDS stuff to get the login form to be flush with the error messages */
+#login-form-id input {
+        max-width: none;
+}
+#login-form-id.usa-form {
+        max-width: none;
+}
+
+
+
 /* VNT JERRY RIGGED CSS: END
 ***********************************************************************************************************************/
