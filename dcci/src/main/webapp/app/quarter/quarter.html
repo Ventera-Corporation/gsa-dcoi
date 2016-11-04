@@ -1,9 +1,9 @@
-﻿<!-- PAGE HEADER -->
+<!-- PAGE HEADER -->
 <div class="page-header">                  
     <span class="glyphicon glyphicon-th-list" role="button" aria-hidden="true" href="#menu-toggle" id="menu-toggle" style="font-size: .8em;"></span> &nbsp; Create New Quarter - Q3 2016
 
     <div class="pull-right">
-        <span class="inline"><input class="form-control" type="date" name="duedate" style="max-width: 150px;"></span>
+        <span class="inline"><input class="form-control" type="date" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"></span>
         <span class="inline"><button class="usa-button usa-button-primary" type="button" style="display: inline;">Create</button></span>
     </div>
 </div>
@@ -20,30 +20,18 @@
                     <div class="panel-heading">
                         <button class="usa-button usa-button-primary" type="button">New Data Center</button>
                     </div>
-                    <div class="panel-heading" data-toggle="collapse" href="#region1">
-                        <h4 class="panel-title">
-                            Region 1
-                        </h4>
-                    </div>
-                    <div id="region1" class="panel-collapse collapse in">
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="#datacenter1">Data Center 1 Name</a></li>
-                            <li class="list-group-item"><a href="#datacenter2">Data Center 2 Name</a></li>
-                            <li class="list-group-item"><a href="#datacenter3">Data Center 3 Name</a></li>
-                        </ul>
-                    </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" href="#region2">
+                <div class="panel panel-default" data-ng-repeat="region in qc.quarterData.regions">
+                    <div class="panel-heading" data-ng-click="region.expanded=!region.expanded">
                         <h4 class="panel-title">
-                            Region 2
+                            {{region.name}} | {{region.id}}
                         </h4>
                     </div>
-                    <div id="region2" class="panel-collapse collapse in">
+                    <div id="region{{$index}}" class="panel-collapse collapse in" data-ng-if="region.expanded">
                         <ul class="list-group">
-                            <li class="list-group-item"><a href="#datacenter4">Data Center 4 Name</a></li>
-                            <li class="list-group-item"><a href="#datacenter5">Data Center 5 Name</a></li>
-                            <li class="list-group-item"><a href="#datacenter6">Data Center 6 Name</a></li>
+                            <li class="list-group-item" data-ng-repeat="dataCenter in region.dataCenters">
+                            	<a href="">{{dataCenter.name}} | {{dataCenter.id}}</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -60,134 +48,87 @@
 
                 <!-- DATA CENTER PANEL-->
                 <!-- Data Center Header -->
-                <div class="panel panel-default panel-dc" id="datacenter1">
-                    <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#dc1-body">
+                <div class="panel panel-default panel-dc" data-ng-repeat="dataCenter in qc.quarterData.regions[qc.tempData.displayedRegionIdx].dataCenters" id="datacenter{{$index}}">
+                    <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" data-ng-click="dataCenter.expanded=!dataCenter.expanded">
                         <h4 class="panel-title">
-                            {Data Center 1 Name} | {Data Center 1 ID}
+                            {{dataCenter.name}} | {{dataCenter.id}}
 
-                            <span class="pull-right vnt-normal-text-weight">City, State</span>
+                            <span class="pull-right vnt-normal-text-weight">{{dataCenter.city}}, {{dataCenter.state}}</span>
                         </h4>
                     </div>
 
 
                     <!-- Data Center Body -->
-                    <div id="dc1-body" class="panel-collapse collapse in">
+                    <div id="dc1-body" class="panel-collapse collapse in" data-ng-if="dataCenter.expanded">
                         <div class="panel-body">
                                     
-                            <form action="">
-                                <div class="form-group">
-                                    <label class="inline">Assign Data Center: </label>
-                                    <span class="inline"><input type="checkbox" class="form-control" name="agency" value="pbs"><label>PBS</label></span>
-                                    <span class="inline"><input type="checkbox" class="form-control" name="agency" value="fas"><label>FAS</label></span>
-                                    <span class="inline"><input type="checkbox" class="form-control" name="agency" value="ocio"><label>OCIO</label></span>
-                                    <span class="inline"><input type="checkbox" class="form-control" name="agency" value="cfocpo"><label>CFO/CPO</label></span>
-                                </div>
-                            </form>
+                            <div class="form-group">
+                                <label class="inline">Assign Data Center: </label>
+                                <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}pbs" data-ng-model="dataCenter.isPbs">
+                                	<label for="datacenter{{$index}}pbs">PBS</label>
+                                </span>
+                                <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}fas" data-ng-model="dataCenter.isFas">
+                                	<label for="datacenter{{$index}}fas">FAS</label>
+                                </span>
+                                <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}ocio" data-ng-model="dataCenter.isOcio">
+                                	<label for="datacenter{{$index}}ocio">OCIO</label>
+                                </span>
+                                <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}cfocpo" data-ng-model="dataCenter.isCfoCpo">
+                                	<label for="datacenter{{$index}}cfocpo">CFO/CPO</label>
+                                </span>
+                            </div>
                                     
                             <div class="panel-group">
 
                                 <!-- Category 1 Panel -->
-                                <div class="panel panel-default panel-category">
-                                    <div class="panel-heading" data-toggle="collapse" href="#category1">
+                                <div class="panel panel-default panel-category" data-ng-repeat="category in dataCenter.categories">
+                                    <div class="panel-heading" data-toggle="collapse" data-ng-click="category.expanded=!category.expanded">
                                         <h4 class="panel-title">
-                                            <span class="glyphicon glyphicon-minus"></span> &nbsp; Category 1
+                                        	<span class="glyphicon glyphicon-plus" data-ng-if="category.expanded"></span>
+                                            <span class="glyphicon glyphicon-minus" data-ng-if="!category.expanded"></span>
+                                            <span>&nbsp; {{category.id}}</span>
                                         </h4>
                                     </div>
 
-                                    <div id="category1" class="panel-collapse panel-cat-collapse collapse in">
+                                    <div id="category{{$index}}" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="category.expanded">
                                         <div class="panel-body">
-                                            <!-- Form Fields -->
-                                            <form action="">
-                                                <div class="row">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label for="data-center-id">Data Center ID</label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" id="data-center-id">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label for="data-center-name">Data Center Name</label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" id="data-center-name">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label for="published-name">Published Name</label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" id="published-name">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label for="data-center-id">Agency Abbreviation</label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" id="agency-abbreviation">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form><!-- /form -->
-                                        </div><!-- /.panel-body -->
-                                    </div>
-                                </div><!-- /.panel-category -->
-                                                        
-                                <!-- Category 2 Panel -->
-                                <div class="panel panel-default panel-category">
-                                    <div class="panel-heading" data-toggle="collapse" href="#category2">
-                                        <h4 class="panel-title">
-                                            <span class="glyphicon glyphicon-minus"></span> &nbsp; Category 2
-                                        </h4>
-                                    </div>
-
-                                    <div id="category2" class="panel-collapse panel-cat-collapse collapse in">
-                                        <div class="panel-body">
-                                            <!-- Form Fields -->
-                                            <form action="">
-                                                <div class="row">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label for="data-center-id">Data Center ID</label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" id="data-center-id">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label for="data-center-name">Data Center Name</label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" id="data-center-name">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label for="published-name">Published Name</label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" id="published-name">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label for="data-center-id">Agency Abbreviation</label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" id="agency-abbreviation">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form><!-- /form -->
+                                         <!-- Form Fields -->
+                                             <div class="row">
+                                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                                     <div class="form-group">
+                                                         <label for="category{{$index}}DataCenterID">Data Center ID</label>
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="category{{$index}}DataCenterID" data-ng-model="category.dataCenterID">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                                     <div class="form-group">
+                                                         <label for="category{{$index}}DataCenterName">Data Center Name</label>
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="category{{$index}}DataCenterName" data-ng-model="category.dataCenterName">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                                     <div class="form-group">
+                                                         <label for="category{{$index}}PublishedName">Published Name</label>
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="category{{$index}}PublishedName" data-ng-model="category.publishedName">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                             <div class="row">
+                                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                                     <div class="form-group">
+                                                         <label for="category{{$index}}AgencyAbbreviation">Agency Abbreviation</label>
+                                                         <div class="input-group">
+                                                             <input type="text" class="form-control" id="category{{$index}}AgencyAbbreviation" data-ng-model="category.agencyAbbreviation">
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
                                         </div><!-- /.panel-body -->
                                     </div>
                                 </div><!-- /.panel-category -->
@@ -196,25 +137,6 @@
 
                         </div><!-- /.panel-body -->
                     </div><!--/.panel-collapse -->
-                </div><!-- /.panel-dc -->
-                                
-                <!-- DATA CENTER PANEL-->
-                <!-- Data Center Header -->
-                <div class="panel panel-default panel-dc" id="datacenter2">
-                    <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#dc2-body">
-                        <h4 class="panel-title">
-                            {Data Center 2 Name} | {Data Center 2 ID}
-
-                            <span class="pull-right vnt-normal-text-weight">City, State</span>
-                        </h4>
-                    </div>
-
-                    <!-- Data Center Body -->
-                    <div id="dc2-body" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet
-                        </div><!--/.panel-body -->
-                    </div><!-- /.panel-collapse -->
                 </div><!-- /.panel-dc -->
 
             </div><!-- /.panel-group -->
