@@ -146,6 +146,8 @@
     /* >> US WEB DESIGN STANDARDS: START
 	***************************************************************************************************************/
 
+        /*
+        # Adding smooth transition to button hover */
         .usa-button {
             margin: 0;
         }
@@ -155,6 +157,16 @@
             -moz-transition: all 0.5s ease;
             -o-transition: all 0.5s ease;
             transition: all 0.5s ease;
+        }
+
+        
+        /* 
+        # Overriding some USWDS stuff to get the login form to be flush with the error messages */
+        #login-form-id input {
+            max-width: none;
+        }
+        #login-form-id.usa-form {
+            max-width: none;
         }
 
     /* US WEB DESIGN STANDARDS: END
