@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dcciApp">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>
+                Data Center Optimization Initiative (DCOI)
+        </title>
+
+        <head>
+                
+                <!-- CSS: START
+                *********************************************************************************************************************** -->
+                        
+                        <!-- # Third Party CSS -->
+                        
+                                <!-- DataTables CSS -->
+                                <link rel="stylesheet" href="3rd-party-code/data-tables-1.10.12/css/jquery.dataTables.min.css">
+                        
+                                <!-- Bootstrap CSS -->
+                                <link rel="stylesheet" href="3rd-party-code/bootstrap-3.3.7-custom-usa/css/bootstrap.css">
+
+                                <!-- Bootstrap Custom USA Theme -->
+                                <link rel="stylesheet" href="3rd-party-code/bootstrap-3.3.7-custom-usa/css/bootstrap-theme.css">
+                                
+                                <!-- US Web Design Standards -->
+                                <link rel="stylesheet" href="3rd-party-code/uswds-0.13.1/css/uswds.css">
+                
+                                <!-- Font Awesome -->
+                                <link rel="stylesheet" href="3rd-party-code/font-awesome-4.7.0/css/font-awesome.min.css">
+                                
+                                
+                                
+                        <!-- # Custom CSS -->
+                        
+                                <!-- Globals -->
+                                <link rel="stylesheet" href="css/vnt-globals.css">
+                                
+                                <!-- [ Bootstrap ] - Component ModEx -->
+                                <link rel="stylesheet" href="css/vnt-bootstrap-component-modex.css">
+                                
+                                <!-- [ US Web Design Standards ] - Component ModEx -->
+                                <link rel="stylesheet" href="css/vnt-uswds-component-modex.css">
+
+                                <!-- Collections Components -->
+                                <link rel="stylesheet" href="css/vnt-collections-components.css">
+                                
+                                <!-- Components from Scratch -->
+                                <link rel="stylesheet" href="css/vnt-components-from-scratch.css">
+                                
+                                <!-- Jerry Rigged -->
+                                <link rel="stylesheet" href="css/vnt-jerry-rigged.css">
+                                
+                <!-- CSS: END
+                *********************************************************************************************************************** -->
+                <!--
+        	********
+        	********
+        	********
+                -->
+                <!-- JS: START
+                *********************************************************************************************************************** -->
+                
+                
+                        <!-- # Third Party JS -->
+                                <!-- jQuery JS -->
+                                <script src="3rd-party-code/jquery-2.1.1/jquery-2.1.1.js"></script>
+                                
+                                <!-- DataTables JS -->
+                                <script src="3rd-party-code/data-tables-1.10.12/js/jquery.dataTables.min.js"></script>
+
+                                <!-- Bootstrap JS -->
+                                <script src="3rd-party-code/bootstrap-3.3.7-custom-usa/js/bootstrap.js"></script>
+                                
+                                <!-- US Web Design Standards JS -->
+                                <script src="3rd-party-code/uswds-0.13.1/js/uswds.js"></script>
+                                
+                                
+                
+                <!-- JS: END
+                *********************************************************************************************************************** -->
+                        
+                
+        </head>
+
+
+        <body ng-controller="MainSearchResultsController" class="vnt-lightest-gray-bg">
+                
+                <main-header-directive></main-header-directive>
+                
+                <div class="vnt-page-title-bar">
+                        <h4 class="vnt-alt-heading-2" style="padding:0; margin:0;">Search Results</h4>
+                </div>
+                
+                <!-- container: START -->
+                <div class="container-fluid" style="height:100%;">
+                        
+                        
+                        <div class="row">
+                                <div class="col-xs-12">
+                                        
+                                        Results for &nbsp;
+                                        <h4 style="display:inline;" class="vnt-alt-heading-2">
+                                                <span class="text-primary">DC-A1</span>
+                                        </h4>
+                                        
+                                </div>
+                        </div>
+                                
+                        
+                        
+                        <div class="row">
+                                <div class="col-xs-12" style="padding-left:0; padding-right:0;">
+                                        
+                                        <!-- overflow-x: START -->
+                                        
+                                                
+                                        
+                                        
+                                                <table id="example" cellspacing="0" width="100%" class="table table-bordered dataTable stripe no-footer display">
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>
+                                                                                Year
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        <th>
+                                                                                Quarter
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        <th>
+                                                                                Data Center Name
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        <th>
+                                                                                Data Center ID
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        <th>
+                                                                                Location
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        <th>
+                                                                                Component
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                Street Address
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                City
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                State
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                Zip Code
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                Record Status
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        <th>
+                                                                                Ownership Type
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        <th>
+                                                                                ISS Provider
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                Data Center Tier
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        
+                                                                        <th>
+                                                                                Automated Monitoring
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                Electricity is metered
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                AVG Electricity Usage
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                Gross Floor Area
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                Rack Count
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                        <th>
+                                                                                Total Mainframes
+                                                                                <span class="caret pull-right"></span>
+                                                                        </th>
+                                                                        
+                                                                </tr>
+                                                                
+                                                        </thead>
+                                                        <!--
+                                                        
+                                                        
+                                                        <tfoot>
+                                                                <tr>
+                                                                <th></th>
+                                                                <th>Name</th>
+                                                                <th>Position</th>
+                                                                <th>Office</th>
+                                                                <th>Salary</th>
+                                                                </tr>
+                                                        </tfoot>
+                                                        -->
+                                                </table>
+                                                
+                                                
+                                        
+                                        <!-- overflow-x: END -->
+                                        
+                                        
+                                        
+                                </div>
+                                
+                                
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                
+                </div>
+                <!-- container: END -->
+                
+                
+                <!-- AngularJS: START
+                *********************************************************************************************************************** -->
+                
+                        <!-- # AngularJS -->
+        		<script src="3rd-party-code/angular-js-1.4.7/angular.js"></script>
+                        <script src="3rd-party-code/angular-js-1.4.7/angular-route.js"></script>
+                                                    	
+        		<!-- # Custom AngularJS Code -->
+                		<script src="app/app.js"></script>
+                                
+                                <!-- Main header -->
+                                <script src="app/common-includes/mainHeaderDirective.js"></script>
+                        
+                
+                <!-- AngularJS: END
+                *********************************************************************************************************************** -->
+                <!--
+        	********
+        	********
+        	********
+                -->            
+                <!-- Some Adhoc JavaScript: START
+                *********************************************************************************************************************** -->
+                
+                
+                
+                
+                
+                
+                
+                
+                <script>
+                
+                        
+                        /* Formatting function for row details - modify as you need */
+                        
+                        /*
+                        function format ( d ) {
+                            // `d` is the original data object for the row
+                            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+                                '<tr>'+
+                                    '<td>Full name:</td>'+
+                                    '<td>'+d.name+'</td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<td>Extension number:</td>'+
+                                    '<td>'+d.extn+'</td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<td>Extra info:</td>'+
+                                    '<td>And any further details here (images etc)...</td>'+
+                                '</tr>'+
+                            '</table>';
+                        }
+                         */
+                         
+                         // "pageLength": 25,
+                         
+                        $(document).ready(function() {
+                            var table = $('#example').DataTable( {
+                                    "scrollX": true,
+                                    "ajax": "search-results-data.txt",
+                                    "columns": [            
+                                        { "data": "year" },
+                                        { "data": "quarter" },
+                                        { "data": "data-center-name"},
+                                        { "data": "data-center-id"},
+                                        { "data": "location"},
+                                        { "data": "component"},
+                                        { "data": "street-address"},
+                                        { "data": "city"},
+                                        { "data": "state"},
+                                        { "data": "zip-code"},
+                                        { "data": "record-status"},
+                                        { "data": "ownership-type"},
+                                        { "data": "iss-provider"},
+                                        { "data": "data-center-tier"},
+                                        { "data": "automated-monitoring"},
+                                        { "data": "electricity-is-metered"},
+                                        { "data": "avg-electricity-usage"},
+                                        { "data": "gross-floor-area"},
+                                        { "data": "rack-count"},
+                                        { "data": "total-mainframes"}
+                                ],
+                                "order": [[1, 'asc']]
+                            } );
+                             
+                             
+                             /*
+                            // Add event listener for opening and closing details
+                            $('#example tbody').on('click', 'td.details-control', function () {
+                                var tr = $(this).closest('tr');
+                                var row = table.row( tr );
+                         
+                                if ( row.child.isShown() ) {
+                                    // This row is already open - close it
+                                    row.child.hide();
+                                    tr.removeClass('shown');
+                                }
+                                else {
+                                    // Open this row
+                                    row.child( format(row.data()) ).show();
+                                    tr.addClass('shown');
+                                }
+                            } );
+                            */
+                            
+                            
+                            
+                            
+                        } );
+                        
+                        
+                        
+                </script>
+                
+                
+                
+                <!-- Some Adhoc JavaScript: END
+                *********************************************************************************************************************** -->
+                
+                
+        </body>
+
+</html>

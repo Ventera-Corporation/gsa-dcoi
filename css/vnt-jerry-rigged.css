@@ -1,6 +1,170 @@
 @charset "utf-8";
 /* > VNT JERRY RIGGED CSS: START
 ***********************************************************************************************************************/
+        /**************************************************************************************************************/
+        /*
+        ********
+        ********
+        ********
+        */
+        /* >> Customizing the DataTables plugin: START
+        ***************************************************************************************************************/
+        
+        table.dataTable {
+        	border-collapse:collapse;
+        	border-width:0;
+        	
+        	border-top-width:1px;
+        	border-top-style:solid;
+        	border-top-color:rgba(0,0,0,.2);
+                
+                background-color: #ffffff;
+        }
+        
+        
+        
+                table.dataTable.display tbody tr.odd:hover > .sorting_1,
+                table.dataTable.display tbody tr:hover > td,
+                table.dataTable.display tbody tr:hover > .sorting_1,
+                table.dataTable tbody tr:hover td {
+                        
+                        cursor: pointer;
+                        /*
+                        border-color: #205493;
+                        border-style: solid;
+                        border-width: 2px;
+                        */
+                        background-color: #e1f3f8 !important;
+                        
+                }
+        
+        
+        
+
+    
+        
+                                table.dataTable td {
+                                        background-color: transparent;
+                                }
+                        
+                        table.dataTable.display tbody tr.odd > .sorting_1, 
+                        table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
+                                background-color: transparent;
+                        }
+        		
+        		table.dataTable.stripe tbody tr.odd, 
+        		table.dataTable.display tbody tr.odd {
+                                
+        			background-color: rgba(0, 0, 0, .04);
+        		}
+        		
+        			table.dataTable > tbody > tr > td,
+        			table.dataTable > thead > tr > td,
+        			table.dataTable > tfoot > tr > td,
+        			table.dataTable > tbody > tr > th,
+        			table.dataTable > thead > tr > th,
+        			table.dataTable > tfoot > tr > th {
+        				border-width:1px;
+        			}
+        			
+        			table.dataTable > tbody > tr > td:first-of-type,
+        			table.dataTable > thead > tr > td:first-of-type,
+        			table.dataTable > tfoot > tr > td:first-of-type,
+        			table.dataTable > tbody > tr > th:first-of-type,
+        			table.dataTable > thead > tr > th:first-of-type,
+        			table.dataTable > tfoot > tr > th:first-of-type {
+        				border-left-color:rgba(0,0,0,.2);
+        			}
+        			table.dataTable > tbody > tr > td:last-of-type,
+        			table.dataTable > thead > tr > td:last-of-type,
+        			table.dataTable > tfoot > tr > td:last-of-type,
+        			table.dataTable > tbody > tr > th:last-of-type,
+        			table.dataTable > thead > tr > th:last-of-type,
+        			table.dataTable > tfoot > tr > th:last-of-type {
+        				border-right-color:rgba(0,0,0,.2);
+        			}
+        
+        
+        
+        table.dataTable thead .sorting_desc {
+        	background-image:none;
+        }
+        table.dataTable thead .sorting_asc {
+        	background-image:none;
+        }
+        table.dataTable thead .sorting {
+        	background-image:none;
+        }
+        
+        
+        .sorting,
+        .sorting_desc,
+        .sorting_asc {
+        	cursor:pointer;
+        }
+        
+        
+        
+        .sorting_asc .caret {
+        	border-bottom-color: #202020;
+        	border-bottom-width: 8px !important;
+        	border-style: solid;
+        	border-top-width: 0 !important;
+        	visibility: visible;
+        }
+        
+        .sorting_desc .caret {
+        	border-top-color: #202020;
+        	border-top-width: 8px !important;
+        	border-style: solid;
+        	border-bottom-width: 0 !important;
+        	visibility: visible;
+        }
+        
+        
+        .sorting > span.caret {
+        	visibility:hidden;
+        }
+        
+        .sorting_desc > .caret,
+        .sorting_asc > .caret {
+        	visibility:visible;
+        }
+        
+        .sorting span {
+        	visibility:hidden !important;
+        }
+
+
+
+
+        
+        
+
+
+        table thead th {
+            
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        
+        
+        td.details-control {
+                background: url('../resources/details_open.png') no-repeat center center;
+                cursor: pointer;
+                
+                content: "\e095";
+        }
+        tr.shown td.details-control {
+                background: url('../resources/details_close.png') no-repeat center center;
+                
+                content: "\e095";
+        }
+        
+        /* Customizing the DataTables plugin: END
+        ***************************************************************************************************************/
+
+
 
 /* 
 # Skinning Bootstrap's "navbar navbar-inverse" */
@@ -67,6 +231,172 @@ Min height on navbar */
 }
 
 
+
+/* #  */
+.dataTable th {
+        white-space: nowrap;
+}
+
+
+
+
+
+/* # Jerry rigging some stuff for the DataTables to work better with USWDS */
+
+
+.dataTables_length select {
+        
+        /*
+        background-image: none !important;
+        -moz-appearance: normal !important;
+        -webkit-appearance: normal !important;
+        appearance: normal !important;
+        */
+        display: inline-block;
+        
+        margin: 0 !important;
+        max-width: none;
+        
+        width: auto;
+        
+        
+        margin-right: 10px !important;
+        margin-left: 10px !important;
+        
+        padding-right: 30px;
+        
+        
+        
+        
+}
+
+.dataTables_filter input {
+        box-sizing: border-box;
+        
+        display: inline;
+        width:200px;     
+}
+
+
+
+
+
+        
+
+/*
+.dataTables_wrapper .dataTables_paginate .paginate_button,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        
+        
+        
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        margin-top: 0.5em;
+        margin-right: 0.5em;
+        margin-bottom: 0.5em;
+        appearance: none;
+        background-color: #0071bc;
+        border: 0;
+        border-radius: 0.3rem;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        line-height: 1;
+        outline: none;
+        padding: 1rem 2rem;
+        text-align: center;
+        text-decoration: none;
+        width: 100%;
+        
+        width: auto;
+        
+        background: none;
+
+        background-color: #5b616b;
+        
+        
+        color: #ffffff !important;
+        
+}
+
+*/
+
+.dataTables_wrapper .dataTables_paginate .paginate_button,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+        
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        margin-top: 0.5em;
+        margin-right: 0.5em;
+        margin-bottom: 0.5em;
+        appearance: none;
+        background-color: #0071bc;
+        border: 0;
+        border-radius: 0.3rem;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        line-height: 1;
+        outline: none;
+        padding: 1rem 2rem;
+        text-align: center;
+        text-decoration: none;
+        width: 100%;
+        
+        width: auto;
+        
+        background: none;
+
+        background-color: #5b616b !important;
+        
+        
+        color: #ffffff !important;
+        
+        background: none;
+        
+
+}
+
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+        background-color: #d6d7d9 !important;
+        color: #323a45 !important;
+        pointer-events: none !important;
+}
+
+
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+        background-color: #323a45 !important;
+        
+}
+
+
+.dataTables_length,
+.dataTables_info {
+        padding-left: 15px;
+}
+
+#example_filter,
+.dataTables_paginate {
+        padding-right: 15px;
+}
 
 /* VNT JERRY RIGGED CSS: END
 ***********************************************************************************************************************/

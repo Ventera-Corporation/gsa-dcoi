@@ -7,6 +7,16 @@ dcciApp_module.controller("MainController", function ( $scope ) {
 });
 
 
+
+
+
+dcciApp_module.controller("MainSearchResultsController", function ( $scope ) {
+        
+        $scope.loginPage = true;
+        
+});
+
+
 dcciApp_module.controller("MainLoginController", function ( $scope ) {
         
         $scope.loginPage = false;
