@@ -75,6 +75,14 @@
             text-decoration: none;
             color: #333333;
         }
+        
+        .navbar-form input[type="text"] {
+	    	height: 35px;
+	    }
+        
+        .navbar-nav li {
+        	margin: 0;
+        }
 
         /* 
         # Page Header */
@@ -84,14 +92,18 @@
             background: #ffffff;
             background-color: #ffffff;
             margin-top: 50px;
-            padding: 10px 15px 10px 15px;
-            font-size: 1.4em;
+            padding: 8px 15px 8px 15px;
+            font-size: 1.3em;
             font-weight: 400;
             color: #333333;
             z-index: 100;
             -webkit-box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
                -moz-box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
                     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+        }
+        
+        .page-header h3 {
+        	margin: 5px 0 0 0;
         }
 
         /* 
@@ -100,7 +112,19 @@
             cursor: pointer;
             border-radius: 0;
         }
+        
+        /*
+        # Modal Header */
+        .modal-header {
+            background: #205493;
+            color: white;
+        }
 
+        .modal-title {
+            color: white;
+            margin: 0;
+        }
+        
         /*
         # Validation States */
         .has-success .form-control {
@@ -149,7 +173,7 @@
         /*
         # Adding smooth transition to button hover */
         .usa-button {
-            margin: 0;
+            margin: 0 !important;
         }
 
         .usa-button:hover {
@@ -158,7 +182,6 @@
             -o-transition: all 0.5s ease;
             transition: all 0.5s ease;
         }
-
         
         /* 
         # Overriding some USWDS stuff to get the login form to be flush with the error messages */

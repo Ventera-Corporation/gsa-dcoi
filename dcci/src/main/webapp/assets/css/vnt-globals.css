@@ -122,9 +122,27 @@
 		    font-weight: 400;
 	    }
 
+        input,
+        input[type="text"], 
+        textarea,
+        select,
+        .input-group {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 100% !important;
+        }
+
         input[type=date] {
-            padding: 5px !important;
             display: inline-block;
+            padding: 0 0 0 5px !important;
+            height: 2.1em !important;
+            margin: 0;
+        }
+
+        select {
+            -webkit-appearance: menulist;
+            background-image: none;
+            cursor: pointer;
         }
 
     /* GENERAL GLOBALS: END
@@ -155,7 +173,13 @@
         .vnt-inverse-mode * {
         	color: #ffffff;
         }
-
+        
+        /*
+        Hide unordered list bullet point */
+        ul li::before {
+        	display: none;
+        }
+        
         .inline {
             display: inline-block; 
             margin-right: 10px;
@@ -240,7 +264,7 @@
         }
         .vnt-prominence-4 {
             opacity: 1;
-        }
+        }       
         
     /* HELPERS: END
 	***************************************************************************************************************/

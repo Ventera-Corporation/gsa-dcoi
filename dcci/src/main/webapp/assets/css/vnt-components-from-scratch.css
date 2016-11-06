@@ -62,9 +62,9 @@
         .panel-dc {
             max-width: 1140px;
             margin: 0 auto;
-            -webkit-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.1);
-               -moz-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.1);
-                    box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.1);
+            -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+               -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+                    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
         }
 
         .panel-dc > .panel-heading {
@@ -152,15 +152,6 @@
 
         .panel-category label {
             font-size: 1em;
-        }
-
-        .panel-category input[type="text"],
-        .panel-category select, 
-        .panel-category textarea,
-        .panel-category .input-group {
-            width: 100% !important;
-            max-width: 100% !important;
-            min-width: 100% !important;
         }
 
     /* CATEGORY PANEL: END
@@ -321,6 +312,12 @@
         .sidebar-nav li a:hover {
             text-decoration: none;
             color: #000000;
+        }
+        
+        .sidebar-nav .list-group-item {
+        	box-shadow: 0;
+        	margin: 0;
+        	padding: 0;
         }
 
     /* WRAPPER + SIDEBAR: END
@@ -493,7 +490,6 @@
         
     /* PIN LINE BLOCKED TEXT: END
 	***************************************************************************************************************/
-     
         
 /* VNT COMPONENTS FROM SCRATCH CSS: END
 ***********************************************************************************************************************/
