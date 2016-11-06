@@ -132,13 +132,6 @@
             min-width: 100% !important;
         }
 
-        input[type=date] {
-            display: inline-block;
-            padding: 0 0 0 5px !important;
-            height: 2.1em !important;
-            margin: 0;
-        }
-
         select {
             -webkit-appearance: menulist;
             background-image: none;

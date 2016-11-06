@@ -105,6 +105,14 @@
         .page-header h3 {
         	margin: 5px 0 0 0;
         }
+        
+		.page-header input[type=text],
+		.page-header input[type=date] {
+            display: inline-block;
+            padding: 0 0 0 5px !important;
+            height: 2.1em !important;
+            margin: 0;
+        }
 
         /* 
         # Panel Heading */
@@ -117,11 +125,11 @@
         # Modal Header */
         .modal-header {
             background: #205493;
-            color: white;
+            color: #ffffff;
         }
 
         .modal-title {
-            color: white;
+            color: #ffffff;
             margin: 0;
         }
         
