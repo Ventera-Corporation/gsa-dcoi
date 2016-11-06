@@ -5,6 +5,8 @@
     <div class="pull-right">
         <span class="inline"><input class="form-control" type="date" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"></span>
         <span><button class="usa-button usa-button-primary" type="button">Create</button></span>
+        <span class="inline"><input class="form-control" type="text" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"></span>
+        <span class="inline"><button class="usa-button usa-button-primary" type="button" style="display: inline;" data-ng-click="qc.createQuarter()">Create</button></span>
     </div>
 </div>
 
@@ -19,6 +21,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <button class="usa-button usa-button-primary" type="button" data-toggle="modal" data-target="#newdatacenter">New Data Center</button>
+                        <button class="usa-button usa-button-primary" type="button" data-ng-click="qc.addNewDataCenter()">New Data Center</button>
                     </div>
                 </div>
                 <div class="panel panel-default" data-ng-repeat="region in qc.quarterData.regions">
@@ -84,8 +87,8 @@
                                 <div class="panel panel-default panel-category" data-ng-repeat="category in dataCenter.categories">
                                     <div class="panel-heading" data-toggle="collapse" data-ng-click="category.expanded=!category.expanded">
                                         <h4 class="panel-title">
-                                        	<span class="glyphicon glyphicon-plus" data-ng-if="category.expanded"></span>
-                                            <span class="glyphicon glyphicon-minus" data-ng-if="!category.expanded"></span>
+                                        	<span class="glyphicon glyphicon-minus" data-ng-if="category.expanded"></span>
+                                            <span class="glyphicon glyphicon-plus" data-ng-if="!category.expanded"></span>
                                             <span>&nbsp; {{category.id}}</span>
                                         </h4>
                                     </div>

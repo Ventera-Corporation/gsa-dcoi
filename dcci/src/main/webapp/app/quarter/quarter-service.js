@@ -42,11 +42,11 @@
 					params: {quarterData: quarterData}
 				}).then(returnData);
 			},
-			addNewDataCenter : function(quarterID) {
+			addNewDataCenter : function(dataCenterDto) {
 				return $http({
 					url: '',
 					method: 'POST',
-					params: {quarterID: quarterID}
+					params: {dataCenterDto: dataCenterDto}
 				}).then(returnData);
 			},
 			initDataCenterList : function(quarterID, regionID) {
@@ -81,11 +81,14 @@
 					params: {categoryID: categoryID}
 				}).then(returnData);
 			},
-			validateCategory : function(categoryID) {
+			validateCategory : function(dataCenterID, categoryDto) {
 				return $http({
 					url: '',
 					method: 'POST',
-					params: {categoryID: categoryID}
+					params: {
+						dataCenterID: dataCenterID,
+						categoryDto: categoryDto
+					}
 				}).then(returnData);
 			}
 	    };
