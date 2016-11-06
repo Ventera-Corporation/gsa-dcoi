@@ -3,8 +3,6 @@
     <h3 class="inline"><span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="#menu-toggle" id="menu-toggle" style="font-size: .8em;"></span> &nbsp; Create New Quarter - Q3 2016</h3>
 
     <div class="pull-right">
-        <span class="inline"><input class="form-control" type="date" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"></span>
-        <span><button class="usa-button usa-button-primary" type="button">Create</button></span>
         <span class="inline"><input class="form-control" type="text" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"></span>
         <span class="inline"><button class="usa-button usa-button-primary" type="button" style="display: inline;" data-ng-click="qc.createQuarter()">Create</button></span>
     </div>
@@ -20,8 +18,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <button class="usa-button usa-button-primary" type="button" data-toggle="modal" data-target="#newdatacenter">New Data Center</button>
-                        <button class="usa-button usa-button-primary" type="button" data-ng-click="qc.addNewDataCenter()">New Data Center</button>
+                        <button class="usa-button usa-button-primary" type="button" data-ng-click="qc.addNewDataCenter()" data-toggle="modal" data-target="#newdatacenter">New Data Center</button>
                     </div>
                 </div>
                 <div class="panel panel-default" data-ng-repeat="region in qc.quarterData.regions">
@@ -149,7 +146,9 @@
 
 </div><!-- /#wrapper -->
 
-<!-- New data center modal -->
+
+
+<!-- NEW DATA CENTER MODAL -->
 <div class="modal fade" id="newdatacenter" role="dialog">
 	<div class="modal-dialog modal-lg">
         <div class="modal-content">
