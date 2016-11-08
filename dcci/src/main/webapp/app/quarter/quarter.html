@@ -30,7 +30,7 @@
                     <div id="region{{$index}}" class="panel-collapse collapse in" data-ng-if="region.expanded">
                         <ul class="list-group">
                             <li class="list-group-item" data-ng-repeat="dataCenter in region.dataCenters">
-                            	<a href="">{{dataCenter.name}}</a>
+                            	<a href="" data-ng-click="dataCenter.expanded=!dataCenter.expanded">{{dataCenter.name}}</a>
                             </li>
                         </ul>
                     </div>
