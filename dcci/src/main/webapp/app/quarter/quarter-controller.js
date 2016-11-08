@@ -54,8 +54,9 @@
 		function addNewDataCenter(){
 			var modalInstance = $uibModal.open({
 			    animation: true,
-			    templateUrl: '',
+			    templateUrl: 'app/datacenter/datacenter.html',
 			    controller: 'DataCenterController',
+			    controllerAs: 'dcc',
 			    backdrop: 'static'
 			});
 			modalInstance.result.then(function (dataCenterDto) {
