@@ -1,2 +1,2 @@
-# dcci
-Data Center Consolidation Initiative (DCCI)
+# dcoi
+GSA Data Center Organization Initiative (DCOI) Project
