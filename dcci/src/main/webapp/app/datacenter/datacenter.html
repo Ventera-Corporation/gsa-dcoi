@@ -1,65 +1,65 @@
-            <div class="modal-header">
-                <button type="button" class="close pull-right" data-dismiss="modal">&times;</button>
-                <span class="pull-left"><h3 class="modal-title">New Data Center</h3></span>
-            </div><!-- /.modal-header -->
+<div class="modal-header">
+    <button type="button" class="close pull-right" data-ng-click="dcc.cancel()">&times;</button>
+    <span class="pull-left"><h3 class="modal-title">New Data Center</h3></span>
+</div><!-- /.modal-header -->
 
-            <div class="modal-body">
-                <br />
-                <h4>Enter the required information for all of the fields below to add a new Data Center.</h4>
-                <br />
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label for="data-center-id">Data Center Name <span class="vnt-red-text">*</span></label>
-                            <input type="text" class="form-control" id="data-center-name">
-                        </div>
+<div class="modal-body">
+    <br />
+    <h4>Enter the required information for all of the fields below to add a new Data Center.</h4>
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="data-center-name">Data Center Name <span class="vnt-red-text">*</span></label>
+                <input type="text" class="form-control" id="data-center-name" data-ng-model="dcc.dataCenterDto.name">
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="form-group">
+                        <label for="data-center-city">City <span class="vnt-red-text">*</span></label>
+                        <input type="text" class="form-control" id="data-center-city" data-ng-model="dcc.dataCenterDto.city">
                     </div>
+                </div>
 
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="row">
-                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                <div class="form-group">
-                                    <label for="data-center-id">City <span class="vnt-red-text">*</span></label>
-                                    <input type="text" class="form-control" id="city">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <div class="form-group">
-                                    <label for="data-center-id">State <span class="vnt-red-text">*</span></label>
-                                    <select class="form-control" id="state">
-                                        <option></option>
-                                        <option>AL</option>
-                                        <option>AK</option>
-                                        <option>AZ</option>
-                                        <option>AR</option>
-                                        <option>CA</option>
-                                        <option>CO</option>
-                                        <option>Etc.</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="data-center-state">State <span class="vnt-red-text">*</span></label>
+                        <select class="form-control" id="data-center-state" data-ng-model="dcc.dataCenterDto.stateID">
+                            <option>Select One</option>
+                            <option>AL</option>
+                            <option>AK</option>
+                            <option>AZ</option>
+                            <option>AR</option>
+                            <option>CA</option>
+                            <option>CO</option>
+                            <option>Etc.</option>
+                        </select>
                     </div>
-				</div>
-				
-				<div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label for="data-center-id">Region <span class="vnt-red-text">*</span></label>
-                            <select class="form-control" id="region">
-                                <option></option>
-                                <option>Northeast</option>
-                                <option>Midwest</option>
-                                <option>South</option>
-                                <option>West</option>
-                            </select>
-                        </div>
-                    </div>
-                </div><!-- /.row -->
-            </div><!-- /.modal-body -->
+                </div>
+            </div>
+        </div>
+	</div>
 
-            <div class="modal-footer">
-                <button type="button" class="usa-button usa-button-primary">+ Add</button>
-                <button type="button" class="usa-button usa-button-gray" data-dismiss="modal">Cancel</button>
-            </div><!-- /.modal-footer -->
+	<div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
+                <select class="form-control" id="data-center-region" data-ng-model="dcc.dataCenterDto.regionID">
+                    <option value=''>Select One</option>
+                    <option value='1'>Northeast</option>
+                    <option value='2'>Midwest</option>
+                    <option value='3'>South</option>
+                    <option value='4'>West</option>
+                </select>
+            </div>
+        </div>
+	</div><!-- /.row -->
+</div><!-- /.modal-body -->
+
+<div class="modal-footer">
+    <button type="button" class="usa-button usa-button-primary" data-ng-click="dcc.add()">Add</button>
+    <button type="button" class="usa-button usa-button-gray" data-ng-click="dcc.cancel()">Cancel</button>
+</div><!-- /.modal-footer -->

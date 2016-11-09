@@ -9,11 +9,11 @@
 		var dcc = this;
 		dcc.dataCenterDto = {};
 		dcc.cancel = cancel;
-		dcc.save = save;
+		dcc.add = add;
 		function cancel() {
 			$uibModalInstance.dismiss('cancel');
 		};
-		function save() {
+		function add() {
 			$uibModalInstance.close(dcc.dataCenterDto);
 		};
 	}
