@@ -51,7 +51,7 @@
                 <div class="panel panel-default panel-dc" data-ng-repeat="dataCenter in qc.quarterData.regions[qc.tempData.displayedRegionIdx].dataCenters" id="datacenter{{$index}}">
                     <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" data-ng-click="dataCenter.expanded=!dataCenter.expanded">
                         <h4 class="panel-title">
-                            {{dataCenter.name}} | {{dataCenter.id}}
+                            {{dataCenter.name}}
 
                             <span class="pull-right vnt-normal-text-weight">{{dataCenter.city}}, {{dataCenter.state}}</span>
                         </h4>
@@ -61,9 +61,9 @@
                     <!-- Data Center Body -->
                     <div id="dc1-body" class="panel-collapse collapse in" data-ng-if="dataCenter.expanded">
                         <div class="panel-body">
-                                    
+
                             <div class="form-group">
-                                <label class="inline">Assign Data Center: </label>
+                                <label class="inline">Assign Component: </label>
                                 <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}pbs" data-ng-model="dataCenter.isPbs">
                                 	<label for="datacenter{{$index}}pbs">PBS</label>
                                 </span>
