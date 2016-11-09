@@ -1,6 +1,6 @@
 <!-- PAGE HEADER -->
 <div class="page-header">                  
-    <h3 class="inline"><span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="#menu-toggle" id="menu-toggle" style="font-size: .8em;"></span> &nbsp; Create New Quarter - Q3 2016</h3>
+    <h3 class="inline"><span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="#menu-toggle" id="menu-toggle" style="font-size: .8em;"></span> &nbsp; Create New Quarter - {{::qc.quarterData.quarterNumber}} {{::qc.quarterData.quarterYear}}</h3>
 
     <div class="pull-right">
         <span class="inline"><input class="form-control" type="text" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"></span>
@@ -27,7 +27,7 @@
                             {{region.name}}
                         </h4>
                     </div>
-                    <div id="region{{$index}}" class="panel-collapse collapse in" data-ng-if="region.expanded">
+                    <div id="region{{$index}}" class="panel-collapse collapse in" data-ng-if="region.expanded" data-ng-click=" qc.tempData.displayedRegionIdx = $index">
                         <ul class="list-group">
                             <li class="list-group-item" data-ng-repeat="dataCenter in region.dataCenters">
                             	<a href="" data-ng-click="dataCenter.expanded=!dataCenter.expanded">{{dataCenter.name}}</a>
@@ -53,7 +53,7 @@
                         <h4 class="panel-title">
                             {{dataCenter.name}}
 
-                            <span class="pull-right vnt-normal-text-weight">{{dataCenter.city}}, {{dataCenter.state}}</span>
+                            <span class="pull-right vnt-normal-text-weight">{{dataCenter.city}}, {{dataCenter.state}} in {{qc.quarterData.regions[qc.tempData.displayedRegionIdx].name}}</span>
                         </h4>
                     </div>
 

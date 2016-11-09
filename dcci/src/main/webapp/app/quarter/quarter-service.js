@@ -13,6 +13,8 @@
 //					method: 'GET'
 //				});
 				return {
+					quarterNumber: 'Q3',
+					quarterYear: '2016',
 					regions: [
 						{
 							name: 'Region 1 Name',
