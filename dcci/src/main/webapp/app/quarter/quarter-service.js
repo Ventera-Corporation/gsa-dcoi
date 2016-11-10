@@ -131,12 +131,19 @@
 					params: {quarterData: quarterData}
 				});
 			},
-			addNewDataCenter : function(dataCenterDto) {
-				return $http({
-					url: '',
-					method: 'POST',
-					params: {dataCenterDto: dataCenterDto}
-				});
+			initDataCenter : function() {
+//				return $http({
+//					url: '/newDataCenter/init',
+//					method: 'GET'
+//				});
+				return {
+					name: '',
+					city: '',
+					state: '',
+					region: '',
+					categories: [],
+					expanded: true
+				};
 			},
 			removeDataCenter : function(dataCenterID) {
 				return $http({

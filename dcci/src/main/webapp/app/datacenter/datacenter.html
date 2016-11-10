@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
-                <label for="data-center-name">Data Center Name <span class="vnt-red-text">*</span></label>
+                <label for="data-center-name">Data Center Name</label>
                 <input type="text" class="form-control" id="data-center-name" data-ng-model="dcc.dataCenterDto.name">
             </div>
         </div>
@@ -19,23 +19,23 @@
             <div class="row">
                 <div class="col-md-8 col-sm-8 col-xs-12">
                     <div class="form-group">
-                        <label for="data-center-city">City <span class="vnt-red-text">*</span></label>
+                        <label for="data-center-city">City</label>
                         <input type="text" class="form-control" id="data-center-city" data-ng-model="dcc.dataCenterDto.city">
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
-                        <label for="data-center-state">State <span class="vnt-red-text">*</span></label>
+                        <label for="data-center-state">State</label>
                         <select class="form-control" id="data-center-state" data-ng-model="dcc.dataCenterDto.stateID">
-                            <option>Select One</option>
-                            <option>AL</option>
-                            <option>AK</option>
-                            <option>AZ</option>
-                            <option>AR</option>
-                            <option>CA</option>
-                            <option>CO</option>
-                            <option>Etc.</option>
+                            <option value=''>Select One</option>
+                            <option value='1'>AL</option>
+                            <option value='2'>AK</option>
+                            <option value='3'>AZ</option>
+                            <option value='4'>AR</option>
+                            <option value='5'>CA</option>
+                            <option value='6'>CO</option>
+                            <option value='7'>Etc.</option>
                         </select>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
 	<div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
-                <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
+                <label for="data-center-region">Region</label>
                 <select class="form-control" id="data-center-region" data-ng-model="dcc.dataCenterDto.regionID">
                     <option value=''>Select One</option>
                     <option value='1'>Northeast</option>
@@ -60,6 +60,8 @@
 </div><!-- /.modal-body -->
 
 <div class="modal-footer">
-    <button type="button" class="usa-button usa-button-primary" data-ng-click="dcc.add()">Add</button>
+    <button type="button" class="usa-button usa-button-primary" 
+    		data-ng-disabled="!(dcc.dataCenterDto.name.length && dcc.dataCenterDto.city.length && dcc.dataCenterDto.stateID > 0 && dcc.dataCenterDto.regionID > 0)" 
+    		data-ng-click="dcc.add()">Add</button>
     <button type="button" class="usa-button usa-button-gray" data-ng-click="dcc.cancel()">Cancel</button>
 </div><!-- /.modal-footer -->
