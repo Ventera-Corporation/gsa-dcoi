@@ -5,7 +5,7 @@
 
 <div class="modal-body">
     <br />
-    <h4>Enter the required information for all of the fields below to add a new Data Center.</h4>
+    <h4>Enter the required information for the fields below to add a new Data Center.</h4>
     <br />
     <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -14,45 +14,41 @@
                 <input type="text" class="form-control" id="data-center-name" data-ng-model="dcc.dataCenterDto.name">
             </div>
         </div>
-
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="row">
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                    <div class="form-group">
-                        <label for="data-center-city">City <span class="vnt-red-text">*</span></label>
-                        <input type="text" class="form-control" id="data-center-city" data-ng-model="dcc.dataCenterDto.city">
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="form-group">
-                        <label for="data-center-state">State <span class="vnt-red-text">*</span></label>
-                        <select class="form-control" id="data-center-state" data-ng-model="dcc.dataCenterDto.stateID">
-                            <option>Select One</option>
-                            <option>AL</option>
-                            <option>AK</option>
-                            <option>AZ</option>
-                            <option>AR</option>
-                            <option>CA</option>
-                            <option>CO</option>
-                            <option>Etc.</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-	</div>
-
-	<div class="row">
+        
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
-                <select class="form-control" id="data-center-region" data-ng-model="dcc.dataCenterDto.regionID">
-                    <option value=''>Select One</option>
+                <select id="data-center-region" data-ng-model="dcc.dataCenterDto.regionID">
+                    <option value="">Select One</option>
                     <option value='1'>Northeast</option>
                     <option value='2'>Midwest</option>
                     <option value='3'>South</option>
                     <option value='4'>West</option>
+                </select>
+            </div>
+        </div>
+	</div><!-- /.row -->
+	
+	<div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="data-center-city">City</label>
+                <input type="text" class="form-control" id="data-center-city" data-ng-model="dcc.dataCenterDto.city">
+            </div>
+		</div> 
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="data-center-state">State</label>
+                <select id="data-center-state" data-ng-model="dcc.dataCenterDto.stateID">
+                	<option value="">Select One</option>
+                    <option>AL</option>
+                    <option>AK</option>
+                    <option>AZ</option>
+                    <option>AR</option>
+                    <option>CA</option>
+                    <option>CO</option>
+                    <option>Etc.</option>
                 </select>
             </div>
         </div>
