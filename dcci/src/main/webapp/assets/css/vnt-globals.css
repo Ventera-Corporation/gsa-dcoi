@@ -144,7 +144,7 @@
         }
         
         /*
-        # USWDS form field styling with lighter border*/
+        # USWDS form field styling with light border*/
         input, textarea, select {
 		    appearance: none;
 		    border: 1px solid #aeb0b5 !important;

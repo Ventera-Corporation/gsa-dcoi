@@ -10,11 +10,10 @@
     <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
-                <label for="data-center-name">Data Center Name <span class="vnt-red-text">*</span></label>
+                <label for="data-center-name">Data Center Name</label>
                 <input type="text" class="form-control" id="data-center-name" data-ng-model="dcc.dataCenterDto.name">
             </div>
         </div>
-        
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
@@ -36,7 +35,6 @@
                 <input type="text" class="form-control" id="data-center-city" data-ng-model="dcc.dataCenterDto.city">
             </div>
 		</div> 
-
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-state">State</label>
@@ -56,6 +54,8 @@
 </div><!-- /.modal-body -->
 
 <div class="modal-footer">
-    <button type="button" class="usa-button usa-button-primary" data-ng-click="dcc.add()">Add</button>
+    <button type="button" class="usa-button usa-button-primary" 
+    		data-ng-disabled="!(dcc.dataCenterDto.name.length && dcc.dataCenterDto.city.length && dcc.dataCenterDto.stateID > 0 && dcc.dataCenterDto.regionID > 0)" 
+    		data-ng-click="dcc.add()">Add</button>
     <button type="button" class="usa-button usa-button-gray" data-ng-click="dcc.cancel()">Cancel</button>
 </div><!-- /.modal-footer -->

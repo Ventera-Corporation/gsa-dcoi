@@ -32,7 +32,7 @@
         .navbar-default {
             background: #205493;
             background-color: #205493;
-            color: white;
+            color: #ffffff;
             font-size: .8em;
             height: 50px;
             border: 0;
@@ -51,7 +51,7 @@
         .navbar-default .navbar-brand,
         .navbar-default .navbar-brand:hover,
         .navbar-default .navbar-brand:focus {
-            color: white;
+            color: #ffffff;
             opacity: 1;
             text-decoration: none;
         }
