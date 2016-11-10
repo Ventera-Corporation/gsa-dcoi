@@ -78,6 +78,7 @@
         
         .navbar-form input[type="text"] {
 	    	height: 35px;
+	    	border: 0px transparent solid !important;
 	    }
         
         .navbar-nav li {
@@ -126,6 +127,7 @@
         .modal-header {
             background: #205493;
             color: #ffffff;
+            min-height: 3.5em !important;
         }
 
         .modal-title {

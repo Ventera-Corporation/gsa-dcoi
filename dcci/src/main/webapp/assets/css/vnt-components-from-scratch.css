@@ -75,9 +75,14 @@
             border-radius: 0;
             font-weight: 400;
         }
-
-        .panel-dc .inline {
-            margin-bottom: 10px;
+        
+        .panel-dc input[type="checkbox"] {
+        	margin-left: 10px;
+        }
+        
+        .panel-dc .component-checkboxes label {
+        	margin-top: 10px !important;
+        	margin-bottom: 0 !important;
         }
 
     /* DATA CENTER PANEL: END
@@ -91,8 +96,13 @@
 	***************************************************************************************************************/
 
         .panel-dc .nav-tabs {
-            margin-top: 0;
-            margin-bottom: 20px;
+            margin: 0 0 20px 0;
+            border-bottom: 1px #dddddd solid;
+            width: 100%;
+        }
+        
+        .panel-dc .nav-tabs > li {
+        	margin-top: 0;
         }
 
         .panel-dc .nav-tabs > li,
@@ -119,6 +129,10 @@
             border-radius: 0;
             font-weight: bold;
             color: #0c71b9;
+        }
+        
+        ul li::after, ol li::after {
+        	display: none;
         }
 
     /* DATA CENTER TABS: END
