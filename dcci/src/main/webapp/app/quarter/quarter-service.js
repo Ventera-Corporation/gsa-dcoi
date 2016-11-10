@@ -18,20 +18,20 @@
 					regions: [
 						{
 							name: 'Region 1 Name',
-							id: 'Region 1 ID',
 							dataCenters: [
 								{
 									name: 'Data Center 1 Name',
-									id: 'Data Center 1 ID',
 									city: 'Data Center 1 City',
 									state: 'Data Center 1 State',
 									categories: [
 										{
-											id: 'Category 1',
+											name: 'Category 1',
+											fields: [],
 											expanded: true
 										},
 										{
-											id: 'Category 2',
+											name: 'Category 2',
+											fields: [],
 											expanded: true
 										}
 									],
@@ -39,16 +39,17 @@
 								},
 								{
 									name: 'Data Center 2 Name',
-									id: 'Data Center 2 ID',
 									city: 'Data Center 2 City',
 									state: 'Data Center 2 State',
 									categories: [
 										{
-											id: 'Category 1',
+											name: 'Category 1',
+											fields: [],
 											expanded: true
 										},
 										{
-											id: 'Category 2',
+											name: 'Category 2',
+											fields: [],
 											expanded: true
 										}
 									],
@@ -59,38 +60,39 @@
 						},
 						{
 							name: 'Region 2 Name',
-							id: 'Region 2 ID',
 							dataCenters: [
 								{
 									name: 'Data Center 3 Name',
-									id: 'Data Center 3 ID',
 									city: 'Data Center 3 City',
 									state: 'Data Center 3 State',
 									categories: [
 										{
-											id: 'Category 1',
-											expanded: false
+											name: 'Category 1',
+											fields: [],
+											expanded: true
 										},
 										{
-											id: 'Category 2',
-											expanded: false
+											name: 'Category 2',
+											fields: [],
+											expanded: true
 										}
 									],
 									expanded: false
 								},
 								{
 									name: 'Data Center 4 Name',
-									id: 'Data Center 4 ID',
 									city: 'Data Center 4 City',
 									state: 'Data Center 4 State',
 									categories: [
 										{
-											id: 'Category 1',
-											expanded: false
+											name: 'Category 1',
+											fields: [],
+											expanded: true
 										},
 										{
-											id: 'Category 2',
-											expanded: false
+											name: 'Category 2',
+											fields: [],
+											expanded: true
 										}
 									],
 									expanded: false
