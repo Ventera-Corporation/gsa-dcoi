@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	
-	angular.module('dcciApp').controller('DataCenterController', DataCenterController);
+	angular.module('dcoiApp').controller('DataCenterController', DataCenterController);
 	
 	DataCenterController.$inject = ['$uibModalInstance'];
 	

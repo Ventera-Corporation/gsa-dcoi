@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	
-	angular.module('dcciApp').factory('QuarterService', QuarterService);
+	angular.module('dcoiApp').factory('QuarterService', QuarterService);
 	
 	QuarterService.$inject = ['$http'];
 	

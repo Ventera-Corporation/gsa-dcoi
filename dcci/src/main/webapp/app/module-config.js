@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('dcciApp').config(config);
+	angular.module('dcoiApp').config(config);
 	
 	config.$inject = ['$routeProvider'];
 	

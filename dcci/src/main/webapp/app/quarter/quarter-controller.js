@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	
-	angular.module('dcciApp').controller('QuarterController', QuarterController);
+	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
 	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter'];
 	

@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    dcciApp.controller('MainFormController', MainFormController);
+    angular.module('dcoiApp').controller('MainFormController', MainFormController);
 
     MainFormController.$inject = [];
 

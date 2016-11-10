@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    dcciApp.controller('LoginController', LoginController);
+    angular.module('dcoiApp').controller('LoginController', LoginController);
 
     LoginController.$inject = [];
 
