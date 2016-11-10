@@ -3,11 +3,11 @@
 	
 	angular.module('dcoiApp').controller('DataCenterController', DataCenterController);
 	
-	DataCenterController.$inject = ['$uibModalInstance'];
+	DataCenterController.$inject = ['$uibModalInstance', 'initDataCenterData'];
 	
-	function DataCenterController($uibModalInstance){
+	function DataCenterController($uibModalInstance, initDataCenterData){
 		var dcc = this;
-		dcc.dataCenterDto = {};
+		dcc.dataCenterDto = initDataCenterData;
 		dcc.cancel = cancel;
 		dcc.add = add;
 		function cancel() {

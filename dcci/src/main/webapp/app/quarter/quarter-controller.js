@@ -3,13 +3,13 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'initQuarterData'];
 	
-	function QuarterController(QuarterService, $uibModal, $filter){
+	function QuarterController(QuarterService, $uibModal, $filter, initQuarterData){
 		var qc = this;
 		qc.tempData = {};
-		qc.quarterData = {};
-		qc.initQuarter = initQuarter;
+		qc.tempData.displayedRegionIdx = initQuarterData.defaultDisplayedRegionIdx;
+		qc.quarterData = initQuarterData.quarterData;
 		qc.createQuarter = createQuarter;
 		qc.saveQuarter = saveQuarter;
 		qc.submitQuarter = submitQuarter;
@@ -19,13 +19,6 @@
 		qc.initComponentTab = initComponentTab;
 		qc.viewAudit = viewAudit;
 		qc.validateCategory = validateCategory;
-
-		initQuarter();
-		
-		function initQuarter(){
-			qc.tempData.displayedRegionIdx = 0;
-			qc.quarterData = QuarterService.initQuarter();
-		}
 		
 		function createQuarter(){
 			QuarterService.createQuarter(qc.quarterData).then(function (data){
@@ -57,18 +50,19 @@
 			    templateUrl: 'app/datacenter/datacenter.html',
 			    controller: 'DataCenterController',
 			    controllerAs: 'dcc',
-			    backdrop: 'static'
+			    backdrop: 'static',
+			    resolve: {
+					initDataCenterData: function(){
+						return QuarterService.initDataCenter();
+					}
+				}
 			});
 			modalInstance.result.then(function (dataCenterDto) {
-				if(data !== 'cancel'){
-					QuarterService.addNewDataCenter(dataCenterDto).then(function (data){
-						if(!data.error){
-							var region = $filter('filter')(qc.quarterData.regions, {"name":dataCenterDto.region.name})[0];
-							region.dataCenters.push(dataCenterDto);
-						}
-					});
+				if(dataCenterDto !== 'cancel'){
+					var region = $filter('filter')(qc.quarterData.regions, {"name":dataCenterDto.region})[0];
+					region.dataCenters.push(dataCenterDto);
 				}
-			});	
+			});
 		}
 		
 		function removeDataCenter(dataCenterID, regionIdx, dataCenterIdx){
