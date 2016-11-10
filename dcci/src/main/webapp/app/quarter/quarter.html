@@ -57,22 +57,23 @@
                         </h4>
                     </div>
 
-
                     <!-- Data Center Body -->
                     <div id="dc1-body" class="panel-collapse collapse in" data-ng-if="dataCenter.expanded">
                         <div class="panel-body">
-
-                            <div class="form-group pull-right component-checkboxes">
-                                <label class="inline">Assign Components: &nbsp;</label>
-                                <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}pbs" data-ng-model="dataCenter.isPbs">
-                                	<label for="datacenter{{$index}}pbs">PBS</label>
-                                </span>
-                                <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}fas" data-ng-model="dataCenter.isFas">
-                                	<label for="datacenter{{$index}}fas">FAS</label>
-                                </span>
-                                <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}ocio" data-ng-model="dataCenter.isOcio">
-                                	<label for="datacenter{{$index}}ocio">OCIO</label>
-                                </span>
+							
+							<!-- Add a Component  -->
+                            <div class="form-group assign-components">
+                            	<div class="pull-right">
+       								<span class="inline">
+        								<select class="inline" id="" data-ng-model="">
+						                    <option value="">Add a Component</option>
+						                    <option value="pbs">PBS</option>
+						                    <option value="fas">FAS</option>
+						                    <option value="ocio">OCIO</option>
+				                		</select>
+        							</span>
+        							<span class="inline"><button class="usa-button usa-button-gray" type="button" data-ng-click=")">+ Add</button></span>
+								</div>
 							</div>
 							
 							<!-- Tabs -->

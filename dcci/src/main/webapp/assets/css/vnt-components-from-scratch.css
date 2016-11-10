@@ -76,13 +76,10 @@
             font-weight: 400;
         }
         
-        .panel-dc input[type="checkbox"] {
-        	margin-left: 10px;
-        }
-        
-        .panel-dc .component-checkboxes label {
-        	margin-top: 10px !important;
-        	margin-bottom: 0 !important;
+        .panel-dc .assign-components select {
+        	padding: 0 5px 0 5px !important;
+            height: 2.1em !important;
+            margin: 0;
         }
 
     /* DATA CENTER PANEL: END
@@ -111,6 +108,7 @@
             text-decoration: none;
             color: #777777;
             border: 0;
+            font-size: 1.1em;
         }
 
         .panel-dc .nav-tabs > li > a:hover {
