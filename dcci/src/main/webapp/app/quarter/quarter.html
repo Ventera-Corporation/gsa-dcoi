@@ -62,8 +62,8 @@
                     <div id="dc1-body" class="panel-collapse collapse in" data-ng-if="dataCenter.expanded">
                         <div class="panel-body">
 
-                            <div class="form-group">
-                                <label class="inline">Assign Component: </label>
+                            <div class="form-group pull-right component-checkboxes">
+                                <label class="inline">Assign Components: &nbsp;</label>
                                 <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}pbs" data-ng-model="dataCenter.isPbs">
                                 	<label for="datacenter{{$index}}pbs">PBS</label>
                                 </span>
@@ -73,67 +73,157 @@
                                 <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}ocio" data-ng-model="dataCenter.isOcio">
                                 	<label for="datacenter{{$index}}ocio">OCIO</label>
                                 </span>
-                                <span class="inline"><input type="checkbox" class="form-control" id="datacenter{{$index}}cfocpo" data-ng-model="dataCenter.isCfoCpo">
-                                	<label for="datacenter{{$index}}cfocpo">CFO/CPO</label>
-                                </span>
 							</div>
-                                    
-                            <div class="panel-group">
+							
+							<!-- Tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="">PBS</a></li>
+                                <li><a data-toggle="tab" href="">FAS</a></li>
+                            </ul>
 
-                                <!-- Category 1 Panel -->
-                                <div class="panel panel-default panel-category" data-ng-repeat="category in dataCenter.categories">
-                                    <div class="panel-heading" data-toggle="collapse" data-ng-click="category.expanded=!category.expanded">
-                                        <h4 class="panel-title">
-                                        	<span class="glyphicon glyphicon-minus" data-ng-if="category.expanded"></span>
-                                            <span class="glyphicon glyphicon-plus" data-ng-if="!category.expanded"></span>
-                                            <span>&nbsp; {{category.id}}</span>
-                                        </h4>
-                                    </div>
+                            <div class="tab-content">
+								<div id="pbs-tab" class="tab-pane fade in active">
+	                                    
+		                            <div class="panel-group">
+		
+		                                <!-- Category 1 Panel -->
+		                                <div class="panel panel-default panel-category" data-ng-repeat="category in dataCenter.categories">
+		                                    <div class="panel-heading" data-toggle="collapse" data-ng-click="category.expanded=!category.expanded">
+		                                        <h4 class="panel-title">
+		                                        	<span class="glyphicon glyphicon-minus" data-ng-if="category.expanded"></span>
+		                                            <span class="glyphicon glyphicon-plus" data-ng-if="!category.expanded"></span>
+		                                            <span>&nbsp; {{category.id}}</span>
+		                                        </h4>
+		                                    </div>
+		
+		                                    <div id="category{{$index}}" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="category.expanded">
+		                                        <div class="panel-body">
+		                                         <!-- Form Fields -->
+		                                         	<div class="row">
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}AgencyAbbreviation">Agency Abbreviation <span class="vnt-red-text">*</span></label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}AgencyAbbreviation" data-ng-model="category.agencyAbbreviation">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div>
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}Component">Component <span class="vnt-red-text">*</span></label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}Component" data-ng-model="category.component">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div>           
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}DataCenterName">Data Center Name <span class="vnt-red-text">*</span></label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}DataCenterName" data-ng-model="category.dataCenterName">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div>
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}DataCenterID">Data Center ID</label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}DataCenterID" data-ng-model="category.dataCenterID" placeholder="DCOI-DC-#####">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div>
+		                                             </div>
+		                                             
+		                                             <div class="row">
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}AgencyDataCenterID">Agency Data Center ID</label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}AgencyDataCenterID" data-ng-model="category.agencyDataCenterID">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div>
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}PublishedName">Published Name</label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}PublishedName" data-ng-model="category.publishedName">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div>
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}StreetAddress">Street Address</label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}StreetAddress" data-ng-model="category.streetAddress">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div>             
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}StreetAddress2">Street Address 2</label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}StreetAddress2" data-ng-model="category.streetAddress2">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div> 
+		                                             </div>
+		                                             
+		                                             <div class="row">
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}City">City</label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}City" data-ng-model="category.city">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div>
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">		                                                     
+		                                                     <div class="form-group">
+												                <label for="category{{$index}}State">State</label>
+												                <select id="category{{$index}}State" data-ng-model="category.state">
+												                    <option value="">Select One</option>
+												                    <option>AL</option>
+												                    <option>AK</option>
+												                    <option>AZ</option>
+												                    <option>AR</option>
+												                    <option>CA</option>
+												                    <option>CO</option>
+												                    <option>Etc.</option>
+												                </select>
+												            </div>
+		                                                 </div>
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">
+		                                                     <div class="form-group">
+		                                                         <label for="category{{$index}}ZipCode">Zip Code</label>
+		                                                         <div class="input-group">
+		                                                             <input type="text" class="form-control" id="category{{$index}}ZipCode" data-ng-model="category.zipCode">
+		                                                         </div>
+		                                                     </div>
+		                                                 </div>             
+		                                                 <div class="col-md-3 col-sm-3 col-xs-12">		                                                     
+		                                                     <div class="form-group">
+												                <label for="category{{$index}}Country">Country</label>
+												                <select id="category{{$index}}Country" data-ng-model="category.country">
+												                    <option value="">Select One</option>
+												                    <option>U.S.</option>
+												                    <option>Outside U.S.</option>
+												                </select>
+												            </div>
+		                                                 </div>
+		                                             </div>
+		                                        </div><!-- /.panel-body -->
+		                                    </div>
+		                                </div><!-- /.panel-category -->
+		
+		                            </div><!-- /.panel-group-->
+	                            
+	                            </div><!-- /.tab-pane -->
 
-                                    <div id="category{{$index}}" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="category.expanded">
-                                        <div class="panel-body">
-                                         <!-- Form Fields -->
-                                             <div class="row">
-                                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                                     <div class="form-group">
-                                                         <label for="category{{$index}}DataCenterID">Data Center ID</label>
-                                                         <div class="input-group">
-                                                             <input type="text" class="form-control" id="category{{$index}}DataCenterID" data-ng-model="category.dataCenterID">
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                                     <div class="form-group">
-                                                         <label for="category{{$index}}DataCenterName">Data Center Name</label>
-                                                         <div class="input-group">
-                                                             <input type="text" class="form-control" id="category{{$index}}DataCenterName" data-ng-model="category.dataCenterName">
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                                     <div class="form-group">
-                                                         <label for="category{{$index}}PublishedName">Published Name</label>
-                                                         <div class="input-group">
-                                                             <input type="text" class="form-control" id="category{{$index}}PublishedName" data-ng-model="category.publishedName">
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                             </div>
-                                             <div class="row">
-                                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                                     <div class="form-group">
-                                                         <label for="category{{$index}}AgencyAbbreviation">Agency Abbreviation</label>
-                                                         <div class="input-group">
-                                                             <input type="text" class="form-control" id="category{{$index}}AgencyAbbreviation" data-ng-model="category.agencyAbbreviation">
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                             </div>
-                                        </div><!-- /.panel-body -->
-                                    </div>
-                                </div><!-- /.panel-category -->
+                            <div id="fas-tab" class="tab-pane fade in active">
 
-                            </div><!-- /.panel-group-->
+                            </div>
+                        </div><!-- /.tab-content -->
 
                         </div><!-- /.panel-body -->
                     </div><!--/.panel-collapse -->
