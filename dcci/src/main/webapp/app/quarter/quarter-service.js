@@ -9,12 +9,12 @@
 	    return {
 			initQuarter : function() {
 //				return $http({
-//					url: '',
+//					url: '/newQuarter/init',
 //					method: 'GET'
 //				});
 				return {
-					quarterNumber: 'Q3',
-					quarterYear: '2016',
+					fiscalQuarter: 'Q3',
+					fiscalYear: '2016',
 					regions: [
 						{
 							name: 'Region 1 Name',
@@ -103,9 +103,9 @@
 			},
 			createQuarter : function(quarterData) {
 				return $http({
-					url: '',
+					url: '/newQuarter/create',
 					method: 'POST',
-					params: {quarterData: quarterData}
+					params: {fiscalQuarterReport: quarterData}
 				});
 			},
 			saveQuarter : function(quarterData) {
