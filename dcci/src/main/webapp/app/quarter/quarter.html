@@ -3,7 +3,9 @@
     <h3 class="inline"><span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="#menu-toggle" id="menu-toggle" style="font-size: .8em;"></span> &nbsp; Create New Quarter - {{::qc.quarterData.fiscalQuarter}} {{::qc.quarterData.fiscalYear}}</h3>
 
     <div class="pull-right">
+    	<span class="inline"><h4>Due Date:</h4></span>
         <span class="inline"><input class="form-control" type="text" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"></span>
+        <span class="inline"><button class="usa-button usa-button-gray" type="button" style="display: inline;" data-ng-click="">Save</button></span>
         <span class="inline"><button class="usa-button usa-button-primary" type="button" style="display: inline;" data-ng-click="qc.createQuarter()">Create</button></span>
     </div>
 </div>
