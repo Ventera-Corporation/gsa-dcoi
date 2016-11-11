@@ -7,14 +7,19 @@
 	
 	function DataCenterController($uibModalInstance, initDataCenterData){
 		var dcc = this;
-		dcc.dataCenterDto = initDataCenterData;
+		dcc.dataCenter = initDataCenterData;
 		dcc.cancel = cancel;
 		dcc.add = add;
 		function cancel() {
 			$uibModalInstance.dismiss('cancel');
 		};
 		function add() {
-			$uibModalInstance.close(dcc.dataCenterDto);
+			$uibModalInstance.close(
+				{
+					regionName: dcc.region, 
+					dataCenter: dcc.dataCenter
+				}
+			);
 		};
 	}
 })();

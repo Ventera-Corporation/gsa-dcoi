@@ -57,10 +57,10 @@
 					}
 				}
 			});
-			modalInstance.result.then(function (dataCenterDto) {
-				if(dataCenterDto !== 'cancel'){
-					var region = $filter('filter')(qc.quarterData.regions, {"name":dataCenterDto.region})[0];
-					region.dataCenters.push(dataCenterDto);
+			modalInstance.result.then(function (dataCenterData) {
+				if(dataCenterData !== 'cancel'){
+					var region = $filter('filter')(qc.quarterData.regions, {"name":dataCenterData.regionName}, true)[0];
+					region.dataCenters.push(dataCenterData.dataCenter);
 				}
 			});
 		}

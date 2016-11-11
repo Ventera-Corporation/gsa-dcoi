@@ -172,8 +172,35 @@
 					name: '',
 					city: '',
 					state: '',
-					region: '',
-					categories: [],
+					components: [
+						{
+							name: 'PBS',
+							categories: {
+								generalInfo: {expanded: true},
+								status: {expanded: true},
+								facilityInfo: {expanded: true},
+								serverInfo: {expanded: true}
+							}
+						},
+						{
+							name: 'FAS',
+							categories: {
+								generalInfo: {expanded: true},
+								status: {expanded: true},
+								facilityInfo: {expanded: true},
+								serverInfo: {expanded: true}
+							}
+						},
+						{
+							name: 'OCIO',
+							categories: {
+								generalInfo: {expanded: true},
+								status: {expanded: true},
+								facilityInfo: {expanded: true},
+								serverInfo: {expanded: true}
+							}
+						}
+					],
 					expanded: true
 				};
 			},
