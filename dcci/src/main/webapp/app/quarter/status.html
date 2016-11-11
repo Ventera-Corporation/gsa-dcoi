@@ -1,0 +1,180 @@
+<!-- CATEGORY : STATUS -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" data-ng-click="component.categories.status.expanded=!component.categories.status.expanded">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" data-ng-if="component.categories.status.expanded"></span>
+            <span class="glyphicon glyphicon-plus" data-ng-if="!component.categories.status.expanded"></span>
+            <span>&nbsp; Status</span>
+        </h4>
+    </div>
+
+    <div id="{{component.name}}Status" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="component.categories.status.expanded">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusRecordStatus">Record Status <span class="vnt-red-text">*</span></label>
+                        <select id="{{component.name}}StatusRecordStatus" data-ng-model="component.categories.status.recordStatus">
+                            <option value="">Select One</option>
+                            <option>New</option>
+                            <option>Existing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusRecordValidity">Record Validity <span class="vnt-red-text">*</span></label>
+                        <select id="{{component.name}}StatusRecordValidity" data-ng-model="component.categories.status.recordValidity">
+                            <option value="">Select One</option>
+                            <option>New</option>
+                            <option>Existing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusClosingStage">Closing Stage <span class="vnt-red-text">*</span></label>
+                        <select id="{{component.name}}StatusClosingStage" data-ng-model="component.categories.status.closingStage">
+                            <option value="">Select One</option>
+                            <option>Application Mapping</option>
+                            <option>Closed</option>
+                            <option>Considering</option>
+                            <option>Equipment Removal</option>
+                            <option>Inventory</option>
+                            <option>Migration Execution</option>
+                            <option>Migration Planning</option>
+                            <option>Not Closing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusOwnershipType">Ownership Type</label>
+                        <select id="{{component.name}}StatusOwnershipType" data-ng-model="component.categories.status.ownershipType">
+                            <option value="">Select One</option>
+                            <option>Agency Owned</option>
+                            <option>Colocation</option>
+                            <option>Outsourcing</option>
+                            <option>Using Cloud Provider</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusDataCenterTier">Data Center Tier</label>
+                        <select id="{{component.name}}StatusDataCenterTier" data-ng-model="component.categories.status.dataCenterTier">
+                            <option value="">Select One</option>
+                            <option>Other Room/Lab</option>
+                            <option>Server Room/Closet</option>
+                            <option>Tier 1</option>
+                            <option>Tier 2</option>
+                            <option>Tier 3</option>
+                            <option>Tier 4</option>
+                            <option>Unknown</option>
+                            <option>Using Cloud Provider</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusElectricityIsMetered">Electricity is Metered</label>
+                        <select id="{{component.name}}StatusElectricityIsMetered" data-ng-model="component.categories.status.electricityIsMetered">
+                            <option value="">Select One</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusAutomatedMonitoring">Automated Monitoring</label>
+                        <select id="{{component.name}}StatusAutomatedMonitoring" data-ng-model="component.categories.status.automatedMonitoring">
+                            <option value="">Select One</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusSharedServicesPosition">Shared Services Position</label>
+                        <select id="{{component.name}}StatusSharedServicesPosition" data-ng-model="component.categories.status.sharedServicesPosition">
+                            <option value="">Select One</option>
+                            <option>Provider</option>
+                            <option>Tenant</option>
+                            <option>None</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusISSProvider">ISS Provider</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}StatusISSProvider" data-ng-model="component.categories.status.issProvider">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusClosingFiscalYear">Closing Fiscal Year</label>
+                        <select id="{{component.name}}StatusClosingFiscalYear" data-ng-model="component.categories.status.closingFiscalYear">
+                            <option value="">Select One</option>
+                            <option>2010</option>
+                            <option>2011</option>
+                            <option>2012</option>
+                            <option>2013</option>
+                            <option>2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                            <option>2019</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusClosingQuarter">Closing Quarter</label>
+                        <select id="{{component.name}}StatusClosingQuarter" data-ng-model="component.categories.status.closingQuarter">
+                            <option value="">Select One</option>
+                            <option>Q1</option>
+                            <option>Q2</option>
+                            <option>Q3</option>
+                            <option>Q4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
+                        <select id="{{component.name}}StatusElectricityIncludedInCost" data-ng-model="component.categories.status.electricityIncludedInCost">
+                            <option value="">Select One</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}StatusCoreClassification">Core Classification</label>
+                        <select id="{{component.name}}StatusCoreClassification" data-ng-model="component.categories.status.coreClassification">
+                            <option value="">Select One</option>
+                            <option>Core</option>
+                            <option>NonCore</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

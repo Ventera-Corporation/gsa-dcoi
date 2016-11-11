@@ -23,16 +23,24 @@
 									name: 'Data Center 1 Name',
 									city: 'Data Center 1 City',
 									state: 'Data Center 1 State',
-									categories: [
+									components: [
 										{
-											name: 'Category 1',
-											fields: [],
-											expanded: true
+											name: 'PBS',
+											categories: {
+												generalInfo: {expanded: true},
+												status: {expanded: true},
+												facilityInfo: {expanded: true},
+												serverInfo: {expanded: true}
+											}
 										},
 										{
-											name: 'Category 2',
-											fields: [],
-											expanded: true
+											name: 'FAS',
+											categories: {
+												generalInfo: {expanded: true},
+												status: {expanded: true},
+												facilityInfo: {expanded: true},
+												serverInfo: {expanded: true}
+											}
 										}
 									],
 									expanded: true
@@ -41,16 +49,24 @@
 									name: 'Data Center 2 Name',
 									city: 'Data Center 2 City',
 									state: 'Data Center 2 State',
-									categories: [
+									components: [
 										{
-											name: 'Category 1',
-											fields: [],
-											expanded: true
+											name: 'PBS',
+											categories: {
+												generalInfo: {expanded: true},
+												status: {expanded: true},
+												facilityInfo: {expanded: true},
+												serverInfo: {expanded: true}
+											}
 										},
 										{
-											name: 'Category 2',
-											fields: [],
-											expanded: true
+											name: 'FAS',
+											categories: {
+												generalInfo: {expanded: true},
+												status: {expanded: true},
+												facilityInfo: {expanded: true},
+												serverInfo: {expanded: true}
+											}
 										}
 									],
 									expanded: true
@@ -65,16 +81,24 @@
 									name: 'Data Center 3 Name',
 									city: 'Data Center 3 City',
 									state: 'Data Center 3 State',
-									categories: [
+									components: [
 										{
-											name: 'Category 1',
-											fields: [],
-											expanded: true
+											name: 'PBS',
+											categories: {
+												generalInfo: {expanded: true},
+												status: {expanded: true},
+												facilityInfo: {expanded: true},
+												serverInfo: {expanded: true}
+											}
 										},
 										{
-											name: 'Category 2',
-											fields: [],
-											expanded: true
+											name: 'FAS',
+											categories: {
+												generalInfo: {expanded: true},
+												status: {expanded: true},
+												facilityInfo: {expanded: true},
+												serverInfo: {expanded: true}
+											}
 										}
 									],
 									expanded: false
@@ -83,16 +107,24 @@
 									name: 'Data Center 4 Name',
 									city: 'Data Center 4 City',
 									state: 'Data Center 4 State',
-									categories: [
+									components: [
 										{
-											name: 'Category 1',
-											fields: [],
-											expanded: true
+											name: 'PBS',
+											categories: {
+												generalInfo: {expanded: true},
+												status: {expanded: true},
+												facilityInfo: {expanded: true},
+												serverInfo: {expanded: true}
+											}
 										},
 										{
-											name: 'Category 2',
-											fields: [],
-											expanded: true
+											name: 'FAS',
+											categories: {
+												generalInfo: {expanded: true},
+												status: {expanded: true},
+												facilityInfo: {expanded: true},
+												serverInfo: {expanded: true}
+											}
 										}
 									],
 									expanded: false
