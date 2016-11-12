@@ -1,30 +1,84 @@
 (function(){
 	'use strict';
 	
-	dcciApp.controller('QuarterController', QuarterController);
+	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = [];
+	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'initQuarterData'];
 	
-	function QuarterController(){
+	function QuarterController(QuarterService, $uibModal, $filter, initQuarterData){
 		var qc = this;
-		qc.initQuarter = initQuarter;
+		qc.tempData = {};
+		qc.tempData.selected = {
+			//default
+			expandCollapseSidebar: true,
+			expandCollapseRegions: {
+				newEngland: false,
+				northeastAndCaribbean: false,
+				midAtlantic: false,
+				southeastSunbelt: false,
+				greatLakes: false,
+				heartland: false,
+				greaterSouthwest: false,
+				rockyMountain: false,
+				pacificRim: false,
+				northwestArctic: false,
+				nationalCapital: false,
+				cloud: false
+			},
+			expandCollapsePanels: {}
+		};
+		qc.quarterData = initQuarterData;
+		qc.initDefaultSelected = initDefaultSelected;
+		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
 		qc.createQuarter = createQuarter;
 		qc.saveQuarter = saveQuarter;
 		qc.submitQuarter = submitQuarter;
 		qc.exportQuarter = exportQuarter;
 		qc.addNewDataCenter = addNewDataCenter;
-		qc.initDataCenterList = initDataCenterList;
 		qc.removeDataCenter = removeDataCenter;
 		qc.initComponentTab = initComponentTab;
 		qc.viewAudit = viewAudit;
 		qc.validateCategory = validateCategory;
-
-		function initQuarter(){
-			
+		
+		function initDefaultSelected(regionProp, region){
+			if(!qc.tempData.selected.regionProp && region.dataCenters.length > 0) {
+				qc.tempData.selected.regionProp = regionProp;
+				qc.tempData.selected.dataCenterName = region.dataCenters[0].name;
+				qc.tempData.selected.expandCollapseRegions[regionProp] = true;
+			}
+		}
+		
+		function initDefaultPanelExpanded(dataCenter){
+			//only push a new panel if there isn't data for it already
+			if(!qc.tempData.selected.expandCollapsePanels[dataCenter.id]){
+				var panel = {
+					expanded: true,
+					activeComponentTabIdx: 0,
+					components: []
+				};
+				var category = {
+					generalInfo: true,
+					status: true,
+					facilityInfo: true,
+					serverInfo: true
+				};
+				angular.forEach(dataCenter.components, function (){
+					panel.components.push(angular.copy(category));
+				});
+				qc.tempData.selected.expandCollapsePanels[dataCenter.id] = panel;
+			}
 		}
 		
 		function createQuarter(){
-			
+			QuarterService.createQuarter(qc.quarterData).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data;
+				}
+			});
 		}
 		
 		function saveQuarter(){
@@ -40,15 +94,27 @@
 		}
 		
 		function addNewDataCenter(){
-			
-		}
-		
-		function initDataCenterList(){
-			
+			var modalInstance = $uibModal.open({
+			    animation: true,
+			    templateUrl: 'app/datacenter/datacenter.html',
+			    controller: 'DataCenterController',
+			    controllerAs: 'dcc',
+			    backdrop: 'static',
+			    resolve: {
+					initDataCenterData: function(){
+						return QuarterService.initDataCenter();
+					}
+				}
+			});
+			modalInstance.result.then(function (dataCenterData) {
+				if(dataCenterData !== 'cancel'){
+					qc.quarterData.regions[dataCenterData.regionProp].dataCenters.push(dataCenterData.dataCenter);
+				}
+			});
 		}
 		
 		function removeDataCenter(){
-			
+
 		}
 		
 		function initComponentTab(){

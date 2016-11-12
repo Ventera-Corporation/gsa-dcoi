@@ -1,0 +1,70 @@
+<div class="modal-header">
+    <button type="button" class="close pull-right" data-ng-click="dcc.cancel()">&times;</button>
+    <span class="pull-left"><h3 class="modal-title">New Data Center</h3></span>
+</div><!-- /.modal-header -->
+
+<div class="modal-body">
+    <br />
+    <h4>Enter the required information for the fields below to add a new Data Center.</h4>
+    <br />
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="data-center-name">Data Center Name <span class="vnt-red-text">*</span></label>
+                <input type="text" class="form-control" id="data-center-name" data-ng-model="dcc.dataCenter.name">
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
+                <select id="data-center-region" data-ng-model="dcc.regionProp">
+                    <option value="">Select One</option>
+                    <option value="newEngland">New England</option>
+                    <option value="northeastAndCaribbean">Northeast and Caribbean</option>
+                    <option value="midAtlantic">Mid-Atlantic</option>
+                    <option value="southeastSunbelt">Southeast Sunbelt</option>
+                    <option value="greatLakes">Great Lakes</option>
+                    <option value="heartland">Heartland</option>
+                    <option value="greaterSouthwest">Greater Southwest</option>
+                    <option value="rockyMountain">Rocky Mountain</option>
+                    <option value="pacificRim">Pacific Rim</option>
+                    <option value="northwestArctic">Northwest/Arctic</option>
+                    <option value="nationalCapital">National Capital</option>
+                    <option value="cloud">Cloud</option>
+                </select>
+            </div>
+        </div>
+	</div><!-- /.row -->
+	
+	<div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="data-center-city">City</label>
+                <input type="text" class="form-control" id="data-center-city" data-ng-model="dcc.dataCenter.city">
+            </div>
+		</div> 
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="data-center-state">State</label>
+                <select id="data-center-state" data-ng-model="dcc.dataCenter.state">
+                	<option value="">Select One</option>
+                    <option>AL</option>
+                    <option>AK</option>
+                    <option>AZ</option>
+                    <option>AR</option>
+                    <option>CA</option>
+                    <option>CO</option>
+                    <option>Etc.</option>
+                </select>
+            </div>
+        </div>
+	</div><!-- /.row -->
+
+</div><!-- /.modal-body -->
+
+<div class="modal-footer">
+    <button type="button" class="usa-button usa-button-primary" 
+    		data-ng-disabled="!(dcc.dataCenter.name.length && dcc.regionProp.length)" 
+    		data-ng-click="dcc.add()">Add</button>
+    <button type="button" class="usa-button usa-button-gray" data-ng-click="dcc.cancel()">Cancel</button>
+</div><!-- /.modal-footer -->

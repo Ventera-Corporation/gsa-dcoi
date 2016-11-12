@@ -1,0 +1,507 @@
+﻿@charset "utf-8";
+/* > VNT COMPONENTS FROM SCRATCH CSS: START
+***********************************************************************************************************************/
+	/**************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+	/* >> NOTES: START
+	***************************************************************************************************************/
+
+	/* TOC:
+	-	VNT COMPONENTS FROM SCRATCH CSS
+                        - NOTES
+                        - DATA CENTER PANEL
+                        - DATA CENTER TABS
+                        - CATEGORY PANEL
+                        - VALIDATE BUTTON
+                        - WRAPPER + SIDEBAR
+                        - SIDEBAR NAV STYLING
+                        - MOBILE RESPONSIVE SIDEBAR
+                        - CALENDAR CHIP
+                        - PILL BOXES
+                        - PIN LINE BLOCKED TEXT
+	*/
+
+	/* NOTES: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+    /* >> NAVBAR SEARCH: START
+	***************************************************************************************************************/
+
+	    .navbar-form .search-style {
+            background-color: rgba(255,255,255,.2); 
+            border-width: 0; 
+            margin-top: 0; 
+            color: #ffffff;
+	    }
+
+        .navbar-form .glyph-style {
+            color: rgba(255,255,255,.2); 
+            top: 3px; 
+            margin-left: 10px; 
+            font-size: 1.2em;
+        }
+
+	/* NAVBAR SEARCH: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+    /* >> DATA CENTER PANEL: START
+	***************************************************************************************************************/
+
+        .panel-dc {
+            max-width: 1140px;
+            margin: 0 auto;
+            -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+               -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+                    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+        }
+
+        .panel-dc > .panel-heading {
+            background: #5b616b;
+            background-color: #5b616b;
+            padding: 15px;
+            color: #ffffff;
+            border-radius: 0;
+            font-weight: 400;
+        }
+        
+        .panel-dc .assign-components select {
+        	padding: 0 5px 0 5px !important;
+            height: 2.1em !important;
+            margin: 0;
+        }
+
+    /* DATA CENTER PANEL: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+    /* >> DATA CENTER TABS: START
+	***************************************************************************************************************/
+
+        .panel-dc .nav-tabs {
+            margin: 0 0 20px 0;
+            border-bottom: 1px #dddddd solid;
+            width: 100%;
+        }
+        
+        .panel-dc .nav-tabs > li {
+        	margin-top: 0;
+        }
+
+        .panel-dc .nav-tabs > li,
+        .panel-dc .nav-tabs > li > a,
+        .panel-dc .nav-tabs > li > a:focus {
+            text-decoration: none;
+            color: #777777;
+            border: 0;
+            font-size: 1.1em;
+        }
+
+        .panel-dc .nav-tabs > li > a:hover {
+            color: #0c71b9;
+            font-weight: bold;
+            background: transparent;
+        }
+
+        .panel-dc .nav-tabs > li.active,
+        .panel-dc .nav-tabs > li.active > a, 
+        .panel-dc .nav-tabs > li.active > a:hover, 
+        .panel-dc .nav-tabs > li.active > a:focus {
+            border: 0;
+            border-bottom: 1px #0c71b9 solid;
+            text-decoration: none;
+            border-radius: 0;
+            font-weight: bold;
+            color: #0c71b9;
+        }
+        
+        ul li::after, ol li::after {
+        	display: none;
+        }
+
+    /* DATA CENTER TABS: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+    /* >> CATEGORY PANEL: START
+	***************************************************************************************************************/
+
+        .panel-category {
+            border: 0 !important;
+            border-color: #ffffff;
+        }
+
+        .panel-category > .panel-heading {
+            background: #f1f1f1;
+            background-color: #f1f1f1;
+            padding: 10px;
+            color: #333333;
+            border-radius: 0;
+            border: 1px #e6e6e6 solid;
+        }
+
+        .panel-category .panel-body {
+            border: 0;
+            padding-bottom: 25px;
+        }
+
+        .panel-category label {
+            font-size: 1em;
+        }
+
+    /* CATEGORY PANEL: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+    /* >> VALIDATE BUTTON: START
+	***************************************************************************************************************/
+
+        .usa-button-validate {
+            background: #4aa564;
+            background-color: #4aa564;
+        }
+
+        .usa-button-validate:hover,
+        .usa-button-validate:active {
+            background: #3d8750;
+            background-color: #3d8750;
+        }
+    
+    /* VALIDATE BUTTON: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+    /* >> STATUS INDICATORS: START
+	***************************************************************************************************************/
+
+        .status {
+            color: #777777;
+            font-size: .8em;
+        }
+
+        .sidebar-status {
+            margin-top: -20px;
+        }
+
+        .validated {
+            color: #4aa564;
+            margin-left: 5px;
+        }
+
+        .inprogress {
+            color: #fcb71c;
+            margin-left: 5px;
+        }
+
+        .warning-text {
+            color: #777777; 
+            font-size: .7em; 
+            font-style: italic;
+        }
+
+    /* VALIDATE BUTTON: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+    /* >> WRAPPER + SIDEBAR: START
+	***************************************************************************************************************/
+
+        #wrapper {
+            padding-left: 0;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            padding-top: 130px;
+        }
+
+        #wrapper.toggled {
+            padding-left: 200px;
+        }
+
+        #sidebar-wrapper {
+            z-index: 1000;
+            position: fixed;
+            left: 200px;
+            width: 0;
+            height: 100%;
+            overflow-y: auto;
+            margin-left: -200px;
+            background: transparent;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            width: 200px;
+        }
+
+        #page-content-wrapper {
+            width: 100%;
+            position: absolute;
+            padding: 15px;
+        }
+
+        #wrapper.toggled #page-content-wrapper {
+            position: absolute;
+            margin-right: -200px;
+        }
+
+    /* WRAPPER + SIDEBAR: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+    /* >> SIDEBAR NAV STYLING: START
+	***************************************************************************************************************/
+
+        .sidebar-nav {
+            position: absolute;
+            top: 0;
+            width: 200px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .sidebar-nav .panel,
+        .sidebar-nav .panel-default,
+        .sidebar-nav .panel-default > .panel-heading,
+        .sidebar-nav .panel-default > .panel-collapse,
+        .sidebar-nav .panel-default > .panel-collapse .list-group,
+        .sidebar-nav .panel-default > .panel-collapse .list-group-item {
+            background: transparent;
+            border: 0;
+        }
+
+        .sidebar-nav .list-group {
+            margin: 0;
+            border: 0;
+        }
+
+        .sidebar-nav li {
+            text-indent: 20px;
+            background: transparent;
+            padding: 5px;
+        }
+
+        .sidebar-nav li a {
+            display: block;
+            text-decoration: none;
+            color: #888888;
+        }
+
+        .sidebar-nav li a:hover {
+            text-decoration: none;
+            color: #000000;
+        }
+        
+        .sidebar-nav .list-group-item {
+        	box-shadow: 0;
+        	margin: 0;
+        	padding: 0;
+        }
+
+    /* WRAPPER + SIDEBAR: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+    /* >> MOBILE RESPONSIVE SIDEBAR: START
+	***************************************************************************************************************/
+
+        @media (min-width: 768px) {
+            #wrapper {
+                padding-left: 200px;
+            }
+
+            #wrapper.toggled {
+                padding-left: 0;
+            }
+
+            #sidebar-wrapper {
+                width: 200px;
+            }
+
+            #wrapper.toggled #sidebar-wrapper {
+                width: 0;
+            }
+
+            #page-content-wrapper {
+                padding: 20px;
+                position: relative;
+            }
+
+            #wrapper.toggled #page-content-wrapper {
+                position: relative;
+                margin-right: 0;
+            }
+        }
+
+    /* MOBILE RESPONSIVE SIDEAR: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/        
+    /* >> CALENDAR CHIP: START
+	***************************************************************************************************************/
+        
+        .vnt-calendar-chip {
+            background-clip: padding-box;        
+            padding: 20px;       
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(0,0,0,.13);               
+            background-color: #ffffff;
+            margin-bottom: 30px;               
+            height: 155px;
+        }       
+        
+        .vnt-calendar-chip.vnt-calendar-chip--creator {
+            background-clip: padding-box;        
+            padding: 20px;
+        
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(0,0,0,.13);
+                
+                
+            background-color: rgba(0, 0, 0, 0.03);
+            margin-bottom: 30px;
+                
+            height: 155px;
+        }
+        
+        .vnt-calendar-chip:hover {
+            border-width: 1px;
+            border-style: solid;
+            border-color: #205493;                
+            cursor: pointer;
+        }
+        
+        .vnt-calendar-chip > h1,
+        .vnt-calendar-chip > h2,
+        .vnt-calendar-chip > h3,
+        .vnt-calendar-chip > h4,
+        .vnt-calendar-chip > h5,
+        .vnt-calendar-chip > h6 {
+            margin-top: 0;
+            margin-bottom: 4px;
+        }
+        
+        .vnt-calendar-chip__niche {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 21px;                       
+            width: 6px;
+            height: 22px;                        
+            background-color: #0071bc;
+        }
+
+        .vnt-calendar-chip:hover .vnt-calendar-chip__niche {
+            background-color: #205493;
+        }
+        
+        .vnt-calendar-chip-row-head {    
+            padding: 30px;
+            margin-bottom: 30px;
+            height: 150px;
+        }
+                      
+    /* CALENDAR CHIP: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+	/* >> PILL BOXES: START
+	***************************************************************************************************************/
+        
+        .vnt-light-grey-pill-box {        
+            background-clip: padding-box;        
+            padding: 30px;
+        
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(0,0,0,.13);
+                
+            background-color: #f1f1f1;
+            margin-bottom: 30px;
+        }        
+        
+    /* PILL BOXES: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+	/* >> PIN LINE BLOCKED TEXT: START
+	***************************************************************************************************************/
+           
+        /*
+        # Component: pin-line-blocked-text */
+        .vnt-pin-line-blocked-text {
+            display: block;
+            width: 100%;                               
+        }
+        .vnt-pin-line-blocked-text__line {                       
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.2);                        
+            display: block;        
+        }               
+        .vnt-pin-line-blocked-text__text {                        
+            display: inline-block;                        
+            position: relative;
+            background-color: #ffffff;                       
+            top: -25px;
+            padding: 15px;        
+        }
+                
+        /* 
+        ## Modifiers */
+        .vnt-pin-line-blocked-text--center {
+            text-align: center;
+        }               
+        
+    /* PIN LINE BLOCKED TEXT: END
+	***************************************************************************************************************/
+        
+/* VNT COMPONENTS FROM SCRATCH CSS: END
+***********************************************************************************************************************/

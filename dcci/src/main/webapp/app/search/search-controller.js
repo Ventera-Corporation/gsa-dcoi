@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	
-	dcciApp.controller('SearchController', SearchController);
+	angular.module('dcoiApp').controller('SearchController', SearchController);
 	
 	SearchController.$inject = [];
 	

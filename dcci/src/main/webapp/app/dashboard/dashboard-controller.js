@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	
-	dcciApp.controller('DashboardController', DashboardController);
+	angular.module('dcoiApp').controller('DashboardController', DashboardController);
 	
 	DashboardController.$inject = [];
 	

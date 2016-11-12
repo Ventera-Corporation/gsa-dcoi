@@ -1,0 +1,122 @@
+<!-- CATEGORY : FACILITY INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo"></span>
+            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo"></span>
+            <span>&nbsp; Facility Info</span>
+        </h4>
+    </div>
+
+    <div id="{{component.name}}FacilityInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoGrossFloorArea">Gross Floor Area (Sq. Ft.)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoGrossFloorArea" data-ng-model="component.categories.facilityInfo.grossFloorArea">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoTotalCustomerFloorArea">Total Customer Floor Area (Sq. Ft.)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoTotalCustomerFloorArea" data-ng-model="component.categories.facilityInfo.totalCustomerFloorArea">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoAnnualCostPerSqFt">Annual Cost per Sq. Ft.</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoAnnualCostPerSqFt" data-ng-model="component.categories.facilityInfo.annualCostPerSqFt">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoOtherAgenciesServiced">Other Agencies Serviced</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoOtherAgenciesServiced" data-ng-model="component.categories.facilityInfo.otherAgenciesServiced">
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoAvgElectricityUsage">Avg. Electricity Usage (kWh)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoAvgElectricityUsage" data-ng-model="component.categories.facilityInfo.avgElectricityUsage">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoAvgITElectricityUsage">Avg. IT Electricity Usage (kWh)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoAvgITElectricityUsage" data-ng-model="component.categories.facilityInfo.avgITElectricityUsage">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoTotalPowerCapacity">Total Power Capacity (kW)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoTotalPowerCapacity" data-ng-model="component.categories.facilityInfo.totalPowerCapacity">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoTotalITPowerCapacity">Total IT Power Capacity (kW)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoTotalITPowerCapacity" data-ng-model="component.categories.facilityInfo.totalITPowerCapacity">
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoFTE">FTE</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoFTE" data-ng-model="component.categories.facilityInfo.fte">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoFTECost">FTE Cost</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoFTECost" data-ng-model="component.categories.facilityInfo.fteCost">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoRackCount">Rack Count</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoRackCount" data-ng-model="component.categories.facilityInfo.rackCount">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}FacilityInfoCostPerkWh">Cost per kWh</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoCostPerkWh" data-ng-model="component.categories.facilityInfo.costPerkWh">
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->
