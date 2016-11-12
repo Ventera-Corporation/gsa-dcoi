@@ -1,14 +1,15 @@
 <!-- CATEGORY : GENERAL INFORMATION -->
 <div class="panel panel-default panel-category">
-    <div class="panel-heading" data-toggle="collapse" data-ng-click="component.categories.generalInfo.expanded=!component.categories.generalInfo.expanded">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo">
         <h4 class="panel-title">
-            <span class="glyphicon glyphicon-minus" data-ng-if="component.categories.generalInfo.expanded"></span>
-            <span class="glyphicon glyphicon-plus" data-ng-if="!component.categories.generalInfo.expanded"></span>
+            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo"></span>
+            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo"></span>
             <span>&nbsp; General Info</span>
         </h4>
     </div>
 
-    <div id="{{component.name}}GeneralInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="component.categories.generalInfo.expanded">
+    <div id="{{component.name}}GeneralInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo">
         <div class="panel-body">
             <!-- Form Fields -->
             <div class="row">

@@ -1,14 +1,15 @@
 <!-- CATEGORY : STATUS -->
 <div class="panel panel-default panel-category">
-    <div class="panel-heading" data-toggle="collapse" data-ng-click="component.categories.status.expanded=!component.categories.status.expanded">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status=!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status">
         <h4 class="panel-title">
-            <span class="glyphicon glyphicon-minus" data-ng-if="component.categories.status.expanded"></span>
-            <span class="glyphicon glyphicon-plus" data-ng-if="!component.categories.status.expanded"></span>
+            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status"></span>
+            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status"></span>
             <span>&nbsp; Status</span>
         </h4>
     </div>
 
-    <div id="{{component.name}}Status" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="component.categories.status.expanded">
+    <div id="{{component.name}}Status" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status">
         <div class="panel-body">
             <!-- Form Fields -->
             <div class="row">

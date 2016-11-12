@@ -12,10 +12,7 @@
 				controllerAs: 'qc',
 				resolve: {
 					initQuarterData: function(QuarterService){
-						return {
-							quarterData: QuarterService.initQuarter(),
-							defaultDisplayedRegionIdx: 0
-						};
+						return QuarterService.initQuarter();
 					}
 				}
 			});

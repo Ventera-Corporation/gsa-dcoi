@@ -17,12 +17,20 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
-                <select id="data-center-region" data-ng-model="dcc.region">
+                <select id="data-center-region" data-ng-model="dcc.regionProp">
                     <option value="">Select One</option>
-                    <option>Northeast</option>
-                    <option>Midwest</option>
-                    <option>South</option>
-                    <option>West</option>
+                    <option value="newEngland">New England</option>
+                    <option value="northeastAndCaribbean">Northeast and Caribbean</option>
+                    <option value="midAtlantic">Mid-Atlantic</option>
+                    <option value="southeastSunbelt">Southeast Sunbelt</option>
+                    <option value="greatLakes">Great Lakes</option>
+                    <option value="heartland">Heartland</option>
+                    <option value="greaterSouthwest">Greater Southwest</option>
+                    <option value="rockyMountain">Rocky Mountain</option>
+                    <option value="pacificRim">Pacific Rim</option>
+                    <option value="northwestArctic">Northwest/Arctic</option>
+                    <option value="nationalCapital">National Capital</option>
+                    <option value="cloud">Cloud</option>
                 </select>
             </div>
         </div>
@@ -56,7 +64,7 @@
 
 <div class="modal-footer">
     <button type="button" class="usa-button usa-button-primary" 
-    		data-ng-disabled="!(dcc.dataCenter.name.length && dcc.region.length)" 
+    		data-ng-disabled="!(dcc.dataCenter.name.length && dcc.regionProp.length)" 
     		data-ng-click="dcc.add()">Add</button>
     <button type="button" class="usa-button usa-button-gray" data-ng-click="dcc.cancel()">Cancel</button>
 </div><!-- /.modal-footer -->

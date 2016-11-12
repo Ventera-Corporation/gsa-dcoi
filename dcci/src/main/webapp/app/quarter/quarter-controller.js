@@ -8,8 +8,28 @@
 	function QuarterController(QuarterService, $uibModal, $filter, initQuarterData){
 		var qc = this;
 		qc.tempData = {};
-		qc.tempData.displayedRegionIdx = initQuarterData.defaultDisplayedRegionIdx;
-		qc.quarterData = initQuarterData.quarterData;
+		qc.tempData.selected = {
+			//default
+			expandCollapseSidebar: true,
+			expandCollapseRegions: {
+				newEngland: false,
+				northeastAndCaribbean: false,
+				midAtlantic: false,
+				southeastSunbelt: false,
+				greatLakes: false,
+				heartland: false,
+				greaterSouthwest: false,
+				rockyMountain: false,
+				pacificRim: false,
+				northwestArctic: false,
+				nationalCapital: false,
+				cloud: false
+			},
+			expandCollapsePanels: {}
+		};
+		qc.quarterData = initQuarterData;
+		qc.initDefaultSelected = initDefaultSelected;
+		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
 		qc.createQuarter = createQuarter;
 		qc.saveQuarter = saveQuarter;
 		qc.submitQuarter = submitQuarter;
@@ -19,6 +39,35 @@
 		qc.initComponentTab = initComponentTab;
 		qc.viewAudit = viewAudit;
 		qc.validateCategory = validateCategory;
+		
+		function initDefaultSelected(regionProp, region){
+			if(!qc.tempData.selected.regionProp && region.dataCenters.length > 0) {
+				qc.tempData.selected.regionProp = regionProp;
+				qc.tempData.selected.dataCenterName = region.dataCenters[0].name;
+				qc.tempData.selected.expandCollapseRegions[regionProp] = true;
+			}
+		}
+		
+		function initDefaultPanelExpanded(dataCenter){
+			//only push a new panel if there isn't data for it already
+			if(!qc.tempData.selected.expandCollapsePanels[dataCenter.id]){
+				var panel = {
+					expanded: true,
+					activeComponentTabIdx: 0,
+					components: []
+				};
+				var category = {
+					generalInfo: true,
+					status: true,
+					facilityInfo: true,
+					serverInfo: true
+				};
+				angular.forEach(dataCenter.components, function (){
+					panel.components.push(angular.copy(category));
+				});
+				qc.tempData.selected.expandCollapsePanels[dataCenter.id] = panel;
+			}
+		}
 		
 		function createQuarter(){
 			QuarterService.createQuarter(qc.quarterData).then(function (data){
@@ -59,18 +108,13 @@
 			});
 			modalInstance.result.then(function (dataCenterData) {
 				if(dataCenterData !== 'cancel'){
-					var region = $filter('filter')(qc.quarterData.regions, {"name":dataCenterData.regionName}, true)[0];
-					region.dataCenters.push(dataCenterData.dataCenter);
+					qc.quarterData.regions[dataCenterData.regionProp].dataCenters.push(dataCenterData.dataCenter);
 				}
 			});
 		}
 		
-		function removeDataCenter(dataCenterID, regionIdx, dataCenterIdx){
-			QuarterService.removeDataCenter(dataCenterID).then(function (data){
-				if(!data.error){
-					qc.quarterData.regions[regionIdx].dataCenters.splice(dataCenterIdx, 1);
-				}
-			});
+		function removeDataCenter(){
+
 		}
 		
 		function initComponentTab(){

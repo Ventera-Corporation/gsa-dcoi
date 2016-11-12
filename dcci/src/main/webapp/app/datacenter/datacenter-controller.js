@@ -16,7 +16,7 @@
 		function add() {
 			$uibModalInstance.close(
 				{
-					regionName: dcc.region, 
+					regionProp: dcc.regionProp, 
 					dataCenter: dcc.dataCenter
 				}
 			);
