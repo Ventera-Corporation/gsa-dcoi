@@ -5,8 +5,6 @@ engines:
     enabled: true
   fixme:
     enabled: true
-  nodesecurity:
-    enabled: true
   duplication:
     enabled: true
     config:
