@@ -11,7 +11,7 @@
 				return $http({
 					url: '/newQuarter/init',
 					method: 'GET'
-				});
+				}).then(returnData);
 //				return {
 //					fiscalQuarter: 'Q3',
 //					fiscalYear: '2016',
@@ -285,5 +285,9 @@
 				});
 			}
 	    };
+	    
+	    function returnData(responseObj){
+	    	return responseObj.data;
+	    }
 	}
 })();

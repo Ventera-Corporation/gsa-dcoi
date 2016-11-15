@@ -1,13 +1,11 @@
 describe('dcoiApp', function() {
     	beforeEach(angular.mock.module('dcoiApp'));
 	describe("QuarterController", function() {
-	    var scope, controller, httpBackend;
-	    beforeEach(angular.mock.inject(function($controller, $rootScope, $httpBackend) {
-		scope = $rootScope.$new();
-		httpBackend = $httpBackend;
-		controller = $controller;
-		
-		httpBackend.when("GET", "/newQuarter/init/").respond([{
+	    var qc, httpBackend;
+	    
+	    beforeEach(angular.mock.inject(function($controller, $httpBackend) {
+			httpBackend = $httpBackend;
+			httpBackend.when("GET", "/newQuarter/init").respond({
 			    'quarterData': {
 					fiscalQuarter: 'Q3',
 					fiscalYear: '2016',
@@ -177,18 +175,19 @@ describe('dcoiApp', function() {
 						}
 					}
 				}
-			}]);
-		
+			});
+			
+	    	qc = $controller("QuarterController", {
+	    		quarterData: {}
+	    	});
+			httpBackend.expectGET('/newQuarter/init');
+			qc.initQuarterData();
+	    	httpBackend.flush();
 	    }));
 	    
 	    
-	    it('verify 12 regions', function() {
-			controller('QuarterController as qc', {
-			    $scope : scope
-			});
-	    	scope.qc.quarterData = httpBackend.expectGET('/newQuarter/init').quarterData;
-			httpBackend.flush();
-			expect(Object.keys(scope.qc.quarterData.regions).length).toBe(12);
+	    it('verify quarter data', function() {
+			expect(qc.quarterData.fiscalQuarter).toBe('Q3');
 	    });
 
 	});

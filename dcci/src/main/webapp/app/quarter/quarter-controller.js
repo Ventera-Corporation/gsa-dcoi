@@ -3,9 +3,9 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'initQuarterData'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', 'quarterData'];
 	
-	function QuarterController(QuarterService, $uibModal, $filter, initQuarterData){
+	function QuarterController(QuarterService, $uibModal, quarterData){
 		var qc = this;
 		qc.tempData = {};
 		qc.tempData.selected = {
@@ -27,7 +27,8 @@
 			},
 			expandCollapsePanels: {}
 		};
-		qc.quarterData = initQuarterData;
+		qc.quarterData = quarterData;
+		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
 		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
 		qc.createQuarter = createQuarter;
@@ -39,6 +40,12 @@
 		qc.initComponentTab = initComponentTab;
 		qc.viewAudit = viewAudit;
 		qc.validateCategory = validateCategory;
+		
+		function initQuarterData(){
+			 QuarterService.initQuarter().then(function (data){
+				 qc.quarterData = data.quarterData;
+			 });
+		}
 		
 		function initDefaultSelected(regionProp, region){
 			if(!qc.tempData.selected.regionProp && region.dataCenters.length > 0) {

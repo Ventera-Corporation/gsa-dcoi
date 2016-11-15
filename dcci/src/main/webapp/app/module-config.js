@@ -11,7 +11,7 @@
 				controller: 'QuarterController',
 				controllerAs: 'qc',
 				resolve: {
-					initQuarterData: function(QuarterService){
+					quarterData: function(QuarterService){
 						return QuarterService.initQuarter().then(function (data){
 							return data.quarterData;
 						});
