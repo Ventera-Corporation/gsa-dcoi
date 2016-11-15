@@ -12,7 +12,9 @@
 				controllerAs: 'qc',
 				resolve: {
 					initQuarterData: function(QuarterService){
-						return QuarterService.initQuarter();
+						return QuarterService.initQuarter().then(function (data){
+							return data.quarterData;
+						});
 					}
 				}
 			});
