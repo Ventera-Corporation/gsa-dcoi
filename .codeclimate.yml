@@ -15,4 +15,6 @@ ratings:
   - "**.css"
   - "**.js"
   
-+exclude_paths: []
+exclude_paths:
+- "**/webapp/assets/css/"
+- "**/webapp/plugins/"
