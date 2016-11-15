@@ -1,4 +1,4 @@
 (function(){
 	'use strict';
-	angular.module('dcciApp', []);
+	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap' ]);
 })();

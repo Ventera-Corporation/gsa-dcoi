@@ -1,0 +1,251 @@
+﻿<!-- PAGE HEADER -->
+<div class="page-header">                  
+    <span class="glyphicon glyphicon-th-list" role="button" aria-hidden="true" href="#menu-toggle" id="menu-toggle" style="font-size: .8em;"></span> &nbsp; Q3 2016
+
+    <div class="button_wrapper pull-right">                      
+        <button class="usa-button usa-button-gray" type="button">Save</button>
+        <button class="usa-button usa-button-primary" type="button">Export</button>
+    </div>
+</div>
+
+<!-- OUTER WRAPPER -->
+<div id="wrapper">
+
+    <!-- SIDEBAR -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <div class="panel-group">
+                        
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" href="#region1">
+                        <h4 class="panel-title">
+                            Region 1
+                        </h4>
+                    </div>
+                    <div id="region1" class="panel-collapse collapse in">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="#datacenter1">Data Center 1 Name</a><i class="fa fa-check-circle-o sidebar-status pull-right validated" aria-hidden="true"></i></li>
+                            <li class="list-group-item"><a href="#datacenter2">Data Center 2 Name</a><i class="fa fa-pencil sidebar-status pull-right inprogress" aria-hidden="true"></i></li>
+                            <li class="list-group-item"><a href="#datacenter3">Data Center 3 Name</a><i class="fa fa-pencil sidebar-status pull-right inprogress" aria-hidden="true"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" href="#region2">
+                        <h4 class="panel-title">
+                            Region 2
+                        </h4>
+                    </div>
+                    <div id="region2" class="panel-collapse collapse in">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="#datacenter4">Data Center 4 Name</a><i class="fa fa-check-circle-o sidebar-status pull-right validated" aria-hidden="true"></i></li>
+                            <li class="list-group-item"><a href="#datacenter5">Data Center 5 Name</a><i class="fa fa-pencil sidebar-status pull-right inprogress" aria-hidden="true"></i></li>
+                            <li class="list-group-item"><a href="#datacenter6">Data Center 6 Name</a><i class="fa fa-check-circle-o sidebar-status pull-right validated" aria-hidden="true"></i></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- /.panel-group -->
+        </ul>
+    </div><!-- /#sidebar-wrapper -->
+
+    <!-- MAIN CONTAINER -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+                            
+            <div class="panel-group" id="accordion">
+
+                <!-- DATA CENTER PANEL-->
+                <!-- Data Center Header -->
+                <div class="panel panel-default panel-dc" id="datacenter1">
+                    <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#dc1-body">
+                        <h4 class="panel-title">
+                            {Data Center 1 Name} | {Data Center 1 ID}
+
+                            <span class="pull-right vnt-normal-text-weight">City, State</span>
+                        </h4>
+                    </div>
+
+
+                    <!-- Data Center Body -->
+                    <div id="dc1-body" class="panel-collapse collapse in">
+                        <div class="panel-body">
+
+                            <!-- Tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#menu1">PBS</a></li>
+                                <li><a data-toggle="tab" href="#menu2">FAS</a></li>
+                                <li><a data-toggle="tab" href="#menu3">Report</a></li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div id="menu1" class="tab-pane fade in active">
+                                    <div class="panel-group">
+
+                                        <!-- Category 1 Panel -->
+                                        <div class="panel panel-default panel-category">
+                                            <div class="panel-heading" data-toggle="collapse" href="#category1">
+                                                <h4 class="panel-title">
+                                                    <span class="glyphicon glyphicon-minus"></span> &nbsp; Category 1
+                                                    <!-- Category Status -->
+                                                    <span class="status pull-right"><em>In Progress</em> <i class="fa fa-pencil inprogress" aria-hidden="true"></i></span>
+                                                </h4>
+                                            </div>
+
+                                            <div id="category1" class="panel-collapse panel-cat-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <br />
+                                                    <span class="pull-right">
+                                                        <button class="usa-button usa-button-gray" type="button">View Audit</button>
+                                                        <button class="usa-button usa-button-validate" type="button">Validate</button>
+                                                    </span>
+                                                    <br /><br />
+                                                    <!-- Form Fields -->
+                                                    <form action="">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label for="data-center-id">Data Center ID</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" id="data-center-id">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                <div class="form-group has-warning">
+                                                                    <label for="data-center-name">Data Center Name</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" id="data-center-name">
+                                                                    </div>
+                                                                    <span class="warning-text">
+                                                                        Last edit: {Name}
+                                                                        <span class="pull-right" style="padding-top: 5px;">Original value: {Last quarter value}</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label for="published-name">Published Name</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" id="published-name">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label for="data-center-id">Agency Abbreviation</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" id="agency-abbreviation">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form><!-- /form -->
+                                                </div><!-- /.panel-body -->
+                                            </div>
+                                        </div><!-- /.panel-category -->
+                                                        
+                                        <!-- Category 2 Panel -->
+                                        <div class="panel panel-default panel-category">
+                                            <div class="panel-heading" data-toggle="collapse" href="#category2">
+                                                <h4 class="panel-title">
+                                                    <span class="glyphicon glyphicon-minus"></span> &nbsp; Category 2
+                                                    <!-- Category Status -->
+                                                    <span class="status pull-right"><em>Validated</em> <i class="fa fa-check-circle-o validated" aria-hidden="true"></i></span>
+                                                </h4>
+                                            </div>
+
+                                            <div id="category2" class="panel-collapse panel-cat-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <br />
+                                                    <span class="pull-right">
+                                                        <button class="usa-button usa-button-gray" type="button">View Audit</button>
+                                                        <button class="usa-button usa-button-validate" type="button">Validate</button>
+                                                    </span>
+                                                    <br /><br />
+                                                    <!-- Form Fields -->
+                                                    <form action="">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label for="data-center-id">Data Center ID</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" id="data-center-id">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label for="data-center-name">Data Center Name</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" id="data-center-name">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                <div class="form-group has-error">
+                                                                    <label for="published-name">Published Name</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" id="published-name">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label for="data-center-id">Agency Abbreviation</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" id="agency-abbreviation">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form><!-- /form -->
+                                                </div><!-- /.panel-body -->
+                                            </div>
+                                        </div><!-- /.panel-category -->
+
+                                    </div><!-- /.panel-group-->
+                                </div><!-- /.tab-pane -->
+
+                                <div id="menu2" class="tab-pane fade in">
+                                    <h3>This form has not been submitted yet.</h3>
+                                </div>
+
+                                <div id="menu3" class="tab-pane fade in">
+                                    <h3>Report goes here (total of component forms)</h3>
+                                </div>
+
+                            </div><!-- /.tab-content -->
+                        </div><!-- /.panel-body -->
+                    </div><!--/.panel-collapse -->
+                </div><!-- /.panel-dc -->
+                                
+                <!-- DATA CENTER PANEL-->
+                <!-- Data Center Header -->
+                <div class="panel panel-default panel-dc" id="datacenter2">
+                    <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#dc2-body">
+                        <h4 class="panel-title">
+                            {Data Center 2 Name} | {Data Center 2 ID}
+
+                            <span class="pull-right vnt-normal-text-weight">City, State</span>
+                        </h4>
+                    </div>
+
+                    <!-- Data Center Body -->
+                    <div id="dc2-body" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Lorem ipsum dolor sit amet
+                        </div><!--/.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                </div><!-- /.panel-dc -->
+
+            </div><!-- /.panel-group -->
+
+        </div><!-- /.container-fluid -->
+    </div><!-- /#page-content-wrapper -->
+
+</div><!-- /#wrapper -->

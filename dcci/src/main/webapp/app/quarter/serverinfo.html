@@ -1,0 +1,98 @@
+<!-- CATEGORY : SERVER INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo"></span>
+            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo"></span>
+            <span>&nbsp; Server Info</span>
+        </h4>
+    </div>
+
+    <div id="{{component.name}}ServerInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}ServerInfoServerUtilization">Server Utilization</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}ServerInfoServerUtilization" data-ng-model="component.categories.serverInfo.serverUtilization">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}ServerInfoTotalMainframes">Total Mainframes</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalMainframes" data-ng-model="component.categories.serverInfo.totalMainframes">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}ServerInfoTotalWindowsServers">Total Windows Servers</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalWindowsServers" data-ng-model="component.categories.serverInfo.totalWindowsServers">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}ServerInfoTotalHPCClusterNotes">Total HPC Cluster Nodes</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalHPCClusterNotes" data-ng-model="component.categories.serverInfo.totalHPCClusterNotes">
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}ServerInfoTotalOtherServers">Total Other Servers</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalOtherServers" data-ng-model="component.categories.serverInfo.totalOtherServers">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}ServerInfoTotalVirtualHosts">Total Virtual Hosts</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalVirtualHosts" data-ng-model="component.categories.serverInfo.totalVirtualHosts">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}ServerInfoTotalVirtualOS">Total Virtual OS</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalVirtualOS" data-ng-model="component.categories.serverInfo.totalVirtualOS">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}ServerInfoTotalStorage">Total Storage</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalStorage" data-ng-model="component.categories.serverInfo.totalStorage">
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{component.name}}ServerInfoUsedStorage">Used Storage</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{component.name}}ServerInfoUsedStorage" data-ng-model="component.categories.serverInfo.usedStorage">
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->
