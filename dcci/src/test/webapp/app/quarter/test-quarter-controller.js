@@ -188,6 +188,8 @@ describe('dcoiApp', function() {
 	    
 	    it('verify quarter data', function() {
 			expect(qc.quarterData.fiscalQuarter).toBe('Q3');
+			expect(qc.quarterData.fiscalYear).toBe('2016');
+			expect(Object.keys(qc.quarterData.regions).length).toBe(12);
 	    });
 
 	});
