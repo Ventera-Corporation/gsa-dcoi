@@ -14,8 +14,7 @@ engines:
       - javascript
 ratings:
   paths:
-  - "**.css"
-  - "**.js"
+  - "**"
   
 exclude_paths:
 - "**/webapp/assets/css/"
