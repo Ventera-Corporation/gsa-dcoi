@@ -17,15 +17,15 @@
 				return $http({
 					url: '/newQuarter/create',
 					method: 'POST',
-					params: {fiscalQuarterReport: quarterData}
-				});
+					params: {quarterDto: quarterData}
+				}).then(returnData);
 			},
 			saveQuarter : function(quarterData) {
 				return $http({
-					url: '',
+					url: '/newQuarter/save',
 					method: 'POST',
-					params: {quarterData: quarterData}
-				});
+					params: {quarterDto: quarterData}
+				}).then(returnData);
 			},
 			submitQuarter : function(quarterData) {
 				return $http({

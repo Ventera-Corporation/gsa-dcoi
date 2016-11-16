@@ -77,19 +77,29 @@
 		}
 		
 		function createQuarter(){
+			qc.quarterData.fiscalQuarterReport.quarterInProgressFlag = false;
+			qc.quarterData.fiscalQuarterReport.quarterActiveFlag = true;
 			QuarterService.createQuarter(qc.quarterData).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
 				} else {
 					//show success message
-					qc.tempData.successData = data;
+					qc.tempData.successData = data.successData;
 				}
 			});
 		}
 		
 		function saveQuarter(){
-			
+			QuarterService.saveQuarter(qc.quarterData).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data.successData;
+				}
+			});
 		}
 		
 		function submitQuarter(){
