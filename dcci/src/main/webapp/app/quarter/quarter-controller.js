@@ -47,11 +47,11 @@
 			 });
 		}
 		
-		function initDefaultSelected(regionProp, region){
-			if(!qc.tempData.selected.regionProp && region.dataCenters.length > 0) {
-				qc.tempData.selected.regionProp = regionProp;
+		function initDefaultSelected(region, regionIdx){
+			if(qc.tempData.selected.regionIdx == null && region.dataCenters.length > 0) {
+				qc.tempData.selected.regionIdx = regionIdx;
 				qc.tempData.selected.dataCenterName = region.dataCenters[0].name;
-				qc.tempData.selected.expandCollapseRegions[regionProp] = true;
+				qc.tempData.selected.expandCollapseRegions[region.code] = true;
 			}
 		}
 		

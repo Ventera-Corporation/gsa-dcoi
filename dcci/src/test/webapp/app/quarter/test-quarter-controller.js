@@ -7,35 +7,34 @@ describe('dcoiApp', function() {
 			httpBackend = $httpBackend;
 			httpBackend.when("GET", "/newQuarter/init").respond({
 			    'quarterData': {
-					fiscalQuarter: 'Q3',
-					fiscalYear: '2016',
-					regions: {
-						newEngland: {
+					fiscalQuarterReport: {
+				    	fiscalQuarter: 'Q3',
+						fiscalYear: '2016',
+					},
+					regions: [
+						{
 							name: 'New England',
+							code: 'newEngland',
 							dataCenters: [
 								{
 									name: 'Data Center 1 Name',
 									id: 'Data Center 1 ID',
 									city: 'Data Center 1 City',
-									state: 'Data Center 1 State',
+									stateName: 'Data Center 1 State',
 									components: [
 										{
 											name: 'PBS',
-											categories: {
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											}
+											generalInfo: {},
+											status: {},
+											facilityInfo: {},
+											serverInfo: {}
 										},
 										{
 											name: 'FAS',
-											categories: {
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											}
+											generalInfo: {},
+											status: {},
+											facilityInfo: {},
+											serverInfo: {}
 										}
 									],
 								},
@@ -43,65 +42,56 @@ describe('dcoiApp', function() {
 									name: 'Data Center 2 Name',
 									id: 'Data Center 2 ID',
 									city: 'Data Center 2 City',
-									state: 'Data Center 2 State',
+									stateName: 'Data Center 2 State',
 									components: [
 										{
 											name: 'PBS',
-											categories: {
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											}
+											generalInfo: {},
+											status: {},
+											facilityInfo: {},
+											serverInfo: {}
 										},
 										{
 											name: 'FAS',
-											categories: {
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											}
+											generalInfo: {},
+											status: {},
+											facilityInfo: {},
+											serverInfo: {}
 										}
 									],
 								}
 							],
 						},
-						northeastAndCaribbean: {
+						{
 							name: 'Northeast and Caribbean',
+							code: 'northeastAndCaribbean',
 							dataCenters: [
 								{
 									name: 'Data Center 3 Name',
 									id: 'Data Center 3 ID',
 									city: 'Data Center 3 City',
-									state: 'Data Center 3 State',
+									stateName: 'Data Center 3 State',
 									components: [
 										{
 											name: 'PBS',
-											categories: {
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											}
+											generalInfo: {},
+											status: {},
+											facilityInfo: {},
+											serverInfo: {}
 										},
 										{
 											name: 'FAS',
-											categories: {
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											}
+											generalInfo: {},
+											status: {},
+											facilityInfo: {},
+											serverInfo: {}
 										},
 										{
 											name: 'OICO',
-											categories: {
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											}
+											generalInfo: {},
+											status: {},
+											facilityInfo: {},
+											serverInfo: {}
 										}
 									],
 								},
@@ -109,71 +99,77 @@ describe('dcoiApp', function() {
 									name: 'Data Center 4 Name',
 									id: 'Data Center 4 ID',
 									city: 'Data Center 4 City',
-									state: 'Data Center 4 State',
+									stateName: 'Data Center 4 State',
 									components: [
 										{
 											name: 'PBS',
-											categories: {
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											}
+											generalInfo: {},
+											status: {},
+											facilityInfo: {},
+											serverInfo: {}
 										},
 										{
 											name: 'FAS',
-											categories: {
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											}
+											generalInfo: {},
+											status: {},
+											facilityInfo: {},
+											serverInfo: {}
 										}
 									],
 								}
 							],
 						},
-						midAtlantic: {
+						{
 							name: "Mid-Atlantic",
+							code: 'midAtlantic',
 							dataCenters: {},
 						},
-						southeastSunbelt: {
+						{
 							name: "Southeast Sunbelt",
+							code: 'southeastSunbelt',
 							dataCenters: {},
 						},
-						greatLakes: {
+						{
 							name: "Great Lakes",
+							code: 'greatLakes',
 							dataCenters: {},
 						},
-						heartland: {
+						{
 							name: "Heartland",
+							code: 'heartland',
 							dataCenters: {},
 						},
-						greaterSouthwest: {
+						{
 							name: "Greater Southwest",
+							code: 'greaterSouthwest',
 							dataCenters: {},
 						},
-						rockyMountain: {
+						{
 							name: "Rocky Mountain",
+							code: 'rockyMountain',
 							dataCenters: {},
 						},
-						pacificRim: {
+						{
 							name: "Pacific Rim",
+							code: 'pacificRim',
 							dataCenters: {},
 						},
-						northwestArctic: {
+						{
 							name: "Northwest/Arctic",
+							code: 'northwestArctic',
 							dataCenters: {},
 						},
-						nationalCapital: {
+						{
 							name: "National Capital",
+							code: 'nationalCapital',
 							dataCenters: {},
 						},
-						cloud: {
+						{
 							name: "Cloud",
+							code: 'cloud',
 							dataCenters: {},
 						}
-					}
+					]
 				}
 			});
 			
@@ -186,9 +182,12 @@ describe('dcoiApp', function() {
 	    }));
 	    
 	    
-	    it('verify quarter data', function() {
-			expect(qc.quarterData.fiscalQuarter).toBe('Q3');
-			expect(qc.quarterData.fiscalYear).toBe('2016');
+	    it('verify fiscal quarter report data', function() {
+			expect(qc.quarterData.fiscalQuarterReport.fiscalQuarter).toBe('Q3');
+			expect(qc.quarterData.fiscalQuarterReport.fiscalYear).toBe('2016');
+	    });
+	    
+	    it('verify region data', function() {
 			expect(Object.keys(qc.quarterData.regions).length).toBe(12);
 	    });
 

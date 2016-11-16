@@ -16,7 +16,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusRecordStatus">Record Status <span class="vnt-red-text">*</span></label>
-                        <select id="{{component.name}}StatusRecordStatus" data-ng-model="component.categories.status.recordStatus">
+                        <select id="{{component.name}}StatusRecordStatus" data-ng-model="component.status.recordStatus">
                             <option value="">Select One</option>
                             <option>New</option>
                             <option>Existing</option>
@@ -26,7 +26,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusRecordValidity">Record Validity <span class="vnt-red-text">*</span></label>
-                        <select id="{{component.name}}StatusRecordValidity" data-ng-model="component.categories.status.recordValidity">
+                        <select id="{{component.name}}StatusRecordValidity" data-ng-model="component.status.recordValidity">
                             <option value="">Select One</option>
                             <option>New</option>
                             <option>Existing</option>
@@ -36,7 +36,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusClosingStage">Closing Stage <span class="vnt-red-text">*</span></label>
-                        <select id="{{component.name}}StatusClosingStage" data-ng-model="component.categories.status.closingStage">
+                        <select id="{{component.name}}StatusClosingStage" data-ng-model="component.status.closingStage">
                             <option value="">Select One</option>
                             <option>Application Mapping</option>
                             <option>Closed</option>
@@ -52,7 +52,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusOwnershipType">Ownership Type</label>
-                        <select id="{{component.name}}StatusOwnershipType" data-ng-model="component.categories.status.ownershipType">
+                        <select id="{{component.name}}StatusOwnershipType" data-ng-model="component.status.ownershipType">
                             <option value="">Select One</option>
                             <option>Agency Owned</option>
                             <option>Colocation</option>
@@ -67,7 +67,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusDataCenterTier">Data Center Tier</label>
-                        <select id="{{component.name}}StatusDataCenterTier" data-ng-model="component.categories.status.dataCenterTier">
+                        <select id="{{component.name}}StatusDataCenterTier" data-ng-model="component.status.dataCenterTier">
                             <option value="">Select One</option>
                             <option>Other Room/Lab</option>
                             <option>Server Room/Closet</option>
@@ -83,7 +83,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusElectricityIsMetered">Electricity is Metered</label>
-                        <select id="{{component.name}}StatusElectricityIsMetered" data-ng-model="component.categories.status.electricityIsMetered">
+                        <select id="{{component.name}}StatusElectricityIsMetered" data-ng-model="component.status.electricityIsMetered">
                             <option value="">Select One</option>
                             <option>Yes</option>
                             <option>No</option>
@@ -93,7 +93,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusAutomatedMonitoring">Automated Monitoring</label>
-                        <select id="{{component.name}}StatusAutomatedMonitoring" data-ng-model="component.categories.status.automatedMonitoring">
+                        <select id="{{component.name}}StatusAutomatedMonitoring" data-ng-model="component.status.automatedMonitoring">
                             <option value="">Select One</option>
                             <option>Yes</option>
                             <option>No</option>
@@ -103,7 +103,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusSharedServicesPosition">Shared Services Position</label>
-                        <select id="{{component.name}}StatusSharedServicesPosition" data-ng-model="component.categories.status.sharedServicesPosition">
+                        <select id="{{component.name}}StatusSharedServicesPosition" data-ng-model="component.status.sharedServicesPosition">
                             <option value="">Select One</option>
                             <option>Provider</option>
                             <option>Tenant</option>
@@ -118,14 +118,14 @@
                     <div class="form-group">
                         <label for="{{component.name}}StatusISSProvider">ISS Provider</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}StatusISSProvider" data-ng-model="component.categories.status.issProvider">
+                            <input type="text" class="form-control" id="{{component.name}}StatusISSProvider" data-ng-model="component.status.issProvider">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusClosingFiscalYear">Closing Fiscal Year</label>
-                        <select id="{{component.name}}StatusClosingFiscalYear" data-ng-model="component.categories.status.closingFiscalYear">
+                        <select id="{{component.name}}StatusClosingFiscalYear" data-ng-model="component.status.closingFiscalYear">
                             <option value="">Select One</option>
                             <option>2010</option>
                             <option>2011</option>
@@ -143,7 +143,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusClosingQuarter">Closing Quarter</label>
-                        <select id="{{component.name}}StatusClosingQuarter" data-ng-model="component.categories.status.closingQuarter">
+                        <select id="{{component.name}}StatusClosingQuarter" data-ng-model="component.status.closingQuarter">
                             <option value="">Select One</option>
                             <option>Q1</option>
                             <option>Q2</option>
@@ -155,7 +155,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
-                        <select id="{{component.name}}StatusElectricityIncludedInCost" data-ng-model="component.categories.status.electricityIncludedInCost">
+                        <select id="{{component.name}}StatusElectricityIncludedInCost" data-ng-model="component.status.electricityIncludedInCost">
                             <option value="">Select One</option>
                             <option>Yes</option>
                             <option>No</option>
@@ -168,7 +168,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}StatusCoreClassification">Core Classification</label>
-                        <select id="{{component.name}}StatusCoreClassification" data-ng-model="component.categories.status.coreClassification">
+                        <select id="{{component.name}}StatusCoreClassification" data-ng-model="component.status.coreClassification">
                             <option value="">Select One</option>
                             <option>Core</option>
                             <option>NonCore</option>
