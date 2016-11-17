@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoAgencyAbbreviation">Agency Abbreviation <span class="vnt-red-text">*</span></label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoAgencyAbbreviation" data-ng-model="component.categories.generalInfo.agencyAbbreviation">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoAgencyAbbreviation" data-ng-model="component.generalInfo.agencyAbbreviation">
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoComponent">Component <span class="vnt-red-text">*</span></label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoComponent" data-ng-model="component.categories.generalInfo.component">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoComponent" data-ng-model="component.generalInfo.component">
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoDataCenterName">Data Center Name <span class="vnt-red-text">*</span></label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoDataCenterName" data-ng-model="component.categories.generalInfo.dataCenterName">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoDataCenterName" data-ng-model="component.generalInfo.dataCenterName">
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoDataCenterID">Data Center ID</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoDataCenterID" data-ng-model="component.categories.generalInfo.dataCenterID" placeholder="DCOI-DC-#####">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoDataCenterID" data-ng-model="component.generalInfo.dataCenterID" placeholder="DCOI-DC-#####">
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoAgencyDataCenterID">Agency Data Center ID</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoAgencyDataCenterID" data-ng-model="component.categories.generalInfo.agencyDataCenterID">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoAgencyDataCenterID" data-ng-model="component.generalInfo.agencyDataCenterID">
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoPublishedName">Published Name</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoPublishedName" data-ng-model="component.categories.generalInfo.publishedName">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoPublishedName" data-ng-model="component.generalInfo.publishedName">
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoStreetAddress">Street Address</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoStreetAddress" data-ng-model="component.categories.generalInfo.streetAddress">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoStreetAddress" data-ng-model="component.generalInfo.streetAddress">
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoStreetAddress2">Street Address 2</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoStreetAddress2" data-ng-model="component.categories.generalInfo.streetAddress2">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoStreetAddress2" data-ng-model="component.generalInfo.streetAddress2">
                         </div>
                     </div>
                 </div>
@@ -87,14 +87,14 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoCity">City</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoCity" data-ng-model="component.categories.generalInfo.city">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoCity" data-ng-model="component.generalInfo.city">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoState">State</label>
-                        <select id="{{component.name}}GeneralInfoState" data-ng-model="component.categories.generalInfo.state">
+                        <select id="{{component.name}}GeneralInfoState" data-ng-model="component.generalInfo.state">
                             <option value="">Select One</option>
                             <option>AL</option>
                             <option>AK</option>
@@ -110,14 +110,14 @@
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoZipCode">Zip Code</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoZipCode" data-ng-model="component.categories.generalInfo.zipCode">
+                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoZipCode" data-ng-model="component.generalInfo.zipCode">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
                         <label for="{{component.name}}GeneralInfoCountry">Country</label>
-                        <select id="{{component.name}}GeneralInfoCountry" data-ng-model="component.categories.generalInfo.country">
+                        <select id="{{component.name}}GeneralInfoCountry" data-ng-model="component.generalInfo.country">
                             <option value="">Select One</option>
                             <option>U.S.</option>
                             <option>Outside U.S.</option>

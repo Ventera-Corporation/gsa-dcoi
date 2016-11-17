@@ -3,9 +3,9 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'initQuarterData'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', 'quarterData'];
 	
-	function QuarterController(QuarterService, $uibModal, $filter, initQuarterData){
+	function QuarterController(QuarterService, $uibModal, quarterData){
 		var qc = this;
 		qc.tempData = {};
 		qc.tempData.selected = {
@@ -27,7 +27,8 @@
 			},
 			expandCollapsePanels: {}
 		};
-		qc.quarterData = initQuarterData;
+		qc.quarterData = quarterData;
+		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
 		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
 		qc.createQuarter = createQuarter;
@@ -40,11 +41,17 @@
 		qc.viewAudit = viewAudit;
 		qc.validateCategory = validateCategory;
 		
-		function initDefaultSelected(regionProp, region){
-			if(!qc.tempData.selected.regionProp && region.dataCenters.length > 0) {
-				qc.tempData.selected.regionProp = regionProp;
+		function initQuarterData(){
+			 QuarterService.initQuarter().then(function (data){
+				 qc.quarterData = data.quarterData;
+			 });
+		}
+		
+		function initDefaultSelected(region, regionIdx){
+			if(qc.tempData.selected.regionIdx == null && region.dataCenters.length > 0) {
+				qc.tempData.selected.regionIdx = regionIdx;
 				qc.tempData.selected.dataCenterName = region.dataCenters[0].name;
-				qc.tempData.selected.expandCollapseRegions[regionProp] = true;
+				qc.tempData.selected.expandCollapseRegions[region.code] = true;
 			}
 		}
 		
@@ -70,19 +77,29 @@
 		}
 		
 		function createQuarter(){
+			qc.quarterData.fiscalQuarterReport.quarterInProgressFlag = false;
+			qc.quarterData.fiscalQuarterReport.quarterActiveFlag = true;
 			QuarterService.createQuarter(qc.quarterData).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
 				} else {
 					//show success message
-					qc.tempData.successData = data;
+					qc.tempData.successData = data.successData;
 				}
 			});
 		}
 		
 		function saveQuarter(){
-			
+			QuarterService.saveQuarter(qc.quarterData).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data.successData;
+				}
+			});
 		}
 		
 		function submitQuarter(){
