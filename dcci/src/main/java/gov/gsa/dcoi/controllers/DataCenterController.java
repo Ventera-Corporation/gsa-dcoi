@@ -1,4 +1,4 @@
-package gov.gsa.dcci.controllers;
+package gov.gsa.dcoi.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import gov.gsa.dcci.entity.DataCenter;
-import gov.gsa.dcci.repository.DataCenterRepository;
+import gov.gsa.dcoi.entity.DataCenter;
+import gov.gsa.dcoi.repository.DataCenterRepository;
 
 @RestController
 @RequestMapping("/dataCenter")
