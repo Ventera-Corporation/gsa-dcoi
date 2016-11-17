@@ -3,7 +3,7 @@
     <h3 class="inline">
     	<span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="" id="menu-toggle" style="font-size: .8em;" 
     			data-ng-click="qc.tempData.selected.expandCollapseSidebar=!qc.tempData.selected.expandCollapseSidebar"></span>
-    	&nbsp; Create New Quarter - {{::qc.quarterData.fiscalQuarter}} {{::qc.quarterData.fiscalYear}}
+    	&nbsp; Create New Quarter - {{::qc.quarterData.fiscalQuarterReport.fiscalQuarter}} {{::qc.quarterData.fiscalQuarterReport.fiscalYear}}
     </h3>
 
     <div class="pull-right">
@@ -27,22 +27,22 @@
                         <button class="usa-button usa-button-primary" type="button" data-ng-click="qc.addNewDataCenter()" data-toggle="modal" data-target="#newdatacenter">New Data Center</button>
                     </div>
                 </div>
-                <div class="panel panel-default" data-ng-repeat="(regionProp, region) in qc.quarterData.regions"
-                		data-ng-init="qc.initDefaultSelected(regionProp, region)">
-                    <div class="panel-heading" data-ng-click="qc.tempData.selected.expandCollapseRegions[regionProp]=!qc.tempData.selected.expandCollapseRegions[regionProp]">
+                <div class="panel panel-default" data-ng-repeat="region in qc.quarterData.regions"
+                		data-ng-init="qc.initDefaultSelected(region, $index)">
+                    <div class="panel-heading" data-ng-click="qc.tempData.selected.expandCollapseRegions[region.code]=!qc.tempData.selected.expandCollapseRegions[region.code]">
                         <h4 class="panel-title">
                         	<span data-ng-if="region.dataCenters.length">
-	                        	<span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapseRegions[regionProp]"></span>
-	            				<span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapseRegions[regionProp]"></span>
+	                        	<span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapseRegions[region.code]"></span>
+	            				<span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapseRegions[region.code]"></span>
 	                            <span>&nbsp;</span>
                             </span>
                             <span>{{region.name}}</span>
                         </h4>
                     </div>
-                    <div id="{{region.name}}" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapseRegions[regionProp]">
+                    <div id="{{region.name}}" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapseRegions[region.code]">
                         <ul class="list-group">
                             <li class="list-group-item" data-ng-repeat="dataCenter in region.dataCenters">
-                            	<a href="" data-ng-click="qc.tempData.selected.regionProp = regionProp; qc.tempData.selected.dataCenterName = dataCenter.name">{{dataCenter.name}}</a>
+                            	<a href="" data-ng-click="qc.tempData.selected.regionIdx = $parent.$index; qc.tempData.selected.dataCenterName = dataCenter.name">{{dataCenter.name}}</a>
                             </li>
                         </ul>
                     </div>
@@ -61,14 +61,14 @@
                 <!-- DATA CENTER PANEL-->
                 <!-- Data Center Header -->
                 <div class="panel panel-default panel-dc"
-                		data-ng-repeat="dataCenter in qc.quarterData.regions[qc.tempData.selected.regionProp].dataCenters | filter: {name:qc.tempData.selected.dataCenterName}"
+                		data-ng-repeat="dataCenter in qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters | filter: {name:qc.tempData.selected.dataCenterName}"
                 		data-ng-init="qc.initDefaultPanelExpanded(dataCenter)">
                     <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" 
                     		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.id].expanded=!qc.tempData.selected.expandCollapsePanels[dataCenter.id].expanded">
                         <h4 class="panel-title">
                             {{dataCenter.name}} | {{dataCenter.id}}
 
-                            <span class="pull-right vnt-normal-text-weight">{{dataCenter.city}}, {{dataCenter.state}}</span>
+                            <span class="pull-right vnt-normal-text-weight">{{dataCenter.city}}, {{dataCenter.stateName}}</span>
                         </h4>
                     </div>
 
