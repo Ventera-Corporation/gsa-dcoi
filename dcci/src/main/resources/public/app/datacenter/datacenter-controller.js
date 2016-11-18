@@ -3,23 +3,27 @@
 	
 	angular.module('dcoiApp').controller('DataCenterController', DataCenterController);
 	
-	DataCenterController.$inject = ['$uibModalInstance', 'initDataCenterData'];
+	DataCenterController.$inject = ['QuarterService', '$uibModalInstance', 'dataCenterData'];
 	
-	function DataCenterController($uibModalInstance, initDataCenterData){
+	function DataCenterController(QuarterService, $uibModalInstance, dataCenterData){
 		var dcc = this;
-		dcc.dataCenter = initDataCenterData;
+		dcc.dataCenter = dataCenterData;
 		dcc.cancel = cancel;
+		dcc.initDataCenterData = initDataCenterData;
 		dcc.add = add;
+		
 		function cancel() {
 			$uibModalInstance.dismiss('cancel');
-		};
+		}
+		
+		function initDataCenterData() {
+			QuarterService.initDataCenter().then(function (data){
+				dcc.dataCenter = data.dataCenterData;
+			});
+		}
+		
 		function add() {
-			$uibModalInstance.close(
-				{
-					regionProp: dcc.regionProp, 
-					dataCenter: dcc.dataCenter
-				}
-			);
-		};
+			$uibModalInstance.close(dcc.dataCenter);
+		}
 	}
 })();

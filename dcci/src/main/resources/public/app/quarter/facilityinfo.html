@@ -1,47 +1,47 @@
 <!-- CATEGORY : FACILITY INFORMATION -->
 <div class="panel panel-default panel-category">
     <div class="panel-heading" data-toggle="collapse" 
-    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo">
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo">
         <h4 class="panel-title">
-            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo"></span>
-            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo"></span>
+            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo"></span>
+            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo"></span>
             <span>&nbsp; Facility Info</span>
         </h4>
     </div>
 
-    <div id="{{component.name}}FacilityInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].facilityInfo">
+    <div id="{{fieldOffice.name}}FacilityInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo">
         <div class="panel-body">
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoGrossFloorArea">Gross Floor Area (Sq. Ft.)</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoGrossFloorArea">Gross Floor Area (Sq. Ft.)</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoGrossFloorArea" data-ng-model="component.facilityInfo.grossFloorArea">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoGrossFloorArea" data-ng-model="fieldOffice.facilityInfo.grossFloorArea">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoTotalCustomerFloorArea">Total Customer Floor Area (Sq. Ft.)</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoTotalCustomerFloorArea">Total Customer Floor Area (Sq. Ft.)</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoTotalCustomerFloorArea" data-ng-model="component.facilityInfo.totalCustomerFloorArea">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalCustomerFloorArea" data-ng-model="fieldOffice.facilityInfo.totalCustomerFloorArea">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoAnnualCostPerSqFt">Annual Cost per Sq. Ft.</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoAnnualCostPerSqFt">Annual Cost per Sq. Ft.</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoAnnualCostPerSqFt" data-ng-model="component.facilityInfo.annualCostPerSqFt">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoAnnualCostPerSqFt" data-ng-model="fieldOffice.facilityInfo.annualCostPerSqFt">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoOtherAgenciesServiced">Other Agencies Serviced</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoOtherAgenciesServiced">Other Agencies Serviced</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoOtherAgenciesServiced" data-ng-model="component.facilityInfo.otherAgenciesServiced">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoOtherAgenciesServiced" data-ng-model="fieldOffice.facilityInfo.otherAgenciesServiced">
                         </div>
                     </div>
                 </div>
@@ -51,33 +51,33 @@
             <div class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoAvgElectricityUsage">Avg. Electricity Usage (kWh)</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoAvgElectricityUsage">Avg. Electricity Usage (kWh)</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoAvgElectricityUsage" data-ng-model="component.facilityInfo.avgElectricityUsage">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoAvgElectricityUsage" data-ng-model="fieldOffice.facilityInfo.avgElectricityUsage">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoAvgITElectricityUsage">Avg. IT Electricity Usage (kWh)</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoAvgITElectricityUsage">Avg. IT Electricity Usage (kWh)</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoAvgITElectricityUsage" data-ng-model="component.facilityInfo.avgITElectricityUsage">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoAvgITElectricityUsage" data-ng-model="fieldOffice.facilityInfo.avgITElectricityUsage">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoTotalPowerCapacity">Total Power Capacity (kW)</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoTotalPowerCapacity">Total Power Capacity (kW)</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoTotalPowerCapacity" data-ng-model="component.facilityInfo.totalPowerCapacity">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalPowerCapacity" data-ng-model="fieldOffice.facilityInfo.totalPowerCapacity">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoTotalITPowerCapacity">Total IT Power Capacity (kW)</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoTotalITPowerCapacity">Total IT Power Capacity (kW)</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoTotalITPowerCapacity" data-ng-model="component.facilityInfo.totalITPowerCapacity">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalITPowerCapacity" data-ng-model="fieldOffice.facilityInfo.totalITPowerCapacity">
                         </div>
                     </div>
                 </div>
@@ -86,33 +86,33 @@
             <div class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoFTE">FTE</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoFTE">FTE</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoFTE" data-ng-model="component.facilityInfo.fte">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoFTE" data-ng-model="fieldOffice.facilityInfo.fte">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoFTECost">FTE Cost</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoFTECost">FTE Cost</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoFTECost" data-ng-model="component.facilityInfo.fteCost">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoFTECost" data-ng-model="fieldOffice.facilityInfo.fteCost">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoRackCount">Rack Count</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoRackCount">Rack Count</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoRackCount" data-ng-model="component.facilityInfo.rackCount">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoRackCount" data-ng-model="fieldOffice.facilityInfo.rackCount">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}FacilityInfoCostPerkWh">Cost per kWh</label>
+                        <label for="{{fieldOffice.name}}FacilityInfoCostPerkWh">Cost per kWh</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}FacilityInfoCostPerkWh" data-ng-model="component.facilityInfo.costPerkWh">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoCostPerkWh" data-ng-model="fieldOffice.facilityInfo.costPerkWh">
                         </div>
                     </div>
                 </div>
