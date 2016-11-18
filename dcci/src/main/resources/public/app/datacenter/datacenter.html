@@ -11,32 +11,41 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-name">Data Center Name <span class="vnt-red-text">*</span></label>
-                <input type="text" class="form-control" id="data-center-name" data-ng-model="dcc.dataCenter.name">
+                <input type="text" class="form-control" id="data-center-name" data-ng-model="dcc.dataCenter.dataCenterName">
             </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
+                <label for="dcoi-data-center-id">Data Center Id <span class="vnt-red-text">*</span></label>
+                <input type="text" class="form-control" id="dcoi-data-center-id" 
+                		data-ng-model="dcc.dataCenter.dcoiDataCenterId" placeholder="DCOI-DC-#####">
+            </div>
+        </div>
+	</div><!-- /.row -->
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
                 <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
-                <select id="data-center-region" data-ng-model="dcc.regionProp">
+                <select id="data-center-region" data-ng-model="dcc.dataCenter.regionId">
                     <option value="">Select One</option>
-                    <option value="newEngland">New England</option>
-                    <option value="northeastAndCaribbean">Northeast and Caribbean</option>
-                    <option value="midAtlantic">Mid-Atlantic</option>
-                    <option value="southeastSunbelt">Southeast Sunbelt</option>
-                    <option value="greatLakes">Great Lakes</option>
-                    <option value="heartland">Heartland</option>
-                    <option value="greaterSouthwest">Greater Southwest</option>
-                    <option value="rockyMountain">Rocky Mountain</option>
-                    <option value="pacificRim">Pacific Rim</option>
-                    <option value="northwestArctic">Northwest/Arctic</option>
-                    <option value="nationalCapital">National Capital</option>
-                    <option value="cloud">Cloud</option>
+                    <option value="0">New England</option>
+                    <option value="1">Northeast and Caribbean</option>
+                    <option value="2">Mid-Atlantic</option>
+                    <option value="3">Southeast Sunbelt</option>
+                    <option value="4">Great Lakes</option>
+                    <option value="5">Heartland</option>
+                    <option value="6">Greater Southwest</option>
+                    <option value="7">Rocky Mountain</option>
+                    <option value="8">Pacific Rim</option>
+                    <option value="9">Northwest/Arctic</option>
+                    <option value="10">National Capital</option>
+                    <option value="11">Cloud</option>
                 </select>
             </div>
         </div>
 	</div><!-- /.row -->
 	
-	<div class="row">
+	<div class="row" data-ng-if="dcc.dataCenter.regionId !== '11'">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-city">City</label>
@@ -64,7 +73,7 @@
 
 <div class="modal-footer">
     <button type="button" class="usa-button usa-button-primary" 
-    		data-ng-disabled="!(dcc.dataCenter.name.length && dcc.regionProp.length)" 
+    		data-ng-disabled="!(dcc.dataCenter.dataCenterName.length && dcc.dataCenter.dcoiDataCenterId.length && dcc.dataCenter.regionId !== null)" 
     		data-ng-click="dcc.add()">Add</button>
     <button type="button" class="usa-button usa-button-gray" data-ng-click="dcc.cancel()">Cancel</button>
 </div><!-- /.modal-footer -->

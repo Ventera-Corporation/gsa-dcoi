@@ -8,7 +8,7 @@ module.exports = function(config) {
 
     plugins : [
       'karma-jasmine',
-      'karma-firefox-launcher',
+      'karma-firefox-launcher'
     ],
 
     // frameworks to use
@@ -18,18 +18,18 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/main/webapp/plugins/angularjs/angular.min.js',
-      'src/main/webapp/plugins/angularjs/angular-route.min.js',
-      'src/main/webapp/plugins/angularjs/angular-resource.min.js',
-      'src/main/webapp/plugins/angularjs/angular-sanitize.min.js',
-      'src/main/webapp/plugins/angularjs/angular-mocks.js',
-      'src/main/webapp/plugins/angularjs/ui-bootstrap-2.0.2.min.js',
-      'src/main/webapp/plugins/angularjs/ui-bootstrap-tpls-1.3.2.min.js',
-      'src/main/webapp/app/module.js',
-      'src/main/webapp/app/module-config.js',
-      'src/main/webapp/app/quarter/quarter-controller.js',
-      'src/main/webapp/app/quarter/quarter-service.js',
-      'src/main/webapp/app/datacenter/datacenter-controller.js',
+      'src/main/resources/public/plugins/angularjs/angular.min.js',
+      'src/main/resources/public/plugins/angularjs/angular-route.min.js',
+      'src/main/resources/public/plugins/angularjs/angular-resource.min.js',
+      'src/main/resources/public/plugins/angularjs/angular-sanitize.min.js',
+      'src/main/resources/public/plugins/angularjs/angular-mocks.js',
+      'src/main/resources/public/plugins/angularjs/ui-bootstrap-2.0.2.min.js',
+      'src/main/resources/public/plugins/angularjs/ui-bootstrap-tpls-1.3.2.min.js',
+      'src/main/resources/public/app/module.js',
+      'src/main/resources/public/app/module-config.js',
+      'src/main/resources/public/app/quarter/quarter-controller.js',
+      'src/main/resources/public/app/quarter/quarter-service.js',
+      'src/main/resources/public/app/datacenter/datacenter-controller.js',
       'src/test/**/*.js'
     ],
 

@@ -35,11 +35,9 @@
 		qc.saveQuarter = saveQuarter;
 		qc.submitQuarter = submitQuarter;
 		qc.exportQuarter = exportQuarter;
-		qc.addNewDataCenter = addNewDataCenter;
-		qc.removeDataCenter = removeDataCenter;
-		qc.initComponentTab = initComponentTab;
+		qc.addNewDataCenterModal = addNewDataCenterModal;
+		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
 		qc.viewAudit = viewAudit;
-		qc.validateCategory = validateCategory;
 		
 		function initQuarterData(){
 			 QuarterService.initQuarter().then(function (data){
@@ -50,18 +48,18 @@
 		function initDefaultSelected(region, regionIdx){
 			if(qc.tempData.selected.regionIdx == null && region.dataCenters.length > 0) {
 				qc.tempData.selected.regionIdx = regionIdx;
-				qc.tempData.selected.dataCenterName = region.dataCenters[0].name;
+				qc.tempData.selected.dataCenterName = region.dataCenters[0].dataCenterName;
 				qc.tempData.selected.expandCollapseRegions[region.code] = true;
 			}
 		}
 		
 		function initDefaultPanelExpanded(dataCenter){
 			//only push a new panel if there isn't data for it already
-			if(!qc.tempData.selected.expandCollapsePanels[dataCenter.id]){
+			if(!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId]){
 				var panel = {
 					expanded: true,
-					activeComponentTabIdx: 0,
-					components: []
+					activeFieldOfficeTabIdx: 0,
+					fieldOffices: []
 				};
 				var category = {
 					generalInfo: true,
@@ -69,10 +67,10 @@
 					facilityInfo: true,
 					serverInfo: true
 				};
-				angular.forEach(dataCenter.components, function (){
-					panel.components.push(angular.copy(category));
+				angular.forEach(dataCenter.fieldOffices, function (){
+					panel.fieldOffices.push(angular.copy(category));
 				});
-				qc.tempData.selected.expandCollapsePanels[dataCenter.id] = panel;
+				qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId] = panel;
 			}
 		}
 		
@@ -110,7 +108,7 @@
 			
 		}
 		
-		function addNewDataCenter(){
+		function addNewDataCenterModal(){
 			var modalInstance = $uibModal.open({
 			    animation: true,
 			    templateUrl: 'app/datacenter/datacenter.html',
@@ -118,31 +116,75 @@
 			    controllerAs: 'dcc',
 			    backdrop: 'static',
 			    resolve: {
-					initDataCenterData: function(){
-						return QuarterService.initDataCenter();
+					dataCenterData: function(){
+//						return QuarterService.initQuarter().then(function (data){
+//							return data.dataCenterData;
+//						});
+						return {
+							dataCenterId: '',
+							dataCenterName: '',
+							dcoiDataCenterId: '',
+							regionId: '',
+							city: '',
+							stateName: '',
+							fieldOffices: [
+								{
+									name: 'PBS',
+									generalInfo: {},
+									status: {},
+									facilityInfo: {},
+									serverInfo: {}
+								},
+								{
+									name: 'FAS',
+									generalInfo: {},
+									status: {},
+									facilityInfo: {},
+									serverInfo: {}
+								},
+								{
+									name: 'OCIO',
+									generalInfo: {},
+									status: {},
+									facilityInfo: {},
+									serverInfo: {}
+								}
+							]
+						};
 					}
 				}
 			});
-			modalInstance.result.then(function (dataCenterData) {
+			var dataCenterData = {};//fixes browser console error that dataCenterData is not defined
+			modalInstance.result.then(function(dataCenterData){
 				if(dataCenterData !== 'cancel'){
-					qc.quarterData.regions[dataCenterData.regionProp].dataCenters.push(dataCenterData.dataCenter);
+					addNewDataCenterFromModal(dataCenterData);
 				}
 			});
 		}
 		
-		function removeDataCenter(){
-
+		function addDataCenterToRegion(dataCenterData){
+			for(var i = 0; i < qc.quarterData.regions.length; i++){
+				if(qc.quarterData.regions[i].regionId == dataCenterData.regionId){
+					qc.quarterData.regions[i].dataCenters.push(dataCenterData);
+				}
+			}
 		}
 		
-		function initComponentTab(){
-			
+		function addNewDataCenterFromModal(dataCenterData){
+//			QuarterService.addDataCenter(dataCenterData).then(function (data){
+//				if(data.error){
+//					//show errors
+//					qc.tempData.errorData = data;
+//				} else {
+//					//show success message
+//					qc.tempData.successData = data.successData;
+//					addDataCenterToRegion(dataCenterData);
+//				}
+//			});
+			addDataCenterToRegion(dataCenterData);
 		}
 		
 		function viewAudit(){
-			
-		}
-		
-		function validateCategory(){
 			
 		}
 	}
