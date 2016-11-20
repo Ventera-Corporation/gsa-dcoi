@@ -6,6 +6,22 @@
 	
 	function config($routeProvider){
 		$routeProvider
+			.otherwise({
+				redirectTo: '/dashboard'
+			})
+			.when('/dashboard', {
+				templateUrl: 'app/dashboard/dashboard.html',
+				controller: 'DashboardController',
+				controllerAs: 'dc'
+//				resolve: {
+//					dashboardData: function(QuarterService){
+////						return QuarterService.initDashboard().then(function (data){
+////							return data.dashboardData;
+////						});
+//						return {};
+//					}
+//				}
+			})
 			.when('/createQuarter', {
 				templateUrl: 'app/quarter/quarter.html',
 				controller: 'QuarterController',
