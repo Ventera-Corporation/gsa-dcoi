@@ -6,4 +6,6 @@
 [![QA Testing](https://badge.waffle.io/Ventera-Corporation/gsa-dcoi.png?label=qa&title=QA)](https://waffle.io/Ventera-Corporation/gsa-dcoi)&nbsp;
 <br/>
 <a href="http://codeclimate.com/github/Ventera-Corporation/gsa-dcoi"><img src="http://codeclimate.com/github/Ventera-Corporation/gsa-dcoi/badges/gpa.svg" /></a>
+&nbsp;<a href='https://www.versioneye.com/user/projects/58332761e7cea00045b89071'>
+<img src='https://www.versioneye.com/user/projects/58332761e7cea00045b89071/badge.svg?style=flat-square' alt="Dependency Status" /></a>
 <br/>
