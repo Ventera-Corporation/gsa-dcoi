@@ -27,6 +27,8 @@ module.exports = function(config) {
       'src/main/resources/public/plugins/angularjs/ui-bootstrap-tpls-1.3.2.min.js',
       'src/main/resources/public/app/module.js',
       'src/main/resources/public/app/module-config.js',
+      'src/main/resources/public/app/dashboard/dashboard-controller.js',
+      'src/main/resources/public/app/dashboard/dashboard-service.js',
       'src/main/resources/public/app/quarter/quarter-controller.js',
       'src/main/resources/public/app/quarter/quarter-service.js',
       'src/main/resources/public/app/datacenter/datacenter-controller.js',
