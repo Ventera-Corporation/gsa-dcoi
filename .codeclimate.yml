@@ -1,0 +1,19 @@
+engines:
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+  fixme:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+ratings:
+  paths:
+  - "**"
+  
+exclude_paths:
+- "**/resources/public/assets/css/"
+- "**/resources/public/plugins/"
