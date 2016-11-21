@@ -3,25 +3,30 @@
 	
 	angular.module('dcoiApp').controller('DashboardController', DashboardController);
 	
-	DashboardController.$inject = [];
+	DashboardController.$inject = ['DashboardService', '$location', '$uibModal', 'dashboardData'];
 	
-	function DashboardController(){
+	function DashboardController(DashboardService, $location, $uibModal, dashboardData){
 		var dc = this;
-		dc.initDashboard = initDashboard;
+		dc.dashboardData = dashboardData;
+		dc.initDashboardData = initDashboardData;
 		dc.addNewQuarter = addNewQuarter;
 		dc.viewQuarter = viewQuarter;
 		dc.viewMoreQuarters = viewMoreQuarters;
 		
-		function initDashboard() {
-			
+		function initDashboardData() {
+			DashboardService.initDashboard().then(function (data){
+				dc.dashboardData = data.dashboardData;
+			});
 		}
 		
 		function addNewQuarter() {
-			
+			$location.path('/createQuarter');
 		}
 		
-		function viewQuarter() {
-			
+		function viewQuarter(quarterId) {
+//			DashboardService.viewQuarter(quarterId).then(function (data){
+//				dc.quarterData = data.quarterData;
+//			});
 		}
 		
 		function viewMoreQuarters() {

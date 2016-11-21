@@ -12,15 +12,103 @@
 			.when('/dashboard', {
 				templateUrl: 'app/dashboard/dashboard.html',
 				controller: 'DashboardController',
-				controllerAs: 'dc'
-//				resolve: {
-//					dashboardData: function(QuarterService){
-////						return QuarterService.initDashboard().then(function (data){
-////							return data.dashboardData;
-////						});
-//						return {};
-//					}
-//				}
+				controllerAs: 'dc',
+				resolve: {
+					dashboardData: function(QuarterService){
+//						return QuarterService.initDashboard().then(function (data){
+//							return data.dashboardData;
+//						});
+						return {
+							years: ['2016', '2015', '2014'],
+							quarters: [
+								{
+							    	fiscalQuarter: 'Q4',
+									fiscalYear: '2016',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: false
+								},
+								{
+							    	fiscalQuarter: 'Q3',
+									fiscalYear: '2016',
+									quarterInProgressFlag: true,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: false
+								},
+								{
+							    	fiscalQuarter: 'Q2',
+									fiscalYear: '2016',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q1',
+									fiscalYear: '2016',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q4',
+									fiscalYear: '2015',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q3',
+									fiscalYear: '2015',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q2',
+									fiscalYear: '2015',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q1',
+									fiscalYear: '2015',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q4',
+									fiscalYear: '2014',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q3',
+									fiscalYear: '2014',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q2',
+									fiscalYear: '2014',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q1',
+									fiscalYear: '2014',
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								}
+							]
+						};
+					}
+				}
 			})
 			.when('/createQuarter', {
 				templateUrl: 'app/quarter/quarter.html',
@@ -35,6 +123,8 @@
 							fiscalQuarterReport: {
 						    	fiscalQuarter: 'Q3',
 								fiscalYear: '2016',
+								quarterInProgressFlag: true,
+								quarterActiveFlag: false
 							},
 							regions: [
 								{
