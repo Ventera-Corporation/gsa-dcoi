@@ -32,9 +32,12 @@
                                 <div class="vnt-calendar-chip__niche"></div>
 
                                 <h4 class="vnt-alt-heading-2">{{quarter.fiscalQuarter}} {{quarter.fiscalYear}}</h4>
-                                <small class="text-muted">January 1 &ndash; March 31</small>
+                                <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q1'">January 1 &ndash; March 31</small>
+                                <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q2'">April 1 &ndash; June 30</small>
+                                <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q3'">July 1 &ndash; Sept. 30</small>
+                                <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q4'">Oct. 1 &ndash; Dec. 31</small>
                                 <p style="margin-bottom:0; margin-top:12px;">
-                                    17 Data centers
+                                    {{quarter.totalNumDataCenters}} Total Data centers
                                 </p>
                                 <small style="margin-top:0; color:#cd2026;" data-ng-if="quarter.quarterInProgressFlag">
                                     In progress
@@ -48,7 +51,7 @@
                             </div>
                             <div class="vnt-calendar-chip vnt-calendar-chip--creator" style="text-align:center;" 
                             		data-ng-click="dc.addNewQuarter()"
-                            		data-ng-if="!(quarter.quarterInProgressFlag || quarter.quarterActiveFlag || quarter.quarterCompleteFlag)">
+                            		data-ng-if="!(dc.isAlreadyInProgressQuarter() || quarter.quarterActiveFlag || quarter.quarterCompleteFlag)">
 
                                 <div style="border-radius:50%; border-style:solid; border-width:2px; border-color:rgba(0,0,0,.25); 
                                 		text-align:center; height:50px; width:50px; display:inline-block; margin-top: 12px;">

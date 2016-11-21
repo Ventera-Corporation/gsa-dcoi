@@ -24,6 +24,7 @@
 								{
 							    	fiscalQuarter: 'Q4',
 									fiscalYear: '2016',
+									totalNumDataCenters: 26,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: false
@@ -31,13 +32,15 @@
 								{
 							    	fiscalQuarter: 'Q3',
 									fiscalYear: '2016',
-									quarterInProgressFlag: true,
+									totalNumDataCenters: 26,
+									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
-									quarterCompleteFlag: false
+									quarterCompleteFlag: true
 								},
 								{
 							    	fiscalQuarter: 'Q2',
 									fiscalYear: '2016',
+									totalNumDataCenters: 24,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
@@ -45,6 +48,7 @@
 								{
 							    	fiscalQuarter: 'Q1',
 									fiscalYear: '2016',
+									totalNumDataCenters: 24,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
@@ -52,6 +56,7 @@
 								{
 							    	fiscalQuarter: 'Q4',
 									fiscalYear: '2015',
+									totalNumDataCenters: 24,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
@@ -59,6 +64,7 @@
 								{
 							    	fiscalQuarter: 'Q3',
 									fiscalYear: '2015',
+									totalNumDataCenters: 23,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
@@ -66,6 +72,7 @@
 								{
 							    	fiscalQuarter: 'Q2',
 									fiscalYear: '2015',
+									totalNumDataCenters: 23,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
@@ -73,6 +80,7 @@
 								{
 							    	fiscalQuarter: 'Q1',
 									fiscalYear: '2015',
+									totalNumDataCenters: 23,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
@@ -80,6 +88,7 @@
 								{
 							    	fiscalQuarter: 'Q4',
 									fiscalYear: '2014',
+									totalNumDataCenters: 23,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
@@ -87,6 +96,7 @@
 								{
 							    	fiscalQuarter: 'Q3',
 									fiscalYear: '2014',
+									totalNumDataCenters: 23,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
@@ -94,6 +104,7 @@
 								{
 							    	fiscalQuarter: 'Q2',
 									fiscalYear: '2014',
+									totalNumDataCenters: 22,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
@@ -101,6 +112,7 @@
 								{
 							    	fiscalQuarter: 'Q1',
 									fiscalYear: '2014',
+									totalNumDataCenters: 22,
 									quarterInProgressFlag: false,
 									quarterActiveFlag: false,
 									quarterCompleteFlag: true
