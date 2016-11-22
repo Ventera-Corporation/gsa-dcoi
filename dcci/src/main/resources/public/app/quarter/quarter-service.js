@@ -9,20 +9,20 @@
 	    return {
 			initQuarter : function() {
 				return $http({
-					url: '/newQuarter/init',
+					url: '/quarter/init',
 					method: 'GET'
 				}).then(returnData);
 			},
 			createQuarter : function(quarterData) {
 				return $http({
-					url: '/newQuarter/create',
+					url: '/quarter/create',
 					method: 'POST',
 					params: {quarterDto: quarterData}
 				}).then(returnData);
 			},
 			saveQuarter : function(quarterData) {
 				return $http({
-					url: '/newQuarter/save',
+					url: '/quarter/save',
 					method: 'POST',
 					params: {quarterDto: quarterData}
 				}).then(returnData);
@@ -32,55 +32,27 @@
 					url: '',
 					method: 'POST',
 					params: {quarterData: quarterData}
-				});
+				}).then(returnData);
 			},
 			exportQuarter : function(quarterData) {
 				return $http({
 					url: '',
 					method: 'POST',
 					params: {quarterData: quarterData}
-				});
+				}).then(returnData);
 			},
 			initDataCenter : function() {
-//				return $http({
-//					url: '/newDataCenter/init',
-//					method: 'GET'
-//				});
-				return {
-					name: '',
-					id: '',
-					city: '',
-					state: '',
-					components: [
-						{
-							name: 'PBS',
-							categories: {
-								generalInfo: {},
-								status: {},
-								facilityInfo: {},
-								serverInfo: {}
-							}
-						},
-						{
-							name: 'FAS',
-							categories: {
-								generalInfo: {},
-								status: {},
-								facilityInfo: {},
-								serverInfo: {}
-							}
-						},
-						{
-							name: 'OCIO',
-							categories: {
-								generalInfo: {},
-								status: {},
-								facilityInfo: {},
-								serverInfo: {}
-							}
-						}
-					],
-				};
+				return $http({
+					url: '/datacenter/init',
+					method: 'GET'
+				}).then(returnData);
+			},
+			addDataCenter : function(dataCenterData) {
+				return $http({
+					url: '/datacenter/add',
+					method: 'POST',
+					params: {dataCenterDto: dataCenterData}
+				}).then(returnData);
 			},
 			removeDataCenter : function(dataCenterID) {
 				return $http({
@@ -89,21 +61,12 @@
 					params: {dataCenterID: dataCenterID}
 				});
 			},
-			initComponentTab : function(quarterID, componentTabID) {
-				return $http({
-					url: '',
-					method: 'POST',
-					params: {quarterID: quarterID,
-						componentTabID: componentTabID
-					}
-				});
-			},
 			viewAudit : function(categoryID) {
 				return $http({
 					url: '',
 					method: 'POST',
 					params: {categoryID: categoryID}
-				});
+				}).then(returnData);
 			},
 			validateCategory : function(dataCenterID, categoryDto) {
 				return $http({
@@ -113,7 +76,7 @@
 						dataCenterID: dataCenterID,
 						categoryDto: categoryDto
 					}
-				});
+				}).then(returnData);
 			}
 	    };
 	    

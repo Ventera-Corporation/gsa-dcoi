@@ -6,6 +6,122 @@
 	
 	function config($routeProvider){
 		$routeProvider
+			.otherwise({
+				redirectTo: '/dashboard'
+			})
+			.when('/dashboard', {
+				templateUrl: 'app/dashboard/dashboard.html',
+				controller: 'DashboardController',
+				controllerAs: 'dc',
+				resolve: {
+					dashboardData: function(QuarterService){
+//						return QuarterService.initDashboard().then(function (data){
+//							return data.dashboardData;
+//						});
+						return {
+							years: ['2016', '2015', '2014'],
+							quarters: [
+								{
+							    	fiscalQuarter: 'Q4',
+									fiscalYear: '2016',
+									totalNumDataCenters: 26,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: false
+								},
+								{
+							    	fiscalQuarter: 'Q3',
+									fiscalYear: '2016',
+									totalNumDataCenters: 26,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q2',
+									fiscalYear: '2016',
+									totalNumDataCenters: 24,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q1',
+									fiscalYear: '2016',
+									totalNumDataCenters: 24,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q4',
+									fiscalYear: '2015',
+									totalNumDataCenters: 24,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q3',
+									fiscalYear: '2015',
+									totalNumDataCenters: 23,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q2',
+									fiscalYear: '2015',
+									totalNumDataCenters: 23,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q1',
+									fiscalYear: '2015',
+									totalNumDataCenters: 23,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q4',
+									fiscalYear: '2014',
+									totalNumDataCenters: 23,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q3',
+									fiscalYear: '2014',
+									totalNumDataCenters: 23,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q2',
+									fiscalYear: '2014',
+									totalNumDataCenters: 22,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								},
+								{
+							    	fiscalQuarter: 'Q1',
+									fiscalYear: '2014',
+									totalNumDataCenters: 22,
+									quarterInProgressFlag: false,
+									quarterActiveFlag: false,
+									quarterCompleteFlag: true
+								}
+							]
+						};
+					}
+				}
+			})
 			.when('/createQuarter', {
 				templateUrl: 'app/quarter/quarter.html',
 				controller: 'QuarterController',
@@ -19,18 +135,22 @@
 							fiscalQuarterReport: {
 						    	fiscalQuarter: 'Q3',
 								fiscalYear: '2016',
+								quarterInProgressFlag: true,
+								quarterActiveFlag: false
 							},
 							regions: [
 								{
 									name: 'New England',
 									code: 'newEngland',
+									regionId: 0,
 									dataCenters: [
 										{
-											name: 'Data Center 1 Name',
-											id: 'Data Center 1 ID',
+											dataCenterName: 'Data Center 1 Name',
+											dataCenterId: 'Data Center 1 ID',
+											dcoiDataCenterId: 'Data Center 1 DCOI ID',
 											city: 'Data Center 1 City',
 											stateName: 'Data Center 1 State',
-											components: [
+											fieldOffices: [
 												{
 													name: 'PBS',
 													generalInfo: {},
@@ -48,11 +168,12 @@
 											],
 										},
 										{
-											name: 'Data Center 2 Name',
-											id: 'Data Center 2 ID',
+											dataCenterName: 'Data Center 2 Name',
+											dataCenterId: 'Data Center 2 ID',
+											dcoiDataCenterId: 'Data Center 2 DCOI ID',
 											city: 'Data Center 2 City',
 											stateName: 'Data Center 2 State',
-											components: [
+											fieldOffices: [
 												{
 													name: 'PBS',
 													generalInfo: {},
@@ -74,42 +195,15 @@
 								{
 									name: 'Northeast and Caribbean',
 									code: 'northeastAndCaribbean',
+									regionId: 1,
 									dataCenters: [
 										{
-											name: 'Data Center 3 Name',
-											id: 'Data Center 3 ID',
-											city: 'Data Center 3 City',
-											stateName: 'Data Center 3 State',
-											components: [
-												{
-													name: 'PBS',
-													generalInfo: {},
-													status: {},
-													facilityInfo: {},
-													serverInfo: {}
-												},
-												{
-													name: 'FAS',
-													generalInfo: {},
-													status: {},
-													facilityInfo: {},
-													serverInfo: {}
-												},
-												{
-													name: 'OICO',
-													generalInfo: {},
-													status: {},
-													facilityInfo: {},
-													serverInfo: {}
-												}
-											],
-										},
-										{
-											name: 'Data Center 4 Name',
-											id: 'Data Center 4 ID',
+											dataCenterName: 'Data Center 4 Name',
+											dataCenterId: 'Data Center 4 ID',
+											dcoiDataCenterId: 'Data Center 4 DCOI ID',
 											city: 'Data Center 4 City',
 											stateName: 'Data Center 4 State',
-											components: [
+											fieldOffices: [
 												{
 													name: 'PBS',
 													generalInfo: {},
@@ -119,6 +213,13 @@
 												},
 												{
 													name: 'FAS',
+													generalInfo: {},
+													status: {},
+													facilityInfo: {},
+													serverInfo: {}
+												},
+												{
+													name: 'OCIO',
 													generalInfo: {},
 													status: {},
 													facilityInfo: {},
@@ -131,52 +232,62 @@
 								{
 									name: "Mid-Atlantic",
 									code: 'midAtlantic',
-									dataCenters: {},
+									regionId: 2,
+									dataCenters: [],
 								},
 								{
 									name: "Southeast Sunbelt",
 									code: 'southeastSunbelt',
-									dataCenters: {},
+									regionId: 3,
+									dataCenters: [],
 								},
 								{
 									name: "Great Lakes",
 									code: 'greatLakes',
-									dataCenters: {},
+									regionId: 4,
+									dataCenters: [],
 								},
 								{
 									name: "Heartland",
 									code: 'heartland',
-									dataCenters: {},
+									regionId: 5,
+									dataCenters: [],
 								},
 								{
 									name: "Greater Southwest",
 									code: 'greaterSouthwest',
-									dataCenters: {},
+									regionId: 6,
+									dataCenters: [],
 								},
 								{
 									name: "Rocky Mountain",
 									code: 'rockyMountain',
-									dataCenters: {},
+									regionId: 7,
+									dataCenters: [],
 								},
 								{
 									name: "Pacific Rim",
 									code: 'pacificRim',
-									dataCenters: {},
+									regionId: 8,
+									dataCenters: [],
 								},
 								{
 									name: "Northwest/Arctic",
 									code: 'northwestArctic',
-									dataCenters: {},
+									regionId: 9,
+									dataCenters: [],
 								},
 								{
 									name: "National Capital",
 									code: 'nationalCapital',
-									dataCenters: {},
+									regionId: 10,
+									dataCenters: [],
 								},
 								{
 									name: "Cloud",
 									code: 'cloud',
-									dataCenters: {},
+									regionId: 11,
+									dataCenters: [],
 								}
 							]
 						};
