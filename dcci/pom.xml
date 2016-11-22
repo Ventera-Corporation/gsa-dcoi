@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>gov.gsa.dcci</groupId>
-	<artifactId>dcci</artifactId>
+	<groupId>gov.gsa.dcoi</groupId>
+	<artifactId>dcoi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>dcci</name>
-	<description>Spring Boot Project for GSA DCCi</description>
+	<name>dcoi</name>
+	<description>Spring Boot Project for GSA DCOI</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -50,6 +50,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			 <groupId>com.microsoft.sqlserver</groupId>
+    		<artifactId>sqljdbc42</artifactId>
+    		<version>4.2</version>
+		</dependency>
+		<dependency>
+		 	<groupId>com.github.ulisesbocchio</groupId>
+        	<artifactId>jasypt-spring-boot-starter</artifactId>
+        	<version>1.9</version>
 		</dependency>
 	</dependencies>
 

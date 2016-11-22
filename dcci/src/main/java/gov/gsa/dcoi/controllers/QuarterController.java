@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import gov.gsa.dcoi.dto.QuarterDto;
+import gov.gsa.dcoi.entity.DataCenter;
 import gov.gsa.dcoi.entity.FiscalQuarterReport;
 import gov.gsa.dcoi.manager.FieldOfficeManager;
 import gov.gsa.dcoi.repository.DataCenterRepository;
@@ -18,8 +19,8 @@ import gov.gsa.dcoi.repository.FieldOfficeRepository;
 import gov.gsa.dcoi.repository.FiscalQuarterReportRepository;
 
 @RestController
-@RequestMapping("/newQuarter")
-public class CreateNewQuarterController {
+@RequestMapping("/quarter")
+public class QuarterController {
 	
 	@Autowired
 	FiscalQuarterReportRepository createNewQuarterDao;
@@ -59,6 +60,8 @@ public class CreateNewQuarterController {
 		//pass back id for new quarter	
 		return new HashMap<String,Object>();
 	}
+	
+
 	
 
 }
