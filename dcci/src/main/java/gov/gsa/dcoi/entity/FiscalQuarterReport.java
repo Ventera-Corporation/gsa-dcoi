@@ -1,11 +1,14 @@
-package gov.gsa.dcci.entity;
+package gov.gsa.dcoi.entity;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class FiscalQuarterReport {
+	
+	@Id
 	private int fiscalQuarterReportId;
 	private int fiscalYear;
 	private String fiscalQuarter;
