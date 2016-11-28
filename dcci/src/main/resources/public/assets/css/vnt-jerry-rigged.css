@@ -30,8 +30,8 @@
         /*
         # Navbar */
         .navbar-default {
-            background: #205493;
-            background-color: #205493;
+            background: #112e51;
+            background-color: #112e51;
             color: #ffffff;
             font-size: .8em;
             height: 50px;
@@ -125,7 +125,8 @@
         /*
         # Modal Header */
         .modal-header {
-            background: #205493;
+            background: #112e51;
+            background-color: #112e51;
             color: #ffffff;
             min-height: 3.5em !important;
         }
@@ -133,6 +134,11 @@
         .modal-title {
             color: #ffffff;
             margin: 0;
+        }
+        
+        .modal-body label {
+        	font-size: .9em;
+            margin-top: 10px;
         }
         
         /*

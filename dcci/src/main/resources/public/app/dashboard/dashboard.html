@@ -24,7 +24,7 @@
                 <div class="vnt-bs-col--less-padding">
 
                     <div class="row">
-                        <div class="col-md-3 col-sm-3 col-xs-12" 
+                        <div class="col-md-3 col-sm-6 col-xs-12" 
                         		data-ng-repeat="quarter in dc.dashboardData.quarters | filter:{fiscalYear:year} | orderBy: 'fiscalQuarter'">
                             <div class="vnt-calendar-chip" 
                             		data-ng-if="quarter.quarterInProgressFlag || quarter.quarterActiveFlag || quarter.quarterCompleteFlag">
@@ -37,7 +37,7 @@
                                 <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q3'">July 1 &ndash; Sept. 30</small>
                                 <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q4'">Oct. 1 &ndash; Dec. 31</small>
                                 <p style="margin-bottom:0; margin-top:12px;">
-                                    {{quarter.totalNumDataCenters}} Total Data centers
+                                    {{quarter.totalNumDataCenters}} Total Data Centers
                                 </p>
                                 <small style="margin-top:0; color:#cd2026;" data-ng-if="quarter.quarterInProgressFlag">
                                     In progress
