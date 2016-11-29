@@ -34,8 +34,10 @@
 									fiscalYear: '2016',
 									totalNumDataCenters: 26,
 									quarterInProgressFlag: false,
-									quarterActiveFlag: false,
-									quarterCompleteFlag: true
+									quarterActiveFlag: true,
+									fieldOfficesInProgressFlags: ['PBS', 'FAS'],
+									fieldOfficesCompleteFlags: ['OCIO'],
+									quarterCompleteFlag: false
 								},
 								{
 							    	fiscalQuarter: 'Q2',
