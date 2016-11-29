@@ -1,123 +1,167 @@
 <!-- CATEGORY : GENERAL INFORMATION -->
 <div class="panel panel-default panel-category">
     <div class="panel-heading" data-toggle="collapse" 
-    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo">
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].generalInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].generalInfo">
         <h4 class="panel-title">
-            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo"></span>
-            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo"></span>
+            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].generalInfo"></span>
+            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].generalInfo"></span>
             <span>&nbsp; General Info</span>
         </h4>
     </div>
 
-    <div id="{{component.name}}GeneralInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].generalInfo">
+    <div id="{{fieldOffice.name}}GeneralInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].generalInfo">
         <div class="panel-body">
             <!-- Form Fields -->
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoAgencyAbbreviation">Agency Abbreviation <span class="vnt-red-text">*</span></label>
+                        <label for="{{fieldOffice.name}}GeneralInfoAgencyAbbreviation">Agency Abbreviation <span class="vnt-red-text">*</span></label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoAgencyAbbreviation" data-ng-model="component.generalInfo.agencyAbbreviation">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoAgencyAbbreviation" data-ng-model="fieldOffice.generalInfo.agencyAbbreviation">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoComponent">Component <span class="vnt-red-text">*</span></label>
+                        <label for="{{fieldOffice.name}}GeneralInfoComponent">Component <span class="vnt-red-text">*</span></label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoComponent" data-ng-model="component.generalInfo.component">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoComponent" data-ng-model="fieldOffice.generalInfo.component">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoDataCenterName">Data Center Name <span class="vnt-red-text">*</span></label>
+                        <label for="{{fieldOffice.name}}GeneralInfoDataCenterName">Data Center Name <span class="vnt-red-text">*</span></label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoDataCenterName" data-ng-model="component.generalInfo.dataCenterName">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoDataCenterName" data-ng-model="fieldOffice.generalInfo.dataCenterName">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoDataCenterID">Data Center ID</label>
+                        <label for="{{fieldOffice.name}}GeneralInfoDataCenterID">Data Center ID</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoDataCenterID" data-ng-model="component.generalInfo.dataCenterID" placeholder="DCOI-DC-#####">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoAgencyDataCenterID">Agency Data Center ID</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoAgencyDataCenterID" data-ng-model="component.generalInfo.agencyDataCenterID">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoPublishedName">Published Name</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoPublishedName" data-ng-model="component.generalInfo.publishedName">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoStreetAddress">Street Address</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoStreetAddress" data-ng-model="component.generalInfo.streetAddress">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoStreetAddress2">Street Address 2</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoStreetAddress2" data-ng-model="component.generalInfo.streetAddress2">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoDataCenterID" data-ng-model="fieldOffice.generalInfo.dataCenterID" placeholder="DCOI-DC-#####">
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoCity">City</label>
+                        <label for="{{fieldOffice.name}}GeneralInfoAgencyDataCenterID">Agency Data Center ID</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoCity" data-ng-model="component.generalInfo.city">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoAgencyDataCenterID" data-ng-model="fieldOffice.generalInfo.agencyDataCenterID">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoState">State</label>
-                        <select id="{{component.name}}GeneralInfoState" data-ng-model="component.generalInfo.state">
+                        <label for="{{fieldOffice.name}}GeneralInfoPublishedName">Published Name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoPublishedName" data-ng-model="fieldOffice.generalInfo.publishedName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{fieldOffice.name}}GeneralInfoStreetAddress">Street Address</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoStreetAddress" data-ng-model="fieldOffice.generalInfo.streetAddress">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{fieldOffice.name}}GeneralInfoStreetAddress2">Street Address 2</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoStreetAddress2" data-ng-model="fieldOffice.generalInfo.streetAddress2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{fieldOffice.name}}GeneralInfoCity">City</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoCity" data-ng-model="fieldOffice.generalInfo.city">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="{{fieldOffice.name}}GeneralInfoState">State</label>
+                        <select id="{{fieldOffice.name}}GeneralInfoState" data-ng-model="fieldOffice.generalInfo.state">
                             <option value="">Select One</option>
-                            <option>AL</option>
-                            <option>AK</option>
-                            <option>AZ</option>
-                            <option>AR</option>
-                            <option>CA</option>
-                            <option>CO</option>
-                            <option>Etc.</option>
+                            <option value="AL">AL</option>
+							<option value="AK">AK</option>
+							<option value="AZ">AZ</option>
+							<option value="AR">AR</option>
+							<option value="CA">CA</option>
+							<option value="CO">CO</option>
+							<option value="CT">CT</option>
+							<option value="DE">DE</option>
+							<option value="DC">DC</option>
+							<option value="FL">FL</option>
+							<option value="GA">GA</option>
+							<option value="HI">HI</option>
+							<option value="ID">ID</option>
+							<option value="IL">IL</option>
+							<option value="IN">IN</option>
+							<option value="IA">IA</option>
+							<option value="KS">KS</option>
+							<option value="KY">KY</option>
+							<option value="LA">LA</option>
+							<option value="ME">ME</option>
+							<option value="MD">MD</option>
+							<option value="MA">MA</option>
+							<option value="MI">MI</option>
+							<option value="MN">MN</option>
+							<option value="MS">MS</option>
+							<option value="MO">MO</option>
+							<option value="MT">MT</option>
+							<option value="NE">NE</option>
+							<option value="NV">NV</option>
+							<option value="NH">NH</option>
+							<option value="NJ">NJ</option>
+							<option value="NM">NM</option>
+							<option value="NY">NY</option>
+							<option value="NC">NC</option>
+							<option value="ND">ND</option>
+							<option value="OH">OH</option>
+							<option value="OK">OK</option>
+							<option value="OR">OR</option>
+							<option value="PA">PA</option>
+							<option value="RI">RI</option>
+							<option value="SC">SC</option>
+							<option value="SD">SD</option>
+							<option value="TN">TN</option>
+							<option value="TX">TX</option>
+							<option value="UT">UT</option>
+							<option value="VT">VT</option>
+							<option value="VA">VA</option>
+							<option value="WA">WA</option>
+							<option value="WV">WV</option>
+							<option value="WI">WI</option>
+							<option value="WY">WY</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoZipCode">Zip Code</label>
+                        <label for="{{fieldOffice.name}}GeneralInfoZipCode">Zip Code</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}GeneralInfoZipCode" data-ng-model="component.generalInfo.zipCode">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoZipCode" data-ng-model="fieldOffice.generalInfo.zipCode">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}GeneralInfoCountry">Country</label>
-                        <select id="{{component.name}}GeneralInfoCountry" data-ng-model="component.generalInfo.country">
+                        <label for="{{fieldOffice.name}}GeneralInfoCountry">Country</label>
+                        <select id="{{fieldOffice.name}}GeneralInfoCountry" data-ng-model="fieldOffice.generalInfo.country">
                             <option value="">Select One</option>
                             <option>U.S.</option>
                             <option>Outside U.S.</option>

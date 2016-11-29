@@ -40,6 +40,7 @@
             border-width: 0; 
             margin-top: 0; 
             color: #ffffff;
+            border-radius: 4px;
 	    }
 
         .navbar-form .glyph-style {
@@ -60,7 +61,7 @@
 	***************************************************************************************************************/
 
         .panel-dc {
-            max-width: 1140px;
+            max-width: 1050px;
             margin: 0 auto;
             -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
                -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
@@ -68,8 +69,8 @@
         }
 
         .panel-dc > .panel-heading {
-            background: #5b616b;
-            background-color: #5b616b;
+            background: #112e51;
+            background-color: #112e51;
             padding: 15px;
             color: #ffffff;
             border-radius: 0;
@@ -103,31 +104,38 @@
         }
 
         .panel-dc .nav-tabs > li,
+		.panel-dc .nav-tabs > li h5,
         .panel-dc .nav-tabs > li > a,
         .panel-dc .nav-tabs > li > a:focus {
             text-decoration: none;
-            color: #777777;
+            color: #000000;
+            opacity: .8;
             border: 0;
-            font-size: 1.1em;
+            min-width: 60px;
+            text-align: center;
+            font-size: 1em;
         }
 
         .panel-dc .nav-tabs > li > a:hover {
-            color: #0c71b9;
-            font-weight: bold;
+            opacity: 1;
             background: transparent;
         }
 
-        .panel-dc .nav-tabs > li.active,
-        .panel-dc .nav-tabs > li.active > a, 
+        .panel-dc .nav-tabs > li.active > a,
         .panel-dc .nav-tabs > li.active > a:hover, 
         .panel-dc .nav-tabs > li.active > a:focus {
             border: 0;
-            border-bottom: 1px #0c71b9 solid;
+            border-bottom: 3px #0c71b9 solid;
             text-decoration: none;
             border-radius: 0;
-            font-weight: bold;
-            color: #0c71b9;
+            opacity: 1;
         }
+        
+		.panel-dc .nav-tabs > li.active h5 {
+			font-weight: 700;
+			color: #0c71b9;
+			opacity: 1;
+		}
         
         ul li::after, ol li::after {
         	display: none;
@@ -163,7 +171,8 @@
         }
 
         .panel-category label {
-            font-size: 1em;
+            font-size: .9em;
+            margin-top: 10px;
         }
 
     /* CATEGORY PANEL: END
@@ -248,11 +257,11 @@
         #sidebar-wrapper {
             z-index: 1000;
             position: fixed;
-            left: 200px;
+            left: 215px;
             width: 0;
             height: 100%;
             overflow-y: auto;
-            margin-left: -200px;
+            margin-left: -215px;
             background: transparent;
             -webkit-transition: all 0.5s ease;
             -moz-transition: all 0.5s ease;
@@ -261,7 +270,7 @@
         }
 
         #wrapper.toggled #sidebar-wrapper {
-            width: 200px;
+            width: 215px;
         }
 
         #page-content-wrapper {
@@ -272,7 +281,7 @@
 
         #wrapper.toggled #page-content-wrapper {
             position: absolute;
-            margin-right: -200px;
+            margin-right: -215px;
         }
 
     /* WRAPPER + SIDEBAR: END
@@ -288,7 +297,7 @@
         .sidebar-nav {
             position: absolute;
             top: 0;
-            width: 200px;
+            width: 215px;
             margin: 0;
             padding: 0;
             list-style: none;
@@ -302,6 +311,11 @@
         .sidebar-nav .panel-default > .panel-collapse .list-group-item {
             background: transparent;
             border: 0;
+            padding: 2px 0 2px 5px;
+        }
+        
+        .sidebar-nav .panel-default > .panel-heading:hover {
+            background: #e6e6e6;
         }
 
         .sidebar-nav .list-group {
@@ -310,15 +324,17 @@
         }
 
         .sidebar-nav li {
-            text-indent: 20px;
+            text-indent: 15px;
             background: transparent;
-            padding: 5px;
+            padding: 0;
+            font-size: .95em;
         }
 
         .sidebar-nav li a {
             display: block;
             text-decoration: none;
             color: #888888;
+            
         }
 
         .sidebar-nav li a:hover {
@@ -388,7 +404,10 @@
             border-color: rgba(0,0,0,.13);               
             background-color: #ffffff;
             margin-bottom: 30px;               
-            height: 155px;
+            min-height: 155px;
+            -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+               -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+                    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
         }       
         
         .vnt-calendar-chip.vnt-calendar-chip--creator {

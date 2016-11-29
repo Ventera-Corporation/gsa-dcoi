@@ -1,42 +1,42 @@
 <!-- CATEGORY : STATUS -->
 <div class="panel panel-default panel-category">
     <div class="panel-heading" data-toggle="collapse" 
-    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status=!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status">
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status">
         <h4 class="panel-title">
-            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status"></span>
-            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status"></span>
+            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status"></span>
+            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status"></span>
             <span>&nbsp; Status</span>
         </h4>
     </div>
 
-    <div id="{{component.name}}Status" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].status">
+    <div id="{{fieldOffice.name}}Status" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status">
         <div class="panel-body">
             <!-- Form Fields -->
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusRecordStatus">Record Status <span class="vnt-red-text">*</span></label>
-                        <select id="{{component.name}}StatusRecordStatus" data-ng-model="component.status.recordStatus">
+                        <label for="{{fieldOffice.name}}StatusRecordStatus">Record Status <span class="vnt-red-text">*</span></label>
+                        <select id="{{fieldOffice.name}}StatusRecordStatus" data-ng-model="fieldOffice.status.recordStatus">
                             <option value="">Select One</option>
                             <option>New</option>
                             <option>Existing</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusRecordValidity">Record Validity <span class="vnt-red-text">*</span></label>
-                        <select id="{{component.name}}StatusRecordValidity" data-ng-model="component.status.recordValidity">
+                        <label for="{{fieldOffice.name}}StatusRecordValidity">Record Validity <span class="vnt-red-text">*</span></label>
+                        <select id="{{fieldOffice.name}}StatusRecordValidity" data-ng-model="fieldOffice.status.recordValidity">
                             <option value="">Select One</option>
                             <option>New</option>
                             <option>Existing</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusClosingStage">Closing Stage <span class="vnt-red-text">*</span></label>
-                        <select id="{{component.name}}StatusClosingStage" data-ng-model="component.status.closingStage">
+                        <label for="{{fieldOffice.name}}StatusClosingStage">Closing Stage <span class="vnt-red-text">*</span></label>
+                        <select id="{{fieldOffice.name}}StatusClosingStage" data-ng-model="fieldOffice.status.closingStage">
                             <option value="">Select One</option>
                             <option>Application Mapping</option>
                             <option>Closed</option>
@@ -49,10 +49,10 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusOwnershipType">Ownership Type</label>
-                        <select id="{{component.name}}StatusOwnershipType" data-ng-model="component.status.ownershipType">
+                        <label for="{{fieldOffice.name}}StatusOwnershipType">Ownership Type</label>
+                        <select id="{{fieldOffice.name}}StatusOwnershipType" data-ng-model="fieldOffice.status.ownershipType">
                             <option value="">Select One</option>
                             <option>Agency Owned</option>
                             <option>Colocation</option>
@@ -64,10 +64,10 @@
             </div><!-- /.row -->
 
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusDataCenterTier">Data Center Tier</label>
-                        <select id="{{component.name}}StatusDataCenterTier" data-ng-model="component.status.dataCenterTier">
+                        <label for="{{fieldOffice.name}}StatusDataCenterTier">Data Center Tier</label>
+                        <select id="{{fieldOffice.name}}StatusDataCenterTier" data-ng-model="fieldOffice.status.dataCenterTier">
                             <option value="">Select One</option>
                             <option>Other Room/Lab</option>
                             <option>Server Room/Closet</option>
@@ -80,30 +80,30 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusElectricityIsMetered">Electricity is Metered</label>
-                        <select id="{{component.name}}StatusElectricityIsMetered" data-ng-model="component.status.electricityIsMetered">
+                        <label for="{{fieldOffice.name}}StatusElectricityIsMetered">Electricity is Metered</label>
+                        <select id="{{fieldOffice.name}}StatusElectricityIsMetered" data-ng-model="fieldOffice.status.electricityIsMetered">
                             <option value="">Select One</option>
                             <option>Yes</option>
                             <option>No</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusAutomatedMonitoring">Automated Monitoring</label>
-                        <select id="{{component.name}}StatusAutomatedMonitoring" data-ng-model="component.status.automatedMonitoring">
+                        <label for="{{fieldOffice.name}}StatusAutomatedMonitoring">Automated Monitoring</label>
+                        <select id="{{fieldOffice.name}}StatusAutomatedMonitoring" data-ng-model="fieldOffice.status.automatedMonitoring">
                             <option value="">Select One</option>
                             <option>Yes</option>
                             <option>No</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusSharedServicesPosition">Shared Services Position</label>
-                        <select id="{{component.name}}StatusSharedServicesPosition" data-ng-model="component.status.sharedServicesPosition">
+                        <label for="{{fieldOffice.name}}StatusSharedServicesPosition">Shared Services Position</label>
+                        <select id="{{fieldOffice.name}}StatusSharedServicesPosition" data-ng-model="fieldOffice.status.sharedServicesPosition">
                             <option value="">Select One</option>
                             <option>Provider</option>
                             <option>Tenant</option>
@@ -114,18 +114,18 @@
             </div><!-- /.row -->
 
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusISSProvider">ISS Provider</label>
+                        <label for="{{fieldOffice.name}}StatusISSProvider">ISS Provider</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}StatusISSProvider" data-ng-model="component.status.issProvider">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}StatusISSProvider" data-ng-model="fieldOffice.status.issProvider">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusClosingFiscalYear">Closing Fiscal Year</label>
-                        <select id="{{component.name}}StatusClosingFiscalYear" data-ng-model="component.status.closingFiscalYear">
+                        <label for="{{fieldOffice.name}}StatusClosingFiscalYear">Closing Fiscal Year</label>
+                        <select id="{{fieldOffice.name}}StatusClosingFiscalYear" data-ng-model="fieldOffice.status.closingFiscalYear">
                             <option value="">Select One</option>
                             <option>2010</option>
                             <option>2011</option>
@@ -140,10 +140,10 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusClosingQuarter">Closing Quarter</label>
-                        <select id="{{component.name}}StatusClosingQuarter" data-ng-model="component.status.closingQuarter">
+                        <label for="{{fieldOffice.name}}StatusClosingQuarter">Closing Quarter</label>
+                        <select id="{{fieldOffice.name}}StatusClosingQuarter" data-ng-model="fieldOffice.status.closingQuarter">
                             <option value="">Select One</option>
                             <option>Q1</option>
                             <option>Q2</option>
@@ -152,10 +152,10 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
-                        <select id="{{component.name}}StatusElectricityIncludedInCost" data-ng-model="component.status.electricityIncludedInCost">
+                        <label for="{{fieldOffice.name}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
+                        <select id="{{fieldOffice.name}}StatusElectricityIncludedInCost" data-ng-model="fieldOffice.status.electricityIncludedInCost">
                             <option value="">Select One</option>
                             <option>Yes</option>
                             <option>No</option>
@@ -165,10 +165,10 @@
             </div><!-- /.row -->
 
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}StatusCoreClassification">Core Classification</label>
-                        <select id="{{component.name}}StatusCoreClassification" data-ng-model="component.status.coreClassification">
+                        <label for="{{fieldOffice.name}}StatusCoreClassification">Core Classification</label>
+                        <select id="{{fieldOffice.name}}StatusCoreClassification" data-ng-model="fieldOffice.status.coreClassification">
                             <option value="">Select One</option>
                             <option>Core</option>
                             <option>NonCore</option>

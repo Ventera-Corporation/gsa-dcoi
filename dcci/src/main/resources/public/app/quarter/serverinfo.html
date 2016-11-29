@@ -1,47 +1,47 @@
 <!-- CATEGORY : SERVER INFORMATION -->
 <div class="panel panel-default panel-category">
     <div class="panel-heading" data-toggle="collapse" 
-    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo">
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
         <h4 class="panel-title">
-            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo"></span>
-            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo"></span>
+            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
+            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
             <span>&nbsp; Server Info</span>
         </h4>
     </div>
 
-    <div id="{{component.name}}ServerInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.id].components[$index].serverInfo">
+    <div id="{{fieldOffice.name}}ServerInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
         <div class="panel-body">
             <!-- Form Fields -->
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}ServerInfoServerUtilization">Server Utilization</label>
+                        <label for="{{fieldOffice.name}}ServerInfoServerUtilization">Server Utilization</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}ServerInfoServerUtilization" data-ng-model="component.serverInfo.serverUtilization">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}ServerInfoServerUtilization" data-ng-model="fieldOffice.serverInfo.serverUtilization">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}ServerInfoTotalMainframes">Total Mainframes</label>
+                        <label for="{{fieldOffice.name}}ServerInfoTotalMainframes">Total Mainframes</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalMainframes" data-ng-model="component.serverInfo.totalMainframes">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalMainframes" data-ng-model="fieldOffice.serverInfo.totalMainframes">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}ServerInfoTotalWindowsServers">Total Windows Servers</label>
+                        <label for="{{fieldOffice.name}}ServerInfoTotalWindowsServers">Total Windows Servers</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalWindowsServers" data-ng-model="component.serverInfo.totalWindowsServers">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalWindowsServers" data-ng-model="fieldOffice.serverInfo.totalWindowsServers">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}ServerInfoTotalHPCClusterNotes">Total HPC Cluster Nodes</label>
+                        <label for="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes">Total HPC Cluster Nodes</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalHPCClusterNotes" data-ng-model="component.serverInfo.totalHPCClusterNotes">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes" data-ng-model="fieldOffice.serverInfo.totalHPCClusterNotes">
                         </div>
                     </div>
                 </div>
@@ -49,46 +49,46 @@
             </div><!-- /.row -->
 
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}ServerInfoTotalOtherServers">Total Other Servers</label>
+                        <label for="{{fieldOffice.name}}ServerInfoTotalOtherServers">Total Other Servers</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalOtherServers" data-ng-model="component.serverInfo.totalOtherServers">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalOtherServers" data-ng-model="fieldOffice.serverInfo.totalOtherServers">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}ServerInfoTotalVirtualHosts">Total Virtual Hosts</label>
+                        <label for="{{fieldOffice.name}}ServerInfoTotalVirtualHosts">Total Virtual Hosts</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalVirtualHosts" data-ng-model="component.serverInfo.totalVirtualHosts">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalVirtualHosts" data-ng-model="fieldOffice.serverInfo.totalVirtualHosts">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}ServerInfoTotalVirtualOS">Total Virtual OS</label>
+                        <label for="{{fieldOffice.name}}ServerInfoTotalVirtualOS">Total Virtual OS</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalVirtualOS" data-ng-model="component.serverInfo.totalVirtualOS">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalVirtualOS" data-ng-model="fieldOffice.serverInfo.totalVirtualOS">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}ServerInfoTotalStorage">Total Storage</label>
+                        <label for="{{fieldOffice.name}}ServerInfoTotalStorage">Total Storage</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}ServerInfoTotalStorage" data-ng-model="component.serverInfo.totalStorage">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalStorage" data-ng-model="fieldOffice.serverInfo.totalStorage">
                         </div>
                     </div>
                 </div>
             </div><!-- /.row -->
 
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{component.name}}ServerInfoUsedStorage">Used Storage</label>
+                        <label for="{{fieldOffice.name}}ServerInfoUsedStorage">Used Storage</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{component.name}}ServerInfoUsedStorage" data-ng-model="component.serverInfo.usedStorage">
+                            <input type="text" class="form-control" id="{{fieldOffice.name}}ServerInfoUsedStorage" data-ng-model="fieldOffice.serverInfo.usedStorage">
                         </div>
                     </div>
                 </div>

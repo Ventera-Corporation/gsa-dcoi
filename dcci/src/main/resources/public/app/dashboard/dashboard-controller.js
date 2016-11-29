@@ -3,25 +3,35 @@
 	
 	angular.module('dcoiApp').controller('DashboardController', DashboardController);
 	
-	DashboardController.$inject = [];
+	DashboardController.$inject = ['DashboardService', '$location', '$filter', '$uibModal', 'dashboardData'];
 	
-	function DashboardController(){
+	function DashboardController(DashboardService, $location, $filter, $uibModal, dashboardData){
 		var dc = this;
-		dc.initDashboard = initDashboard;
+		dc.dashboardData = dashboardData;
+		dc.initDashboardData = initDashboardData;
+		dc.isAlreadyInProgressQuarter = isAlreadyInProgressQuarter;
 		dc.addNewQuarter = addNewQuarter;
 		dc.viewQuarter = viewQuarter;
 		dc.viewMoreQuarters = viewMoreQuarters;
 		
-		function initDashboard() {
-			
+		function initDashboardData() {
+			DashboardService.initDashboard().then(function (data){
+				dc.dashboardData = data.dashboardData;
+			});
+		}
+		
+		function isAlreadyInProgressQuarter(){
+			return $filter('filter')(dc.dashboardData.quarters, {'quarterInProgressFlag':true}).length;
 		}
 		
 		function addNewQuarter() {
-			
+			$location.path('/createQuarter');
 		}
 		
-		function viewQuarter() {
-			
+		function viewQuarter(quarterId) {
+//			DashboardService.viewQuarter(quarterId).then(function (data){
+//				dc.quarterData = data.quarterData;
+//			});
 		}
 		
 		function viewMoreQuarters() {
