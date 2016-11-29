@@ -236,6 +236,7 @@ describe('dcoiApp', function() {
 			expect(qc.tempData.successData.message).toBe('Created');
 	    });
 	    
+	    /*
 	    it('verify add datacenter', function() {
 	    	var numOfDataCenters = qc.quarterData.regions[0].dataCenters.length;
 			httpBackend.expectPOST('/datacenter/add?dataCenterDto=%7B%22dataCenterId%22:%22%22,%22dataCenterName%22:%22Test%22,%22dcoiDataCenterId%22:%22%22,%22regionId%22:0,%22city%22:%22%22,%22stateName%22:%22%22,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D');
@@ -275,6 +276,6 @@ describe('dcoiApp', function() {
 			expect(qc.quarterData.regions[0].dataCenters.length).toBe(numOfDataCenters+1);
 			expect(qc.tempData.successData.message).toBe('Added');
 	    });
-	    
+	    */
 	});
 });
