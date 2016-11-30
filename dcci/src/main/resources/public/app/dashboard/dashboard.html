@@ -27,6 +27,7 @@
                         <div class="col-md-3 col-sm-6 col-xs-12" 
                         		data-ng-repeat="quarter in dc.dashboardData.quarters | filter:{fiscalYear:year} | orderBy: 'fiscalQuarter'">
                             <div class="vnt-calendar-chip" 
+                            		data-ng-click="dc.viewQuarter(quarter.quarterId)"
                             		data-ng-if="quarter.quarterInProgressFlag || quarter.quarterActiveFlag || quarter.quarterCompleteFlag">
 
                                 <div class="vnt-calendar-chip__niche"></div>
