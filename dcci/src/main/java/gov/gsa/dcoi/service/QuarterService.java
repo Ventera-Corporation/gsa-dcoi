@@ -58,6 +58,9 @@ public class QuarterService {
 			List<DataCenterDto> dataCenterDtos = new ArrayList<>();
 			for(DataCenterQuarter dcq : dataCentersForQuarter){
 				DataCenterDto dataCenterDto = new DataCenterDto();
+				dataCenterDto.setDataCenterName("Data Center Name: " + dcq.getDataCenterId());
+				dataCenterDto.setDcoiDataCenterId(dcq.getDataCenterId());
+				dataCenterDto.setDataCenterId(dcq.getDataCenterId());
 
 				//set general info
 				List<FieldOfficeDto> fieldOfficesDto = new ArrayList<>();

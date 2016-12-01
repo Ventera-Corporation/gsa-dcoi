@@ -131,7 +131,7 @@
 				resolve: {
 					quarterData: function(QuarterService){
 						return QuarterService.initQuarter().then(function (data){
-							return data;
+							return data.quarterData;
 						});
 					}
 				}

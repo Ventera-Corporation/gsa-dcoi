@@ -8,6 +8,7 @@ public class DataCenterDto {
 	//private int dataCenterId;
 	private String dataCenterName;
 	private Integer dcoiDataCenterId;
+	private Integer dataCenterId;
 	private String address;
 	private String address2;
 	private String city;
@@ -97,6 +98,14 @@ public class DataCenterDto {
 
 	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
+	}
+
+	public Integer getDataCenterId() {
+		return dataCenterId;
+	}
+
+	public void setDataCenterId(Integer dataCenterId) {
+		this.dataCenterId = dataCenterId;
 	}
 
 
