@@ -21,6 +21,7 @@
                             <option>New</option>
                             <option>Existing</option>
                         </select>
+                        <div class="text-danger">{{qc.tempData.errorData.messages['recordStatusRequired']}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -31,6 +32,7 @@
                             <option>New</option>
                             <option>Existing</option>
                         </select>
+                        <div class="text-danger">{{qc.tempData.errorData.messages['recordValidityRequired']}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -47,6 +49,7 @@
                             <option>Migration Planning</option>
                             <option>Not Closing</option>
                         </select>
+                        <div class="text-danger">{{qc.tempData.errorData.messages['closingStageRequired']}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
