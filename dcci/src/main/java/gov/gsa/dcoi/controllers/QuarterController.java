@@ -11,28 +11,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import gov.gsa.dcoi.dto.QuarterDto;
-import gov.gsa.dcoi.entity.DataCenter;
-import gov.gsa.dcoi.entity.FiscalQuarterReport;
-import gov.gsa.dcoi.manager.FieldOfficeManager;
-import gov.gsa.dcoi.repository.DataCenterRepository;
-import gov.gsa.dcoi.repository.FieldOfficeRepository;
-import gov.gsa.dcoi.repository.FiscalQuarterReportRepository;
+import gov.gsa.dcoi.entity.QuarterReport;
+import gov.gsa.dcoi.service.FieldOfficeService;
+import gov.gsa.dcoi.service.QuarterService;
 
 @RestController
 @RequestMapping("/quarter")
 public class QuarterController {
 	
-	@Autowired
-	FiscalQuarterReportRepository createNewQuarterDao;
+	@Autowired 
+	QuarterService quarterService;
 	
 	@Autowired 
-	DataCenterRepository dataCenterDao;
-	
-	@Autowired 
-	FieldOfficeRepository dataCenterInventoryDao;
-	
-	@Autowired 
-	FieldOfficeManager fieldOfficeManager;
+	FieldOfficeService fieldOfficeService;
 	
 	
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
@@ -41,8 +32,10 @@ public class QuarterController {
 		//return back fiscalQuarterInformation like quarter and fiscal year
 		//as well as return regions/data centers/categories
 		Map<String, Object> returnData = new HashMap<>();
+		//returnData.put("here", "infunction");
+		QuarterDto quarterData = quarterService.initQuarter();
 		
-		returnData.put("quarterData", new QuarterDto());
+		returnData.put("quarterData", quarterData );
 		return returnData;
 		
 	}
@@ -50,12 +43,11 @@ public class QuarterController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public Map<String, Object> createQuarter(QuarterDto quarterDto){
 		
-		FiscalQuarterReport fiscalQuarterReportEntity = new FiscalQuarterReport();
+		QuarterReport fiscalQuarterReportEntity = new QuarterReport();
 		BeanUtils.copyProperties(quarterDto.getFiscalQuarterReport(), fiscalQuarterReportEntity);
-		//BeanUtils.copyProperties(quarterDto.getRegions(), target);
-		createNewQuarterDao.save(fiscalQuarterReportEntity);
-		
-		fieldOfficeManager.saveDataCenters(quarterDto.getRegions());
+
+		quarterService.createQuarter(fiscalQuarterReportEntity);
+		fieldOfficeService.saveDataCenters(quarterDto.getRegions());
 		//also do notification in this function
 		//pass back id for new quarter	
 		return new HashMap<String,Object>();

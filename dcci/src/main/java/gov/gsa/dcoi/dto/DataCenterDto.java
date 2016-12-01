@@ -7,14 +7,14 @@ public class DataCenterDto {
 	//Possibly add this back in
 	//private int dataCenterId;
 	private String dataCenterName;
-	private int dcoiDataCenterId;
+	private Integer dcoiDataCenterId;
 	private String address;
 	private String address2;
 	private String city;
 	private String zipCode;
-	private int stateId;
-	private int regionId;
-	private int country_id;
+	private Integer stateId;
+	private Integer regionId;
+	private Integer countryId;
 	private List<FieldOfficeDto> fieldOffices;
 	
 	//ADD GETTER FOR STATENAME
@@ -27,11 +27,11 @@ public class DataCenterDto {
 		this.dataCenterName = dataCenterName;
 	}
 
-	public int getDcoiDataCenterId() {
+	public Integer getDcoiDataCenterId() {
 		return dcoiDataCenterId;
 	}
 
-	public void setDcoiDataCenterId(int dcoiDataCenterId) {
+	public void setDcoiDataCenterId(Integer dcoiDataCenterId) {
 		this.dcoiDataCenterId = dcoiDataCenterId;
 	}
 
@@ -43,11 +43,11 @@ public class DataCenterDto {
 		this.city = city;
 	}
 
-	public int getStateId() {
+	public Integer getStateId() {
 		return stateId;
 	}
 
-	public void setStateId(int stateId) {
+	public void setStateId(Integer stateId) {
 		this.stateId = stateId;
 	}
 
@@ -83,20 +83,20 @@ public class DataCenterDto {
 		this.zipCode = zipCode;
 	}
 
-	public int getRegionId() {
+	public Integer getRegionId() {
 		return regionId;
 	}
 
-	public void setRegionId(int regionId) {
+	public void setRegionId(Integer regionId) {
 		this.regionId = regionId;
 	}
 
-	public int getCountry_id() {
-		return country_id;
+	public Integer getCountryId() {
+		return countryId;
 	}
 
-	public void setCountry_id(int country_id) {
-		this.country_id = country_id;
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
 	}
 
 

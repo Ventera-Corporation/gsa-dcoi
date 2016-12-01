@@ -3,39 +3,44 @@ package gov.gsa.dcoi.dto;
 public class GeneralInformationDto {
 	
 	
-	private int dataCenterInventoryId;
-	private int dataCenterId;
-	private int fiscalQuarterReportId;
-	private int parentDataCenterInventoryId;
+	private Integer dataCenterInventoryId;
+	private Integer dataCenterId;
+	private Integer quarterReportId;
+	private Integer parentDataCenterInventoryId;
 	private String dcoiDataCenterId;
 	private String publishedName;
 	private String streetAddress;
 	private String streetAddress2;
 	private String city;
 	private String zipCode;
-	private int countryId;
+	private Integer countryId;
 	private String dataCenterName;
 	
 	
-	public int getDataCenterId() {
+	public Integer getDataCenterInventoryId() {
+		return dataCenterInventoryId;
+	}
+	public void setDataCenterInventoryId(Integer dataCenterInventoryId) {
+		this.dataCenterInventoryId = dataCenterInventoryId;
+	}
+	public Integer getDataCenterId() {
 		return dataCenterId;
 	}
-	public void setDataCenterId(int dataCenterId) {
+	public void setDataCenterId(Integer dataCenterId) {
 		this.dataCenterId = dataCenterId;
 	}
-	public int getFiscalQuarterReportId() {
-		return fiscalQuarterReportId;
+	public Integer getQuarterReportId() {
+		return quarterReportId;
 	}
-	public void setFiscalQuarterReportId(int fiscalQuarterReportId) {
-		this.fiscalQuarterReportId = fiscalQuarterReportId;
+	public void setQuarterReportId(Integer quarterReportId) {
+		this.quarterReportId = quarterReportId;
 	}
-	public int getParentDataCenterInventoryId() {
+	public Integer getParentDataCenterInventoryId() {
 		return parentDataCenterInventoryId;
 	}
-	public void setParentDataCenterInventoryId(int parentDataCenterInventoryId) {
+	public void setParentDataCenterInventoryId(Integer parentDataCenterInventoryId) {
 		this.parentDataCenterInventoryId = parentDataCenterInventoryId;
 	}
-	
 	public String getDcoiDataCenterId() {
 		return dcoiDataCenterId;
 	}
@@ -72,10 +77,10 @@ public class GeneralInformationDto {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	public int getCountryId() {
+	public Integer getCountryId() {
 		return countryId;
 	}
-	public void setCountryId(int countryId) {
+	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
 	}
 	public String getDataCenterName() {
@@ -84,15 +89,6 @@ public class GeneralInformationDto {
 	public void setDataCenterName(String dataCenterName) {
 		this.dataCenterName = dataCenterName;
 	}
-	public int getDataCenterInventoryId() {
-		return dataCenterInventoryId;
-	}
-	public void setDataCenterInventoryId(int dataCenterInventoryId) {
-		this.dataCenterInventoryId = dataCenterInventoryId;
-	}
 	
-	public String getCategoryName(){
-		return this.getClass().getSimpleName();
-	}
 
 }
