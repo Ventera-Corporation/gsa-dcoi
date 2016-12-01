@@ -17,7 +17,8 @@
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}FacilityInfoGrossFloorArea">Gross Floor Area</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoGrossFloorArea" data-ng-model="fieldOffice.facilityInfo.grossFloorArea">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoGrossFloorArea" 
+                            		data-ng-model="fieldOffice.facilityInfo.grossFloorArea" min="0">
                         </div>
                     </div>
                 </div>
@@ -25,7 +26,8 @@
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}FacilityInfoTotalCustomerFloorArea">Total Customer Floor Area</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalCustomerFloorArea" data-ng-model="fieldOffice.facilityInfo.totalCustomerFloorArea">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalCustomerFloorArea" 
+                            		data-ng-model="fieldOffice.facilityInfo.totalCustomerFloorArea" min="0">
                         </div>
                     </div>
                 </div>
@@ -34,7 +36,8 @@
                         <label for="{{fieldOffice.name}}FacilityInfoAnnualCostPerSqFt">Annual Cost per Sq. Ft.</label>
                         <div class="input-group">
                         	<span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoAnnualCostPerSqFt" data-ng-model="fieldOffice.facilityInfo.annualCostPerSqFt">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoAnnualCostPerSqFt" 
+                            		data-ng-model="fieldOffice.facilityInfo.annualCostPerSqFt" min="0" step="0.01">
                         </div>
                     </div>
                 </div>
@@ -54,7 +57,8 @@
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}FacilityInfoAvgElectricityUsage">Avg. Electricity Usage</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoAvgElectricityUsage" data-ng-model="fieldOffice.facilityInfo.avgElectricityUsage">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoAvgElectricityUsage" 
+                            		data-ng-model="fieldOffice.facilityInfo.avgElectricityUsage" min="0" step="0.01">
                         </div>
                     </div>
                 </div>
@@ -62,7 +66,8 @@
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}FacilityInfoAvgITElectricityUsage">Avg. IT Electricity Usage</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoAvgITElectricityUsage" data-ng-model="fieldOffice.facilityInfo.avgITElectricityUsage">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoAvgITElectricityUsage" 
+                            		data-ng-model="fieldOffice.facilityInfo.avgITElectricityUsage" min="0" step="0.01">
                         </div>
                     </div>
                 </div>
@@ -70,7 +75,8 @@
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}FacilityInfoTotalPowerCapacity">Total Power Capacity</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalPowerCapacity" data-ng-model="fieldOffice.facilityInfo.totalPowerCapacity">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalPowerCapacity" 
+                            		data-ng-model="fieldOffice.facilityInfo.totalPowerCapacity" min="0">
                         </div>
                     </div>
                 </div>
@@ -78,7 +84,8 @@
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}FacilityInfoTotalITPowerCapacity">Total IT Power Capacity</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalITPowerCapacity" data-ng-model="fieldOffice.facilityInfo.totalITPowerCapacity">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalITPowerCapacity" 
+                            		data-ng-model="fieldOffice.facilityInfo.totalITPowerCapacity" min="0">
                         </div>
                     </div>
                 </div>
@@ -89,7 +96,8 @@
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}FacilityInfoFTE">FTE</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoFTE" data-ng-model="fieldOffice.facilityInfo.fte">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoFTE" 
+                            		data-ng-model="fieldOffice.facilityInfo.fte" min="0" step="0.01">
                         </div>
                     </div>
                 </div>
@@ -98,7 +106,8 @@
                         <label for="{{fieldOffice.name}}FacilityInfoFTECost">FTE Cost</label>
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoFTECost" data-ng-model="fieldOffice.facilityInfo.fteCost">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoFTECost" 
+                            		data-ng-model="fieldOffice.facilityInfo.fteCost" min="0" step="0.01">
                         </div>
                     </div>
                 </div>
@@ -106,7 +115,8 @@
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}FacilityInfoRackCount">Rack Count</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoRackCount" data-ng-model="fieldOffice.facilityInfo.rackCount">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoRackCount"
+                            		data-ng-model="fieldOffice.facilityInfo.rackCount" min="0">
                         </div>
                     </div>
                 </div>
@@ -115,7 +125,8 @@
                         <label for="{{fieldOffice.name}}FacilityInfoCostPerkWh">Cost per kWh</label>
                         <div class="input-group">
                         	<span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoCostPerkWh" data-ng-model="fieldOffice.facilityInfo.costPerkWh">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoCostPerkWh"
+                            		data-ng-model="fieldOffice.facilityInfo.costPerkWh" min="0" step="0.01">
                         </div>
                     </div>
                 </div>
