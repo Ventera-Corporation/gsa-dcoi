@@ -18,6 +18,7 @@
                         <label for="{{fieldOffice.name}}GeneralInfoAgencyAbbreviation">Agency Abbreviation <span class="vnt-red-text">*</span></label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoAgencyAbbreviation" data-ng-model="fieldOffice.generalInfo.agencyAbbreviation">
+                            <div class="text-danger">{{qc.tempData.errorData.messages['agencyAbbreviationRequired']}}</div>
                         </div>
                     </div>
                 </div>
@@ -26,6 +27,7 @@
                         <label for="{{fieldOffice.name}}GeneralInfoComponent">Component <span class="vnt-red-text">*</span></label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoComponent" data-ng-model="fieldOffice.generalInfo.component">
+                            <div class="text-danger">{{qc.tempData.errorData.messages['componentRequired']}}</div>
                         </div>
                     </div>
                 </div>
@@ -34,6 +36,7 @@
                         <label for="{{fieldOffice.name}}GeneralInfoDataCenterName">Data Center Name <span class="vnt-red-text">*</span></label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="{{fieldOffice.name}}GeneralInfoDataCenterName" data-ng-model="fieldOffice.generalInfo.dataCenterName">
+                            <div class="text-danger">{{qc.tempData.errorData.messages['dataCenterNameRequired']}}</div>
                         </div>
                     </div>
                 </div>
