@@ -2,104 +2,106 @@ package gov.gsa.dcoi.dto;
 
 public class StatusDto {
 	
-	private int dataCenterInventoryId;
-	private int recordStatusId;
-	private int recordValidityId;
-	private int ownershipTypeId;
-	private int dataCenterTierId;
-	private int electricityIncludedInCostFlag;
-	private int electricityMeteredFlag;
-	private int automatedMonitoring;
-	private int coreClassificationId;
-	private int closingStageId;
-	private int closingFiscalYearId;
-	private int closingFiscalQuarterId;
-	private int issPositionId;
-	private int issProvider;
+	private Integer dataCenterInventoryId;
+	private Integer recordStatusId;
+	private Integer recordValidityId;
+	private Integer ownershipTypeId;
+	private Integer dataCenterTierId;
+	private Integer electricityIncludedInCostFlag;
+	private Integer electricityMeteredFlag;
+	private Integer automatedMonitoring;
+	private Integer coreClassificationId;
+	private Integer closingStageId;
+	private Integer closingFiscalYearId;
+	private Integer closingFiscalQuarterId;
+	private Integer issPositionId;
+	private Integer issProvider;
 	
-	public int getRecordStatusId() {
-		return recordStatusId;
-	}
-	public void setRecordStatusId(int recordStatusId) {
-		this.recordStatusId = recordStatusId;
-	}
-	public int getRecordValidityId() {
-		return recordValidityId;
-	}
-	public void setRecordValidityId(int recordValidityId) {
-		this.recordValidityId = recordValidityId;
-	}
-	public int getOwnershipTypeId() {
-		return ownershipTypeId;
-	}
-	public void setOwnershipTypeId(int ownershipTypeId) {
-		this.ownershipTypeId = ownershipTypeId;
-	}
-	public int getDataCenterTierId() {
-		return dataCenterTierId;
-	}
-	public void setDataCenterTierId(int dataCenterTierId) {
-		this.dataCenterTierId = dataCenterTierId;
-	}
-	public int getElectricityIncludedInCostFlag() {
-		return electricityIncludedInCostFlag;
-	}
-	public void setElectricityIncludedInCostFlag(int electricityIncludedInCostFlag) {
-		this.electricityIncludedInCostFlag = electricityIncludedInCostFlag;
-	}
-	public int getElectricityMeteredFlag() {
-		return electricityMeteredFlag;
-	}
-	public void setElectricityMeteredFlag(int electricityMeteredFlag) {
-		this.electricityMeteredFlag = electricityMeteredFlag;
-	}
-	public int getAutomatedMonitoring() {
-		return automatedMonitoring;
-	}
-	public void setAutomatedMonitoring(int automatedMonitoring) {
-		this.automatedMonitoring = automatedMonitoring;
-	}
-	public int getCoreClassificationId() {
-		return coreClassificationId;
-	}
-	public void setCoreClassificationId(int coreClassificationId) {
-		this.coreClassificationId = coreClassificationId;
-	}
-	public int getClosingStageId() {
-		return closingStageId;
-	}
-	public void setClosingStageId(int closingStageId) {
-		this.closingStageId = closingStageId;
-	}
-	public int getClosingFiscalYearId() {
-		return closingFiscalYearId;
-	}
-	public void setClosingFiscalYearId(int closingFiscalYearId) {
-		this.closingFiscalYearId = closingFiscalYearId;
-	}
-	public int getClosingFiscalQuarterId() {
-		return closingFiscalQuarterId;
-	}
-	public void setClosingFiscalQuarterId(int closingFiscalQuarterId) {
-		this.closingFiscalQuarterId = closingFiscalQuarterId;
-	}
-	public int getIssPositionId() {
-		return issPositionId;
-	}
-	public void setIssPositionId(int issPositionId) {
-		this.issPositionId = issPositionId;
-	}
-	public int getIssProvider() {
-		return issProvider;
-	}
-	public void setIssProvider(int issProvider) {
-		this.issProvider = issProvider;
-	}
-	public int getDataCenterInventoryId() {
+	
+	public Integer getDataCenterInventoryId() {
 		return dataCenterInventoryId;
 	}
-	public void setDataCenterInventoryId(int dataCenterInventoryId) {
+	public void setDataCenterInventoryId(Integer dataCenterInventoryId) {
 		this.dataCenterInventoryId = dataCenterInventoryId;
 	}
+	public Integer getRecordStatusId() {
+		return recordStatusId;
+	}
+	public void setRecordStatusId(Integer recordStatusId) {
+		this.recordStatusId = recordStatusId;
+	}
+	public Integer getRecordValidityId() {
+		return recordValidityId;
+	}
+	public void setRecordValidityId(Integer recordValidityId) {
+		this.recordValidityId = recordValidityId;
+	}
+	public Integer getOwnershipTypeId() {
+		return ownershipTypeId;
+	}
+	public void setOwnershipTypeId(Integer ownershipTypeId) {
+		this.ownershipTypeId = ownershipTypeId;
+	}
+	public Integer getDataCenterTierId() {
+		return dataCenterTierId;
+	}
+	public void setDataCenterTierId(Integer dataCenterTierId) {
+		this.dataCenterTierId = dataCenterTierId;
+	}
+	public Integer getElectricityIncludedInCostFlag() {
+		return electricityIncludedInCostFlag;
+	}
+	public void setElectricityIncludedInCostFlag(Integer electricityIncludedInCostFlag) {
+		this.electricityIncludedInCostFlag = electricityIncludedInCostFlag;
+	}
+	public Integer getElectricityMeteredFlag() {
+		return electricityMeteredFlag;
+	}
+	public void setElectricityMeteredFlag(Integer electricityMeteredFlag) {
+		this.electricityMeteredFlag = electricityMeteredFlag;
+	}
+	public Integer getAutomatedMonitoring() {
+		return automatedMonitoring;
+	}
+	public void setAutomatedMonitoring(Integer automatedMonitoring) {
+		this.automatedMonitoring = automatedMonitoring;
+	}
+	public Integer getCoreClassificationId() {
+		return coreClassificationId;
+	}
+	public void setCoreClassificationId(Integer coreClassificationId) {
+		this.coreClassificationId = coreClassificationId;
+	}
+	public Integer getClosingStageId() {
+		return closingStageId;
+	}
+	public void setClosingStageId(Integer closingStageId) {
+		this.closingStageId = closingStageId;
+	}
+	public Integer getClosingFiscalYearId() {
+		return closingFiscalYearId;
+	}
+	public void setClosingFiscalYearId(Integer closingFiscalYearId) {
+		this.closingFiscalYearId = closingFiscalYearId;
+	}
+	public Integer getClosingFiscalQuarterId() {
+		return closingFiscalQuarterId;
+	}
+	public void setClosingFiscalQuarterId(Integer closingFiscalQuarterId) {
+		this.closingFiscalQuarterId = closingFiscalQuarterId;
+	}
+	public Integer getIssPositionId() {
+		return issPositionId;
+	}
+	public void setIssPositionId(Integer issPositionId) {
+		this.issPositionId = issPositionId;
+	}
+	public Integer getIssProvider() {
+		return issProvider;
+	}
+	public void setIssProvider(Integer issProvider) {
+		this.issProvider = issProvider;
+	}
+	
 
 }

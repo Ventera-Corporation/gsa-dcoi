@@ -2,7 +2,8 @@ package gov.gsa.dcoi.dto;
 
 public class FieldOfficeDto {
 	
-	private int fieldOfficeId;
+	private Integer fieldOfficeId;
+	private String fieldOfficeName;
 	
 	private GeneralInformationDto generalInformation;
 	
@@ -15,10 +16,10 @@ public class FieldOfficeDto {
 	//ADD GETTER FOR FIELD OFFICE NAME
 	
 	
-	public int getAgencyDataCenterId() {
+	public Integer getFieldOfficeId() {
 		return fieldOfficeId;
 	}
-	public void setFieldOfficeId(int fieldOfficeId) {
+	public void setFieldOfficeId(Integer fieldOfficeId) {
 		this.fieldOfficeId = fieldOfficeId;
 	}
 	public GeneralInformationDto getGeneralInformation() {
@@ -44,6 +45,12 @@ public class FieldOfficeDto {
 	}
 	public void setServerInformation(ServerInformationDto serverInformation) {
 		this.serverInformation = serverInformation;
+	}
+	public String getFieldOfficeName() {
+		return fieldOfficeName;
+	}
+	public void setFieldOfficeName(String fieldOfficeName) {
+		this.fieldOfficeName = fieldOfficeName;
 	}
 
 

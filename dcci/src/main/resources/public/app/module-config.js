@@ -130,10 +130,13 @@
 				controllerAs: 'qc',
 				resolve: {
 					quarterData: function(QuarterService){
-//						return QuarterService.initQuarter().then(function (data){
-//							return data.quarterData;
-//						});
-						return {
+						return QuarterService.initQuarter().then(function (data){
+							return data.quarterData;
+						});
+					}
+				}
+			});
+						/**return {
 							fiscalQuarterReport: {
 						    	fiscalQuarter: 'Q3',
 								fiscalYear: '2016',
@@ -295,6 +298,6 @@
 						};
 					}
 				}
-			});
+			});**/
 	}
 })();
