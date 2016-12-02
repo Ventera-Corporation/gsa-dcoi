@@ -1,22 +1,28 @@
 <!-- CATEGORY : STATUS -->
 <div class="panel panel-default panel-category">
     <div class="panel-heading" data-toggle="collapse" 
-    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status">
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status">
         <h4 class="panel-title">
-            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status"></span>
-            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status"></span>
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status"></span>
             <span>&nbsp; Status</span>
         </h4>
     </div>
 
-    <div id="{{fieldOffice.name}}Status" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].status">
+    <div id="{{dataCenter.dataCenterId}}Status" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status">
         <div class="panel-body">
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusRecordStatus">Record Status <span class="vnt-red-text">*</span></label>
-                        <select id="{{fieldOffice.name}}StatusRecordStatus" data-ng-model="fieldOffice.status.recordStatus">
+                        <label for="{{dataCenter.dataCenterId}}StatusRecordStatus">Record Status <span class="vnt-red-text">*</span></label>
+                        <span id="{{dataCenter.dataCenterId}}StatusRecordStatus"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.recordStatus}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusRecordStatus" 
+                        		data-ng-model="dataCenter.status.recordStatus" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>New</option>
                             <option>Existing</option>
@@ -26,8 +32,11 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusRecordValidity">Record Validity <span class="vnt-red-text">*</span></label>
-                        <select id="{{fieldOffice.name}}StatusRecordValidity" data-ng-model="fieldOffice.status.recordValidity">
+                        <label for="{{dataCenter.dataCenterId}}StatusRecordValidity">Record Validity <span class="vnt-red-text">*</span></label>
+                        <span id="{{dataCenter.dataCenterId}}StatusRecordValidity"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.recordValidity}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusRecordValidity" 
+                        		data-ng-model="dataCenter.status.recordValidity" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>New</option>
                             <option>Existing</option>
@@ -37,8 +46,11 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusClosingStage">Closing Stage <span class="vnt-red-text">*</span></label>
-                        <select id="{{fieldOffice.name}}StatusClosingStage" data-ng-model="fieldOffice.status.closingStage">
+                        <label for="{{dataCenter.dataCenterId}}StatusClosingStage">Closing Stage <span class="vnt-red-text">*</span></label>
+                        <span id="{{dataCenter.dataCenterId}}StatusClosingStage"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.closingStage}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusClosingStage" 
+                        		data-ng-model="dataCenter.status.closingStage" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>Application Mapping</option>
                             <option>Closed</option>
@@ -54,8 +66,11 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusOwnershipType">Ownership Type</label>
-                        <select id="{{fieldOffice.name}}StatusOwnershipType" data-ng-model="fieldOffice.status.ownershipType">
+                        <label for="{{dataCenter.dataCenterId}}StatusOwnershipType">Ownership Type</label>
+                        <span id="{{dataCenter.dataCenterId}}StatusOwnershipType"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.ownershipType}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusOwnershipType" 
+                        		data-ng-model="dataCenter.status.ownershipType" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>Agency Owned</option>
                             <option>Colocation</option>
@@ -69,8 +84,11 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusDataCenterTier">Data Center Tier</label>
-                        <select id="{{fieldOffice.name}}StatusDataCenterTier" data-ng-model="fieldOffice.status.dataCenterTier">
+                        <label for="{{dataCenter.dataCenterId}}StatusDataCenterTier">Data Center Tier</label>
+                        <span id="{{dataCenter.dataCenterId}}StatusDataCenterTier"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.dataCenterTier}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusDataCenterTier" 
+                        		data-ng-model="dataCenter.status.dataCenterTier" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>Other Room/Lab</option>
                             <option>Server Room/Closet</option>
@@ -85,8 +103,11 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusElectricityIsMetered">Electricity is Metered</label>
-                        <select id="{{fieldOffice.name}}StatusElectricityIsMetered" data-ng-model="fieldOffice.status.electricityIsMetered">
+                        <label for="{{dataCenter.dataCenterId}}StatusElectricityIsMetered">Electricity is Metered</label>
+                        <span id="{{dataCenter.dataCenterId}}StatusElectricityIsMetered"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIsMetered}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusElectricityIsMetered" 
+                        		data-ng-model="dataCenter.status.electricityIsMetered" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>Yes</option>
                             <option>No</option>
@@ -95,8 +116,11 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusAutomatedMonitoring">Automated Monitoring</label>
-                        <select id="{{fieldOffice.name}}StatusAutomatedMonitoring" data-ng-model="fieldOffice.status.automatedMonitoring">
+                        <label for="{{dataCenter.dataCenterId}}StatusAutomatedMonitoring">Automated Monitoring</label>
+                        <span id="{{dataCenter.dataCenterId}}StatusAutomatedMonitoring"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.automatedMonitoring}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusAutomatedMonitoring" 
+                        		data-ng-model="dataCenter.status.automatedMonitoring" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>Yes</option>
                             <option>No</option>
@@ -105,8 +129,11 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusSharedServicesPosition">Shared Services Position</label>
-                        <select id="{{fieldOffice.name}}StatusSharedServicesPosition" data-ng-model="fieldOffice.status.sharedServicesPosition">
+                        <label for="{{dataCenter.dataCenterId}}StatusSharedServicesPosition">Shared Services Position</label>
+                        <span id="{{dataCenter.dataCenterId}}StatusSharedServicesPosition"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.sharedServicesPosition}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusSharedServicesPosition" 
+                        		data-ng-model="dataCenter.status.sharedServicesPosition" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>Provider</option>
                             <option>Tenant</option>
@@ -119,16 +146,22 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusISSProvider">ISS Provider</label>
+                        <label for="{{dataCenter.dataCenterId}}StatusISSProvider">ISS Provider</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="{{fieldOffice.name}}StatusISSProvider" data-ng-model="fieldOffice.status.issProvider">
+                            <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}StatusISSProvider" 
+                            		data-ng-model="dataCenter.status.issProvider" data-ng-if="qc.tempData.editMode">
+	                        <span id="{{dataCenter.dataCenterId}}StatusISSProvider"
+	                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.issProvider}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusClosingFiscalYear">Closing Fiscal Year</label>
-                        <select id="{{fieldOffice.name}}StatusClosingFiscalYear" data-ng-model="fieldOffice.status.closingFiscalYear">
+                        <label for="{{dataCenter.dataCenterId}}StatusClosingFiscalYear">Closing Fiscal Year</label>
+                        <span id="{{dataCenter.dataCenterId}}StatusClosingFiscalYear"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.closingFiscalYear}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusClosingFiscalYear" 
+                        		data-ng-model="dataCenter.status.closingFiscalYear" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>2010</option>
                             <option>2011</option>
@@ -145,8 +178,11 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusClosingQuarter">Closing Quarter</label>
-                        <select id="{{fieldOffice.name}}StatusClosingQuarter" data-ng-model="fieldOffice.status.closingQuarter">
+                        <label for="{{dataCenter.dataCenterId}}StatusClosingQuarter">Closing Quarter</label>
+                        <span id="{{dataCenter.dataCenterId}}StatusClosingQuarter"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.closingQuarter}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusClosingQuarter" 
+                        		data-ng-model="dataCenter.status.closingQuarter" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>Q1</option>
                             <option>Q2</option>
@@ -157,8 +193,11 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
-                        <select id="{{fieldOffice.name}}StatusElectricityIncludedInCost" data-ng-model="fieldOffice.status.electricityIncludedInCost">
+                        <label for="{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
+                        <span id="{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIncludedInCost}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost" 
+                        		data-ng-model="dataCenter.status.electricityIncludedInCost" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>Yes</option>
                             <option>No</option>
@@ -170,8 +209,11 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}StatusCoreClassification">Core Classification</label>
-                        <select id="{{fieldOffice.name}}StatusCoreClassification" data-ng-model="fieldOffice.status.coreClassification">
+                        <label for="{{dataCenter.dataCenterId}}StatusCoreClassification">Core Classification</label>
+                        <span id="{{dataCenter.dataCenterId}}StatusCoreClassification"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.coreClassification}}</span>
+                        <select id="{{dataCenter.dataCenterId}}StatusCoreClassification" 
+                        		data-ng-model="dataCenter.status.coreClassification" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
                             <option>Core</option>
                             <option>NonCore</option>
