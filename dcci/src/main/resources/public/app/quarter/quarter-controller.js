@@ -3,11 +3,12 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', 'quarterData'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'quarterData'];
 	
-	function QuarterController(QuarterService, $uibModal, quarterData){
+	function QuarterController(QuarterService, $uibModal, $filter, quarterData){
 		var qc = this;
 		qc.tempData = {};
+		qc.tempData.editMode = false;
 		qc.tempData.selected = {
 			//default
 			expandCollapseSidebar: true,
@@ -31,13 +32,11 @@
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
 		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
+		qc.editQuarter = editQuarter;
 		qc.createQuarter = createQuarter;
 		qc.saveQuarter = saveQuarter;
-		qc.submitQuarter = submitQuarter;
-		qc.exportQuarter = exportQuarter;
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
-		qc.viewAudit = viewAudit;
 		
 		function initQuarterData(){
 			 QuarterService.initQuarter().then(function (data){
@@ -72,6 +71,19 @@
 				});
 				qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId] = panel;
 			}
+			
+			//keep track of which panels were visited in editMode so we can save later
+			qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].wasInEditMode = qc.tempData.editMode;
+		}
+		
+		function editQuarter(){
+			qc.tempData.editMode = true;
+			//need to keep track of which panels were visited where we started in editMode
+			var currentlyDisplayedDataCenters = $filter('filter')(qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters, 
+					{'dataCenterName':qc.tempData.selected.dataCenterName});
+			angular.forEach(currentlyDisplayedDataCenters, function(dataCenter){
+				qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].wasInEditMode = qc.tempData.editMode;
+			});
 		}
 		
 		function createQuarter(){
@@ -89,24 +101,35 @@
 		}
 		
 		function saveQuarter(){
-			qc.tempData.editMode = false;
-			QuarterService.saveQuarter(qc.quarterData).then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
+			var editedDataCenters = [];
+			var dataCenterIdsInEditMode = [];
+			angular.forEach(Object.keys(qc.tempData.selected.expandCollapsePanels), function(dataCenterId){
+				if(qc.tempData.selected.expandCollapsePanels[dataCenterId].wasInEditMode){
+					dataCenterIdsInEditMode.push(dataCenterId);
 				}
 			});
-		}
-		
-		function submitQuarter(){
-			
-		}
-		
-		function exportQuarter(){
-			
+			angular.forEach(dataCenterIdsInEditMode, function(dataCenterIdInEditMode){
+				angular.forEach(qc.quarterData.regions, function(region){
+					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode})[0];
+					editedDataCenters.push(foundDataCenter);
+				});
+			});
+//			QuarterService.saveQuarter(qc.editedDataCenters).then(function (data){
+//				if(data.error){
+//					//show errors
+//					qc.tempData.errorData = data;
+//				} else {
+//					//show success message
+//					qc.tempData.successData = data.successData;
+//					//reset all of the edited panels
+					angular.forEach(dataCenterIdsInEditMode, function(dataCenterId){
+						qc.tempData.selected.expandCollapsePanels[dataCenterId].wasInEditMode = false;
+					});
+					qc.tempData.editMode = false;
+					
+					qc.editedDataCenters = editedDataCenters;
+//				}
+//			});
 		}
 		
 		function addNewDataCenterModal(){
@@ -179,10 +202,6 @@
 //				}
 //			});
 			addDataCenterToRegion(dataCenterData);
-		}
-		
-		function viewAudit(){
-			
 		}
 	}
 })();

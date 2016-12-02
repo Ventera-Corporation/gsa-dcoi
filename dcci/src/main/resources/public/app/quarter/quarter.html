@@ -10,7 +10,7 @@
     	<span class="inline"><h4>Due Date:</h4></span>
         <span class="inline"><input class="form-control" type="text" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"></span>
         <span class="inline"><button class="usa-button usa-button-outline" type="button" style="display: inline;" 
-        		data-ng-click="qc.tempData.editMode = true" data-ng-if="!qc.tempData.editMode">Edit</button></span>
+        		data-ng-click="qc.editQuarter()" data-ng-if="!qc.tempData.editMode">Edit</button></span>
         <span class="inline"><button class="usa-button usa-button-primary" type="button" style="display: inline;" 
         		data-ng-click="qc.createQuarter()" data-ng-if="!qc.tempData.editMode">Create</button></span>
         <span class="inline"><button class="usa-button usa-button-primary" type="button" style="display: inline;" 
