@@ -24,14 +24,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/test/*'
+      'src/test/**/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-	'/src/main/resources/public/assets/css/*',
-	'/src/main/resources/public/plugins/**/*'
+	'/src/main/resources/public/assets/css/*.css',
+	'/src/main/resources/public/plugins/**/*.js'
     ],
 
 
