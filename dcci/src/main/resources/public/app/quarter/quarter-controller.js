@@ -28,6 +28,10 @@
 			},
 			expandCollapsePanels: {}
 		};
+		qc.tempData.wasInEditMode = {
+			dataCenterNames:[],
+			dataCenterIds:[]
+		};
 		qc.quarterData = quarterData;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
@@ -45,7 +49,7 @@
 		}
 		
 		function initDefaultSelected(region, regionIdx){
-			if(qc.tempData.selected.regionIdx == null && region.dataCenters.length > 0) {
+			if(qc.tempData.selected.regionIdx === undefined && region.dataCenters.length) {
 				qc.tempData.selected.regionIdx = regionIdx;
 				qc.tempData.selected.dataCenterName = region.dataCenters[0].dataCenterName;
 				qc.tempData.selected.expandCollapseRegions[region.code] = true;
@@ -71,25 +75,30 @@
 				});
 				qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId] = panel;
 			}
-			
-			//keep track of which panels were visited in editMode so we can save later
-			qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].wasInEditMode = qc.tempData.editMode;
+			//keep track of which panels were visited in editMode so we can save later but don't repeat
+			if(qc.tempData.editMode){
+				if(qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) === -1){
+					qc.tempData.wasInEditMode.dataCenterNames.push(dataCenter.dataCenterName);
+				}
+				if(qc.tempData.wasInEditMode.dataCenterIds.indexOf(dataCenter.dataCenterId) === -1){
+					qc.tempData.wasInEditMode.dataCenterIds.push(dataCenter.dataCenterId);
+				}
+			}
 		}
 		
 		function editQuarter(){
 			qc.tempData.editMode = true;
 			//need to keep track of which panels were visited where we started in editMode
+			qc.tempData.wasInEditMode.dataCenterNames.push(qc.tempData.selected.dataCenterName);
 			var currentlyDisplayedDataCenters = $filter('filter')(qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters, 
 					{'dataCenterName':qc.tempData.selected.dataCenterName});
 			angular.forEach(currentlyDisplayedDataCenters, function(dataCenter){
-				qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].wasInEditMode = qc.tempData.editMode;
+				qc.tempData.wasInEditMode.dataCenterIds.push(dataCenter.dataCenterId);
 			});
 		}
 		
 		function createQuarter(){
-			qc.quarterData.fiscalQuarterReport.quarterInProgressFlag = false;
-			qc.quarterData.fiscalQuarterReport.quarterActiveFlag = true;
-			QuarterService.createQuarter(qc.quarterData).then(function (data){
+			QuarterService.createQuarter(qc.quarterData.dueDate).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
@@ -102,32 +111,23 @@
 		
 		function saveQuarter(){
 			var editedDataCenters = [];
-			var dataCenterIdsInEditMode = [];
-			angular.forEach(Object.keys(qc.tempData.selected.expandCollapsePanels), function(dataCenterId){
-				if(qc.tempData.selected.expandCollapsePanels[dataCenterId].wasInEditMode){
-					dataCenterIdsInEditMode.push(dataCenterId);
-				}
-			});
-			angular.forEach(dataCenterIdsInEditMode, function(dataCenterIdInEditMode){
+			angular.forEach(qc.tempData.wasInEditMode.dataCenterIds, function(dataCenterIdInEditMode){
 				angular.forEach(qc.quarterData.regions, function(region){
 					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode})[0];
 					editedDataCenters.push(foundDataCenter);
 				});
 			});
-//			QuarterService.saveQuarter(qc.editedDataCenters).then(function (data){
+//			QuarterService.saveQuarter(editedDataCenters).then(function (data){
 //				if(data.error){
 //					//show errors
 //					qc.tempData.errorData = data;
 //				} else {
 //					//show success message
 //					qc.tempData.successData = data.successData;
-//					//reset all of the edited panels
-					angular.forEach(dataCenterIdsInEditMode, function(dataCenterId){
-						qc.tempData.selected.expandCollapsePanels[dataCenterId].wasInEditMode = false;
-					});
+					//reset all of the edited panels
+					qc.tempData.wasInEditMode.dataCenterNames = [];
+					qc.tempData.wasInEditMode.dataCenterIds = [];
 					qc.tempData.editMode = false;
-					
-					qc.editedDataCenters = editedDataCenters;
 //				}
 //			});
 		}
