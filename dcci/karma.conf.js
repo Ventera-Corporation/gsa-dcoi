@@ -24,10 +24,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/main/java/**/*',
-      'src/main/resources/public/app/**/*',
+      'src/main/java/*',
+      'src/main/resources/public/app/*',
       'src/main/resources/public/index.html',
-      'src/test/**/*'
+      'src/test/*'
     ],
 
 
