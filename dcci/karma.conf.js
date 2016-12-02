@@ -44,7 +44,8 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-	'/src/main/webapp/plugins/bootstrap/**/*.js'
+	'/src/main/webapp/plugins/bootstrap/**/*.js',
+	'/src/main/resources/public/plugins/**/*'
     ],
 
 
