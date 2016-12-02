@@ -3,51 +3,62 @@
     <div class="panel-heading" data-toggle="collapse" 
     		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
         <h4 class="panel-title">
-            <span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
-            <span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
             <span>&nbsp; Server Info</span>
         </h4>
     </div>
 
-    <div id="{{fieldOffice.name}}ServerInfo" class="panel-collapse panel-cat-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
+    <div id="{{fieldOffice.name}}ServerInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
         <div class="panel-body">
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoServerUtilization">Server Utilization</label>
-                        <div class="input-group">
+                        <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoServerUtilization"
                             		data-ng-model="fieldOffice.serverInfo.serverUtilization" min="0" step="0.01">
                             <span class="input-group-addon">%</span>
                         </div>
+                        <span id="{{fieldOffice.name}}ServerInfoServerUtilization"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.serverUtilization}}%</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoTotalMainframes">Total Mainframes</label>
-                        <div class="input-group">
+                        <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalMainframes"
                             		data-ng-model="fieldOffice.serverInfo.totalMainframes" min="0">
                         </div>
+                        <span id="{{fieldOffice.name}}ServerInfoTotalMainframes"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalMainframes}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoTotalWindowsServers">Total Windows Servers</label>
-                        <div class="input-group">
+                        <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalWindowsServers" 
                             		data-ng-model="fieldOffice.serverInfo.totalWindowsServers" min="0">
                         </div>
+                        <span id="{{fieldOffice.name}}ServerInfoTotalWindowsServers"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalWindowsServers}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes">Total HPC Cluster Nodes</label>
-                        <div class="input-group">
+                        <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes" 
                             		data-ng-model="fieldOffice.serverInfo.totalHPCClusterNotes" min="0">
                         </div>
+                        <span id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalHPCClusterNotes}}</span>
                     </div>
                 </div>
 
@@ -57,37 +68,45 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoTotalOtherServers">Total Other Servers</label>
-                        <div class="input-group">
+                        <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalOtherServers" 
                             		data-ng-model="fieldOffice.serverInfo.totalOtherServers" min="0">
                         </div>
+                        <span id="{{fieldOffice.name}}ServerInfoTotalOtherServers"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalOtherServers}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoTotalVirtualHosts">Total Virtual Hosts</label>
-                        <div class="input-group">
+                        <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalVirtualHosts" 
                             		data-ng-model="fieldOffice.serverInfo.totalVirtualHosts" min="0">
                         </div>
+                        <span id="{{fieldOffice.name}}ServerInfoTotalVirtualHosts"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalVirtualHosts}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoTotalVirtualOS">Total Virtual OS</label>
-                        <div class="input-group">
+                        <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalVirtualOS" 
                             		data-ng-model="fieldOffice.serverInfo.totalVirtualOS" min="0">
                         </div>
+                        <span id="{{fieldOffice.name}}ServerInfoTotalVirtualOS"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalVirtualOS}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoTotalStorage">Total Storage</label>
-                        <div class="input-group">
+                        <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalStorage" 
                             		data-ng-model="fieldOffice.serverInfo.totalStorage" min="0" step="0.01">
                         </div>
+                        <span id="{{fieldOffice.name}}ServerInfoTotalStorage"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalStorage}}</span>
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -96,10 +115,12 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoUsedStorage">Used Storage</label>
-                        <div class="input-group">
+                        <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoUsedStorage" 
                             		data-ng-model="fieldOffice.serverInfo.usedStorage" min="0" step="0.01">
                         </div>
+                        <span id="{{fieldOffice.name}}ServerInfoUsedStorage"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.usedStorage}}</span>
                     </div>
                 </div>
             </div><!-- /.row -->

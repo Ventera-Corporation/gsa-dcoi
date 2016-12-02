@@ -89,6 +89,7 @@
 		}
 		
 		function saveQuarter(){
+			qc.tempData.editMode = false;
 			QuarterService.saveQuarter(qc.quarterData).then(function (data){
 				if(data.error){
 					//show errors
