@@ -44,8 +44,6 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-	'src/main/resources/public/assets/css/*.css',
-	'src/main/resources/public/plugins/**/*.js'
     ],
 
 
