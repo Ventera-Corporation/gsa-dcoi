@@ -75,14 +75,14 @@
                     <!-- Data Center Body -->
                     <div id="{{dataCenter.dataCenterName}}-body" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
                         <div class="panel-body">
+							<div data-ng-include="'app/quarter/generalinfo.html'"></div>
+							<div data-ng-include="'app/quarter/status.html'"></div>
 							
 							<!-- Tabs -->
 							<uib-tabset data-active="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx">
 								<uib-tab data-ng-repeat="fieldOffice in dataCenter.fieldOffices" data-index="$index" data-style="cursor: pointer" 
 										data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx = $index">
 									<uib-tab-heading><H5>{{fieldOffice.name}}</H5></uib-tab-heading>
-									<div data-ng-include="'app/quarter/generalinfo.html'"></div>
-									<div data-ng-include="'app/quarter/status.html'"></div>
 									<div data-ng-include="'app/quarter/facilityinfo.html'"></div>
 									<div data-ng-include="'app/quarter/serverinfo.html'"></div>
 								</uib-tab>

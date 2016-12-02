@@ -59,16 +59,16 @@
 				var panel = {
 					expanded: true,
 					activeFieldOfficeTabIdx: 0,
-					fieldOffices: []
-				};
-				var category = {
 					generalInfo: true,
 					status: true,
+					fieldOffices: []
+				};
+				var categories = {
 					facilityInfo: true,
 					serverInfo: true
 				};
 				angular.forEach(dataCenter.fieldOffices, function (){
-					panel.fieldOffices.push(angular.copy(category));
+					panel.fieldOffices.push(angular.copy(categories));
 				});
 				qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId] = panel;
 			}
@@ -127,25 +127,21 @@
 							regionId: '',
 							city: '',
 							stateName: '',
+							generalInfo: {},
+							status: {},
 							fieldOffices: [
 								{
 									name: 'PBS',
-									generalInfo: {},
-									status: {},
 									facilityInfo: {},
 									serverInfo: {}
 								},
 								{
 									name: 'FAS',
-									generalInfo: {},
-									status: {},
 									facilityInfo: {},
 									serverInfo: {}
 								},
 								{
 									name: 'OCIO',
-									generalInfo: {},
-									status: {},
 									facilityInfo: {},
 									serverInfo: {}
 								}
