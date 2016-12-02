@@ -47,6 +47,9 @@
                         <ul class="list-group">
                             <li class="list-group-item" data-ng-repeat="dataCenter in region.dataCenters">
                             	<a href="" data-ng-click="qc.tempData.selected.regionIdx = $parent.$index; qc.tempData.selected.dataCenterName = dataCenter.dataCenterName">{{dataCenter.dataCenterName}}</a>
+                            	<i class="fa fa-pencil sidebar-status pull-right inprogress" aria-hidden="true"></i>
+                            	<i class="fa fa-check-circle-o sidebar-status pull-right validated" aria-hidden="true"></i>
+                            	<i class="fa fa-close sidebar-status pull-right error" aria-hidden="true"></i>
                             </li>
                         </ul>
                     </div>

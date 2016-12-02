@@ -224,6 +224,11 @@
             color: #fcb71c;
             margin-left: 5px;
         }
+        
+        .error {
+        	color: #cd2026;
+        	margin-left: 5px;
+        }
 
         .warning-text {
             color: #777777; 
