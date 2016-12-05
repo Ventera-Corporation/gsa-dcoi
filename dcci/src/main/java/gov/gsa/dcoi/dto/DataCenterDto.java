@@ -3,9 +3,9 @@ package gov.gsa.dcoi.dto;
 import java.util.List;
 
 public class DataCenterDto {
-	
-	//Possibly add this back in
-	//private int dataCenterId;
+
+	// Possibly add this back in
+	// private int dataCenterId;
 	private String dataCenterName;
 	private Integer dcoiDataCenterId;
 	private Integer dataCenterId;
@@ -17,8 +17,8 @@ public class DataCenterDto {
 	private Integer regionId;
 	private Integer countryId;
 	private List<FieldOfficeDto> fieldOffices;
-	
-	//ADD GETTER FOR STATENAME
+
+	// ADD GETTER FOR STATENAME
 
 	public String getDataCenterName() {
 		return dataCenterName;
@@ -107,8 +107,5 @@ public class DataCenterDto {
 	public void setDataCenterId(Integer dataCenterId) {
 		this.dataCenterId = dataCenterId;
 	}
-
-
-
 
 }

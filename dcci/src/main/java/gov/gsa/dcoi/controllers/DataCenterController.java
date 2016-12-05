@@ -15,18 +15,19 @@ import gov.gsa.dcoi.repository.DataCenterRepository;
 @RestController
 @RequestMapping("/datacenter")
 public class DataCenterController {
-	
+
 	@Autowired
 	DataCenterRepository dataCenterDao;
-	
+
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
-	public Map<String, Object> initNewDataCenter(){
+	public Map<String, Object> initNewDataCenter() {
 		Map<String, Object> returnData = new HashMap<>();
 		returnData.put("newDataCenter", new DataCenterDto());
 		return returnData;
 	}
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public Map<String, Object> addNewDataCenter(DataCenter dataCenter){
+	public Map<String, Object> addNewDataCenter(DataCenter dataCenter) {
 		dataCenterDao.save(dataCenter);
 		return new HashMap<>();
 	}
