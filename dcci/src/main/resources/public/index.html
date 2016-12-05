@@ -52,7 +52,7 @@
 
 </head>
 
-<body data-ng-cloak>
+<body data-ng-cloak data-ng-controller="LoginController as lc">
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -65,11 +65,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=""><span class="vnt-source-sans-pro-bold">DCO</span> i</a>
+                <a class="navbar-brand" href="#/dashboard"><span class="vnt-source-sans-pro-bold">DCO</span> i</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="DCOi-nav">
+            <div class="collapse navbar-collapse" id="DCOi-nav" data-ng-if="authenticated">
                 <ul class="nav navbar-form navbar-left">
                     <div class="form-group">
                         <input type="text" class="form-control search-style" name="global-search">
@@ -77,13 +77,14 @@
                     <span class="glyphicon glyphicon-search glyph-style" aria-hidden="true" role="button"></span>
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" data-ng-controller="LoginController">
                     <li><a>Advanced Search</a></li>
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">John Doe <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                    <li uib-dropdown>
+                        <a uib-dropdown-toggle role="button" aria-haspopup="true" aria-expanded="false">
+                        	<span style="text-transform: capitalize">{{account.firstName}} {{account.lastName}}</span><span class="caret"></span></a>
+                        <ul uib-dropdown-menu>
                             <li><a href="">Settings</a></li>
-                            <li><a href="">Logout</a></li>
+                            <li><a href="" data-ng-click="lc.logout()">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -99,12 +100,18 @@
 	<script type="text/javascript" src="plugins/angularjs/angular-route.min.js"></script>
 	<script type="text/javascript" src="plugins/angularjs/angular-sanitize.min.js"></script>
 	<script type="text/javascript" src="plugins/angularjs/angular-resource.min.js"></script>
-	<script type="text/javascript" src="plugins/angularjs/ui-bootstrap-2.0.2.min.js"></script>
-	<script type="text/javascript" src="plugins/angularjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
+	<script type="text/javascript" src="plugins/angularjs/ui-bootstrap-2.3.0.min.js"></script>
+	<script type="text/javascript" src="plugins/angularjs/ui-bootstrap-tpls-2.3.0.min.js"></script>
+	<script type="text/javascript" src="plugins/lodash/lodash.js"></script>
 	
 	<!-- App libs -->
 	<script type="text/javascript" src="app/module.js"></script>
 	<script type="text/javascript" src="app/module-config.js"></script>
+	
+	<script type="text/javascript" src="app/common/common-controller.js"></script>
+	<script type="text/javascript" src="app/login/http-auth-interceptor.js"></script>
+	<script type="text/javascript" src="app/login/login-controller.js"></script>
+	<script type="text/javascript" src="app/login/login-service.js"></script>
 	
 	<script type="text/javascript" src="app/dashboard/dashboard-controller.js"></script>
 	<script type="text/javascript" src="app/dashboard/dashboard-service.js"></script>
