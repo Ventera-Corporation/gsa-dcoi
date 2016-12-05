@@ -11,25 +11,22 @@ import gov.gsa.dcoi.refValueRepository.StateReferenceRepository;
 
 @Component
 public class ReferenceValueListService {
-	
+
 	@Autowired
-    CacheManager cacheManager;
-	
+	CacheManager cacheManager;
+
 	@Autowired
 	StateReferenceRepository stateRefRepository;
-	
-	
-	public void initRefValueLists(){
+
+	public void initRefValueLists() {
 		initStateRefValues();
 	}
-	
-	private void initStateRefValues(){
+
+	private void initStateRefValues() {
 		List<State> allStates = stateRefRepository.findAll();
-		for(State state : allStates){
+		for (State state : allStates) {
 			cacheManager.getCache("states").put(state.getStateId(), state);
 		}
 	}
-	
-	
 
 }
