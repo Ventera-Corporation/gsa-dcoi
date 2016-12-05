@@ -8,11 +8,20 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 
 import gov.gsa.dcoi.service.ReferenceValueListService;
 
+/**
+ * Main class bootstrapping the DCOI application.
+ */
 @SpringBootApplication
 @EnableCaching
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class DcoiApplication {
 
+	private DcoiApplication() {}
+	
+	/**
+	 * Entry method for bootstrapping the application
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(DcoiApplication.class, args);
 		ReferenceValueListService refListService = (ReferenceValueListService) context.getBean(ReferenceValueListService.class);

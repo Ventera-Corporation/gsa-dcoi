@@ -2,6 +2,9 @@ package gov.gsa.dcoi.security;
 
 import java.util.List;
 
+/**
+ * Class to hold the User details.
+ */
 public class User {
 	private int dcoiUserId;
 	private String firstName;

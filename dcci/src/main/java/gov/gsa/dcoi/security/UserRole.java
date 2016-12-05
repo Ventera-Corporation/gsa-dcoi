@@ -1,5 +1,8 @@
 package gov.gsa.dcoi.security;
 
+/**
+ * Class to hold the User Roles
+ */
 public class UserRole {
 	private int dcoiUserRoleId;
 	private int dcoiUserId;

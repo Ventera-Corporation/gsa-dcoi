@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import gov.gsa.dcoi.repository.UserRepository;
 
+/**
+ * Class for DB Authentication Provider
+ */
 @Component
 public class DBAuthenticationProvider implements UserDetailsService {
 

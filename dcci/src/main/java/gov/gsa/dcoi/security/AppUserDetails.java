@@ -8,18 +8,29 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * AppUserDetails to hold the logged in User data.
+ */
 public class AppUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 469878880183256843L;
 	private User user;
 
+	/**
+	 * Default constructor using User object.
+	 * @param user
+	 */
 	public AppUserDetails(User user) {
 		this.user = user;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return getAllUserAuthorities(user.getRoles());
+		List<GrantedAuthority> authList = new ArrayList<>();
+		for (UserRole role : user.getRoles()) {
+			authList.add(new SimpleGrantedAuthority(role.getRoleName()));
+		}
+		return authList;
 	}
 
 	public int getId() {
@@ -58,13 +69,5 @@ public class AppUserDetails implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}
-
-	private List<GrantedAuthority> getAllUserAuthorities(List<UserRole> roles) {
-		List<GrantedAuthority> authList = new ArrayList<>();
-		for (UserRole role : roles) {
-			authList.add(new SimpleGrantedAuthority(role.getRoleName()));
-		}
-		return authList;
 	}
 }

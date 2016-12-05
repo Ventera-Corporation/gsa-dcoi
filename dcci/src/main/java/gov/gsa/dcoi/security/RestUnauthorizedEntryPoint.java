@@ -11,6 +11,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * Class for Managing Unauthorized Access
+ */
 @Component
 public class RestUnauthorizedEntryPoint implements AuthenticationEntryPoint {
 
@@ -20,6 +23,6 @@ public class RestUnauthorizedEntryPoint implements AuthenticationEntryPoint {
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
 			throws IOException, ServletException {
-		securityUtils.sendError(response, exception, HttpServletResponse.SC_UNAUTHORIZED, "Authentication failed");
+		securityUtils.sendError(response, exception, HttpServletResponse.SC_UNAUTHORIZED);
 	}
 }

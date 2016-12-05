@@ -3,6 +3,9 @@ package gov.gsa.dcoi;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main DCOI Exception class.
+ */
 public class DcoiException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1123959364459380067L;
@@ -12,16 +15,32 @@ public class DcoiException extends RuntimeException {
 	private List<String> errors = new ArrayList<>();
 	private String exceptionMessage;
 
+	/**
+	 * Default Constructor taking a Message 
+	 * @param msg
+	 */
 	public DcoiException(String msg) {
 		this.setExceptionMessage(msg);
 	}
 
+	/**
+	 * Default Constructor expecting Code, Status and error
+	 * @param code
+	 * @param status
+	 * @param error
+	 */
 	public DcoiException(String code, String status, String error) {
 		this.code = code;
 		this.status = status;
 		this.errors.add(error);
 	}
 
+	/**
+	 * Default Constructor expecting code, status and list of errors
+	 * @param code
+	 * @param status
+	 * @param errors
+	 */
 	public DcoiException(String code, String status, List<String> errors) {
 		this.code = code;
 		this.status = status;

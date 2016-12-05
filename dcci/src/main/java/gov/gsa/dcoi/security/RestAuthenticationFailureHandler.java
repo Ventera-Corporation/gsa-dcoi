@@ -11,6 +11,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
+/**
+ * Class for managing Authentication Failure.
+ */
 @Component
 public class RestAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
@@ -20,6 +23,6 @@ public class RestAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		securityUtils.sendError(response, exception, HttpServletResponse.SC_UNAUTHORIZED, "Authentication failed");
+		securityUtils.sendError(response, exception, HttpServletResponse.SC_UNAUTHORIZED);
 	}
 }

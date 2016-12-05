@@ -11,6 +11,9 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
+/**
+ * Class to handle Request Denial.
+ */
 @Component
 public class RestAccessDeniedHandler implements AccessDeniedHandler {
 	
@@ -20,6 +23,6 @@ public class RestAccessDeniedHandler implements AccessDeniedHandler {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException exception)
 			throws IOException, ServletException {
-		securityUtils.sendError(response, exception, HttpServletResponse.SC_FORBIDDEN, "Not authorized resources");
+		securityUtils.sendError(response, exception, HttpServletResponse.SC_FORBIDDEN);
 	}
 }

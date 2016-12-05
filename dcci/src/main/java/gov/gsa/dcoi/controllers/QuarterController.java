@@ -16,6 +16,10 @@ import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.service.FieldOfficeService;
 import gov.gsa.dcoi.service.QuarterService;
 
+/**
+ * Controller for managing Quarter Information.
+ *
+ */
 @RestController
 @RequestMapping("/quarter")
 public class QuarterController {
@@ -26,7 +30,10 @@ public class QuarterController {
 	@Autowired 
 	FieldOfficeService fieldOfficeService;
 	
-	
+	/**
+	 * Initialize adding a new Quarter
+	 * @return
+	 */
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> initQuarter(){
@@ -34,7 +41,6 @@ public class QuarterController {
 		//return back fiscalQuarterInformation like quarter and fiscal year
 		//as well as return regions/data centers/categories
 		Map<String, Object> returnData = new HashMap<>();
-		//returnData.put("here", "infunction");
 		QuarterDto quarterData = quarterService.initQuarter();
 		
 		returnData.put("quarterData", quarterData );
@@ -42,6 +48,11 @@ public class QuarterController {
 		
 	}
 	
+	/**
+	 * Method to create a new queater.
+	 * @param quarterDto
+	 * @return
+	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
 	public Map<String, Object> createQuarter(QuarterDto quarterDto){
@@ -53,7 +64,7 @@ public class QuarterController {
 		fieldOfficeService.saveDataCenters(quarterDto.getRegions());
 		//also do notification in this function
 		//pass back id for new quarter	
-		return new HashMap<String,Object>();
+		return new HashMap<>();
 	}
 	
 

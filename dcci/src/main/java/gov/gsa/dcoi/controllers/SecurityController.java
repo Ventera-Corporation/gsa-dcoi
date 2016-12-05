@@ -13,6 +13,10 @@ import gov.gsa.dcoi.repository.UserRepository;
 import gov.gsa.dcoi.security.SecurityUtils;
 import gov.gsa.dcoi.security.User;
 
+/**
+ * Controller to manage Security
+ *
+ */
 @RestController
 @RequestMapping("/security")
 public class SecurityController {
@@ -23,15 +27,25 @@ public class SecurityController {
 	@Autowired
 	SecurityUtils securityUtils;
 	
+	/**
+	 * Get the current logged in user account
+	 */
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
-	public @ResponseBody User getUserAccount() {
+	@ResponseBody
+	public User getUserAccount() {
 		User user = userRepository.findByEmailAddress(securityUtils.getCurrentLogin());
 		user.setPassword(null);
 		return user;
 	}
 	
+	/**
+	 * Method to logout user. 
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public @ResponseBody void logout(HttpServletRequest request, HttpServletResponse response) {
+	@ResponseBody
+	public void logout(HttpServletRequest request, HttpServletResponse response) {
 		securityUtils.logout(request, response);
 	}
 

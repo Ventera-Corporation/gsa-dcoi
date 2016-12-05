@@ -43,6 +43,11 @@ public class SecurityUtils {
 		return userName;
 	}
 	
+	/**
+	 * Logout user from Security Context
+	 * @param request
+	 * @param response
+	 */
 	public void logout(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null){    
@@ -50,7 +55,14 @@ public class SecurityUtils {
 	    }
 	}
 
-	public void sendError(HttpServletResponse response, Exception exception, int status, String message)
+	/**
+	 * Send Error
+	 * @param response
+	 * @param exception
+	 * @param status
+	 * @throws IOException
+	 */
+	public void sendError(HttpServletResponse response, Exception exception, int status)
 			throws IOException {
 		response.setContentType("application/json;charset=UTF-8");
 		response.setStatus(status);
@@ -60,6 +72,13 @@ public class SecurityUtils {
 		writer.close();
 	}
 
+	/**
+	 * Send Response
+	 * @param response
+	 * @param status
+	 * @param object
+	 * @throws IOException
+	 */
 	public void sendResponse(HttpServletResponse response, int status, Object object) throws IOException {
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter writer = response.getWriter();
