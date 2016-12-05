@@ -3,13 +3,16 @@
 	
 	angular.module('dcoiApp').controller('SearchController', SearchController);
 	
-	SearchController.$inject = [];
+	SearchController.$inject = ['SearchService'];
 	
-	function SearchController(){
+	function SearchController(SearchService){
 		var sc = this;
 		sc.search = search;
 		sc.search();
 		function search(){
+//			SearchService.search(qc.searchCriteria).then(function (data){
+//				sc.searchResults = data.searchResults;
+//			});
 			sc.searchResults = [
                 {
                     "year": "2016",
