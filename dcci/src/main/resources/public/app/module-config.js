@@ -297,9 +297,20 @@
 				}
 			})
 			.when('/searchResults', {
-				templateUrl: 'app/search/searchresults.html',
+				templateUrl: 'app/search/search.html',
 				controller: 'SearchController',
-				controllerAs: 'sc'
+				controllerAs: 'sc',
+				resolve: {
+					advancedSearchMode: function(){return false;}
+				}
+			})
+			.when('/queryData', {
+				templateUrl: 'app/search/search.html',
+				controller: 'SearchController',
+				controllerAs: 'sc',
+				resolve: {
+					advancedSearchMode: function(){return true;}
+				}
 			});
 	}
 })();

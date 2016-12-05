@@ -3,11 +3,15 @@
 	
 	angular.module('dcoiApp').controller('SearchController', SearchController);
 	
-	SearchController.$inject = ['SearchService'];
+	SearchController.$inject = ['SearchService', 'advancedSearchMode'];
 	
-	function SearchController(SearchService){
+	function SearchController(SearchService, advancedSearchMode){
 		var sc = this;
+		sc.advancedSearchMode = advancedSearchMode;
 		sc.search = search;
+		sc.pageInfoStartNumber = pageInfoStartNumber;
+		sc.pageInfoEndNumber = pageInfoEndNumber;
+		
 		sc.search();
 		function search(){
 //			SearchService.search(qc.searchCriteria).then(function (data){
@@ -389,6 +393,21 @@
                     "totalMainframes": "27"
             	}
             ];
+			sc.showResults = true;
+		}
+
+		function pageInfoStartNumber() {
+			if (sc.searchCriteria.currentPageNum == 1)
+				return 1;
+			return ((sc.searchCriteria.currentPageNum - 1) * sc.searchCriteria.resultsPerPage) + 1;
+		}
+		
+		function pageInfoEndNumber() {
+			var temp = sc.searchCriteria.currentPageNum * sc.searchCriteria.resultsPerPage;
+			if (temp > sc.searchCriteria.resultsTotalNum) {
+				temp = sc.searchCriteria.resultsTotalNum;
+			}
+			return temp;
 		}
 	}
 })();
