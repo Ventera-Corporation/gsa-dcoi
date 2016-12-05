@@ -133,9 +133,6 @@
 						return QuarterService.initQuarter().then(function (data){
 							return data.quarterData;
 						});
-					}
-				}
-			});
 						/**return {
 							fiscalQuarterReport: {
 						    	fiscalQuarter: 'Q3',
@@ -295,9 +292,14 @@
 									dataCenters: [],
 								}
 							]
-						};
+						};**/
 					}
 				}
-			});**/
+			})
+			.when('/searchResults', {
+				templateUrl: 'app/search/searchresults.html',
+				controller: 'SearchController',
+				controllerAs: 'sc'
+			});
 	}
 })();
