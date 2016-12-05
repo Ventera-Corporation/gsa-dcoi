@@ -35,6 +35,7 @@
 		qc.quarterData = quarterData;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
+		qc.selectDataCenterName = selectDataCenterName;
 		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
 		qc.editQuarter = editQuarter;
 		qc.createQuarter = createQuarter;
@@ -54,6 +55,11 @@
 				qc.tempData.selected.dataCenterName = region.dataCenters[0].dataCenterName;
 				qc.tempData.selected.expandCollapseRegions[region.code] = true;
 			}
+		}
+		
+		function selectDataCenterName(regionIdx, dataCenterName){
+			qc.tempData.selected.regionIdx = regionIdx;
+			qc.tempData.selected.dataCenterName = dataCenterName;
 		}
 		
 		function initDefaultPanelExpanded(dataCenter){
@@ -141,7 +147,7 @@
 			    backdrop: 'static',
 			    resolve: {
 					dataCenterData: function(){
-//						return QuarterService.initQuarter().then(function (data){
+//						return QuarterService.initDataCenter().then(function (data){
 //							return data.dataCenterData;
 //						});
 						return {
@@ -186,6 +192,7 @@
 			for(var i = 0; i < qc.quarterData.regions.length; i++){
 				if(qc.quarterData.regions[i].regionId == dataCenterData.regionId){
 					qc.quarterData.regions[i].dataCenters.push(dataCenterData);
+					return i;
 				}
 			}
 		}
@@ -198,10 +205,12 @@
 //				} else {
 //					//show success message
 //					qc.tempData.successData = data.successData;
-//					addDataCenterToRegion(dataCenterData);
+//					dataCenterData.dataCenterId = data.successData.dataCenterId;
+					var regionIdx = addDataCenterToRegion(dataCenterData);
+					selectDataCenterName(regionIdx, dataCenterData.dataCenterName);
+					qc.editQuarter();
 //				}
 //			});
-			addDataCenterToRegion(dataCenterData);
 		}
 	}
 })();

@@ -46,7 +46,7 @@
                     <div id="{{region.name}}" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapseRegions[region.code]">
                         <ul class="list-group">
                             <li class="list-group-item" data-ng-repeat="dataCenter in region.dataCenters">
-                            	<a href="" data-ng-click="qc.tempData.selected.regionIdx = $parent.$index; qc.tempData.selected.dataCenterName = dataCenter.dataCenterName">{{dataCenter.dataCenterName}}</a>
+                            	<a href="" data-ng-click="qc.selectDataCenterName($parent.$index, dataCenter.dataCenterName)">{{dataCenter.dataCenterName}}</a>
                             	<i class="fa fa-pencil sidebar-status pull-right inprogress" aria-hidden="true" data-ng-if="qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) !== -1"></i>
                             	<i class="fa fa-check-circle-o sidebar-status pull-right validated" aria-hidden="true" data-ng-if="qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) === -1"></i>
 <!--                             	<i class="fa fa-close sidebar-status pull-right error" aria-hidden="true"></i> -->
