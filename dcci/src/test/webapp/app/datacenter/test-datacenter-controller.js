@@ -5,6 +5,30 @@ describe('dcoiApp', function() {
 	    
 	    beforeEach(angular.mock.inject(function($controller, $httpBackend) {
 			httpBackend = $httpBackend;
+			
+			httpBackend.when("GET", "security/account").respond({
+				"dcoiUserId":2,
+				"firstName":"admin",
+				"lastName":"user",
+				"password":null,
+				"emailAddress":"admin.user@gsa.gov",
+				"activeFlag":true,
+				"roles":[
+				         {
+				        	 "dcoiUserRoleId":0,
+				        	 "dcoiUserId":0,
+				        	 "dcoiRoleId":0,
+				        	 "roleName":"ADMIN"
+				         },
+				         {
+				        	 "dcoiUserRoleId":0,
+				        	 "dcoiUserId":0,
+				        	 "dcoiRoleId":0,
+				        	 "roleName":"USER"
+				         }
+				        ]
+			});
+			
 			httpBackend.when("GET", "/datacenter/init").respond({
 			    'dataCenterData': {
 					dataCenterId: '',

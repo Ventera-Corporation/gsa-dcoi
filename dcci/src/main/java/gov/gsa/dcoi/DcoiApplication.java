@@ -16,8 +16,6 @@ import gov.gsa.dcoi.service.ReferenceValueListService;
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class DcoiApplication {
 
-	private DcoiApplication() {}
-	
 	/**
 	 * Entry method for bootstrapping the application
 	 * @param args
