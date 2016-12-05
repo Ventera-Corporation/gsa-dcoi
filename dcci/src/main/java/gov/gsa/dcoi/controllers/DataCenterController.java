@@ -19,17 +19,17 @@ import gov.gsa.dcoi.repository.DataCenterRepository;
 @RestController
 @RequestMapping("/datacenter")
 public class DataCenterController {
-	
+
 	@Autowired
 	DataCenterRepository dataCenterDao;
-	
+
 	/**
 	 * Initialize adding new Data Center.
 	 * @return
 	 */
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ADMIN')")
-	public Map<String, Object> initNewDataCenter(){
+	public Map<String, Object> initNewDataCenter() {
 		Map<String, Object> returnData = new HashMap<>();
 		returnData.put("newDataCenter", new DataCenterDto());
 		return returnData;
@@ -42,7 +42,7 @@ public class DataCenterController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
-	public Map<String, Object> addNewDataCenter(DataCenter dataCenter){
+	public Map<String, Object> addNewDataCenter(DataCenter dataCenter) {
 		dataCenterDao.save(dataCenter);
 		return new HashMap<>();
 	}
