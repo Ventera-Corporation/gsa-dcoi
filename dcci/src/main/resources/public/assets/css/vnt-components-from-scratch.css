@@ -171,8 +171,14 @@
         }
 
         .panel-category label {
+        	font-weight: 400;
+        	color: #666666;
             font-size: .9em;
             margin-top: 10px;
+        }
+        
+        .panel-category .form-group > span {
+        	font-size: 1.25em;
         }
 
     /* CATEGORY PANEL: END
@@ -409,7 +415,7 @@
             border-color: rgba(0,0,0,.13);               
             background-color: #ffffff;
             margin-bottom: 30px;               
-            min-height: 155px;
+            min-height: 165px;
             -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
                -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
                     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);

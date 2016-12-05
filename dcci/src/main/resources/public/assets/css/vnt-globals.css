@@ -121,10 +121,6 @@
         
         /*      
         # Misc. */
-        label {
-		    font-weight: 400;
-	    }
-
         input,
         input[type="text"], 
         textarea,
@@ -192,7 +188,7 @@
 	***************************************************************************************************************/
         
         /* 
-        # Misc. */
+        # Misc. */        
         .vnt-inverse-mode * {
         	color: #ffffff;
         }
@@ -204,8 +200,7 @@
         }
         
         .inline {
-            display: inline-block; 
-            margin-right: 10px;
+            display: inline-block;
         }
                 
         /* 
