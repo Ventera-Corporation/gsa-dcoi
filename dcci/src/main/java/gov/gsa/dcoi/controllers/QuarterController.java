@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,7 @@ public class QuarterController {
 	
 	
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> initQuarter(){
 		//call DB stored procedure to create new quarter
 		//return back fiscalQuarterInformation like quarter and fiscal year
@@ -41,6 +43,7 @@ public class QuarterController {
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	public Map<String, Object> createQuarter(QuarterDto quarterDto){
 		
 		QuarterReport fiscalQuarterReportEntity = new QuarterReport();
