@@ -8,11 +8,11 @@ import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 
 public class DataCenterService {
-	
-	@Autowired 
+
+	@Autowired
 	DataCenterQuarterRepository dataCenterQuarterRepository;
-	
-	public List<DataCenterQuarter> findByQuarterReportId(Integer curQuarterId){
+
+	public List<DataCenterQuarter> findByQuarterReportId(Integer curQuarterId) {
 		return dataCenterQuarterRepository.findByQuarterReportId(curQuarterId);
 	}
 

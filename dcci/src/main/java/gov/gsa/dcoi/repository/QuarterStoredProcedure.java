@@ -1,6 +1,5 @@
 package gov.gsa.dcoi.repository;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
@@ -10,11 +9,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class QuarterStoredProcedure {
-	
+
 	@PersistenceContext
-    private EntityManager em;
-	
-	public Integer initQuarter(Integer activateQuarter){
+	private EntityManager em;
+
+	public Integer initQuarter(Integer activateQuarter) {
 		// Create call stored procedure
 		StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery("usp_DCOI_CreateNewQuarter");
 		// set parameters
