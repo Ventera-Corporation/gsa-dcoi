@@ -22,7 +22,7 @@ import gov.gsa.dcoi.repository.QuarterReportRepository;
 
 
 /**
- * Class that holds functionality for functionality related to the 
+ * Service class functionality for functionality related to the 
  * quarter overall
  * @author sgonthier
  *

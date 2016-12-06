@@ -19,6 +19,11 @@ public class QuarterStoredProcedure {
 	@PersistenceContext
 	private EntityManager em;
 
+	/**
+	 * Initializes a new quarter and sets all old quarters to be inactive (read-only)
+	 * @param activateQuarter
+	 * @return
+	 */
 	public Integer initQuarter(Integer activateQuarter) {
 		// Create call stored procedure
 		StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery("usp_DCOI_CreateNewQuarter");

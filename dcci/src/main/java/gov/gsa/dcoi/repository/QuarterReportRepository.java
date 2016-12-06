@@ -15,6 +15,12 @@ import gov.gsa.dcoi.entity.QuarterReport;
 @Repository
 public interface QuarterReportRepository extends CrudRepository<QuarterReport, Long> {
 
+	/**
+	 * Pulls back information about ONE quarter report based on the inProgressFlag of the 
+	 * overall report
+	 * @param inProgressFlag
+	 * @return
+	 */
 	public QuarterReport findByInProgressFlag(@Param("in_progress_flag") Integer inProgressFlag);
 
 }
