@@ -66,7 +66,7 @@
                             </div>
                             <div class="vnt-calendar-chip vnt-calendar-chip--creator" style="text-align:center;" 
                             		data-ng-click="dc.addNewQuarter()"
-                            		data-ng-if="!(dc.isAlreadyInProgressQuarter() || quarter.quarterActiveFlag || quarter.quarterCompleteFlag)">
+                            		data-ng-if="lc.isAdmin() && (!(dc.isAlreadyInProgressQuarter() || quarter.quarterActiveFlag || quarter.quarterCompleteFlag))">
 
                                 <div style="border-radius:50%; border-style:solid; border-width:2px; border-color:rgba(0,0,0,.25); 
                                 		text-align:center; height:50px; width:50px; display:inline-block; margin-top: 12px;">
