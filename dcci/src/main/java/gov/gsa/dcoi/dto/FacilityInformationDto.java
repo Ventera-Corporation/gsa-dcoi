@@ -1,5 +1,10 @@
 package gov.gsa.dcoi.dto;
 
+/**
+ * Dto that holds information regarding a field office's facility information.
+ * @author sgonthier
+ *
+ */
 public class FacilityInformationDto {
 
 	private Integer dataCenterInventoryId;

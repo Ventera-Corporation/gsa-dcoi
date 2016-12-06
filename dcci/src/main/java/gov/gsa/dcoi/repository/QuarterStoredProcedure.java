@@ -7,6 +7,12 @@ import javax.persistence.StoredProcedureQuery;
 
 import org.springframework.stereotype.Repository;
 
+/**
+ * Class that contains the information necessary to call
+ * the stored procedure that creates the information for a new quarter report to begin
+ * @author sgonthier
+ *
+ */
 @Repository
 public class QuarterStoredProcedure {
 

@@ -2,6 +2,14 @@ package gov.gsa.dcoi.dto;
 
 import java.util.Date;
 
+/**
+ * The quarter report contains all the information at a high-level about 
+ * the fiscal quarter that is being created including the dueDate of the report, 
+ * the year and the quarter, as well as tracking infromation for the report such as 
+ * quarterComplete, inProgress and submitted flags
+ * @author sgonthier
+ *
+ */
 public class FiscalQuarterReportDto {
 
 	private int quarterReportId;

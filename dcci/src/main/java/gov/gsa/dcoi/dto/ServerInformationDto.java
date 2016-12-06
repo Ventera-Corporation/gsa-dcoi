@@ -1,5 +1,11 @@
 package gov.gsa.dcoi.dto;
 
+/**
+ * Dto that holds information regarding the data center servers.
+ * This information is held at the field office level
+ * @author sgonthier
+ *
+ */
 public class ServerInformationDto {
 
 	private Integer dataCenterInventoryId;

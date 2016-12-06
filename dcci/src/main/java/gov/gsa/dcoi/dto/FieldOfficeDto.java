@@ -1,17 +1,21 @@
 package gov.gsa.dcoi.dto;
 
+
+/**
+ * Dto that holds information regarding a field office.
+ * One data center is made up of many field offices, and in turn
+ * one field office is made up of 2 different "catagories" that 
+ * represent specific information about that field office (ex: FacilityInformationDto
+ * and ServerInformationDto)
+ * @author sgonthier
+ *
+ */
 public class FieldOfficeDto {
 
 	private Integer fieldOfficeId;
 	private String fieldOfficeName;
-
-	private GeneralInformationDto generalInformation;
-
-	private StatusDto status;
-
-	private FacilityInformationDto facilityInformation;
-
-	private ServerInformationDto serverInformation;
+	private FacilityInformationDto facilityInfo;
+	private ServerInformationDto serverInfo;
 
 	// ADD GETTER FOR FIELD OFFICE NAME
 
@@ -23,36 +27,20 @@ public class FieldOfficeDto {
 		this.fieldOfficeId = fieldOfficeId;
 	}
 
-	public GeneralInformationDto getGeneralInformation() {
-		return generalInformation;
+	public FacilityInformationDto getFacilityInfo() {
+		return facilityInfo;
 	}
 
-	public void setGeneralInformation(GeneralInformationDto generalInformation) {
-		this.generalInformation = generalInformation;
+	public void setFacilityInfo(FacilityInformationDto facilityInfo) {
+		this.facilityInfo = facilityInfo;
 	}
 
-	public StatusDto getStatus() {
-		return status;
+	public ServerInformationDto getServerInfo() {
+		return serverInfo;
 	}
 
-	public void setStatus(StatusDto status) {
-		this.status = status;
-	}
-
-	public FacilityInformationDto getFacilityInformation() {
-		return facilityInformation;
-	}
-
-	public void setFacilityInformation(FacilityInformationDto facilityInformation) {
-		this.facilityInformation = facilityInformation;
-	}
-
-	public ServerInformationDto getServerInformation() {
-		return serverInformation;
-	}
-
-	public void setServerInformation(ServerInformationDto serverInformation) {
-		this.serverInformation = serverInformation;
+	public void setServerInfo(ServerInformationDto serverInfo) {
+		this.serverInfo = serverInfo;
 	}
 
 	public String getFieldOfficeName() {

@@ -2,6 +2,15 @@ package gov.gsa.dcoi.dto;
 
 import java.util.List;
 
+/**
+ * Overall dataCenterDto that holds information common to one entire
+ * dataCenter including generalInfo and statusInfo as well as dataCenter name 
+ * and location.
+ * 
+ * Also includes a list of the field offices which are part of that specific data center
+ * @author sgonthier
+ *
+ */
 public class DataCenterDto {
 
 	// Possibly add this back in
