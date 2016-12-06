@@ -2,19 +2,26 @@ package gov.gsa.dcoi.dto;
 
 import java.util.List;
 
+/**
+ * Dto that holds information for each region. Data centers
+ * are displayed/grouped on the front by the region that they belong to. Thus,
+ * each region contains a list of dataCenters that are a part of that region.
+ * @author sgonthier
+ *
+ */
 public class RegionDto {
 
-	private Integer id;
+	private Integer regionId;
 	private String name;
 	private String code;
 	private List<DataCenterDto> dataCenters;
 
-	public Integer getId() {
-		return id;
+	public Integer getRegionId() {
+		return regionId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setRegionId(Integer regionId) {
+		this.regionId = regionId;
 	}
 
 	public String getName() {

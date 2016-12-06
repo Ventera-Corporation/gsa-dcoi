@@ -20,6 +20,13 @@ import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 import gov.gsa.dcoi.repository.QuarterStoredProcedure;
 import gov.gsa.dcoi.repository.QuarterReportRepository;
 
+
+/**
+ * Class that holds functionality for functionality related to the 
+ * quarter overall
+ * @author sgonthier
+ *
+ */
 @Component
 public class QuarterService {
 
@@ -77,7 +84,7 @@ public class QuarterService {
 
 			regionDto.setName("New England");
 			regionDto.setCode("newEngland");
-			regionDto.setId(0);
+			regionDto.setRegionId(0);
 			regionDto.setDataCenters(dataCenterDtos);
 			regionDtos.add(regionDto);
 			newQuarter.setRegions(regionDtos);
