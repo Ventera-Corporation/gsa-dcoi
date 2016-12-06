@@ -28,7 +28,7 @@ public class AppUserDetails implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authList = new ArrayList<>();
 		for (UserRole role : user.getRoles()) {
-			authList.add(new SimpleGrantedAuthority(role.getRoleName()));
+			authList.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
 		}
 		return authList;
 	}
