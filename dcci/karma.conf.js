@@ -43,6 +43,8 @@ module.exports = function(config) {
       'src/main/resources/public/app/quarter/quarter-controller.js',
       'src/main/resources/public/app/quarter/quarter-service.js',
       'src/main/resources/public/app/datacenter/datacenter-controller.js',
+      'src/main/resources/public/app/search/search-controller.js',
+      'src/main/resources/public/app/search/search-service.js',
       'src/test/**/*.js'
     ],
 
