@@ -195,6 +195,7 @@
 					return i;
 				}
 			}
+			return -1;
 		}
 		
 		function addNewDataCenterFromModal(dataCenterData){
