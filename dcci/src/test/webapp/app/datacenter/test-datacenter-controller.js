@@ -71,7 +71,7 @@ describe('dcoiApp', function() {
 	    		dataCenterData: {}
 	    	});
 			httpBackend.expectGET('/datacenter/init');
-			dcc.initDataCenter();
+			dcc.initDataCenterData();
 	    	httpBackend.flush();
 	    }));
 	    
@@ -83,8 +83,8 @@ describe('dcoiApp', function() {
 			expect(dcc.dataCenter.regionId).toBe('');
 			expect(dcc.dataCenter.city).toBe('');
 			expect(dcc.dataCenter.stateName).toBe('');
-			expect(dcc.dataCenter.generalInfo).toBe({});
-			expect(dcc.dataCenter.status).toBe({});
+			expect(dcc.dataCenter.generalInfo).toBeDefined();
+			expect(dcc.dataCenter.status).toBeDefined();
 			expect(dcc.dataCenter.fieldOffices.length).toBeGreaterThan(0);
 	    });
 
