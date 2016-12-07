@@ -40,6 +40,7 @@
 		qc.editQuarter = editQuarter;
 		qc.createQuarter = createQuarter;
 		qc.saveQuarter = saveQuarter;
+		qc.getEditedDataCenters = getEditedDataCenters;
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
 		
@@ -119,11 +120,11 @@
 			var editedDataCenters = [];
 			angular.forEach(qc.tempData.wasInEditMode.dataCenterIds, function(dataCenterIdInEditMode){
 				angular.forEach(qc.quarterData.regions, function(region){
-					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode})[0];
+					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode}, true)[0];
 					editedDataCenters.push(foundDataCenter);
 				});
 			});
-//			QuarterService.saveQuarter(editedDataCenters).then(function (data){
+//			QuarterService.saveQuarter(qc.getEditedDataCenters()).then(function (data){
 //				if(data.error){
 //					//show errors
 //					qc.tempData.errorData = data;
@@ -136,6 +137,19 @@
 					qc.tempData.editMode = false;
 //				}
 //			});
+		}
+		
+		function getEditedDataCenters(){
+			var editedDataCenters = [];
+			angular.forEach(qc.tempData.wasInEditMode.dataCenterIds, function(dataCenterIdInEditMode){
+				angular.forEach(qc.quarterData.regions, function(region){
+					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode}, true)[0];
+					if(foundDataCenter){
+						editedDataCenters.push(foundDataCenter);
+					}
+				});
+			});
+			return editedDataCenters;
 		}
 		
 		function addNewDataCenterModal(){
@@ -195,6 +209,7 @@
 					return i;
 				}
 			}
+			return -1;
 		}
 		
 		function addNewDataCenterFromModal(dataCenterData){

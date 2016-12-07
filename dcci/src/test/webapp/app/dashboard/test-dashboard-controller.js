@@ -1,10 +1,35 @@
 describe('dcoiApp', function() {
     	beforeEach(angular.mock.module('dcoiApp'));
 	describe("DashboardController", function() {
-	    var dc, httpBackend;
+	    var dc, scope, httpBackend;
 	    
-	    beforeEach(angular.mock.inject(function($controller, $httpBackend) {
+	    beforeEach(angular.mock.inject(function($controller, $rootScope, $httpBackend) {
+	    	scope = $rootScope.$new();
 			httpBackend = $httpBackend;
+			
+			httpBackend.when("GET", "security/account").respond({
+				"dcoiUserId":2,
+				"firstName":"admin",
+				"lastName":"user",
+				"password":null,
+				"emailAddress":"admin.user@gsa.gov",
+				"activeFlag":true,
+				"roles":[
+				         {
+				        	 "dcoiUserRoleId":0,
+				        	 "dcoiUserId":0,
+				        	 "dcoiRoleId":0,
+				        	 "roleName":"ADMIN"
+				         },
+				         {
+				        	 "dcoiUserRoleId":0,
+				        	 "dcoiUserId":0,
+				        	 "dcoiRoleId":0,
+				        	 "roleName":"USER"
+				         }
+				        ]
+			});
+			
 			httpBackend.when("GET", "/dashboard/init").respond({
 			    'dashboardData': {
 					years: ['2016', '2015', '2014'],
@@ -110,13 +135,13 @@ describe('dcoiApp', function() {
 			});
 			
 	    	dc = $controller("DashboardController", {
-	    		dashboardData: {}
+	    		dashboardData: {},
+	    		$scope: scope
 	    	});
 			httpBackend.expectGET('/dashboard/init');
 			dc.initDashboardData();
 	    	httpBackend.flush();
 	    }));
-	    
 	    
 	    xit('verify dashboard data', function() {
 			expect(dc.dashboardData.years.length).toBe(3);
