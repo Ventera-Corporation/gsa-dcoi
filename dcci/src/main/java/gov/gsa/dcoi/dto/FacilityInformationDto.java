@@ -1,100 +1,128 @@
 package gov.gsa.dcoi.dto;
 
+/**
+ * Dto that holds information regarding a field office's facility information.
+ * @author sgonthier
+ *
+ */
 public class FacilityInformationDto {
-	
-	private int dataCenterInventoryId;
-	private int grossFloorArea;
-	private int customerFloorAreaTotal;
-	private double annualCostSqFt;
+
+	private Integer dataCenterInventoryId;
+	private Integer grossFloorArea;
+	private Integer customerFloorAreaTotal;
+	private Double annualCostSqFt;
 	private String otherAgenciesServiced;
-	private int powerCapacityTotal;
-	private double electricityUsageAvg;
-	private double itPowerCapacityTotal;
-	private double itElectricityUsageAvg;
-	private double costPerKwh;
-	private double fte;
-	private double fteCost;
-	private int rackCount;
-	
-	public int getGrossFloorArea() {
+	private Integer powerCapacityTotal;
+	private Double electricityUsageAvg;
+	private Double itPowerCapacityTotal;
+	private Double itElectricityUsageAvg;
+	private Double costPerKwh;
+	private Double fte;
+	private Double fteCost;
+	private Integer rackCount;
+
+	public Integer getDataCenterInventoryId() {
+		return dataCenterInventoryId;
+	}
+
+	public void setDataCenterInventoryId(Integer dataCenterInventoryId) {
+		this.dataCenterInventoryId = dataCenterInventoryId;
+	}
+
+	public Integer getGrossFloorArea() {
 		return grossFloorArea;
 	}
-	public void setGrossFloorArea(int grossFloorArea) {
+
+	public void setGrossFloorArea(Integer grossFloorArea) {
 		this.grossFloorArea = grossFloorArea;
 	}
-	public int getCustomerFloorAreaTotal() {
+
+	public Integer getCustomerFloorAreaTotal() {
 		return customerFloorAreaTotal;
 	}
-	public void setCustomerFloorAreaTotal(int customerFloorAreaTotal) {
+
+	public void setCustomerFloorAreaTotal(Integer customerFloorAreaTotal) {
 		this.customerFloorAreaTotal = customerFloorAreaTotal;
 	}
-	public double getAnnualCostSqFt() {
+
+	public Double getAnnualCostSqFt() {
 		return annualCostSqFt;
 	}
-	public void setAnnualCostSqFt(double annualCostSqFt) {
+
+	public void setAnnualCostSqFt(Double annualCostSqFt) {
 		this.annualCostSqFt = annualCostSqFt;
 	}
+
 	public String getOtherAgenciesServiced() {
 		return otherAgenciesServiced;
 	}
+
 	public void setOtherAgenciesServiced(String otherAgenciesServiced) {
 		this.otherAgenciesServiced = otherAgenciesServiced;
 	}
-	public int getPowerCapacityTotal() {
+
+	public Integer getPowerCapacityTotal() {
 		return powerCapacityTotal;
 	}
-	public void setPowerCapacityTotal(int powerCapacityTotal) {
+
+	public void setPowerCapacityTotal(Integer powerCapacityTotal) {
 		this.powerCapacityTotal = powerCapacityTotal;
 	}
-	public double getElectricityUsageAvg() {
+
+	public Double getElectricityUsageAvg() {
 		return electricityUsageAvg;
 	}
-	public void setElectricityUsageAvg(double electricityUsageAvg) {
+
+	public void setElectricityUsageAvg(Double electricityUsageAvg) {
 		this.electricityUsageAvg = electricityUsageAvg;
 	}
-	public double getItPowerCapacityTotal() {
+
+	public Double getItPowerCapacityTotal() {
 		return itPowerCapacityTotal;
 	}
-	public void setItPowerCapacityTotal(double itPowerCapacityTotal) {
+
+	public void setItPowerCapacityTotal(Double itPowerCapacityTotal) {
 		this.itPowerCapacityTotal = itPowerCapacityTotal;
 	}
-	public double getItElectricityUsageAvg() {
+
+	public Double getItElectricityUsageAvg() {
 		return itElectricityUsageAvg;
 	}
-	public void setItElectricityUsageAvg(double itElectricityUsageAvg) {
+
+	public void setItElectricityUsageAvg(Double itElectricityUsageAvg) {
 		this.itElectricityUsageAvg = itElectricityUsageAvg;
 	}
-	public double getCostPerKwh() {
+
+	public Double getCostPerKwh() {
 		return costPerKwh;
 	}
-	public void setCostPerKwh(double costPerKwh) {
+
+	public void setCostPerKwh(Double costPerKwh) {
 		this.costPerKwh = costPerKwh;
 	}
-	public double getFte() {
+
+	public Double getFte() {
 		return fte;
 	}
-	public void setFte(double fte) {
+
+	public void setFte(Double fte) {
 		this.fte = fte;
 	}
-	public double getFteCost() {
+
+	public Double getFteCost() {
 		return fteCost;
 	}
-	public void setFteCost(double fteCost) {
+
+	public void setFteCost(Double fteCost) {
 		this.fteCost = fteCost;
 	}
-	public int getRackCount() {
+
+	public Integer getRackCount() {
 		return rackCount;
 	}
-	public void setRackCount(int rackCount) {
+
+	public void setRackCount(Integer rackCount) {
 		this.rackCount = rackCount;
 	}
-	public int getDataCenterInventoryId() {
-		return dataCenterInventoryId;
-	}
-	public void setDataCenterInventoryId(int dataCenterInventoryId) {
-		this.dataCenterInventoryId = dataCenterInventoryId;
-	}
-	
-
 
 }

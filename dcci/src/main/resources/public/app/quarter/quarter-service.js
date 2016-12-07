@@ -13,32 +13,18 @@
 					method: 'GET'
 				}).then(returnData);
 			},
-			createQuarter : function(quarterData) {
+			createQuarter : function(dueDate) {
 				return $http({
 					url: '/quarter/create',
 					method: 'POST',
-					params: {quarterDto: quarterData}
+					params: {dueDate: dueDate}
 				}).then(returnData);
 			},
-			saveQuarter : function(quarterData) {
+			saveQuarter : function(editedDataCenters) {
 				return $http({
 					url: '/quarter/save',
 					method: 'POST',
-					params: {quarterDto: quarterData}
-				}).then(returnData);
-			},
-			submitQuarter : function(quarterData) {
-				return $http({
-					url: '',
-					method: 'POST',
-					params: {quarterData: quarterData}
-				}).then(returnData);
-			},
-			exportQuarter : function(quarterData) {
-				return $http({
-					url: '',
-					method: 'POST',
-					params: {quarterData: quarterData}
+					params: {dataCenterDtos: editedDataCenters}
 				}).then(returnData);
 			},
 			initDataCenter : function() {
@@ -52,30 +38,6 @@
 					url: '/datacenter/add',
 					method: 'POST',
 					params: {dataCenterDto: dataCenterData}
-				}).then(returnData);
-			},
-			removeDataCenter : function(dataCenterID) {
-				return $http({
-					url: '',
-					method: 'POST',
-					params: {dataCenterID: dataCenterID}
-				});
-			},
-			viewAudit : function(categoryID) {
-				return $http({
-					url: '',
-					method: 'POST',
-					params: {categoryID: categoryID}
-				}).then(returnData);
-			},
-			validateCategory : function(dataCenterID, categoryDto) {
-				return $http({
-					url: '',
-					method: 'POST',
-					params: {
-						dataCenterID: dataCenterID,
-						categoryDto: categoryDto
-					}
 				}).then(returnData);
 			}
 	    };

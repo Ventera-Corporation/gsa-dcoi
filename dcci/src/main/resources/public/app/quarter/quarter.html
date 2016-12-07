@@ -3,14 +3,20 @@
     <span class="inline" style="padding-top: 2px;">
     	<span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="" id="menu-toggle" style="font-size: .8em;" 
     			data-ng-click="qc.tempData.selected.expandCollapseSidebar=!qc.tempData.selected.expandCollapseSidebar"></span>
-    	&nbsp; Create New Quarter - {{::qc.quarterData.fiscalQuarterReport.fiscalQuarter}} {{::qc.quarterData.fiscalQuarterReport.fiscalYear}}
+    	&nbsp; New Quarter - {{::qc.quarterData.fiscalQuarterReport.fiscalQuarter}} {{::qc.quarterData.fiscalQuarterReport.fiscalYear}}
     </span>
 
     <div class="pull-right">
     	<span class="inline"><h4>Due Date:</h4></span>
         <span class="inline"><input class="form-control" type="text" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"></span>
-        <span class="inline"><button class="usa-button usa-button-outline" type="button" style="display: inline;" data-ng-click="qc.saveQuarter()">Save</button></span>
-        <span class="inline"><button class="usa-button usa-button-primary" type="button" style="display: inline;" data-ng-click="qc.createQuarter()">Create</button></span>
+        <button class="usa-button usa-button-outline" type="button" 
+        		data-ng-click="qc.editQuarter()" data-ng-if="!qc.tempData.editMode">Edit</button>
+        <button class="usa-button usa-button-primary" type="button" 
+        		data-ng-click="qc.createQuarter()" data-ng-if="!qc.tempData.editMode">Create Quarter</button>
+        <button class="usa-button usa-button-primary" type="button" 
+        		data-ng-click="qc.saveQuarter()" data-ng-if="qc.tempData.editMode">Save Changes</button>
+		<button class="usa-button usa-button-primary" type="button" data-ng-click=""><i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;Export</button>
+		<button class="usa-button usa-button-validate" type="button" data-ng-click="">Complete</button>
     </div>
 </div>
 
@@ -42,7 +48,10 @@
                     <div id="{{region.name}}" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapseRegions[region.code]">
                         <ul class="list-group">
                             <li class="list-group-item" data-ng-repeat="dataCenter in region.dataCenters">
-                            	<a href="" data-ng-click="qc.tempData.selected.regionIdx = $parent.$index; qc.tempData.selected.dataCenterName = dataCenter.dataCenterName">{{dataCenter.dataCenterName}}</a>
+                            	<a href="" data-ng-click="qc.selectDataCenterName($parent.$index, dataCenter.dataCenterName)">{{dataCenter.dataCenterName}}</a>
+                            	<i class="fa fa-pencil sidebar-status pull-right inprogress" aria-hidden="true" data-ng-if="qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) !== -1"></i>
+                            	<i class="fa fa-check-circle-o sidebar-status pull-right validated" aria-hidden="true" data-ng-if="qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) === -1"></i>
+<!--                             	<i class="fa fa-close sidebar-status pull-right error" aria-hidden="true"></i> -->
                             </li>
                         </ul>
                     </div>
@@ -80,13 +89,27 @@
 							<uib-tabset data-active="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx">
 								<uib-tab data-ng-repeat="fieldOffice in dataCenter.fieldOffices" data-index="$index" data-style="cursor: pointer" 
 										data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx = $index">
-									<uib-tab-heading><H5>{{fieldOffice.name}}</H5></uib-tab-heading>
-									<div data-ng-include="'app/quarter/generalinfo.html'"></div>
-									<div data-ng-include="'app/quarter/status.html'"></div>
+									<uib-tab-heading><H5>{{fieldOffice.fieldOfficeName}}</H5></uib-tab-heading>
+									
+									<div class="pull-left">
+										<button class="usa-button usa-button-secondary" type="button" data-ng-click="">Reject</button>
+									</div>
+									
+									<div class="pull-right">
+										<button class="usa-button usa-button-outline" type="button" data-ng-click="">Save</button>
+										<button class="usa-button usa-button-primary" type="button" data-ng-click="">Submit</button>
+										<button class="usa-button usa-button-validate" type="button" data-ng-click=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Validate</button>
+									</div>
+									
+									<br><br>
+									
 									<div data-ng-include="'app/quarter/facilityinfo.html'"></div>
 									<div data-ng-include="'app/quarter/serverinfo.html'"></div>
 								</uib-tab>
 							 </uib-tabset>
+							
+							<div data-ng-include="'app/quarter/generalinfo.html'"></div>
+							<div data-ng-include="'app/quarter/status.html'"></div>
 
                         </div><!-- /.panel-body -->
                     </div><!--/.panel-collapse -->

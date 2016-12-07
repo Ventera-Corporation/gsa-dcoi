@@ -5,48 +5,40 @@ import javax.persistence.Id;
 
 @Entity
 public class DataCenter {
-	
+
 	@Id
-	private int dataCenterId;
+	private Integer dataCenterId;
 	private String dataCenterName;
-	private int dcoiDataCenterId;
+	private Integer dcoiDataCenterId;
 	private String address;
 	private String address2;
 	private String city;
-	private int zipCode;
-	private int stateId;
-	private int regionId;
-	private int coutnryId;
-	
-	public int getDataCenterId(){
+	private Integer zipCode;
+	private Integer stateId;
+	private Integer regionId;
+	private Integer coutnryId;
+
+	public Integer getDataCenterId() {
 		return dataCenterId;
 	}
-	
-	public void setDataCenterId(int dataCenterId){
-		this.dataCenterId =  dataCenterId;
-	}
-	
-	public String getDataCenterName(){
-		return dataCenterName;
-	}
-	
-	public void setDataCenterName(String dataCenterName){
-		this.dataCenterName = dataCenterName;
-	}
-	
-	public String getCity(){
-		return city;
-	}
-	
-	public void setCity(String city){
-		this.city = city;
+
+	public void setDataCenterId(Integer dataCenterId) {
+		this.dataCenterId = dataCenterId;
 	}
 
-	public int getDcoiDataCenterId() {
+	public String getDataCenterName() {
+		return dataCenterName;
+	}
+
+	public void setDataCenterName(String dataCenterName) {
+		this.dataCenterName = dataCenterName;
+	}
+
+	public Integer getDcoiDataCenterId() {
 		return dcoiDataCenterId;
 	}
 
-	public void setDcoiDataCenterId(int dcoiDataCenterId) {
+	public void setDcoiDataCenterId(Integer dcoiDataCenterId) {
 		this.dcoiDataCenterId = dcoiDataCenterId;
 	}
 
@@ -66,38 +58,44 @@ public class DataCenter {
 		this.address2 = address2;
 	}
 
-	public int getZipCode() {
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Integer getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(Integer zipCode) {
 		this.zipCode = zipCode;
 	}
 
-	public int getStateId() {
+	public Integer getStateId() {
 		return stateId;
 	}
 
-	public void setStateId(int stateId) {
+	public void setStateId(Integer stateId) {
 		this.stateId = stateId;
 	}
 
-	public int getRegionId() {
+	public Integer getRegionId() {
 		return regionId;
 	}
 
-	public void setRegionId(int regionId) {
+	public void setRegionId(Integer regionId) {
 		this.regionId = regionId;
 	}
 
-	public int getCoutnryId() {
+	public Integer getCoutnryId() {
 		return coutnryId;
 	}
 
-	public void setCoutnryId(int coutnryId) {
+	public void setCoutnryId(Integer coutnryId) {
 		this.coutnryId = coutnryId;
 	}
-	
-	
 
 }

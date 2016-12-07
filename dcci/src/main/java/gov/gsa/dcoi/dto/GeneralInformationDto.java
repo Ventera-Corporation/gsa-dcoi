@@ -1,98 +1,120 @@
 package gov.gsa.dcoi.dto;
 
+/**
+ * Dto that holds information regarding the general information of the data center.
+ * This information is held at the data center level
+ * @author sgonthier
+ *
+ */
 public class GeneralInformationDto {
-	
-	
-	private int dataCenterInventoryId;
-	private int dataCenterId;
-	private int fiscalQuarterReportId;
-	private int parentDataCenterInventoryId;
+
+	private Integer dataCenterInventoryId;
+	private Integer dataCenterId;
+	private Integer quarterReportId;
+	private Integer parentDataCenterInventoryId;
 	private String dcoiDataCenterId;
 	private String publishedName;
 	private String streetAddress;
 	private String streetAddress2;
 	private String city;
 	private String zipCode;
-	private int countryId;
+	private Integer countryId;
 	private String dataCenterName;
-	
-	
-	public int getDataCenterId() {
+
+	public Integer getDataCenterInventoryId() {
+		return dataCenterInventoryId;
+	}
+
+	public void setDataCenterInventoryId(Integer dataCenterInventoryId) {
+		this.dataCenterInventoryId = dataCenterInventoryId;
+	}
+
+	public Integer getDataCenterId() {
 		return dataCenterId;
 	}
-	public void setDataCenterId(int dataCenterId) {
+
+	public void setDataCenterId(Integer dataCenterId) {
 		this.dataCenterId = dataCenterId;
 	}
-	public int getFiscalQuarterReportId() {
-		return fiscalQuarterReportId;
+
+	public Integer getQuarterReportId() {
+		return quarterReportId;
 	}
-	public void setFiscalQuarterReportId(int fiscalQuarterReportId) {
-		this.fiscalQuarterReportId = fiscalQuarterReportId;
+
+	public void setQuarterReportId(Integer quarterReportId) {
+		this.quarterReportId = quarterReportId;
 	}
-	public int getParentDataCenterInventoryId() {
+
+	public Integer getParentDataCenterInventoryId() {
 		return parentDataCenterInventoryId;
 	}
-	public void setParentDataCenterInventoryId(int parentDataCenterInventoryId) {
+
+	public void setParentDataCenterInventoryId(Integer parentDataCenterInventoryId) {
 		this.parentDataCenterInventoryId = parentDataCenterInventoryId;
 	}
-	
+
 	public String getDcoiDataCenterId() {
 		return dcoiDataCenterId;
 	}
+
 	public void setDcoiDataCenterId(String dcoiDataCenterId) {
 		this.dcoiDataCenterId = dcoiDataCenterId;
 	}
+
 	public String getPublishedName() {
 		return publishedName;
 	}
+
 	public void setPublishedName(String publishedName) {
 		this.publishedName = publishedName;
 	}
+
 	public String getStreetAddress() {
 		return streetAddress;
 	}
+
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
 	}
+
 	public String getStreetAddress2() {
 		return streetAddress2;
 	}
+
 	public void setStreetAddress2(String streetAddress2) {
 		this.streetAddress2 = streetAddress2;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getZipCode() {
 		return zipCode;
 	}
+
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	public int getCountryId() {
+
+	public Integer getCountryId() {
 		return countryId;
 	}
-	public void setCountryId(int countryId) {
+
+	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
 	}
+
 	public String getDataCenterName() {
 		return dataCenterName;
 	}
+
 	public void setDataCenterName(String dataCenterName) {
 		this.dataCenterName = dataCenterName;
-	}
-	public int getDataCenterInventoryId() {
-		return dataCenterInventoryId;
-	}
-	public void setDataCenterInventoryId(int dataCenterInventoryId) {
-		this.dataCenterInventoryId = dataCenterInventoryId;
-	}
-	
-	public String getCategoryName(){
-		return this.getClass().getSimpleName();
 	}
 
 }

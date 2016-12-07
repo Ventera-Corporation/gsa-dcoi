@@ -3,11 +3,12 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', 'quarterData'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'quarterData'];
 	
-	function QuarterController(QuarterService, $uibModal, quarterData){
+	function QuarterController(QuarterService, $uibModal, $filter, quarterData){
 		var qc = this;
 		qc.tempData = {};
+		qc.tempData.editMode = false;
 		qc.tempData.selected = {
 			//default
 			expandCollapseSidebar: true,
@@ -27,17 +28,20 @@
 			},
 			expandCollapsePanels: {}
 		};
+		qc.tempData.wasInEditMode = {
+			dataCenterNames:[],
+			dataCenterIds:[]
+		};
 		qc.quarterData = quarterData;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
+		qc.selectDataCenterName = selectDataCenterName;
 		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
+		qc.editQuarter = editQuarter;
 		qc.createQuarter = createQuarter;
 		qc.saveQuarter = saveQuarter;
-		qc.submitQuarter = submitQuarter;
-		qc.exportQuarter = exportQuarter;
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
-		qc.viewAudit = viewAudit;
 		
 		function initQuarterData(){
 			 QuarterService.initQuarter().then(function (data){
@@ -46,11 +50,16 @@
 		}
 		
 		function initDefaultSelected(region, regionIdx){
-			if(qc.tempData.selected.regionIdx == null && region.dataCenters.length > 0) {
+			if(qc.tempData.selected.regionIdx === undefined && region.dataCenters.length) {
 				qc.tempData.selected.regionIdx = regionIdx;
 				qc.tempData.selected.dataCenterName = region.dataCenters[0].dataCenterName;
 				qc.tempData.selected.expandCollapseRegions[region.code] = true;
 			}
+		}
+		
+		function selectDataCenterName(regionIdx, dataCenterName){
+			qc.tempData.selected.regionIdx = regionIdx;
+			qc.tempData.selected.dataCenterName = dataCenterName;
 		}
 		
 		function initDefaultPanelExpanded(dataCenter){
@@ -59,25 +68,43 @@
 				var panel = {
 					expanded: true,
 					activeFieldOfficeTabIdx: 0,
-					fieldOffices: []
-				};
-				var category = {
 					generalInfo: true,
 					status: true,
+					fieldOffices: []
+				};
+				var categories = {
 					facilityInfo: true,
 					serverInfo: true
 				};
 				angular.forEach(dataCenter.fieldOffices, function (){
-					panel.fieldOffices.push(angular.copy(category));
+					panel.fieldOffices.push(angular.copy(categories));
 				});
 				qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId] = panel;
 			}
+			//keep track of which panels were visited in editMode so we can save later but don't repeat
+			if(qc.tempData.editMode){
+				if(qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) === -1){
+					qc.tempData.wasInEditMode.dataCenterNames.push(dataCenter.dataCenterName);
+				}
+				if(qc.tempData.wasInEditMode.dataCenterIds.indexOf(dataCenter.dataCenterId) === -1){
+					qc.tempData.wasInEditMode.dataCenterIds.push(dataCenter.dataCenterId);
+				}
+			}
+		}
+		
+		function editQuarter(){
+			qc.tempData.editMode = true;
+			//need to keep track of which panels were visited where we started in editMode
+			qc.tempData.wasInEditMode.dataCenterNames.push(qc.tempData.selected.dataCenterName);
+			var currentlyDisplayedDataCenters = $filter('filter')(qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters, 
+					{'dataCenterName':qc.tempData.selected.dataCenterName});
+			angular.forEach(currentlyDisplayedDataCenters, function(dataCenter){
+				qc.tempData.wasInEditMode.dataCenterIds.push(dataCenter.dataCenterId);
+			});
 		}
 		
 		function createQuarter(){
-			qc.quarterData.fiscalQuarterReport.quarterInProgressFlag = false;
-			qc.quarterData.fiscalQuarterReport.quarterActiveFlag = true;
-			QuarterService.createQuarter(qc.quarterData).then(function (data){
+			QuarterService.createQuarter(qc.quarterData.dueDate).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
@@ -89,23 +116,26 @@
 		}
 		
 		function saveQuarter(){
-			QuarterService.saveQuarter(qc.quarterData).then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
-				}
+			var editedDataCenters = [];
+			angular.forEach(qc.tempData.wasInEditMode.dataCenterIds, function(dataCenterIdInEditMode){
+				angular.forEach(qc.quarterData.regions, function(region){
+					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode})[0];
+					editedDataCenters.push(foundDataCenter);
+				});
 			});
-		}
-		
-		function submitQuarter(){
-			
-		}
-		
-		function exportQuarter(){
-			
+//			QuarterService.saveQuarter(editedDataCenters).then(function (data){
+//				if(data.error){
+//					//show errors
+//					qc.tempData.errorData = data;
+//				} else {
+//					//show success message
+//					qc.tempData.successData = data.successData;
+					//reset all of the edited panels
+					qc.tempData.wasInEditMode.dataCenterNames = [];
+					qc.tempData.wasInEditMode.dataCenterIds = [];
+					qc.tempData.editMode = false;
+//				}
+//			});
 		}
 		
 		function addNewDataCenterModal(){
@@ -117,7 +147,7 @@
 			    backdrop: 'static',
 			    resolve: {
 					dataCenterData: function(){
-//						return QuarterService.initQuarter().then(function (data){
+//						return QuarterService.initDataCenter().then(function (data){
 //							return data.dataCenterData;
 //						});
 						return {
@@ -127,25 +157,21 @@
 							regionId: '',
 							city: '',
 							stateName: '',
+							generalInfo: {},
+							status: {},
 							fieldOffices: [
 								{
 									name: 'PBS',
-									generalInfo: {},
-									status: {},
 									facilityInfo: {},
 									serverInfo: {}
 								},
 								{
 									name: 'FAS',
-									generalInfo: {},
-									status: {},
 									facilityInfo: {},
 									serverInfo: {}
 								},
 								{
 									name: 'OCIO',
-									generalInfo: {},
-									status: {},
 									facilityInfo: {},
 									serverInfo: {}
 								}
@@ -166,6 +192,7 @@
 			for(var i = 0; i < qc.quarterData.regions.length; i++){
 				if(qc.quarterData.regions[i].regionId == dataCenterData.regionId){
 					qc.quarterData.regions[i].dataCenters.push(dataCenterData);
+					return i;
 				}
 			}
 		}
@@ -178,14 +205,12 @@
 //				} else {
 //					//show success message
 //					qc.tempData.successData = data.successData;
-//					addDataCenterToRegion(dataCenterData);
+//					dataCenterData.dataCenterId = data.successData.dataCenterId;
+					var regionIdx = addDataCenterToRegion(dataCenterData);
+					selectDataCenterName(regionIdx, dataCenterData.dataCenterName);
+					qc.editQuarter();
 //				}
 //			});
-			addDataCenterToRegion(dataCenterData);
-		}
-		
-		function viewAudit(){
-			
 		}
 	}
 })();

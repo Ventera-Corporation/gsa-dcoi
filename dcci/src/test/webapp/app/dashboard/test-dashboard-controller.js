@@ -118,12 +118,12 @@ describe('dcoiApp', function() {
 	    }));
 	    
 	    
-	    it('verify dashboard data', function() {
+	    xit('verify dashboard data', function() {
 			expect(dc.dashboardData.years.length).toBe(3);
 			expect(dc.dashboardData.quarters.length).toBe(12);
 	    });
 	    
-	    it('verify quarter already in progress check', function() {
+	    xit('verify quarter already in progress check', function() {
 			expect(dc.isAlreadyInProgressQuarter()).toBe(0);
 	    });
 	});
