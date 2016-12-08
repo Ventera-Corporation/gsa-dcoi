@@ -46,10 +46,8 @@
 							fiscalYear : '2016',
 							totalNumDataCenters : 26,
 							quarterInProgressFlag : false,
-							quarterActiveFlag : true,
-							fieldOfficesInProgressFlags : [ 'PBS', 'FAS' ],
-							fieldOfficesCompleteFlags : [ 'OCIO' ],
-							quarterCompleteFlag : false
+							quarterActiveFlag : false,
+							quarterCompleteFlag : true
 						}, {
 							fiscalQuarter : 'Q2',
 							fiscalYear : '2016',
@@ -130,21 +128,28 @@
 			controllerAs : 'qc',
 			resolve : {
 				quarterData : function(QuarterService) {
-					return QuarterService.initQuarter().then(function(data) {
-						return data.quarterData;
-					});
-					/**return {
+//					return QuarterService.initQuarter().then(function(data) {
+//						return data.quarterData;
+//					});
+					return {
 						fiscalQuarterReport: {
 					    	fiscalQuarter: 'Q3',
 							fiscalYear: '2016',
 							quarterInProgressFlag: true,
-							quarterActiveFlag: false
+							quarterActiveFlag: false,
+							quarterCompleteFlag: false
 						},
 						regions: [
 							{
+								name: "Cloud",
+								code: 'cloud',
+								regionId: 0,
+								dataCenters: []
+							},
+							{
 								name: 'New England',
 								code: 'newEngland',
-								regionId: 0,
+								regionId: 1,
 								dataCenters: [
 									{
 										dataCenterName: 'Data Center 1 Name',
@@ -152,22 +157,22 @@
 										dcoiDataCenterId: 'Data Center 1 DCOI ID',
 										city: 'Data Center 1 City',
 										stateName: 'Data Center 1 State',
+										generalInfo: {},
+										status: {},
 										fieldOffices: [
 											{
-												name: 'PBS',
-												generalInfo: {},
-												status: {},
+												fieldOfficeName: 'PBS',
 												facilityInfo: {},
 												serverInfo: {}
 											},
 											{
-												name: 'FAS',
-												generalInfo: {},
-												status: {},
+												fieldOfficeName: 'FAS',
 												facilityInfo: {},
 												serverInfo: {}
 											}
 										],
+										ssoCompleteFlag: false,
+										adminCompleteFlag: false
 									},
 									{
 										dataCenterName: 'Data Center 2 Name',
@@ -175,124 +180,332 @@
 										dcoiDataCenterId: 'Data Center 2 DCOI ID',
 										city: 'Data Center 2 City',
 										stateName: 'Data Center 2 State',
+										generalInfo: {},
+										status: {},
 										fieldOffices: [
 											{
-												name: 'PBS',
-												generalInfo: {},
-												status: {},
+												fieldOfficeName: 'PBS',
 												facilityInfo: {},
 												serverInfo: {}
 											},
 											{
-												name: 'FAS',
-												generalInfo: {},
-												status: {},
+												fieldOfficeName: 'FAS',
 												facilityInfo: {},
 												serverInfo: {}
 											}
 										],
+										ssoCompleteFlag: false,
+										adminCompleteFlag: false
 									}
-								],
+								]
 							},
 							{
 								name: 'Northeast and Caribbean',
 								code: 'northeastAndCaribbean',
-								regionId: 1,
+								regionId: 2,
 								dataCenters: [
+									{
+										dataCenterName: 'Data Center 3 Name',
+										dataCenterId: 'Data Center 3 ID',
+										dcoiDataCenterId: 'Data Center 3 DCOI ID',
+										city: 'Data Center 3 City',
+										stateName: 'Data Center 3 State',
+										generalInfo: {},
+										status: {},
+										fieldOffices: [
+											{
+												fieldOfficeName: 'PBS',
+												facilityInfo: {},
+												serverInfo: {}
+											},
+											{
+												fieldOfficeName: 'FAS',
+												facilityInfo: {},
+												serverInfo: {}
+											},
+											{
+												fieldOfficeName: 'OICO',
+												facilityInfo: {},
+												serverInfo: {}
+											}
+										],
+										ssoCompleteFlag: false,
+										adminCompleteFlag: false
+									},
 									{
 										dataCenterName: 'Data Center 4 Name',
 										dataCenterId: 'Data Center 4 ID',
 										dcoiDataCenterId: 'Data Center 4 DCOI ID',
 										city: 'Data Center 4 City',
 										stateName: 'Data Center 4 State',
+										generalInfo: {},
+										status: {},
 										fieldOffices: [
 											{
-												name: 'PBS',
-												generalInfo: {},
-												status: {},
+												fieldOfficeName: 'PBS',
 												facilityInfo: {},
 												serverInfo: {}
 											},
 											{
-												name: 'FAS',
-												generalInfo: {},
-												status: {},
-												facilityInfo: {},
-												serverInfo: {}
-											},
-											{
-												name: 'OCIO',
-												generalInfo: {},
-												status: {},
+												fieldOfficeName: 'FAS',
 												facilityInfo: {},
 												serverInfo: {}
 											}
 										],
+										ssoCompleteFlag: false,
+										adminCompleteFlag: false
 									}
-								],
+								]
 							},
 							{
 								name: "Mid-Atlantic",
 								code: 'midAtlantic',
-								regionId: 2,
+								regionId: 3,
 								dataCenters: [],
 							},
 							{
 								name: "Southeast Sunbelt",
 								code: 'southeastSunbelt',
-								regionId: 3,
+								regionId: 4,
 								dataCenters: [],
 							},
 							{
 								name: "Great Lakes",
 								code: 'greatLakes',
-								regionId: 4,
+								regionId: 5,
 								dataCenters: [],
 							},
 							{
 								name: "Heartland",
 								code: 'heartland',
-								regionId: 5,
+								regionId: 6,
 								dataCenters: [],
 							},
 							{
 								name: "Greater Southwest",
 								code: 'greaterSouthwest',
-								regionId: 6,
+								regionId: 7,
 								dataCenters: [],
 							},
 							{
 								name: "Rocky Mountain",
 								code: 'rockyMountain',
-								regionId: 7,
+								regionId: 8,
 								dataCenters: [],
 							},
 							{
 								name: "Pacific Rim",
 								code: 'pacificRim',
-								regionId: 8,
+								regionId: 9,
 								dataCenters: [],
 							},
 							{
 								name: "Northwest/Arctic",
 								code: 'northwestArctic',
-								regionId: 9,
+								regionId: 10,
 								dataCenters: [],
 							},
 							{
 								name: "National Capital",
 								code: 'nationalCapital',
-								regionId: 10,
-								dataCenters: [],
-							},
-							{
-								name: "Cloud",
-								code: 'cloud',
 								regionId: 11,
 								dataCenters: [],
 							}
 						]
-					};**/
+					};
+				}
+			}
+		}).when('/viewQuarter/:quarterId', {
+			templateUrl : 'app/quarter/quarter.html',
+			controller : 'QuarterController',
+			controllerAs : 'qc',
+			resolve : {
+				quarterData : function(QuarterService, $route){
+//					return QuarterService.viewQuarter($route.current.params.quarterId).then(function(data) {
+//						return data.quarterData;
+//					});
+					return {
+						fiscalQuarterReport: {
+					    	fiscalQuarter: 'Q3',
+							fiscalYear: '2016',
+							quarterInProgressFlag: false,
+							quarterActiveFlag: false,
+							quarterCompleteFlag: true
+						},
+						regions: [
+							{
+								name: "Cloud",
+								code: 'cloud',
+								regionId: 0,
+								dataCenters: []
+							},
+							{
+								name: 'New England',
+								code: 'newEngland',
+								regionId: 1,
+								dataCenters: [
+									{
+										dataCenterName: 'Data Center 1 Name',
+										dataCenterId: 'Data Center 1 ID',
+										dcoiDataCenterId: 'Data Center 1 DCOI ID',
+										city: 'Data Center 1 City',
+										stateName: 'Data Center 1 State',
+										generalInfo: {},
+										status: {},
+										fieldOffices: [
+											{
+												fieldOfficeName: 'PBS',
+												facilityInfo: {},
+												serverInfo: {}
+											},
+											{
+												fieldOfficeName: 'FAS',
+												facilityInfo: {},
+												serverInfo: {}
+											}
+										],
+										ssoCompleteFlag: false,
+										adminCompleteFlag: false
+									},
+									{
+										dataCenterName: 'Data Center 2 Name',
+										dataCenterId: 'Data Center 2 ID',
+										dcoiDataCenterId: 'Data Center 2 DCOI ID',
+										city: 'Data Center 2 City',
+										stateName: 'Data Center 2 State',
+										generalInfo: {},
+										status: {},
+										fieldOffices: [
+											{
+												fieldOfficeName: 'PBS',
+												facilityInfo: {},
+												serverInfo: {}
+											},
+											{
+												fieldOfficeName: 'FAS',
+												facilityInfo: {},
+												serverInfo: {}
+											}
+										],
+										ssoCompleteFlag: false,
+										adminCompleteFlag: false
+									}
+								]
+							},
+							{
+								name: 'Northeast and Caribbean',
+								code: 'northeastAndCaribbean',
+								regionId: 2,
+								dataCenters: [
+									{
+										dataCenterName: 'Data Center 3 Name',
+										dataCenterId: 'Data Center 3 ID',
+										dcoiDataCenterId: 'Data Center 3 DCOI ID',
+										city: 'Data Center 3 City',
+										stateName: 'Data Center 3 State',
+										generalInfo: {},
+										status: {},
+										fieldOffices: [
+											{
+												fieldOfficeName: 'PBS',
+												facilityInfo: {},
+												serverInfo: {}
+											},
+											{
+												fieldOfficeName: 'FAS',
+												facilityInfo: {},
+												serverInfo: {}
+											},
+											{
+												fieldOfficeName: 'OICO',
+												facilityInfo: {},
+												serverInfo: {}
+											}
+										],
+										ssoCompleteFlag: false,
+										adminCompleteFlag: false
+									},
+									{
+										dataCenterName: 'Data Center 4 Name',
+										dataCenterId: 'Data Center 4 ID',
+										dcoiDataCenterId: 'Data Center 4 DCOI ID',
+										city: 'Data Center 4 City',
+										stateName: 'Data Center 4 State',
+										generalInfo: {},
+										status: {},
+										fieldOffices: [
+											{
+												fieldOfficeName: 'PBS',
+												facilityInfo: {},
+												serverInfo: {}
+											},
+											{
+												fieldOfficeName: 'FAS',
+												facilityInfo: {},
+												serverInfo: {}
+											}
+										],
+										ssoCompleteFlag: false,
+										adminCompleteFlag: false
+									}
+								]
+							},
+							{
+								name: "Mid-Atlantic",
+								code: 'midAtlantic',
+								regionId: 3,
+								dataCenters: [],
+							},
+							{
+								name: "Southeast Sunbelt",
+								code: 'southeastSunbelt',
+								regionId: 4,
+								dataCenters: [],
+							},
+							{
+								name: "Great Lakes",
+								code: 'greatLakes',
+								regionId: 5,
+								dataCenters: [],
+							},
+							{
+								name: "Heartland",
+								code: 'heartland',
+								regionId: 6,
+								dataCenters: [],
+							},
+							{
+								name: "Greater Southwest",
+								code: 'greaterSouthwest',
+								regionId: 7,
+								dataCenters: [],
+							},
+							{
+								name: "Rocky Mountain",
+								code: 'rockyMountain',
+								regionId: 8,
+								dataCenters: [],
+							},
+							{
+								name: "Pacific Rim",
+								code: 'pacificRim',
+								regionId: 9,
+								dataCenters: [],
+							},
+							{
+								name: "Northwest/Arctic",
+								code: 'northwestArctic',
+								regionId: 10,
+								dataCenters: [],
+							},
+							{
+								name: "National Capital",
+								code: 'nationalCapital',
+								regionId: 11,
+								dataCenters: [],
+							}
+						]
+					};
 				}
 			}
 		}).when('/searchResults', {

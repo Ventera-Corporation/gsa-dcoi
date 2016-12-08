@@ -12,13 +12,6 @@
 					url: '/dashboard/init',
 					method: 'GET'
 				}).then(returnData);
-			},
-			viewQuarter : function(quarterId) {
-				return $http({
-					url: '/dashboard/view',
-					method: 'GET',
-					params: {quarterId: quarterId}
-				}).then(returnData);
 			}
 	    };
 	    

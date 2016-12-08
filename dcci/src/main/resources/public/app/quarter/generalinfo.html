@@ -25,7 +25,7 @@
                             <div class="text-danger">{{qc.tempData.errorData.messages['agencyAbbreviationRequired']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoAgencyAbbreviation"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.agencyAbbreviation}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.agencyAbbreviation || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -37,7 +37,7 @@
                             <div class="text-danger">{{qc.tempData.errorData.messages['componentRequired']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoComponent"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.component}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.component || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -49,7 +49,7 @@
                             <div class="text-danger">{{qc.tempData.errorData.messages['dataCenterNameRequired']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoDataCenterName"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dataCenterName}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dataCenterName || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -60,7 +60,7 @@
                             		data-ng-model="dataCenter.generalInfo.dataCenterID" placeholder="DCOI-DC-#####">
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoDataCenterID"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dataCenterID}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dataCenterID || "NONE"}}</span>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                             		data-ng-model="dataCenter.generalInfo.agencyDataCenterID">
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoAgencyDataCenterID"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.agencyDataCenterID}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.agencyDataCenterID || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -85,7 +85,7 @@
                             		data-ng-model="dataCenter.generalInfo.publishedName">
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoPublishedName"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.publishedName}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.publishedName || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -96,7 +96,7 @@
                             		data-ng-model="dataCenter.generalInfo.streetAddress">
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoStreetAddress"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.streetAddress}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.streetAddress || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -107,7 +107,7 @@
                             		data-ng-model="dataCenter.generalInfo.streetAddress2">
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoStreetAddress2"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.streetAddress2}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.streetAddress2 || "NONE"}}</span>
                     </div>
                 </div>
             </div>
@@ -121,14 +121,14 @@
                             		data-ng-model="dataCenter.generalInfo.city">
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoCity"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.city}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.city || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}GeneralInfoState">State</label>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoState"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.state}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.state || "NONE"}}</span>
                         <select id="{{dataCenter.dataCenterId}}GeneralInfoState" data-ng-model="dataCenter.generalInfo.state"
                         		 data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>
@@ -194,14 +194,14 @@
                             		data-ng-model="dataCenter.generalInfo.zipCode">
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoZipCode"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.zipCode}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.zipCode || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}GeneralInfoCountry">Country</label>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoCountry"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.country}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.country || "NONE"}}</span>
                         <select id="{{dataCenter.dataCenterId}}GeneralInfoCountry" 
                         		data-ng-model="dataCenter.generalInfo.country" data-ng-if="qc.tempData.editMode">
                             <option value="">Select One</option>

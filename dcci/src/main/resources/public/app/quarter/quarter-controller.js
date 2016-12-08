@@ -175,21 +175,23 @@
 							status: {},
 							fieldOffices: [
 								{
-									name: 'PBS',
+									fieldOfficeName: 'PBS',
 									facilityInfo: {},
 									serverInfo: {}
 								},
 								{
-									name: 'FAS',
+									fieldOfficeName: 'FAS',
 									facilityInfo: {},
 									serverInfo: {}
 								},
 								{
-									name: 'OCIO',
+									fieldOfficeName: 'OCIO',
 									facilityInfo: {},
 									serverInfo: {}
 								}
-							]
+							],
+							ssoCompleteFlag: false,
+							adminCompleteFlag: false
 						};
 					}
 				}

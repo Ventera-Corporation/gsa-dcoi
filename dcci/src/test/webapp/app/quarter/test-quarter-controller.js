@@ -35,7 +35,8 @@ describe('dcoiApp', function() {
 				    	fiscalQuarter: 'Q3',
 						fiscalYear: '2016',
 						quarterInProgressFlag: true,
-						quarterActiveFlag: false
+						quarterActiveFlag: false,
+						quarterCompleteFlag: false
 					},
 					regions: [
 						{
@@ -50,44 +51,50 @@ describe('dcoiApp', function() {
 							regionId: 1,
 							dataCenters: [
 								{
-									name: 'Data Center 1 Name',
-									id: 'Data Center 1 ID',
+									dataCenterName: 'Data Center 1 Name',
+									dataCenterId: 'Data Center 1 ID',
+									dcoiDataCenterId: 'Data Center 1 DCOI ID',
 									city: 'Data Center 1 City',
 									stateName: 'Data Center 1 State',
 									generalInfo: {},
 									status: {},
-									components: [
+									fieldOffices: [
 										{
-											name: 'PBS',
+											fieldOfficeName: 'PBS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'FAS',
+											fieldOfficeName: 'FAS',
 											facilityInfo: {},
 											serverInfo: {}
 										}
-									]
+									],
+									ssoCompleteFlag: false,
+									adminCompleteFlag: false
 								},
 								{
-									name: 'Data Center 2 Name',
-									id: 'Data Center 2 ID',
+									dataCenterName: 'Data Center 2 Name',
+									dataCenterId: 'Data Center 2 ID',
+									dcoiDataCenterId: 'Data Center 2 DCOI ID',
 									city: 'Data Center 2 City',
 									stateName: 'Data Center 2 State',
 									generalInfo: {},
 									status: {},
-									components: [
+									fieldOffices: [
 										{
-											name: 'PBS',
+											fieldOfficeName: 'PBS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'FAS',
+											fieldOfficeName: 'FAS',
 											facilityInfo: {},
 											serverInfo: {}
 										}
-									]
+									],
+									ssoCompleteFlag: false,
+									adminCompleteFlag: false
 								}
 							]
 						},
@@ -97,51 +104,111 @@ describe('dcoiApp', function() {
 							regionId: 2,
 							dataCenters: [
 								{
-									name: 'Data Center 3 Name',
-									id: 'Data Center 3 ID',
+									dataCenterName: 'Data Center 3 Name',
+									dataCenterId: 'Data Center 3 ID',
+									dcoiDataCenterId: 'Data Center 3 DCOI ID',
 									city: 'Data Center 3 City',
 									stateName: 'Data Center 3 State',
 									generalInfo: {},
 									status: {},
-									components: [
+									fieldOffices: [
 										{
-											name: 'PBS',
+											fieldOfficeName: 'PBS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'FAS',
+											fieldOfficeName: 'FAS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'OICO',
+											fieldOfficeName: 'OICO',
 											facilityInfo: {},
 											serverInfo: {}
 										}
-									]
+									],
+									ssoCompleteFlag: false,
+									adminCompleteFlag: false
 								},
 								{
-									name: 'Data Center 4 Name',
-									id: 'Data Center 4 ID',
+									dataCenterName: 'Data Center 4 Name',
+									dataCenterId: 'Data Center 4 ID',
+									dcoiDataCenterId: 'Data Center 4 DCOI ID',
 									city: 'Data Center 4 City',
 									stateName: 'Data Center 4 State',
 									generalInfo: {},
 									status: {},
-									components: [
+									fieldOffices: [
 										{
-											name: 'PBS',
+											fieldOfficeName: 'PBS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'FAS',
+											fieldOfficeName: 'FAS',
 											facilityInfo: {},
 											serverInfo: {}
 										}
-									]
+									],
+									ssoCompleteFlag: false,
+									adminCompleteFlag: false
 								}
 							]
+						},
+						{
+							name: "Mid-Atlantic",
+							code: 'midAtlantic',
+							regionId: 3,
+							dataCenters: [],
+						},
+						{
+							name: "Southeast Sunbelt",
+							code: 'southeastSunbelt',
+							regionId: 4,
+							dataCenters: [],
+						},
+						{
+							name: "Great Lakes",
+							code: 'greatLakes',
+							regionId: 5,
+							dataCenters: [],
+						},
+						{
+							name: "Heartland",
+							code: 'heartland',
+							regionId: 6,
+							dataCenters: [],
+						},
+						{
+							name: "Greater Southwest",
+							code: 'greaterSouthwest',
+							regionId: 7,
+							dataCenters: [],
+						},
+						{
+							name: "Rocky Mountain",
+							code: 'rockyMountain',
+							regionId: 8,
+							dataCenters: [],
+						},
+						{
+							name: "Pacific Rim",
+							code: 'pacificRim',
+							regionId: 9,
+							dataCenters: [],
+						},
+						{
+							name: "Northwest/Arctic",
+							code: 'northwestArctic',
+							regionId: 10,
+							dataCenters: [],
+						},
+						{
+							name: "National Capital",
+							code: 'nationalCapital',
+							regionId: 11,
+							dataCenters: [],
 						}
 					]
 				}
