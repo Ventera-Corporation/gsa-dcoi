@@ -27,6 +27,13 @@
 					params: {dataCenterDtos: editedDataCenters}
 				}).then(returnData);
 			},
+			viewQuarter : function(quarterId) {
+				return $http({
+					url: '/quarter/view',
+					method: 'GET',
+					params: {quarterId: quarterId}
+				}).then(returnData);
+			},
 			initDataCenter : function() {
 				return $http({
 					url: '/datacenter/init',
