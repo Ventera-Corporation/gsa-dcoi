@@ -3,8 +3,7 @@ describe('dcoiApp', function() {
 	describe("DashboardController", function() {
 	    var dc, scope, httpBackend;
 	    
-	    beforeEach(angular.mock.inject(function($controller, $rootScope, $httpBackend) {
-	    	scope = $rootScope.$new();
+	    beforeEach(angular.mock.inject(function($controller, $httpBackend) {
 			httpBackend = $httpBackend;
 			
 			httpBackend.when("GET", "security/account").respond({
@@ -135,8 +134,7 @@ describe('dcoiApp', function() {
 			});
 			
 	    	dc = $controller("DashboardController", {
-	    		dashboardData: {},
-	    		$scope: scope
+	    		dashboardData: {}
 	    	});
 			httpBackend.expectGET('/dashboard/init');
 			dc.initDashboardData();
