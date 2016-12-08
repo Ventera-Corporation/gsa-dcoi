@@ -25,7 +25,8 @@
                             <span class="input-group-addon">%</span>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoServerUtilization"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.serverUtilization}}%</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.serverUtilization || "NONE"}}
+                        		<small data-ng-show="fieldOffice.serverInfo.serverUtilization">%</small></span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -36,7 +37,7 @@
                             		data-ng-model="fieldOffice.serverInfo.totalMainframes" min="0">
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalMainframes"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalMainframes}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalMainframes || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -47,7 +48,7 @@
                             		data-ng-model="fieldOffice.serverInfo.totalWindowsServers" min="0">
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalWindowsServers"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalWindowsServers}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalWindowsServers || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -58,7 +59,7 @@
                             		data-ng-model="fieldOffice.serverInfo.totalHPCClusterNotes" min="0">
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalHPCClusterNotes}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalHPCClusterNotes || "NONE"}}</span>
                     </div>
                 </div>
 
@@ -73,7 +74,7 @@
                             		data-ng-model="fieldOffice.serverInfo.totalOtherServers" min="0">
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalOtherServers"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalOtherServers}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalOtherServers || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -84,7 +85,7 @@
                             		data-ng-model="fieldOffice.serverInfo.totalVirtualHosts" min="0">
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalVirtualHosts"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalVirtualHosts}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalVirtualHosts || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -95,7 +96,7 @@
                             		data-ng-model="fieldOffice.serverInfo.totalVirtualOS" min="0">
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalVirtualOS"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalVirtualOS}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalVirtualOS || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -106,7 +107,7 @@
                             		data-ng-model="fieldOffice.serverInfo.totalStorage" min="0" step="0.01">
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalStorage"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalStorage}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalStorage || "NONE"}}</span>
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -120,7 +121,7 @@
                             		data-ng-model="fieldOffice.serverInfo.usedStorage" min="0" step="0.01">
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoUsedStorage"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.usedStorage}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.usedStorage || "NONE"}}</span>
                     </div>
                 </div>
             </div><!-- /.row -->

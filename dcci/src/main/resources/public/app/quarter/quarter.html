@@ -28,7 +28,8 @@
         		data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">Create Quarter</button>
 		<button class="usa-button usa-button-validate" type="button"
 				data-ng-click="qc.completeQuarter()"
-				data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && qc.allDataCentersValidated()">Complete</button>
+				data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag"
+				data-ng-disabled="!qc.allDataCentersValidated()">Complete</button>
 		<button class="usa-button usa-button-primary" type="button"
 				data-ng-click="qc.exportQuarter()"
 				data-ng-if="qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"><i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;Export</button>
