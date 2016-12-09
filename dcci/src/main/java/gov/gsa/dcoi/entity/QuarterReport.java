@@ -2,28 +2,40 @@ package gov.gsa.dcoi.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Class that holds overall information about the quarter, including the fiscal
+ * year and quarter as well as flags that help document the workflow of the
+ * quarter
+ * 
+ * @author sgonthier
+ *
+ */
 @Entity
 public class QuarterReport {
 
 	@Id
-	private Integer quarterReportId;
+	@Column(name = "quarter_report_id")
+	private Long quarterId;
 	private Integer fiscalYearId;
-	private String fiscalQuarterId;
+	private Integer fiscalQuarterId;
 	private Date quarterDueDate;
-	private Integer activeFlag;
-	private Integer inProgressFlag;
+	@Column(name = "active_flag")
+	private Integer quarterActiveFlag;
+	@Column(name = "in_progress_flag")
+	private Integer quarterInProgressFlag;
 	private Integer quarterCompleteFlag;
 	private Integer quarterSubmittedFlag;
 
-	public Integer getQuarterReportId() {
-		return quarterReportId;
+	public Long getQuarterId() {
+		return quarterId;
 	}
 
-	public void setQuarterReportId(Integer quarterReportId) {
-		this.quarterReportId = quarterReportId;
+	public void setQuarterId(Long quarterId) {
+		this.quarterId = quarterId;
 	}
 
 	public Integer getFiscalYearId() {
@@ -34,11 +46,11 @@ public class QuarterReport {
 		this.fiscalYearId = fiscalYearId;
 	}
 
-	public String getFiscalQuarterId() {
+	public Integer getFiscalQuarterId() {
 		return fiscalQuarterId;
 	}
 
-	public void setFiscalQuarterId(String fiscalQuarterId) {
+	public void setFiscalQuarterId(Integer fiscalQuarterId) {
 		this.fiscalQuarterId = fiscalQuarterId;
 	}
 
@@ -50,20 +62,20 @@ public class QuarterReport {
 		this.quarterDueDate = quarterDueDate;
 	}
 
-	public Integer getActiveFlag() {
-		return activeFlag;
+	public Integer getQuarterActiveFlag() {
+		return quarterActiveFlag;
 	}
 
-	public void setActiveFlag(Integer activeFlag) {
-		this.activeFlag = activeFlag;
+	public void setQuarterActiveFlag(Integer quarterActiveFlag) {
+		this.quarterActiveFlag = quarterActiveFlag;
 	}
 
-	public Integer getInProgressFlag() {
-		return inProgressFlag;
+	public Integer getQuarterInProgressFlag() {
+		return quarterInProgressFlag;
 	}
 
-	public void setInProgressFlag(Integer inProgressFlag) {
-		this.inProgressFlag = inProgressFlag;
+	public void setQuarterInProgressFlag(Integer quarterInProgressFlag) {
+		this.quarterInProgressFlag = quarterInProgressFlag;
 	}
 
 	public Integer getQuarterCompleteFlag() {
