@@ -1,34 +1,38 @@
 package gov.gsa.dcoi.service;
 
-import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
-import gov.gsa.dcoi.dto.DataCenterDto;
-import gov.gsa.dcoi.dto.FieldOfficeDto;
+import gov.gsa.dcoi.DcoiExceptionHandler;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
 import gov.gsa.dcoi.dto.RegionDto;
-import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 import gov.gsa.dcoi.repository.QuarterStoredProcedure;
 import gov.gsa.dcoi.repository.QuarterReportRepository;
 
-
 /**
- * Service class functionality for functionality related to the 
- * quarter overall
+ * Service class functionality for functionality related to the quarter overall
+ * 
  * @author sgonthier
  *
  */
 @Component
 public class QuarterService {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(QuarterService.class);
 
 	@Autowired
 	QuarterStoredProcedure quarterRepository;
@@ -42,56 +46,43 @@ public class QuarterService {
 	@Autowired
 	FieldOfficeService fieldOfficeService;
 
+	@Autowired
+	DataCenterService dataCenterService;
+
 	/**
 	 * This call creates the new quarter report and, will then populate all the
 	 * datacenters with the "new" info - will eventually pass back a fully
 	 * created
+	 * 
+	 * @return
 	 */
 	@Transactional
-	public QuarterDto initQuarter() {
-		// Will call the initQuarter with a 0 and then a 1 - depending on the
-		// output from these
-		// will then look for quarter report ID
-		// If this is a non-zero value then we will proceed with capturing all
-		// the field offices
-		// for NOW it is just data centers
+	public Map<String, Object> initQuarter() {
 
-		// quarterRepository.initQuarter(0); //Create the new entry in
-		// quarter_report
-		// quarterRepository.initQuarter(1); //move forward the data from last
-		// quarter to this one
-		QuarterDto newQuarter = new QuarterDto();
-		QuarterReport quarterReport = quarterReportRepository.findByInProgressFlag(1);
-		if (quarterReport != null) {
-			newQuarter.setFiscalQuarterReport(populateFiscalQuarterReportDto(quarterReport));
-			List<DataCenterQuarter> dataCentersForQuarter = dataCenterQuarterRepository
-					.findByQuarterReportId(quarterReport.getQuarterReportId());
-			List<RegionDto> regionDtos = new ArrayList<>();
-			RegionDto regionDto = new RegionDto();
-			List<DataCenterDto> dataCenterDtos = new ArrayList<>();
-			for (DataCenterQuarter dcq : dataCentersForQuarter) {
-				DataCenterDto dataCenterDto = new DataCenterDto();
-				dataCenterDto.setDataCenterName("Data Center Name: " + dcq.getDataCenterId());
-				dataCenterDto.setDcoiDataCenterId(dcq.getDataCenterId());
-				dataCenterDto.setDataCenterId(dcq.getDataCenterId());
+		quarterRepository.initQuarter();
+		Map<String, Object> returnMap = new HashMap<>();
 
-				// set general info
-				List<FieldOfficeDto> fieldOfficesDto = new ArrayList<>();
-				fieldOfficesDto.add(fieldOfficeService.copyEntityToDto(dcq));
-				dataCenterDto.setFieldOffices(fieldOfficesDto);
-				dataCenterDtos.add(dataCenterDto);
-			}
+		QuarterReport quarterReport = quarterReportRepository.findByQuarterInProgressFlag(1);
+		returnMap.put("quarterReport", quarterReport);
+		return returnMap;
 
-			regionDto.setName("New England");
-			regionDto.setCode("newEngland");
-			regionDto.setRegionId(0);
-			regionDto.setDataCenters(dataCenterDtos);
-			regionDtos.add(regionDto);
-			newQuarter.setRegions(regionDtos);
-			return newQuarter;
-		}
+	}
 
-		return new QuarterDto();
+	/**
+	 * Method to view any past (non-active/non-in progress) OR
+	 * active/in-progress quarter
+	 * 
+	 * @param quarterId
+	 * @return
+	 */
+	@Transactional
+	public QuarterDto viewQuarter(Long quarterId) {
+		QuarterDto viewQuarter = new QuarterDto();
+		QuarterReport quarterReport = quarterReportRepository.findOne(quarterId);
+		viewQuarter.setFiscalQuarterReport(populateFiscalQuarterReportDto(quarterReport));
+		List<RegionDto> regions = dataCenterService.populateRegionDtosList(quarterId);
+		viewQuarter.setRegions(regions);
+		return viewQuarter;
 
 	}
 
@@ -114,10 +105,53 @@ public class QuarterService {
 	 * set the in progress flag to 0??
 	 * 
 	 * @param quarterReport
+	 * @return
 	 */
 	@Transactional
-	public void createQuarter(QuarterReport quarterReport) {
-		quarterReport.setActiveFlag(1);
-		quarterReportRepository.save(quarterReport);
+	public Map<String, Object> createQuarter(Date dueDate) {
+		Map<String, Object> returnMap = new HashMap<>();
+		try {
+			QuarterReport quarterReport = quarterReportRepository.findByQuarterInProgressFlag(1);
+
+			quarterReport.setQuarterDueDate(dueDate);
+			quarterReport.setQuarterActiveFlag(1);
+			quarterReport.setQuarterInProgressFlag(0);
+			quarterReportRepository.save(quarterReport);
+			returnMap.put("successMessage", "New Quarter was successfully created");
+			return returnMap;
+		} catch (DataAccessException dae) {
+			LOGGER.error(dae.getMessage());
+			throw DcoiExceptionHandler.throwDcoiException(
+					"Exception creating quarter with updated active flag" + "and due date: " + dae.getMessage());
+		}
+
+	}
+
+	/**
+	 * Find the data centers by the active flag OR the in progress flag
+	 * 
+	 * @return
+	 */
+	public Boolean findQuarterByActiveOrInProgressFlag() {
+		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlagOrQuarterInProgressFlag(1, 1);
+		if (quarterReport == null) {
+			return false;
+		}
+		return true;
+
+	}
+
+	/**
+	 * Find the data centers by the active flag
+	 * 
+	 * @return
+	 */
+	public Boolean findQuarterByActiveFlag() {
+		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
+		if (quarterReport == null) {
+			return false;
+		}
+		return true;
+
 	}
 }

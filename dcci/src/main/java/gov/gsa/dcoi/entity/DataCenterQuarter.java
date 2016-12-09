@@ -3,12 +3,19 @@ package gov.gsa.dcoi.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Entity class for the data Center quarter table - this is the MAIN class for a
+ * data center for a quarter
+ * 
+ * @author sgonthier
+ *
+ */
 @Entity
 public class DataCenterQuarter {
 
 	@Id
-	private Integer dataCenterQuarterId;
-	private Integer quarterReportId;
+	private Long dataCenterQuarterId;
+	private Long quarterReportId;
 	private Integer dataCenterId;
 	private Integer parentDataCenterQuarterId;
 	private String agencyDataCenterId;
@@ -27,7 +34,6 @@ public class DataCenterQuarter {
 	private Double itPowerCapacityTotal;
 	private Double electricityUsageAvg;
 	private Double itElectricityUsageAvg;
-	private Double costPerKwh;
 	private Integer automatedMonitoringFlag;
 	private Double serverUtilization;
 	private Double fte;
@@ -55,22 +61,22 @@ public class DataCenterQuarter {
 	private Integer physicalServerCount;
 	private Integer osCount;
 	private Double storageUtilization;
-	private Integer completeFlag;
-	private Integer validateFlag;
+	private Integer adminCompleteFlag;
+	private Integer ssoCompleteFlag;
 
-	public Integer getDataCenterQuarterId() {
+	public Long getDataCenterQuarterId() {
 		return dataCenterQuarterId;
 	}
 
-	public void setDataCenterQuarterId(Integer dataCenterQuarterId) {
+	public void setDataCenterQuarterId(Long dataCenterQuarterId) {
 		this.dataCenterQuarterId = dataCenterQuarterId;
 	}
 
-	public Integer getQuarterReportId() {
+	public Long getQuarterReportId() {
 		return quarterReportId;
 	}
 
-	public void setQuarterReportId(Integer quarterReportId) {
+	public void setQuarterReportId(Long quarterReportId) {
 		this.quarterReportId = quarterReportId;
 	}
 
@@ -216,14 +222,6 @@ public class DataCenterQuarter {
 
 	public void setItElectricityUsageAvg(Double itElectricityUsageAvg) {
 		this.itElectricityUsageAvg = itElectricityUsageAvg;
-	}
-
-	public Double getCostPerKwh() {
-		return costPerKwh;
-	}
-
-	public void setCostPerKwh(Double costPerKwh) {
-		this.costPerKwh = costPerKwh;
 	}
 
 	public Integer getAutomatedMonitoringFlag() {
@@ -442,20 +440,20 @@ public class DataCenterQuarter {
 		this.storageUtilization = storageUtilization;
 	}
 
-	public Integer getCompleteFlag() {
-		return completeFlag;
+	public Integer getAdminCompleteFlag() {
+		return adminCompleteFlag;
 	}
 
-	public void setCompleteFlag(Integer completeFlag) {
-		this.completeFlag = completeFlag;
+	public void setAdminCompleteFlag(Integer adminCompleteFlag) {
+		this.adminCompleteFlag = adminCompleteFlag;
 	}
 
-	public Integer getValidateFlag() {
-		return validateFlag;
+	public Integer getSsoCompleteFlag() {
+		return ssoCompleteFlag;
 	}
 
-	public void setValidateFlag(Integer validateFlag) {
-		this.validateFlag = validateFlag;
+	public void setSsoCompleteFlag(Integer ssoCompleteFlag) {
+		this.ssoCompleteFlag = ssoCompleteFlag;
 	}
 
 }

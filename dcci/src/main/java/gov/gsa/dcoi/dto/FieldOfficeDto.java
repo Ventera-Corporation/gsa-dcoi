@@ -1,12 +1,11 @@
 package gov.gsa.dcoi.dto;
 
-
 /**
- * Dto that holds information regarding a field office.
- * One data center is made up of many field offices, and in turn
- * one field office is made up of 2 different "catagories" that 
- * represent specific information about that field office (ex: FacilityInformationDto
- * and ServerInformationDto)
+ * Dto that holds information regarding a field office. One data center is made
+ * up of many field offices, and in turn one field office is made up of 2
+ * different "categories" that represent specific information about that field
+ * office (ex: FacilityInformationDto and ServerInformationDto)
+ * 
  * @author sgonthier
  *
  */

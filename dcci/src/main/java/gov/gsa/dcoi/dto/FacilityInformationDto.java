@@ -2,6 +2,7 @@ package gov.gsa.dcoi.dto;
 
 /**
  * Dto that holds information regarding a field office's facility information.
+ * 
  * @author sgonthier
  *
  */
@@ -16,7 +17,6 @@ public class FacilityInformationDto {
 	private Double electricityUsageAvg;
 	private Double itPowerCapacityTotal;
 	private Double itElectricityUsageAvg;
-	private Double costPerKwh;
 	private Double fte;
 	private Double fteCost;
 	private Integer rackCount;
@@ -91,14 +91,6 @@ public class FacilityInformationDto {
 
 	public void setItElectricityUsageAvg(Double itElectricityUsageAvg) {
 		this.itElectricityUsageAvg = itElectricityUsageAvg;
-	}
-
-	public Double getCostPerKwh() {
-		return costPerKwh;
-	}
-
-	public void setCostPerKwh(Double costPerKwh) {
-		this.costPerKwh = costPerKwh;
 	}
 
 	public Double getFte() {

@@ -3,20 +3,27 @@ package gov.gsa.dcoi.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Entity class to hold the basic/static information about a data center,
+ * including its address, region/location and name
+ * 
+ * @author sgonthier
+ *
+ */
 @Entity
 public class DataCenter {
 
 	@Id
 	private Integer dataCenterId;
 	private String dataCenterName;
-	private Integer dcoiDataCenterId;
+	private String dcoiDataCenterId;
 	private String address;
 	private String address2;
 	private String city;
 	private Integer zipCode;
 	private Integer stateId;
 	private Integer regionId;
-	private Integer coutnryId;
+	private Integer countryId;
 
 	public Integer getDataCenterId() {
 		return dataCenterId;
@@ -34,11 +41,11 @@ public class DataCenter {
 		this.dataCenterName = dataCenterName;
 	}
 
-	public Integer getDcoiDataCenterId() {
+	public String getDcoiDataCenterId() {
 		return dcoiDataCenterId;
 	}
 
-	public void setDcoiDataCenterId(Integer dcoiDataCenterId) {
+	public void setDcoiDataCenterId(String dcoiDataCenterId) {
 		this.dcoiDataCenterId = dcoiDataCenterId;
 	}
 
@@ -90,12 +97,12 @@ public class DataCenter {
 		this.regionId = regionId;
 	}
 
-	public Integer getCoutnryId() {
-		return coutnryId;
+	public Integer getCountryId() {
+		return countryId;
 	}
 
-	public void setCoutnryId(Integer coutnryId) {
-		this.coutnryId = coutnryId;
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
 	}
 
 }
