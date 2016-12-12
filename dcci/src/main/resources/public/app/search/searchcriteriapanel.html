@@ -1,9 +1,74 @@
-<div class="panel panel-info" data-ng-init="sc.showCriteria=true">
-	<div class="panel-heading cursor-pointer" data-ng-click="sc.showCriteria=!sc.showCriteria">
+<div class="panel panel-default panel-category" data-ng-init="sc.showCriteria=true">
+	<div class="panel-heading" data-ng-click="sc.showCriteria=!sc.showCriteria">
 		<h4 class="panel-title">
 			<i class="fa fa-caret-down" data-ng-if="sc.showCriteria"></i>
 		   	<i class="fa fa-caret-right" data-ng-if="!sc.showCriteria"></i>
 			Query Data Criteria
 		</h4>
 	</div>
-</div>
+	
+	<div id="" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="">
+        <div class="panel-body">
+            <!-- Search Criteria -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenterName">Data Center Name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="datacenterName"
+                           			data-ng-model="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenterID">Data Center ID</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenterID"
+                            		data-ng-model="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="quarterYear">Quarter/Year</label>
+                        <select id="quarterYear" 
+                        		data-ng-model="">
+                            <option value="">Select One</option>
+                            <option>Q4/2016</option>
+                            <option>Q3/2016</option>
+                            <option>Q2/2016</option>
+                            <option>Q1/2016</option>
+                            <option>Q4/2015</option>
+                            <option>Q3/2015</option>
+                            <option>Q2/2015</option>
+                            <option>Q1/2015</option>
+							<option>Q4/2014</option>
+                            <option>Q3/2014</option>
+                            <option>Q2/2014</option>
+                            <option>Q1/2014</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="closingStage">Closing Stage</label>
+                        <select id="closingStage" 
+                        		data-ng-model="">
+                            <option value="">Select One</option>
+                            <option>Application Mapping</option>
+                            <option>Closed</option>
+                            <option>Considering</option>
+                            <option>Equipment Removal</option>
+                            <option>Inventory</option>
+                            <option>Migration Execution</option>
+                            <option>Migration Planning</option>
+                            <option>Not Closing</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->
