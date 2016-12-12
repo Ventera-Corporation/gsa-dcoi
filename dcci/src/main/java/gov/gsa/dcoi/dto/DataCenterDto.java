@@ -2,12 +2,20 @@ package gov.gsa.dcoi.dto;
 
 import java.util.List;
 
+/**
+ * Overall dataCenterDto that holds information common to one entire dataCenter
+ * including generalInfo and statusInfo as well as dataCenter name and location.
+ * 
+ * Also includes a list of the field offices which are part of that specific
+ * data center
+ * 
+ * @author sgonthier
+ *
+ */
 public class DataCenterDto {
-	
-	//Possibly add this back in
-	//private int dataCenterId;
+
 	private String dataCenterName;
-	private Integer dcoiDataCenterId;
+	private String dcoiDataCenterId;
 	private Integer dataCenterId;
 	private String address;
 	private String address2;
@@ -16,9 +24,12 @@ public class DataCenterDto {
 	private Integer stateId;
 	private Integer regionId;
 	private Integer countryId;
+	private Integer totalNumDataCenters;
+	private GeneralInformationDto generalInfo;
+	private StatusDto statusInfo;
 	private List<FieldOfficeDto> fieldOffices;
-	
-	//ADD GETTER FOR STATENAME
+
+	// ADD GETTER FOR STATENAME
 
 	public String getDataCenterName() {
 		return dataCenterName;
@@ -28,11 +39,11 @@ public class DataCenterDto {
 		this.dataCenterName = dataCenterName;
 	}
 
-	public Integer getDcoiDataCenterId() {
+	public String getDcoiDataCenterId() {
 		return dcoiDataCenterId;
 	}
 
-	public void setDcoiDataCenterId(Integer dcoiDataCenterId) {
+	public void setDcoiDataCenterId(String dcoiDataCenterId) {
 		this.dcoiDataCenterId = dcoiDataCenterId;
 	}
 
@@ -108,7 +119,28 @@ public class DataCenterDto {
 		this.dataCenterId = dataCenterId;
 	}
 
+	public GeneralInformationDto getGeneralInfo() {
+		return generalInfo;
+	}
 
+	public void setGeneralInfo(GeneralInformationDto generalInfo) {
+		this.generalInfo = generalInfo;
+	}
 
+	public StatusDto getStatusInfo() {
+		return statusInfo;
+	}
+
+	public void setStatusInfo(StatusDto statusInfo) {
+		this.statusInfo = statusInfo;
+	}
+
+	public Integer getTotalNumDataCenters() {
+		return totalNumDataCenters;
+	}
+
+	public void setTotalNumDataCenters(Integer totalNumDataCenters) {
+		this.totalNumDataCenters = totalNumDataCenters;
+	}
 
 }

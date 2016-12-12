@@ -3,12 +3,19 @@ package gov.gsa.dcoi.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Entity class for the data Center quarter table - this is the MAIN class for a
+ * data center for a quarter
+ * 
+ * @author sgonthier
+ *
+ */
 @Entity
 public class DataCenterQuarter {
-	
+
 	@Id
-	private Integer dataCenterQuarterId;
-	private Integer quarterReportId;
+	private Long dataCenterQuarterId;
+	private Long quarterReportId;
 	private Integer dataCenterId;
 	private Integer parentDataCenterQuarterId;
 	private String agencyDataCenterId;
@@ -27,7 +34,6 @@ public class DataCenterQuarter {
 	private Double itPowerCapacityTotal;
 	private Double electricityUsageAvg;
 	private Double itElectricityUsageAvg;
-	private Double costPerKwh;
 	private Integer automatedMonitoringFlag;
 	private Double serverUtilization;
 	private Double fte;
@@ -55,307 +61,399 @@ public class DataCenterQuarter {
 	private Integer physicalServerCount;
 	private Integer osCount;
 	private Double storageUtilization;
-	private Integer completeFlag;
-	private Integer validateFlag;
-	public Integer getDataCenterQuarterId() {
+	private Integer adminCompleteFlag;
+	private Integer ssoCompleteFlag;
+
+	public Long getDataCenterQuarterId() {
 		return dataCenterQuarterId;
 	}
-	public void setDataCenterQuarterId(Integer dataCenterQuarterId) {
+
+	public void setDataCenterQuarterId(Long dataCenterQuarterId) {
 		this.dataCenterQuarterId = dataCenterQuarterId;
 	}
-	public Integer getQuarterReportId() {
+
+	public Long getQuarterReportId() {
 		return quarterReportId;
 	}
-	public void setQuarterReportId(Integer quarterReportId) {
+
+	public void setQuarterReportId(Long quarterReportId) {
 		this.quarterReportId = quarterReportId;
 	}
+
 	public Integer getDataCenterId() {
 		return dataCenterId;
 	}
+
 	public void setDataCenterId(Integer dataCenterId) {
 		this.dataCenterId = dataCenterId;
 	}
+
 	public Integer getParentDataCenterQuarterId() {
 		return parentDataCenterQuarterId;
 	}
+
 	public void setParentDataCenterQuarterId(Integer parentDataCenterQuarterId) {
 		this.parentDataCenterQuarterId = parentDataCenterQuarterId;
 	}
+
 	public String getAgencyDataCenterId() {
 		return agencyDataCenterId;
 	}
+
 	public void setAgencyDataCenterId(String agencyDataCenterId) {
 		this.agencyDataCenterId = agencyDataCenterId;
 	}
+
 	public String getPublishedName() {
 		return publishedName;
 	}
+
 	public void setPublishedName(String publishedName) {
 		this.publishedName = publishedName;
 	}
+
 	public Integer getRecordStatusId() {
 		return recordStatusId;
 	}
+
 	public void setRecordStatusId(Integer recordStatusId) {
 		this.recordStatusId = recordStatusId;
 	}
+
 	public Integer getRecordValidityId() {
 		return recordValidityId;
 	}
+
 	public void setRecordValidityId(Integer recordValidityId) {
 		this.recordValidityId = recordValidityId;
 	}
+
 	public Integer getOwnershipTypeId() {
 		return ownershipTypeId;
 	}
+
 	public void setOwnershipTypeId(Integer ownershipTypeId) {
 		this.ownershipTypeId = ownershipTypeId;
 	}
+
 	public Integer getDataCenterTierId() {
 		return dataCenterTierId;
 	}
+
 	public void setDataCenterTierId(Integer dataCenterTierId) {
 		this.dataCenterTierId = dataCenterTierId;
 	}
+
 	public Integer getGrossFloorArea() {
 		return grossFloorArea;
 	}
+
 	public void setGrossFloorArea(Integer grossFloorArea) {
 		this.grossFloorArea = grossFloorArea;
 	}
+
 	public Integer getCustomerFloorAreaTotal() {
 		return customerFloorAreaTotal;
 	}
+
 	public void setCustomerFloorAreaTotal(Integer customerFloorAreaTotal) {
 		this.customerFloorAreaTotal = customerFloorAreaTotal;
 	}
+
 	public Double getAnnualCostSqFt() {
 		return annualCostSqFt;
 	}
+
 	public void setAnnualCostSqFt(Double annualCostSqFt) {
 		this.annualCostSqFt = annualCostSqFt;
 	}
+
 	public String getOtherAgenciesServiced() {
 		return otherAgenciesServiced;
 	}
+
 	public void setOtherAgenciesServiced(String otherAgenciesServiced) {
 		this.otherAgenciesServiced = otherAgenciesServiced;
 	}
+
 	public Integer getElectricityIncludedInCostFlag() {
 		return electricityIncludedInCostFlag;
 	}
+
 	public void setElectricityIncludedInCostFlag(Integer electricityIncludedInCostFlag) {
 		this.electricityIncludedInCostFlag = electricityIncludedInCostFlag;
 	}
+
 	public Integer getElectricityMeteredFlag() {
 		return electricityMeteredFlag;
 	}
+
 	public void setElectricityMeteredFlag(Integer electricityMeteredFlag) {
 		this.electricityMeteredFlag = electricityMeteredFlag;
 	}
+
 	public Double getPowerCapacityTotal() {
 		return powerCapacityTotal;
 	}
+
 	public void setPowerCapacityTotal(Double powerCapacityTotal) {
 		this.powerCapacityTotal = powerCapacityTotal;
 	}
+
 	public Double getItPowerCapacityTotal() {
 		return itPowerCapacityTotal;
 	}
+
 	public void setItPowerCapacityTotal(Double itPowerCapacityTotal) {
 		this.itPowerCapacityTotal = itPowerCapacityTotal;
 	}
+
 	public Double getElectricityUsageAvg() {
 		return electricityUsageAvg;
 	}
+
 	public void setElectricityUsageAvg(Double electricityUsageAvg) {
 		this.electricityUsageAvg = electricityUsageAvg;
 	}
+
 	public Double getItElectricityUsageAvg() {
 		return itElectricityUsageAvg;
 	}
+
 	public void setItElectricityUsageAvg(Double itElectricityUsageAvg) {
 		this.itElectricityUsageAvg = itElectricityUsageAvg;
 	}
-	public Double getCostPerKwh() {
-		return costPerKwh;
-	}
-	public void setCostPerKwh(Double costPerKwh) {
-		this.costPerKwh = costPerKwh;
-	}
+
 	public Integer getAutomatedMonitoringFlag() {
 		return automatedMonitoringFlag;
 	}
+
 	public void setAutomatedMonitoringFlag(Integer automatedMonitoringFlag) {
 		this.automatedMonitoringFlag = automatedMonitoringFlag;
 	}
+
 	public Double getServerUtilization() {
 		return serverUtilization;
 	}
+
 	public void setServerUtilization(Double serverUtilization) {
 		this.serverUtilization = serverUtilization;
 	}
+
 	public Double getFte() {
 		return fte;
 	}
+
 	public void setFte(Double fte) {
 		this.fte = fte;
 	}
+
 	public Integer getFteCost() {
 		return fteCost;
 	}
+
 	public void setFteCost(Integer fteCost) {
 		this.fteCost = fteCost;
 	}
+
 	public Integer getRackCount() {
 		return rackCount;
 	}
+
 	public void setRackCount(Integer rackCount) {
 		this.rackCount = rackCount;
 	}
+
 	public Integer getMainframeCount() {
 		return mainframeCount;
 	}
+
 	public void setMainframeCount(Integer mainframeCount) {
 		this.mainframeCount = mainframeCount;
 	}
+
 	public Integer getWindowsServerCount() {
 		return windowsServerCount;
 	}
+
 	public void setWindowsServerCount(Integer windowsServerCount) {
 		this.windowsServerCount = windowsServerCount;
 	}
+
 	public Integer getOtherServerCount() {
 		return otherServerCount;
 	}
+
 	public void setOtherServerCount(Integer otherServerCount) {
 		this.otherServerCount = otherServerCount;
 	}
+
 	public Integer getHpcClusterNodeCount() {
 		return hpcClusterNodeCount;
 	}
+
 	public void setHpcClusterNodeCount(Integer hpcClusterNodeCount) {
 		this.hpcClusterNodeCount = hpcClusterNodeCount;
 	}
+
 	public Integer getVirtualHostCount() {
 		return virtualHostCount;
 	}
+
 	public void setVirtualHostCount(Integer virtualHostCount) {
 		this.virtualHostCount = virtualHostCount;
 	}
+
 	public Integer getVirtualOsCount() {
 		return virtualOsCount;
 	}
+
 	public void setVirtualOsCount(Integer virtualOsCount) {
 		this.virtualOsCount = virtualOsCount;
 	}
+
 	public Double getStorageTotal() {
 		return storageTotal;
 	}
+
 	public void setStorageTotal(Double storageTotal) {
 		this.storageTotal = storageTotal;
 	}
+
 	public Double getStorageUsed() {
 		return storageUsed;
 	}
+
 	public void setStorageUsed(Double storageUsed) {
 		this.storageUsed = storageUsed;
 	}
+
 	public Integer getCoreClassificationId() {
 		return coreClassificationId;
 	}
+
 	public void setCoreClassificationId(Integer coreClassificationId) {
 		this.coreClassificationId = coreClassificationId;
 	}
+
 	public Integer getClosingStageId() {
 		return closingStageId;
 	}
+
 	public void setClosingStageId(Integer closingStageId) {
 		this.closingStageId = closingStageId;
 	}
+
 	public Integer getClosingFiscalYearId() {
 		return closingFiscalYearId;
 	}
+
 	public void setClosingFiscalYearId(Integer closingFiscalYearId) {
 		this.closingFiscalYearId = closingFiscalYearId;
 	}
+
 	public Integer getClosingFiscalQuarterId() {
 		return closingFiscalQuarterId;
 	}
+
 	public void setClosingFiscalQuarterId(Integer closingFiscalQuarterId) {
 		this.closingFiscalQuarterId = closingFiscalQuarterId;
 	}
+
 	public String getClosingTargetDate() {
 		return closingTargetDate;
 	}
+
 	public void setClosingTargetDate(String closingTargetDate) {
 		this.closingTargetDate = closingTargetDate;
 	}
+
 	public Integer getIssPositionId() {
 		return issPositionId;
 	}
+
 	public void setIssPositionId(Integer issPositionId) {
 		this.issPositionId = issPositionId;
 	}
+
 	public String getIssProvider() {
 		return issProvider;
 	}
+
 	public void setIssProvider(String issProvider) {
 		this.issProvider = issProvider;
 	}
+
 	public String getTierClassification() {
 		return tierClassification;
 	}
+
 	public void setTierClassification(String tierClassification) {
 		this.tierClassification = tierClassification;
 	}
+
 	public String getFloorAreaClassification() {
 		return floorAreaClassification;
 	}
+
 	public void setFloorAreaClassification(String floorAreaClassification) {
 		this.floorAreaClassification = floorAreaClassification;
 	}
+
 	public Double getWattsSqFt() {
 		return wattsSqFt;
 	}
+
 	public void setWattsSqFt(Double wattsSqFt) {
 		this.wattsSqFt = wattsSqFt;
 	}
+
 	public Double getPue() {
 		return pue;
 	}
+
 	public void setPue(Double pue) {
 		this.pue = pue;
 	}
+
 	public Integer getPhysicalServerCount() {
 		return physicalServerCount;
 	}
+
 	public void setPhysicalServerCount(Integer physicalServerCount) {
 		this.physicalServerCount = physicalServerCount;
 	}
+
 	public Integer getOsCount() {
 		return osCount;
 	}
+
 	public void setOsCount(Integer osCount) {
 		this.osCount = osCount;
 	}
+
 	public Double getStorageUtilization() {
 		return storageUtilization;
 	}
+
 	public void setStorageUtilization(Double storageUtilization) {
 		this.storageUtilization = storageUtilization;
 	}
-	public Integer getCompleteFlag() {
-		return completeFlag;
+
+	public Integer getAdminCompleteFlag() {
+		return adminCompleteFlag;
 	}
-	public void setCompleteFlag(Integer completeFlag) {
-		this.completeFlag = completeFlag;
+
+	public void setAdminCompleteFlag(Integer adminCompleteFlag) {
+		this.adminCompleteFlag = adminCompleteFlag;
 	}
-	public Integer getValidateFlag() {
-		return validateFlag;
+
+	public Integer getSsoCompleteFlag() {
+		return ssoCompleteFlag;
 	}
-	public void setValidateFlag(Integer validateFlag) {
-		this.validateFlag = validateFlag;
+
+	public void setSsoCompleteFlag(Integer ssoCompleteFlag) {
+		this.ssoCompleteFlag = ssoCompleteFlag;
 	}
-	
+
 }

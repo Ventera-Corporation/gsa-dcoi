@@ -1,63 +1,47 @@
-﻿<br>
+<br>
 <br>
 <!-- container: START -->
 <div class="container" style="height:100%;">
-
-
-
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-
-
-            <form class="usa-form" id="login-form-id">
+            <form class="usa-form" id="login-form-id" method="post">
                 <fieldset>
                     <legend class="usa-drop_text">Sign in</legend>
-                    <span>or <a href="javascript:void(0);">create an account</a></span>
 
-                    <label for="username">Username or email address</label>
-                    <input id="user-id" name="username" type="text" autocapitalize="off" autocorrect="off">
-
-                    <label for="password">Password</label>
-                    <input id="password-id" name="password" type="{{ loginPasswordType }}">
-
-                    <p class="usa-form-note">
-                        <a title="Show password" href="javascript:void(0);" class="usa-show_password" aria-controls="password" ng-model="passwordCheckbox" ng-click="hideShowPassword()">
-                            Show password
-                        </a>
-                    </p>
-
-                    <input type="submit" value="Sign in" id="login-button-id">
-
-                    <div class="usa-alert usa-alert-error hidden" role="alert" style="margin:0;" id="failed-login-notice-id">
+					<div class="usa-alert usa-alert-error" role="alert" style="margin:0 !important;" data-ng-if="authenticationError">
                         <div class="usa-alert-body">
-                            <h3 class="usa-alert-heading">Error:</h3>
-
+                            <h3 class="usa-alert-heading"><strong>Error:</strong></h3>
                             <p class="usa-alert-text">
                                 Enter a valid user ID and password
                             </p>
                         </div>
                     </div>
+                    
+                    <div class="usa-alert usa-alert-success" role="alert" style="margin:0 !important;" data-ng-if="logoutSuccess">
+                        <div class="usa-alert-body">
+                            <h3 class="usa-alert-heading"><strong>Success:</strong></h3>
+                            <p class="usa-alert-text">
+                                You have Successfully Logged Out.
+                            </p>
+                        </div>
+                    </div>
 
-                    <p>
-                        <a href="javascript:void(0);" title="Forgot username">
-                            Forgot username?
+                    <label for="username">Email Address</label>
+                    <input id="user-id" data-ng-model="lc.username" type="text" autocapitalize="off" autocorrect="off" autocomplete="off">
+
+                    <label for="password">Password</label>
+                    <input id="password-id" data-ng-model="lc.password" type="{{lc.loginPasswordType}}">
+
+                    <p class="usa-form-note">
+                        <a title="Show password" href="javascript:void(0);" class="usa-show_password" aria-controls="password" data-ng-click="lc.hideShowPassword()">
+                            Show password
                         </a>
                     </p>
-                    <p>
-                        <a href="javascript:void(0);" title="Forgot password">
-                            Forgot password?
-                        </a>
-                    </p>
+
+                    <input type="submit" value="Sign in" id="login-button-id" data-ng-click="lc.submitLogin()">
                 </fieldset>
             </form>
-
-
-
         </div>
-
     </div>
-
-
-
 </div>
 <!-- container: END -->

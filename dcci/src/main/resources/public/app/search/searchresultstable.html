@@ -1,0 +1,14 @@
+<table class="table table-bordered dataTable stripe no-footer display">
+	<thead>
+		<tr>
+			<th>Data Center ID</th>
+			<th>Data Center Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="result in sc.searchResults">
+			<td>{{result.dataCenterId}}</td>
+			<td>{{result.dataCenterName}}</td>
+		</tr>
+	</tbody>
+</table>
