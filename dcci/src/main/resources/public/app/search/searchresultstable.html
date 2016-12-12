@@ -1,50 +1,26 @@
 <table class="table table-bordered dataTable stripe no-footer display">
 	<thead>
 		<tr>
-			<th>Year</th>
-			<th>Quarter</th>
 			<th>Data Center Name</th>
 			<th>Data Center ID</th>
-			<th>Location</th>
-			<th>Component</th>
 			<th>Street Address</th>
 			<th>City</th>
 			<th>State</th>
 			<th>Zip Code</th>
-			<th>Record Status</th>
-			<th>Ownership Type</th>
-			<th>ISS Provider</th>
-			<th>Data Center Tier</th>
-			<th>Automated Monitoring</th>
-			<th>Electricity is metered</th>
-			<th>AVG Electricity Usage</th>
-			<th>Gross Floor Area</th>
-			<th>Rack Count</th>
-			<th>Total Mainframes</th>
+			<th>Quarter</th>
+			<th>FY</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr data-ng-repeat="result in sc.searchResults">
-			<th>{{result.year}}</th>
-			<th>{{result.quarter}}</th>
-			<th>{{result.dataCenterName}}</th>
-			<th>{{result.dataCenterId}}</th>
-			<th>{{result.location}}</th>
-			<th>{{result.component}}</th>
-			<th>{{result.streetAddress}}</th>
-			<th>{{result.city}}</th>
-			<th>{{result.state}}</th>
-			<th>{{result.zipCode}}</th>
-			<th>{{result.recordStatus}}</th>
-			<th>{{result.ownershipType}}</th>
-			<th>{{result.issProvider}}</th>
-			<th>{{result.dataCenterTier}}</th>
-			<th>{{result.automatedMonitoring}}</th>
-			<th>{{result.electricityIsMetered}}</th>
-			<th>{{result.avgElectricityUsage}}</th>
-			<th>{{result.grossFloorArea}}</th>
-			<th>{{result.rackCount}}</th>
-			<th>{{result.totalMainframes}}</th>
+			<td>{{result.dataCenterName}}</td>
+			<td>{{result.generalInfo.dcoiDataCenterId}}</td>
+			<td>{{result.address}}</td>
+			<td>{{result.city}}</td>
+			<td>{{result.stateId}}</td>
+			<td>{{result.zipCode}}</td>
+			<td>{{result.statusInfo.closingFiscalQuarterId}}</td>
+			<td>{{result.statusInfo.closingFiscalYearId}}</td>
 		</tr>
 	</tbody>
 </table>

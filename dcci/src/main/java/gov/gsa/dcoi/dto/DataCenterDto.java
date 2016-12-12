@@ -19,7 +19,7 @@ public class DataCenterDto {
 	private Integer dataCenterId;
 	private String address;
 	private String address2;
-	private String city;
+	private String city;   
 	private String zipCode;
 	private Integer stateId;
 	private Integer regionId;

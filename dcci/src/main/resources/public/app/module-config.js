@@ -56,7 +56,7 @@
 					});
 				}
 			}
-		}).when('/searchResults', {
+		}).when('/search/searchResults', {
 			templateUrl : 'app/search/search.html',
 			controller : 'SearchController',
 			controllerAs : 'sc',
@@ -65,7 +65,7 @@
 					return false;
 				}
 			}
-		}).when('/queryData', {
+		}).when('/search/queryData', {
 			templateUrl : 'app/search/search.html',
 			controller : 'SearchController',
 			controllerAs : 'sc',
