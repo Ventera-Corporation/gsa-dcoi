@@ -28,11 +28,11 @@
         		data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">Create Quarter</button>
 		<button class="usa-button usa-button-validate" type="button"
 				data-ng-click="qc.completeQuarter()"
-				data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag"
+				data-ng-if="lc.isAdmin && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag"
 				data-ng-disabled="!qc.allDataCentersValidated()">Complete</button>
 		<button class="usa-button usa-button-primary" type="button"
 				data-ng-click="qc.exportQuarter()"
-				data-ng-if="qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"><i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;Export</button>
+				data-ng-if="lc.isAdmin && qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"><i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;Export</button>
     </div>
 </div>
 
@@ -104,11 +104,11 @@
                     <div id="{{dataCenter.dataCenterName}}-body" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
                         <div class="panel-body">
 							
-							<div class="pull-right" data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && !dataCenter.ssoCompleteFlag">
+							<div class="pull-right" data-ng-if="!lc.isAdmin && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && !dataCenter.ssoCompleteFlag">
 								<button class="usa-button usa-button-primary" type="button" 
 										data-ng-click="qc.submitDataCenter(dataCenter.dataCenterId)">Submit</button>
 							</div>
-							<div class="pull-right" data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && dataCenter.ssoCompleteFlag && !dataCenter.adminCompleteFlag">
+							<div class="pull-right" data-ng-if="lc.isAdmin && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && dataCenter.ssoCompleteFlag && !dataCenter.adminCompleteFlag">
 								<button class="usa-button usa-button-secondary" type="button" 
 										data-ng-click="qc.rejectDataCenter(dataCenter.dataCenterId)"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Reject</button>
 								<button class="usa-button usa-button-validate" type="button" 
