@@ -43,6 +43,12 @@
 		qc.getEditedDataCenters = getEditedDataCenters;
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
+		qc.submitDataCenter = submitDataCenter;
+		qc.rejectDataCenter = rejectDataCenter;
+		qc.validateDataCenter = validateDataCenter;
+		qc.addDataCentersValidated = addDataCentersValidated;
+		qc.completeQuarter = completeQuarter;
+		qc.exportQuarter = exportQuarter;
 		
 		function initQuarterData(){
 			 QuarterService.initQuarter().then(function (data){
@@ -112,6 +118,7 @@
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
+					$location.path('/dashboard');
 				}
 			});
 		}
@@ -228,6 +235,77 @@
 					qc.editQuarter();
 //				}
 //			});
+		}
+		
+		function submitDataCenter(dataCenterId){
+			QuarterService.submitDataCenter(dataCenterId).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data.successData;
+				}
+			});
+		}
+		
+		function rejectDataCenter(dataCenterId){
+			QuarterService.rejectDataCenter(dataCenterId).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data.successData;
+				}
+			});
+		}
+		
+		function validateDataCenter(dataCenterId){
+			QuarterService.validateDataCenter(dataCenterId).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data.successData;
+				}
+			});
+		}
+		
+		function addDataCentersValidated(){
+			angular.forEach(qc.quarterData.regions, function(region){
+				if(($filter('filter')(region.dataCenters, {'adminCompleteFlag':false}, true)).length){
+					return false;
+				}
+			});
+			return true;
+		}
+		
+		function completeQuarter(){
+			QuarterService.completeQuarter().then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data.successData;
+				}
+			});
+		}
+		
+		function exportQuarter(){
+			QuarterService.exportQuarter(qc.quarterData.fiscalQuarterReport.quarterId).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					var blob = new Blob([data.successData], {type: 'application/xls'});
+					window.navigator.msSaveOrOpenBlob(blob, 
+							"Quarter" + qc.quarterData.fiscalQuarterReport.fiscalQuarter 
+							+ qc.quarterData.fiscalQuarterReport.fiscalYear + ".xls");
+				}
+			});
 		}
 	}
 })();
