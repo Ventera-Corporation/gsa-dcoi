@@ -46,7 +46,7 @@
 		qc.submitDataCenter = submitDataCenter;
 		qc.rejectDataCenter = rejectDataCenter;
 		qc.validateDataCenter = validateDataCenter;
-		qc.addDataCentersValidated = addDataCentersValidated;
+		qc.allDataCentersValidated = allDataCentersValidated;
 		qc.completeQuarter = completeQuarter;
 		qc.exportQuarter = exportQuarter;
 		
@@ -273,7 +273,7 @@
 			});
 		}
 		
-		function addDataCentersValidated(){
+		function allDataCentersValidated(){
 			angular.forEach(qc.quarterData.regions, function(region){
 				if(($filter('filter')(region.dataCenters, {'adminCompleteFlag':false}, true)).length){
 					return false;
