@@ -9,7 +9,7 @@
 	    return {
 			search : function() {
 				return $http({
-					url: '/search/searchResults',
+					url: '/search/results',
 					method: 'GET',
 					//params: {searchDto: searchCriteria}
 				}).then(returnData);

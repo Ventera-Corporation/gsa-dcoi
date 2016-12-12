@@ -56,22 +56,42 @@ public class DataCenterService {
 	}
 	
 	/**
-	 * Find data center by the data center input
+	 * Find data center by the data center name.
 	 * 
 	 * @param datacenter
 	 * @return
 	 */
-	@Transactional
-	public List<DataCenterDto> findByDcoiDataCenterId(String datacenter) {
+	public List<DataCenterDto> findByDataCenterName(String datacenter) {
 		Iterator<DataCenter> allDataCenters = dataCenterRepository.findAll().iterator();
 		List<DataCenterDto> dataCenters = new ArrayList<DataCenterDto>();
 		while(allDataCenters.hasNext()){
-			DataCenterDto dataCenter = new DataCenterDto();
-			BeanUtils.copyProperties(allDataCenters.next(), dataCenter);
-			dataCenters.add(dataCenter);
-			//System.out.println(dataCenters.next().getDataCenterName());
+			DataCenter dataCenter = allDataCenters.next();
+			DataCenterDto dataCenterDto = new DataCenterDto();
+			BeanUtils.copyProperties(dataCenterDto, dataCenter);
+			dataCenters.add(dataCenterDto);
 		}
 		return dataCenters;
+	}
+	
+	/**
+	 * Find data center by the data center name.
+	 * 
+	 * @param datacenter
+	 * @return
+	 */
+	public List<DataCenterDto> executeSearch(String datacenter) {
+		Iterator<DataCenterQuarter> allQuarters = dataCenterQuarterRepository.findAll().iterator();
+		List<DataCenterDto> returnDataCenters = new ArrayList<DataCenterDto>();
+		while(allQuarters.hasNext()){
+			DataCenterDto dataCenterDto = new DataCenterDto();
+			DataCenterQuarter quarter = allQuarters.next();
+			List<DataCenter> dataCenters = dataCenterRepository.findByDataCenterId(quarter.getDataCenterId());
+			//DataCenter dc = dataCenters.get(0);
+			//BeanUtils.copyProperties(dc,dataCenterDto);
+			//returnDataCenters.add(dataCenterDto);
+			returnDataCenters.add(copyEntityToDto(quarter, dataCenters.get(0), dataCenterDto));
+		}
+		return returnDataCenters;
 	}
 
 	/**
@@ -168,17 +188,18 @@ public class DataCenterService {
 	 * @param dataCenterDto
 	 * @return
 	 */
-	private DataCenterDto copyEntityToDto(DataCenterQuarter dataCenterQuarterEntity, DataCenter dataCenterEntity,
-			DataCenterDto dataCenterDto) {
-
+	private DataCenterDto copyEntityToDto(DataCenterQuarter dataCenterQuarterEntity, DataCenter dataCenterEntity, DataCenterDto dataCenterDto) {
+		
+		// General Information
+		BeanUtils.copyProperties(dataCenterEntity,dataCenterDto);
 		GeneralInformationDto generalInformationDto = new GeneralInformationDto();
-		StatusDto statusDto = new StatusDto();
-
-		BeanUtils.copyProperties(dataCenterEntity, generalInformationDto);
+		BeanUtils.copyProperties(dataCenterEntity,generalInformationDto);
 		generalInformationDto.setPublishedName(dataCenterQuarterEntity.getPublishedName());
-
-		BeanUtils.copyProperties(dataCenterQuarterEntity, statusDto);
 		dataCenterDto.setGeneralInfo(generalInformationDto);
+		
+		// Status
+		StatusDto statusDto = new StatusDto();
+		BeanUtils.copyProperties(statusDto,dataCenterQuarterEntity);
 		dataCenterDto.setStatusInfo(statusDto);
 		return dataCenterDto;
 	}

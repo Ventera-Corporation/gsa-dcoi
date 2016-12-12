@@ -63,11 +63,6 @@
 			resolve : {
 				advancedSearchMode : function() {
 					return false;
-				},
-				searchResults : function(DataCenterService) {
-					return DataCenterService.findByDcoiDataCenterId(null).then(function(data) {
-						return data.searchResults;
-					});
 				}
 			}
 		}).when('/search/queryData', {
@@ -77,11 +72,6 @@
 			resolve : {
 				advancedSearchMode : function() {
 					return true;
-				},
-				searchResults : function(DataCenterService) {
-					return DataCenterService.findByDcoiDataCenterId(null).then(function(data) {
-						return data.searchResults;
-					});
 				}
 			}
 		});

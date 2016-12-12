@@ -25,22 +25,22 @@ public class SearchController {
 	/**
 	 * Global Search
 	 */
-	@RequestMapping(value = "/searchResults", method = RequestMethod.GET)
+	@RequestMapping(value = "/results", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> searchGlobal() {
 		Map<String, Object> returnData = new HashMap<String, Object>();
-		returnData.put("searchResults", dataCenterService.findByDcoiDataCenterId(null));
+		returnData.put("searchResults", dataCenterService.executeSearch(null));
 		return returnData;
 	}
 	
 	/**
 	 * Advanced Search
 	 */
-	@RequestMapping(value = "/queryData", method = RequestMethod.GET)
+	@RequestMapping(value = "/queryResults", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> search() {
 		Map<String, Object> returnData = new HashMap<String, Object>();
-		returnData.put("searchResults", dataCenterService.findByDcoiDataCenterId(null));
+		returnData.put("searchResults", dataCenterService.findByDataCenterName(null));
 		return returnData;
 	}
 }
