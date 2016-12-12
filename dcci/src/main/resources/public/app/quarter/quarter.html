@@ -108,7 +108,7 @@
 								<button class="usa-button usa-button-primary" type="button" 
 										data-ng-click="qc.submitDataCenter(dataCenter.dataCenterId)">Submit</button>
 							</div>
-							<div class="pull-right" data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && dataCenter.ssoCompleteFlag">
+							<div class="pull-right" data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && dataCenter.ssoCompleteFlag && !dataCenter.adminCompleteFlag">
 								<button class="usa-button usa-button-secondary" type="button" 
 										data-ng-click="qc.rejectDataCenter(dataCenter.dataCenterId)"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Reject</button>
 								<button class="usa-button usa-button-validate" type="button" 
