@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.entity.DataCenter;
 import gov.gsa.dcoi.repository.DataCenterRepository;
+import gov.gsa.dcoi.service.ReferenceValueListService;
 
 /**
  * Controller for managing Data Centers.
@@ -33,6 +34,8 @@ public class DataCenterController {
 	public Map<String, Object> initNewDataCenter() {
 		Map<String, Object> returnData = new HashMap<>();
 		returnData.put("newDataCenter", new DataCenterDto());
+		returnData.put("regionRefValueList", ReferenceValueListService.refValueLists.get("regionRefValueList"));
+		returnData.put("stateRefValueList", ReferenceValueListService.refValueLists.get("stateRefValueList"));
 		return returnData;
 	}
 

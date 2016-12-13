@@ -3,9 +3,9 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'quarterData'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'initData'];
 	
-	function QuarterController(QuarterService, $uibModal, $filter, quarterData){
+	function QuarterController(QuarterService, $uibModal, $filter, initData){
 		var qc = this;
 		qc.tempData = {};
 		qc.tempData.editMode = false;
@@ -32,7 +32,8 @@
 			dataCenterNames:[],
 			dataCenterIds:[]
 		};
-		qc.quarterData = quarterData;
+		qc.quarterData = initData.quarterData;
+		qc.referenceValueLists = initData.referenceValueLists;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
 		qc.selectDataCenterName = selectDataCenterName;
@@ -47,13 +48,15 @@
 		qc.rejectDataCenter = rejectDataCenter;
 		qc.validateDataCenter = validateDataCenter;
 		qc.allDataCentersValidated = allDataCentersValidated;
+		qc.allDataCentersForDataCenterNameValidated = allDataCentersForDataCenterNameValidated;
 		qc.completeQuarter = completeQuarter;
 		qc.exportQuarter = exportQuarter;
 		
 		function initQuarterData(){
-			 QuarterService.initQuarter().then(function (data){
-				 qc.quarterData = data.quarterData;
-			 });
+			QuarterService.initQuarter().then(function (data){
+				qc.quarterData = data.quarterData;
+				qc.referenceValueLists = data.referenceValueLists;
+			});
 		}
 		
 		function initDefaultSelected(region, regionIdx){
@@ -123,12 +126,19 @@
 			});
 		}
 		
-		function saveQuarter(){
+		function saveQuarter(isAdmin){
 			var editedDataCenters = [];
 			angular.forEach(qc.tempData.wasInEditMode.dataCenterIds, function(dataCenterIdInEditMode){
 				angular.forEach(qc.quarterData.regions, function(region){
 					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode}, true)[0];
-					editedDataCenters.push(foundDataCenter);
+					if(foundDataCenter){
+						if(isAdmin){
+							foundDataCenter.adminCompleteFlag = false;
+						} else {
+							foundDataCenter.ssoCompleteFlag = false;
+						}
+						editedDataCenters.push(foundDataCenter);
+					}
 				});
 			});
 			QuarterService.saveQuarter(qc.getEditedDataCenters()).then(function (data){
@@ -167,39 +177,10 @@
 			    controllerAs: 'dcc',
 			    backdrop: 'static',
 			    resolve: {
-					dataCenterData: function(){
-//						return QuarterService.initDataCenter().then(function (data){
-//							return data.dataCenterData;
-//						});
-						return {
-							dataCenterId: '',
-							dataCenterName: '',
-							dcoiDataCenterId: '',
-							regionId: '',
-							city: '',
-							stateName: '',
-							generalInfo: {},
-							status: {},
-							fieldOffices: [
-								{
-									fieldOfficeName: 'PBS',
-									facilityInfo: {},
-									serverInfo: {}
-								},
-								{
-									fieldOfficeName: 'FAS',
-									facilityInfo: {},
-									serverInfo: {}
-								},
-								{
-									fieldOfficeName: 'OCIO',
-									facilityInfo: {},
-									serverInfo: {}
-								}
-							],
-							ssoCompleteFlag: false,
-							adminCompleteFlag: false
-						};
+					initData: function(){
+						return QuarterService.initDataCenter().then(function (data){
+							return data;
+						});
 					}
 				}
 			});
@@ -222,19 +203,19 @@
 		}
 		
 		function addNewDataCenterFromModal(dataCenterData){
-//			QuarterService.addDataCenter(dataCenterData).then(function (data){
-//				if(data.error){
-//					//show errors
-//					qc.tempData.errorData = data;
-//				} else {
-//					//show success message
-//					qc.tempData.successData = data.successData;
-//					dataCenterData.dataCenterId = data.successData.dataCenterId;
+			QuarterService.addDataCenter(dataCenterData).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data.successData;
+					dataCenterData.dataCenterId = data.successData.dataCenterId;
 					var regionIdx = addDataCenterToRegion(dataCenterData);
 					selectDataCenterName(regionIdx, dataCenterData.dataCenterName);
 					qc.editQuarter();
-//				}
-//			});
+				}
+			});
 		}
 		
 		function submitDataCenter(dataCenterId){
@@ -249,37 +230,50 @@
 			});
 		}
 		
-		function rejectDataCenter(dataCenterId){
-			QuarterService.rejectDataCenter(dataCenterId).then(function (data){
+		function rejectDataCenter(dataCenter){
+			QuarterService.rejectDataCenter(dataCenter.dataCenterId).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
+					dataCenter.ssoCompleteFlag = false;
+					dataCenter.adminCompleteFlag = true;
 				}
 			});
 		}
 		
-		function validateDataCenter(dataCenterId){
-			QuarterService.validateDataCenter(dataCenterId).then(function (data){
+		function validateDataCenter(dataCenter){
+			QuarterService.validateDataCenter(dataCenter.dataCenterId).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
+					dataCenter.ssoCompleteFlag = true;
+					dataCenter.adminCompleteFlag = true;
 				}
 			});
 		}
 		
 		function allDataCentersValidated(){
-			angular.forEach(qc.quarterData.regions, function(region){
-				if(($filter('filter')(region.dataCenters, {'adminCompleteFlag':false}, true)).length){
+			for(var regionIdx = 0; regionIdx < qc.quarterData.regions.length; regionIdx++){
+				if(($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, {'ssoCompleteFlag':true, 'adminCompleteFlag':true}, true)).length
+						!== qc.quarterData.regions[regionIdx].dataCenters.length){
 					return false;
 				}
-			});
+			}
 			return true;
+		}
+		
+		function allDataCentersForDataCenterNameValidated(regionIdx, dataCenterName){
+			var needAttention = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
+					{'dataCenterName':dataCenterName, 'adminCompleteFlag':false}, true)).length;
+			var areRejected = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
+					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':false}, true)).length;
+			return !(needAttention || areRejected);
 		}
 		
 		function completeQuarter(){
