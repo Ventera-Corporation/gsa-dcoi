@@ -3,9 +3,9 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'quarterData'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'initData'];
 	
-	function QuarterController(QuarterService, $uibModal, $filter, quarterData){
+	function QuarterController(QuarterService, $uibModal, $filter, initData){
 		var qc = this;
 		qc.tempData = {};
 		qc.tempData.editMode = false;
@@ -32,7 +32,8 @@
 			dataCenterNames:[],
 			dataCenterIds:[]
 		};
-		qc.quarterData = quarterData;
+		qc.quarterData = initData.quarterData;
+		qc.referenceValueLists = initData.referenceValueLists;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
 		qc.selectDataCenterName = selectDataCenterName;
@@ -51,9 +52,10 @@
 		qc.exportQuarter = exportQuarter;
 		
 		function initQuarterData(){
-			 QuarterService.initQuarter().then(function (data){
-				 qc.quarterData = data.quarterData;
-			 });
+			QuarterService.initQuarter().then(function (data){
+				qc.quarterData = data.quarterData;
+				qc.referenceValueLists = data.referenceValueLists;
+			});
 		}
 		
 		function initDefaultSelected(region, regionIdx){
@@ -167,39 +169,10 @@
 			    controllerAs: 'dcc',
 			    backdrop: 'static',
 			    resolve: {
-					dataCenterData: function(){
-//						return QuarterService.initDataCenter().then(function (data){
-//							return data.dataCenterData;
-//						});
-						return {
-							dataCenterId: '',
-							dataCenterName: '',
-							dcoiDataCenterId: '',
-							regionId: '',
-							city: '',
-							stateName: '',
-							generalInfo: {},
-							status: {},
-							fieldOffices: [
-								{
-									fieldOfficeName: 'PBS',
-									facilityInfo: {},
-									serverInfo: {}
-								},
-								{
-									fieldOfficeName: 'FAS',
-									facilityInfo: {},
-									serverInfo: {}
-								},
-								{
-									fieldOfficeName: 'OCIO',
-									facilityInfo: {},
-									serverInfo: {}
-								}
-							],
-							ssoCompleteFlag: false,
-							adminCompleteFlag: false
-						};
+					initData: function(){
+						return QuarterService.initDataCenter().then(function (data){
+							return data;
+						});
 					}
 				}
 			});
@@ -222,19 +195,19 @@
 		}
 		
 		function addNewDataCenterFromModal(dataCenterData){
-//			QuarterService.addDataCenter(dataCenterData).then(function (data){
-//				if(data.error){
-//					//show errors
-//					qc.tempData.errorData = data;
-//				} else {
-//					//show success message
-//					qc.tempData.successData = data.successData;
-//					dataCenterData.dataCenterId = data.successData.dataCenterId;
+			QuarterService.addDataCenter(dataCenterData).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data.successData;
+					dataCenterData.dataCenterId = data.successData.dataCenterId;
 					var regionIdx = addDataCenterToRegion(dataCenterData);
 					selectDataCenterName(regionIdx, dataCenterData.dataCenterName);
 					qc.editQuarter();
-//				}
-//			});
+				}
+			});
 		}
 		
 		function submitDataCenter(dataCenterId){
