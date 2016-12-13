@@ -1,26 +1,23 @@
-<!-- PAGE HEADER -->
-<div class="page-header">                  
-    <span class="inline" style="padding-top: 2px;">
-    	<span class="glyphicon glyphicon-search glyph-style" aria-hidden="true" style="font-size: .8em;"></span>
-    	<span data-ng-if="sc.advancedSearchMode">&nbsp; Query Data</span>
-    	<span data-ng-if="!sc.advancedSearchMode">&nbsp; Search Results:
-    			<span data-ng-if="sc.searchResults.length">Displaying {{sc.pageInfoStartNumber()}} - {{sc.pageInfoEndNumber()}} of {{sc.searchCriteria.resultsTotalNum}} records</span></h4>
-				<span data-ng-if="sc.searchResults.length">
-					<uib-pagination id="paginationElem" class="pagination-sm pull-right" style="cursor:pointer"
-							total-items="sc.searchCriteria.resultsTotalNum" items-per-page="sc.searchCriteria.resultsPerPage"
-							data-ng-model="sc.searchCriteria.currentPageNum" max-size="10" boundary-links="true" data-ng-change="search()"
-							previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
-					</uib-pagination>
-				</span>
-    	</span>
-    </span>
-</div>
-
 <!-- MAIN CONTAINER -->
-<div class="container-fluid" style="padding-top: 140px;">
-	<div style="width: 100%; overflow: auto;">
-		<div data-ng-if="sc.advancedSearchMode" data-ng-include="'app/search/searchcriteriapanel.html'"></div>
-		<div data-ng-if="sc.advancedSearchMode" data-ng-include="'app/search/searchresultspanel.html'"></div>
-		<div data-ng-if="!sc.advancedSearchMode" data-ng-include="'app/search/searchresultstable.html'"></div>
-	</div>
-</div><!-- /.container-fluid -->
+<div class="container-fluid"  style="padding-top:40px;">
+	<table datatable="ng" class="row-border hover">
+		<thead>
+			<tr>
+				<th>Data Center Name</th>
+				<th>Data Center ID</th>
+				<th>Street Address</th>
+				<th>City</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="result in sc.searchResults">
+				<td>{{result.dataCenterName}}</td>
+				<td>{{result.generalInfo.dcoiDataCenterId}}</td>
+				<td>{{result.address}}</td>
+				<td>{{result.city}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!-- /.container-fluid -->
+

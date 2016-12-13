@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'http-auth-interceptor']);
+	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'http-auth-interceptor','datatables']);
 	
 	angular.module('dcoiApp').constant('USER_ROLES', {
 	    all: '*',
@@ -9,7 +9,7 @@
 	});
 	
 	
-	angular.module('dcoiApp').run(function ($rootScope, $location, $http, AuthenticationService, Session, $q, $timeout) {
+	angular.module('dcoiApp').run(function ($rootScope, $location, $http, AuthenticationService, Session, $q, $timeout, DTDefaultOptions) {
 
 	    $rootScope.settingsCollapse = false;
 	    $rootScope.$on('$routeChangeStart', function (event, next) {
@@ -72,5 +72,8 @@
 
 	    // Get already authenticated user account
 	    AuthenticationService.getAccount();
+	    
+	    // Default Search Options
+	    DTDefaultOptions.setDisplayLength(10);
 	});
 })();

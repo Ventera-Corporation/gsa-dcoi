@@ -49,8 +49,28 @@
    */
   .config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push(['$rootScope', '$q', 'httpBuffer', function($rootScope, $q, httpBuffer) {
+      var numLoadings = 0;
       return {
-        responseError: function(rejection) {
+        'request': function(config) {
+        	numLoadings++;
+        	$("#ajaxSpinner").show();
+        	$("#angularNgView").hide();
+        	return config;
+        },
+        'response': function(response) {
+        	numLoadings--;
+        	if(numLoadings === 0){
+            	$("#ajaxSpinner").hide();
+            	$("#angularNgView").show();
+        	}
+        	return response;
+        },
+        'responseError': function(rejection) {
+        	numLoadings--;
+        	if(numLoadings === 0){
+            	$("#ajaxSpinner").hide();
+            	$("#angularNgView").show();
+        	}
           var config = rejection.config || {};
           if (!config.ignoreAuthModule) {
             switch (rejection.status) {

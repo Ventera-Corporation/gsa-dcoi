@@ -25,7 +25,7 @@ public class DataCenterDto {
 	@Pattern(regexp = "DCOI-DC-[0-9]{5}")
 	private String dcoiDataCenterId;
 	private Integer dataCenterId;
-	private String city;
+	private String city;   
 	private Integer stateId;
 	private Integer regionId;
 	private Integer totalNumDataCenters;

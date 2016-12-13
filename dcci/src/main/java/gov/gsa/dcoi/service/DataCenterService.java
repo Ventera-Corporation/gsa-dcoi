@@ -2,6 +2,8 @@ package gov.gsa.dcoi.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
+import java.lang.Iterable;
 
 import javax.transaction.Transactional;
 
@@ -57,6 +59,23 @@ public class DataCenterService {
 	public List<DataCenterQuarter> findByQuarterReportId(Long curQuarterId) {
 		return dataCenterQuarterRepository.findByQuarterReportId(curQuarterId);
 	}
+	
+	/**
+	 * Search
+	 * 
+	 * @return
+	 */
+	public List<DataCenterDto> executeSearch() {
+		Iterator<DataCenterQuarter> allQuarters = dataCenterQuarterRepository.findAll().iterator();
+		List<DataCenterDto> returnDataCenters = new ArrayList<DataCenterDto>();
+		while(allQuarters.hasNext()){
+			DataCenterDto dataCenterDto = new DataCenterDto();
+			DataCenterQuarter quarter = allQuarters.next();
+			List<DataCenter> dataCenters = dataCenterRepository.findByDataCenterId(quarter.getDataCenterId());
+			returnDataCenters.add(copyEntityToDto(quarter, dataCenters.get(0), dataCenterDto));
+		}
+		return returnDataCenters;
+	}
 
 	/**
 	 * Populate the regionsDto Lists to display back for a quarter
@@ -70,7 +89,6 @@ public class DataCenterService {
 		for (RegionDto region : regionDtos) {
 			List<DataCenterDto> dataCenterDtos = new ArrayList<>();
 			List<DataCenter> dataCenterStaticInfo = dataCenterRepository.findByRegionId(region.getRegionId());
-
 			for (DataCenter dataCenter : dataCenterStaticInfo) {
 				DataCenterDto dataCenterDto = new DataCenterDto();
 				List<FieldOfficeDto> fieldOfficesDto = new ArrayList<>();
@@ -160,18 +178,18 @@ public class DataCenterService {
 	 * @param dataCenterDto
 	 * @return
 	 */
-	private DataCenterDto copyEntityToDto(DataCenterQuarter dataCenterQuarterEntity, DataCenter dataCenterEntity,
-			DataCenterDto dataCenterDto) {
-
+	private DataCenterDto copyEntityToDto(DataCenterQuarter dataCenterQuarterEntity, DataCenter dataCenterEntity, DataCenterDto dataCenterDto) {
+		
+		// General Information
+		BeanUtils.copyProperties(dataCenterEntity,dataCenterDto);
 		GeneralInformationDto generalInformationDto = new GeneralInformationDto();
-		StatusDto statusDto = new StatusDto();
-
-		BeanUtils.copyProperties(dataCenterEntity, generalInformationDto);
+		BeanUtils.copyProperties(dataCenterEntity,generalInformationDto);
 		generalInformationDto.setPublishedName(dataCenterQuarterEntity.getPublishedName());
-
-		BeanUtils.copyProperties(dataCenterQuarterEntity, statusDto);
 		dataCenterDto.setGeneralInfo(generalInformationDto);
-		dataCenterDto.setStatus(statusDto);
+		// Status
+		StatusDto statusDto = new StatusDto();
+		BeanUtils.copyProperties(statusDto,dataCenterQuarterEntity);
+		dataCenterDto.setStatusInfo(statusDto);
 		return dataCenterDto;
 	}
 
