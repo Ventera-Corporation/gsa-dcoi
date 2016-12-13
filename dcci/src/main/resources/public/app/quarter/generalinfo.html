@@ -22,7 +22,7 @@
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoAgencyAbbreviation" 
                             		data-ng-model="dataCenter.generalInfo.agencyAbbreviation">
-                            <div class="text-danger">{{qc.tempData.errorData.messages['agencyAbbreviationRequired']}}</div>
+                            <div class="text-danger">{{qc.tempData.errorData.messages['agencyAbbreviation']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoAgencyAbbreviation"
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.agencyAbbreviation || "NONE"}}</span>
@@ -57,10 +57,10 @@
                         <label for="{{dataCenter.dataCenterId}}GeneralInfoDataCenterID">Data Center ID</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoDataCenterID" 
-                            		data-ng-model="dataCenter.generalInfo.dataCenterID" placeholder="DCOI-DC-#####">
+                            		data-ng-model="dataCenter.generalInfo.dcoiDataCenterId" placeholder="DCOI-DC-#####">
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoDataCenterID"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dataCenterID || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dcoiDataCenterId || "NONE"}}</span>
                     </div>
                 </div>
             </div>
@@ -71,10 +71,10 @@
                         <label for="{{dataCenter.dataCenterId}}GeneralInfoAgencyDataCenterID">Agency Data Center ID</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoAgencyDataCenterID" 
-                            		data-ng-model="dataCenter.generalInfo.agencyDataCenterID">
+                            		data-ng-model="dataCenter.generalInfo.agencyDataCenterId">
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoAgencyDataCenterID"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.agencyDataCenterID || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.agencyDataCenterId || "NONE"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">

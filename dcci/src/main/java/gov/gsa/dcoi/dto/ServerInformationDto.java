@@ -1,23 +1,38 @@
 package gov.gsa.dcoi.dto;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+
 /**
- * Dto that holds information regarding the data center servers.
- * This information is held at the field office level
+ * Dto that holds information regarding the data center servers. This
+ * information is held at the field office level
+ * 
  * @author sgonthier
  *
  */
 public class ServerInformationDto {
 
 	private Integer dataCenterInventoryId;
+	@DecimalMin("0.00")
+	@DecimalMax("1.00")
 	private Double serverUtilization;
-	private Integer mainframeCount;
-	private Integer windowsServerCount;
-	private Integer hpcClusterCount;
-	private Integer otherServerCount;
-	private Integer virtualHostCount;
-	private Integer virtualOSCount;
-	private Double storageTotal;
-	private Double storageUsed;
+	@Min(0)
+	private Integer totalMainframes;
+	@Min(0)
+	private Integer totalWindowsServers;
+	@Min(0)
+	private Integer totalHPCClusterNodes;
+	@Min(0)
+	private Integer totalOtherServers;
+	@Min(0)
+	private Integer totalVirtualHosts;
+	@Min(0)
+	private Integer totalVirtualOS;
+	@DecimalMin("0.00")
+	private Double totalStorage;
+	@DecimalMin("0.00")
+	private Double usedStorage;
 
 	public Integer getDataCenterInventoryId() {
 		return dataCenterInventoryId;
@@ -35,68 +50,68 @@ public class ServerInformationDto {
 		this.serverUtilization = serverUtilization;
 	}
 
-	public Integer getMainframeCount() {
-		return mainframeCount;
+	public Integer getTotalMainframes() {
+		return totalMainframes;
 	}
 
-	public void setMainframeCount(Integer mainframeCount) {
-		this.mainframeCount = mainframeCount;
+	public void setTotalMainframes(Integer totalMainframes) {
+		this.totalMainframes = totalMainframes;
 	}
 
-	public Integer getWindowsServerCount() {
-		return windowsServerCount;
+	public Integer getTotalWindowsServers() {
+		return totalWindowsServers;
 	}
 
-	public void setWindowsServerCount(Integer windowsServerCount) {
-		this.windowsServerCount = windowsServerCount;
+	public void setTotalWindowsServers(Integer totalWindowsServers) {
+		this.totalWindowsServers = totalWindowsServers;
 	}
 
-	public Integer getHpcClusterCount() {
-		return hpcClusterCount;
+	public Integer getTotalHPCClusterNodes() {
+		return totalHPCClusterNodes;
 	}
 
-	public void setHpcClusterCount(Integer hpcClusterCount) {
-		this.hpcClusterCount = hpcClusterCount;
+	public void setTotalHPCClusterNodes(Integer totalHPCClusterNodes) {
+		this.totalHPCClusterNodes = totalHPCClusterNodes;
 	}
 
-	public Integer getOtherServerCount() {
-		return otherServerCount;
+	public Integer getTotalOtherServers() {
+		return totalOtherServers;
 	}
 
-	public void setOtherServerCount(Integer otherServerCount) {
-		this.otherServerCount = otherServerCount;
+	public void setTotalOtherServers(Integer totalOtherServers) {
+		this.totalOtherServers = totalOtherServers;
 	}
 
-	public Integer getVirtualHostCount() {
-		return virtualHostCount;
+	public Integer getTotalVirtualHosts() {
+		return totalVirtualHosts;
 	}
 
-	public void setVirtualHostCount(Integer virtualHostCount) {
-		this.virtualHostCount = virtualHostCount;
+	public void setTotalVirtualHosts(Integer totalVirtualHosts) {
+		this.totalVirtualHosts = totalVirtualHosts;
 	}
 
-	public Integer getVirtualOSCount() {
-		return virtualOSCount;
+	public Integer getTotalVirtualOS() {
+		return totalVirtualOS;
 	}
 
-	public void setVirtualOSCount(Integer virtualOSCount) {
-		this.virtualOSCount = virtualOSCount;
+	public void setTotalVirtualOS(Integer totalVirtualOS) {
+		this.totalVirtualOS = totalVirtualOS;
 	}
 
-	public Double getStorageTotal() {
-		return storageTotal;
+	public Double getTotalStorage() {
+		return totalStorage;
 	}
 
-	public void setStorageTotal(Double storageTotal) {
-		this.storageTotal = storageTotal;
+	public void setTotalStorage(Double totalStorage) {
+		this.totalStorage = totalStorage;
 	}
 
-	public Double getStorageUsed() {
-		return storageUsed;
+	public Double getUsedStorage() {
+		return usedStorage;
 	}
 
-	public void setStorageUsed(Double storageUsed) {
-		this.storageUsed = storageUsed;
+	public void setUsedStorage(Double usedStorage) {
+		this.usedStorage = usedStorage;
 	}
 
 }

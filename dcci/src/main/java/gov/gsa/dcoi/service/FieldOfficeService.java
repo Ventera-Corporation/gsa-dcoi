@@ -55,7 +55,7 @@ public class FieldOfficeService {
 
 		fieldOfficeDto.setFacilityInfo(facilityInformationDto);
 		fieldOfficeDto.setServerInfo(serverInformationDto);
-		fieldOfficeDto.setFieldOfficeName("PBS");
+		fieldOfficeDto.setFieldOfficeName(CommonHelper.parseComponentId(fieldOfficeEntity.getComponentId()));
 
 		return fieldOfficeDto;
 
