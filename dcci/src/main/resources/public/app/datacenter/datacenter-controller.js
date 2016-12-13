@@ -21,6 +21,8 @@
 		function initDataCenterData() {
 			QuarterService.initDataCenter().then(function (data){
 				dcc.dataCenter = data.dataCenterData;
+				dcc.regionRefValueList = data.regionRefValueList;
+				dcc.stateRefValueList = data.stateRefValueList;
 			});
 		}
 		
