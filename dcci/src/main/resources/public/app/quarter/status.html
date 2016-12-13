@@ -178,9 +178,9 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusCoreClassification">Core Classification</label>
                         <span id="{{dataCenter.dataCenterId}}StatusCoreClassification"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.coreClassification || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.coreClassificationName || "NONE"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusCoreClassification" 
-                        		data-ng-model="dataCenter.status.coreClassification" data-ng-if="qc.tempData.editMode"
+                        		data-ng-model="dataCenter.status.coreClassificationId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.coreClassificationRefValueList">
                             <option value="">Select One</option>
                         </select>
