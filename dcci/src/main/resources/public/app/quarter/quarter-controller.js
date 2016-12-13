@@ -131,19 +131,19 @@
 					editedDataCenters.push(foundDataCenter);
 				});
 			});
-//			QuarterService.saveQuarter(qc.getEditedDataCenters()).then(function (data){
-//				if(data.error){
-//					//show errors
-//					qc.tempData.errorData = data;
-//				} else {
-//					//show success message
-//					qc.tempData.successData = data.successData;
+			QuarterService.saveQuarter(qc.getEditedDataCenters()).then(function (data){
+				if(data.error){
+					//show errors
+					qc.tempData.errorData = data;
+				} else {
+					//show success message
+					qc.tempData.successData = data.successData;
 					//reset all of the edited panels
 					qc.tempData.wasInEditMode.dataCenterNames = [];
 					qc.tempData.wasInEditMode.dataCenterIds = [];
 					qc.tempData.editMode = false;
-//				}
-//			});
+				}
+			});
 		}
 		
 		function getEditedDataCenters(){
