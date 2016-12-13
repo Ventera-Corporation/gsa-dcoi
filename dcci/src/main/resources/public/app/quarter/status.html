@@ -86,12 +86,11 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusElectricityIsMetered">Electricity is Metered</label>
                         <span id="{{dataCenter.dataCenterId}}StatusElectricityIsMetered"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIsMetered || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIsMeteredName || "NONE"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusElectricityIsMetered" 
-                        		data-ng-model="dataCenter.status.electricityIsMetered" data-ng-if="qc.tempData.editMode">
+                        		data-ng-model="dataCenter.status.electricityIsMeteredId" data-ng-if="qc.tempData.editMode"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
                             <option value="">Select One</option>
-                            <option>Yes</option>
-                            <option>No</option>
                         </select>
                     </div>
                 </div>
@@ -99,12 +98,11 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusAutomatedMonitoring">Automated Monitoring</label>
                         <span id="{{dataCenter.dataCenterId}}StatusAutomatedMonitoring"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.automatedMonitoring || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.automatedMonitoringName || "NONE"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusAutomatedMonitoring" 
-                        		data-ng-model="dataCenter.status.automatedMonitoring" data-ng-if="qc.tempData.editMode">
+                        		data-ng-model="dataCenter.status.automatedMonitoringId" data-ng-if="qc.tempData.editMode"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
                             <option value="">Select One</option>
-                            <option>Yes</option>
-                            <option>No</option>
                         </select>
                     </div>
                 </div>
@@ -162,12 +160,11 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
                         <span id="{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIncludedInCost || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIncludedInCostName || "NONE"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost" 
-                        		data-ng-model="dataCenter.status.electricityIncludedInCost" data-ng-if="qc.tempData.editMode">
+                        		data-ng-model="dataCenter.status.electricityIncludedInCostId" data-ng-if="qc.tempData.editMode"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
                             <option value="">Select One</option>
-                            <option>Yes</option>
-                            <option>No</option>
                         </select>
                     </div>
                 </div>
