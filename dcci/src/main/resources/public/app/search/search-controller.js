@@ -3,15 +3,12 @@
 	
 	angular.module('dcoiApp').controller('SearchController', SearchController);
 	
-	SearchController.$inject = ['SearchService', 'advancedSearchMode'];
+	SearchController.$inject = ['SearchService'];
 	
-	function SearchController(SearchService, advancedSearchMode){
+	function SearchController(SearchService){
 		var sc = this;
-		sc.search = search();
-		function search(){
-			SearchService.search().then(function (data){
-				sc.searchResults = data.searchResults;
-			});
-		}
+		SearchService.search().then(function (data){
+			sc.searchResults = data.searchResults;
+		});
 	}
 })();
