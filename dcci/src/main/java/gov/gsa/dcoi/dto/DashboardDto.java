@@ -25,10 +25,10 @@ public class DashboardDto {
 	/**
 	 * The list of years to set
 	 * 
-	 * @param years
+	 * @param list
 	 */
-	public void setYears(List<Integer> years) {
-		this.years = years;
+	public void setYears(List<Integer> list) {
+		this.years = list;
 	}
 
 	/**

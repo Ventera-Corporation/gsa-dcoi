@@ -55,11 +55,11 @@
                     <div class="form-group">
                         <label for="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes">Total HPC Cluster Nodes</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes" 
-                            		data-ng-model="fieldOffice.serverInfo.totalHPCClusterNotes" min="0">
+                            <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNodes" 
+                            		data-ng-model="fieldOffice.serverInfo.totalHPCClusterNodes" min="0">
                         </div>
-                        <span id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalHPCClusterNotes || "NONE"}}</span>
+                        <span id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNodes"
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalHPCClusterNodes || "NONE"}}</span>
                     </div>
                 </div>
 

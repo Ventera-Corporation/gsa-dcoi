@@ -1,4 +1,7 @@
+
 package gov.gsa.dcoi.dto;
+
+import javax.validation.Valid;
 
 /**
  * Dto that holds information regarding a field office. One data center is made
@@ -13,7 +16,9 @@ public class FieldOfficeDto {
 
 	private Integer fieldOfficeId;
 	private String fieldOfficeName;
+	@Valid
 	private FacilityInformationDto facilityInfo;
+	@Valid
 	private ServerInformationDto serverInfo;
 
 	// ADD GETTER FOR FIELD OFFICE NAME

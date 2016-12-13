@@ -1,5 +1,6 @@
 package gov.gsa.dcoi.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -17,8 +18,10 @@ public class DataCenter {
 	private Integer dataCenterId;
 	private String dataCenterName;
 	private String dcoiDataCenterId;
-	private String address;
-	private String address2;
+	@Column(name = "address")
+	private String streetAddress;
+	@Column(name = "address2")
+	private String streetAddress2;
 	private String city;
 	private Integer zipCode;
 	private Integer stateId;
@@ -49,20 +52,20 @@ public class DataCenter {
 		this.dcoiDataCenterId = dcoiDataCenterId;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getStreetAddress() {
+		return streetAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
 	}
 
-	public String getAddress2() {
-		return address2;
+	public String getStreetAddress2() {
+		return streetAddress2;
 	}
 
-	public void setAddress2(String address2) {
-		this.address2 = address2;
+	public void setStreetAddress2(String streetAddress2) {
+		this.streetAddress2 = streetAddress2;
 	}
 
 	public String getCity() {

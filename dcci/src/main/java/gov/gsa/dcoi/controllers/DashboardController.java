@@ -1,6 +1,7 @@
 package gov.gsa.dcoi.controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +49,7 @@ public class DashboardController {
 		List<FiscalQuarterReportDto> quarterReportDtos;
 
 		quarterReportDtos = bulkConvertEntityToDto(dashboardService.initDashboard());
-		if (quarterService.findQuarterByActiveOrInProgressFlag()) {
+		if (!quarterService.findQuarterByActiveOrInProgressFlag()) {
 			quarterReportDtos.add(new FiscalQuarterReportDto(quarterReportDtos.get(quarterReportDtos.size() - 1)));
 		}
 
@@ -68,16 +69,15 @@ public class DashboardController {
 	 * @return
 	 */
 	private List<Integer> findYearsRepresentedOnDashboard(List<FiscalQuarterReportDto> quarterReportDtos) {
-		List<Integer> years = new ArrayList<>();
-		/**
-		 * for(FiscalQuarterReportDto quarterReport : quarterReports){
-		 * if(!years.contains(quarterReport.getFiscalYearId())){
-		 * years.add(quarterReport.getFiscalYearId()); } }
-		 **/
-		years.add(2016);
-		years.add(2015);
-		years.add(2014);
-		return years;
+		List<Integer> yearsList = new ArrayList<>();
+		for (FiscalQuarterReportDto quarterReportDto : quarterReportDtos) {
+			Integer year = Integer.valueOf(quarterReportDto.getFiscalYear());
+			if (!yearsList.contains(year)) {
+				yearsList.add(year);
+			}
+		}
+		Collections.reverse(yearsList);
+		return yearsList;
 	}
 
 	/**

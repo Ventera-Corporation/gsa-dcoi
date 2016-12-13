@@ -104,7 +104,7 @@ public class QuarterService {
 	 * (the datacenters will be saved through the field office service) TO-DO
 	 * set the in progress flag to 0??
 	 * 
-	 * @param quarterReport
+	 * @param dueDate
 	 * @return
 	 */
 	@Transactional
@@ -117,7 +117,8 @@ public class QuarterService {
 			quarterReport.setQuarterActiveFlag(1);
 			quarterReport.setQuarterInProgressFlag(0);
 			quarterReportRepository.save(quarterReport);
-			returnMap.put("successMessage", "New Quarter was successfully created");
+			returnMap.put("successMessage",
+					"The quarter is successfully created. Please inform your staff users that they should fill in the required data.");
 			return returnMap;
 		} catch (DataAccessException dae) {
 			LOGGER.error(dae.getMessage());

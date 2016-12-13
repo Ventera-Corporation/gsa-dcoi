@@ -13,7 +13,7 @@ import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.entity.DataCenter;
 import gov.gsa.dcoi.repository.DataCenterRepository;
 
-/** 
+/**
  * Controller for managing Data Centers.
  */
 @RestController
@@ -25,10 +25,11 @@ public class DataCenterController {
 
 	/**
 	 * Initialize adding new Data Center.
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> initNewDataCenter() {
 		Map<String, Object> returnData = new HashMap<>();
 		returnData.put("newDataCenter", new DataCenterDto());
@@ -37,11 +38,12 @@ public class DataCenterController {
 
 	/**
 	 * Method to add new Data Center.
+	 * 
 	 * @param dataCenter
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> addNewDataCenter(DataCenter dataCenter) {
 		dataCenterDao.save(dataCenter);
 		return new HashMap<>();

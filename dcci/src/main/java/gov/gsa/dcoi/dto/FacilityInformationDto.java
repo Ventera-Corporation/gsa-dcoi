@@ -1,5 +1,9 @@
 package gov.gsa.dcoi.dto;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 /**
  * Dto that holds information regarding a field office's facility information.
  * 
@@ -9,17 +13,30 @@ package gov.gsa.dcoi.dto;
 public class FacilityInformationDto {
 
 	private Integer dataCenterInventoryId;
+	@Min(0)
 	private Integer grossFloorArea;
-	private Integer customerFloorAreaTotal;
-	private Double annualCostSqFt;
+	@Min(0)
+	private Integer totalCustomerFloorArea;
+	@DecimalMin("0.00")
+	private Double annualCostPerSqFt;
+	@Size(max = 2048)
 	private String otherAgenciesServiced;
-	private Integer powerCapacityTotal;
-	private Double electricityUsageAvg;
-	private Double itPowerCapacityTotal;
-	private Double itElectricityUsageAvg;
+	@DecimalMin("0.00")
+	private Integer totalPowerCapacity;
+	@DecimalMin("0.00")
+	private Double avgElectricityUsage;
+	@DecimalMin("0.00")
+	private Double totalITPowerCapacity;
+	@DecimalMin("0.00")
+	private Double avgITElectricityUsage;
+	@DecimalMin("0.00")
 	private Double fte;
+	@Min(0)
 	private Double fteCost;
+	@Min(0)
 	private Integer rackCount;
+	@DecimalMin("0.00")
+	private Double costPerkWh;
 
 	public Integer getDataCenterInventoryId() {
 		return dataCenterInventoryId;
@@ -37,20 +54,12 @@ public class FacilityInformationDto {
 		this.grossFloorArea = grossFloorArea;
 	}
 
-	public Integer getCustomerFloorAreaTotal() {
-		return customerFloorAreaTotal;
+	public Double getAnnualCostPerSqFt() {
+		return annualCostPerSqFt;
 	}
 
-	public void setCustomerFloorAreaTotal(Integer customerFloorAreaTotal) {
-		this.customerFloorAreaTotal = customerFloorAreaTotal;
-	}
-
-	public Double getAnnualCostSqFt() {
-		return annualCostSqFt;
-	}
-
-	public void setAnnualCostSqFt(Double annualCostSqFt) {
-		this.annualCostSqFt = annualCostSqFt;
+	public void setAnnualCostPerSqFt(Double annualCostPerSqFt) {
+		this.annualCostPerSqFt = annualCostPerSqFt;
 	}
 
 	public String getOtherAgenciesServiced() {
@@ -59,38 +68,6 @@ public class FacilityInformationDto {
 
 	public void setOtherAgenciesServiced(String otherAgenciesServiced) {
 		this.otherAgenciesServiced = otherAgenciesServiced;
-	}
-
-	public Integer getPowerCapacityTotal() {
-		return powerCapacityTotal;
-	}
-
-	public void setPowerCapacityTotal(Integer powerCapacityTotal) {
-		this.powerCapacityTotal = powerCapacityTotal;
-	}
-
-	public Double getElectricityUsageAvg() {
-		return electricityUsageAvg;
-	}
-
-	public void setElectricityUsageAvg(Double electricityUsageAvg) {
-		this.electricityUsageAvg = electricityUsageAvg;
-	}
-
-	public Double getItPowerCapacityTotal() {
-		return itPowerCapacityTotal;
-	}
-
-	public void setItPowerCapacityTotal(Double itPowerCapacityTotal) {
-		this.itPowerCapacityTotal = itPowerCapacityTotal;
-	}
-
-	public Double getItElectricityUsageAvg() {
-		return itElectricityUsageAvg;
-	}
-
-	public void setItElectricityUsageAvg(Double itElectricityUsageAvg) {
-		this.itElectricityUsageAvg = itElectricityUsageAvg;
 	}
 
 	public Double getFte() {
@@ -115,6 +92,54 @@ public class FacilityInformationDto {
 
 	public void setRackCount(Integer rackCount) {
 		this.rackCount = rackCount;
+	}
+
+	public Integer getTotalCustomerFloorArea() {
+		return totalCustomerFloorArea;
+	}
+
+	public void setTotalCustomerFloorArea(Integer totalCustomerFloorArea) {
+		this.totalCustomerFloorArea = totalCustomerFloorArea;
+	}
+
+	public Double getAvgElectricityUsage() {
+		return avgElectricityUsage;
+	}
+
+	public void setAvgElectricityUsage(Double avgElectricityUsage) {
+		this.avgElectricityUsage = avgElectricityUsage;
+	}
+
+	public Double getAvgITElectricityUsage() {
+		return avgITElectricityUsage;
+	}
+
+	public void setAvgITElectricityUsage(Double avgITElectricityUsage) {
+		this.avgITElectricityUsage = avgITElectricityUsage;
+	}
+
+	public Integer getTotalPowerCapacity() {
+		return totalPowerCapacity;
+	}
+
+	public void setTotalPowerCapacity(Integer totalPowerCapacity) {
+		this.totalPowerCapacity = totalPowerCapacity;
+	}
+
+	public Double getTotalITPowerCapacity() {
+		return totalITPowerCapacity;
+	}
+
+	public void setTotalITPowerCapacity(Double totalITPowerCapacity) {
+		this.totalITPowerCapacity = totalITPowerCapacity;
+	}
+
+	public Double getCostPerkWh() {
+		return costPerkWh;
+	}
+
+	public void setCostPerkWh(Double costPerkWh) {
+		this.costPerkWh = costPerkWh;
 	}
 
 }

@@ -2,6 +2,12 @@ package gov.gsa.dcoi.dto;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import gov.gsa.dcoi.service.CommonHelper;
+
 /**
  * Overall dataCenterDto that holds information common to one entire dataCenter
  * including generalInfo and statusInfo as well as dataCenter name and location.
@@ -14,22 +20,33 @@ import java.util.List;
  */
 public class DataCenterDto {
 
+	@Size(max = 255)
 	private String dataCenterName;
+	@Pattern(regexp = "DCOI-DC-[0-9]{5}")
 	private String dcoiDataCenterId;
 	private Integer dataCenterId;
-	private String address;
-	private String address2;
 	private String city;
-	private String zipCode;
 	private Integer stateId;
 	private Integer regionId;
-	private Integer countryId;
 	private Integer totalNumDataCenters;
+	private Integer adminCompleteFlag;
+	private Integer ssoCompleteFlag;
+	@Valid
 	private GeneralInformationDto generalInfo;
-	private StatusDto statusInfo;
+	@Valid
+	private StatusDto status;
+	@Valid
 	private List<FieldOfficeDto> fieldOffices;
+	private String stateName;
 
 	// ADD GETTER FOR STATENAME
+
+	public String getStateName() {
+		if (this.stateId == null) {
+			return stateName;
+		}
+		return CommonHelper.parseStateId(this.stateId);
+	}
 
 	public String getDataCenterName() {
 		return dataCenterName;
@@ -71,44 +88,12 @@ public class DataCenterDto {
 		this.fieldOffices = fieldOffices;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getAddress2() {
-		return address2;
-	}
-
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
 	public Integer getRegionId() {
 		return regionId;
 	}
 
 	public void setRegionId(Integer regionId) {
 		this.regionId = regionId;
-	}
-
-	public Integer getCountryId() {
-		return countryId;
-	}
-
-	public void setCountryId(Integer countryId) {
-		this.countryId = countryId;
 	}
 
 	public Integer getDataCenterId() {
@@ -127,12 +112,12 @@ public class DataCenterDto {
 		this.generalInfo = generalInfo;
 	}
 
-	public StatusDto getStatusInfo() {
-		return statusInfo;
+	public StatusDto getStatus() {
+		return status;
 	}
 
-	public void setStatusInfo(StatusDto statusInfo) {
-		this.statusInfo = statusInfo;
+	public void setStatus(StatusDto status) {
+		this.status = status;
 	}
 
 	public Integer getTotalNumDataCenters() {
@@ -141,6 +126,26 @@ public class DataCenterDto {
 
 	public void setTotalNumDataCenters(Integer totalNumDataCenters) {
 		this.totalNumDataCenters = totalNumDataCenters;
+	}
+
+	public Integer getAdminCompleteFlag() {
+		return adminCompleteFlag;
+	}
+
+	public void setAdminCompleteFlag(Integer adminCompleteFlag) {
+		this.adminCompleteFlag = adminCompleteFlag;
+	}
+
+	public Integer getSsoCompleteFlag() {
+		return ssoCompleteFlag;
+	}
+
+	public void setSsoCompleteFlag(Integer ssoCompleteFlag) {
+		this.ssoCompleteFlag = ssoCompleteFlag;
+	}
+
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
 	}
 
 }
