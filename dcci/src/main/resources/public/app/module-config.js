@@ -60,11 +60,7 @@
 			templateUrl : 'app/search/search.html',
 			controller : 'SearchController',
 			controllerAs : 'sc',
-			resolve : {
-				advancedSearchMode : function() {
-					return false;
-				}
-			}
+			resolve : {}
 		});
 	}
 })();

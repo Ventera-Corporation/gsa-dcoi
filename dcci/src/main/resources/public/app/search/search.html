@@ -1,6 +1,6 @@
 <!-- MAIN CONTAINER -->
 <div class="container-fluid"  style="padding-top:40px;">
-	<table datatable="ng" class="row-border hover">
+	<table data-datatable="ng" class="row-border hover">
 		<thead>
 			<tr>
 				<th>Data Center Name</th>
@@ -10,7 +10,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="result in sc.searchResults">
+			<tr data-ng-repeat="result in sc.searchResults">
 				<td>{{result.dataCenterName}}</td>
 				<td>{{result.generalInfo.dcoiDataCenterId}}</td>
 				<td>{{result.address}}</td>
