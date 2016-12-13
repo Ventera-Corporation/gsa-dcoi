@@ -189,7 +189,7 @@ public class DataCenterService {
 		// Status
 		StatusDto statusDto = new StatusDto();
 		BeanUtils.copyProperties(statusDto,dataCenterQuarterEntity);
-		dataCenterDto.setStatusInfo(statusDto);
+		dataCenterDto.setStatus(statusDto);
 		return dataCenterDto;
 	}
 
