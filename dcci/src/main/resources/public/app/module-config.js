@@ -65,15 +65,6 @@
 					return false;
 				}
 			}
-		}).when('/search/queryData', {
-			templateUrl : 'app/search/search.html',
-			controller : 'SearchController',
-			controllerAs : 'sc',
-			resolve : {
-				advancedSearchMode : function() {
-					return true;
-				}
-			}
 		});
 	}
 })();

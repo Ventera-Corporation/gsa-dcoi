@@ -56,39 +56,17 @@ public class DataCenterService {
 	}
 	
 	/**
-	 * Find data center by the data center name.
+	 * Search
 	 * 
-	 * @param datacenter
 	 * @return
 	 */
-	public List<DataCenterDto> findByDataCenterName(String datacenter) {
-		Iterator<DataCenter> allDataCenters = dataCenterRepository.findAll().iterator();
-		List<DataCenterDto> dataCenters = new ArrayList<DataCenterDto>();
-		while(allDataCenters.hasNext()){
-			DataCenter dataCenter = allDataCenters.next();
-			DataCenterDto dataCenterDto = new DataCenterDto();
-			BeanUtils.copyProperties(dataCenterDto, dataCenter);
-			dataCenters.add(dataCenterDto);
-		}
-		return dataCenters;
-	}
-	
-	/**
-	 * Find data center by the data center name.
-	 * 
-	 * @param datacenter
-	 * @return
-	 */
-	public List<DataCenterDto> executeSearch(String datacenter) {
+	public List<DataCenterDto> executeSearch() {
 		Iterator<DataCenterQuarter> allQuarters = dataCenterQuarterRepository.findAll().iterator();
 		List<DataCenterDto> returnDataCenters = new ArrayList<DataCenterDto>();
 		while(allQuarters.hasNext()){
 			DataCenterDto dataCenterDto = new DataCenterDto();
 			DataCenterQuarter quarter = allQuarters.next();
 			List<DataCenter> dataCenters = dataCenterRepository.findByDataCenterId(quarter.getDataCenterId());
-			//DataCenter dc = dataCenters.get(0);
-			//BeanUtils.copyProperties(dc,dataCenterDto);
-			//returnDataCenters.add(dataCenterDto);
 			returnDataCenters.add(copyEntityToDto(quarter, dataCenters.get(0), dataCenterDto));
 		}
 		return returnDataCenters;

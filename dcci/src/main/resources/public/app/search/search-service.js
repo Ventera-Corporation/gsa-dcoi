@@ -11,7 +11,6 @@
 				return $http({
 					url: '/search/results',
 					method: 'GET',
-					//params: {searchDto: searchCriteria}
 				}).then(returnData);
 			}
 	    };
