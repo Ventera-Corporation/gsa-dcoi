@@ -74,7 +74,6 @@
 	    AuthenticationService.getAccount();
 	    
 	    // Default Search Options
-	    DTDefaultOptions.setLoadingTemplate('<img src="https://privacy.google.com/images/google-logo-lg.png">');
-	    DTDefaultOptions.setDisplayLength(25);
+	    DTDefaultOptions.setDisplayLength(10);
 	});
 })();
