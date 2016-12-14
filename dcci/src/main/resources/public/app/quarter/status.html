@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusRecordStatus">Record Status <span class="vnt-red-text">*</span></label>
                         <span id="{{dataCenter.dataCenterId}}StatusRecordStatus"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.recordStatusName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.recordStatusName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusRecordStatus" 
                         		data-ng-model="dataCenter.status.recordStatusId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.recordStatusRefValueList">
@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusRecordValidity">Record Validity <span class="vnt-red-text">*</span></label>
                         <span id="{{dataCenter.dataCenterId}}StatusRecordValidity"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.recordValidityName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.recordValidityName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusRecordValidity" 
                         		data-ng-model="dataCenter.status.recordValidityId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.recordValidityRefValueList">
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusClosingStage">Closing Stage <span class="vnt-red-text">*</span></label>
                         <span id="{{dataCenter.dataCenterId}}StatusClosingStage"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.closingStageName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.closingStageName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusClosingStage" 
                         		data-ng-model="dataCenter.status.closingStageId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.closingStageRefValueList">
@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusOwnershipType">Ownership Type</label>
                         <span id="{{dataCenter.dataCenterId}}StatusOwnershipType"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.ownershipTypeName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.ownershipTypeName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusOwnershipType" 
                         		data-ng-model="dataCenter.status.ownershipTypeId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.ownershipTypeRefValueList">
@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusDataCenterTier">Data Center Tier</label>
                         <span id="{{dataCenter.dataCenterId}}StatusDataCenterTier"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.dataCenterTierName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.dataCenterTierName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusDataCenterTier" 
                         		data-ng-model="dataCenter.status.dataCenterTierId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.dataCenterTierRefValueList">
@@ -86,7 +86,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusElectricityIsMetered">Electricity is Metered</label>
                         <span id="{{dataCenter.dataCenterId}}StatusElectricityIsMetered"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIsMeteredName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIsMeteredName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusElectricityIsMetered" 
                         		data-ng-model="dataCenter.status.electricityIsMeteredId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
@@ -98,7 +98,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusAutomatedMonitoring">Automated Monitoring</label>
                         <span id="{{dataCenter.dataCenterId}}StatusAutomatedMonitoring"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.automatedMonitoringName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.automatedMonitoringName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusAutomatedMonitoring" 
                         		data-ng-model="dataCenter.status.automatedMonitoringId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
@@ -110,7 +110,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusIssPosition">ISS Position</label>
                         <span id="{{dataCenter.dataCenterId}}StatusIssPosition"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.issPositionName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.issPositionName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusIssPosition" 
                         		data-ng-model="dataCenter.status.issPositionId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.issPositionRefValueList">
@@ -128,7 +128,7 @@
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}StatusISSProvider" 
                             		data-ng-model="dataCenter.status.issProvider" data-ng-if="qc.tempData.editMode">
 	                        <span id="{{dataCenter.dataCenterId}}StatusISSProvider"
-	                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.issProvider || "NONE"}}</span>
+	                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.issProvider || "None"}}</span>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusClosingFiscalYear">Closing Fiscal Year</label>
                         <span id="{{dataCenter.dataCenterId}}StatusClosingFiscalYear"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.closingFiscalYearName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.closingFiscalYearName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusClosingFiscalYear" 
                         		data-ng-model="dataCenter.status.closingFiscalYearId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.fiscalYearsRefValueList">
@@ -148,7 +148,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusClosingQuarter">Closing Quarter</label>
                         <span id="{{dataCenter.dataCenterId}}StatusClosingQuarter"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.closingQuarterName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.closingQuarterName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusClosingQuarterId" 
                         		data-ng-model="dataCenter.status.closingQuarter" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.fiscalQuartersRefValueList">
@@ -160,7 +160,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
                         <span id="{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIncludedInCostName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.electricityIncludedInCostName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost" 
                         		data-ng-model="dataCenter.status.electricityIncludedInCostId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
@@ -175,7 +175,7 @@
                     <div class="form-group">
                         <label for="{{dataCenter.dataCenterId}}StatusCoreClassification">Core Classification</label>
                         <span id="{{dataCenter.dataCenterId}}StatusCoreClassification"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.coreClassificationName || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.status.coreClassificationName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}StatusCoreClassification" 
                         		data-ng-model="dataCenter.status.coreClassificationId" data-ng-if="qc.tempData.editMode"
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.coreClassificationRefValueList">

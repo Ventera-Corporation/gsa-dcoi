@@ -13,6 +13,9 @@
 	/* TOC:
 	-	VNT COMPONENTS FROM SCRATCH CSS
                         - NOTES
+                        - SCROLL TO TOP
+                        - NAVBAR SEARCH
+                        - CONFIRMATION PANEL
                         - DATA CENTER PANEL
                         - DATA CENTER TABS
                         - CATEGORY PANEL
@@ -26,6 +29,35 @@
 	*/
 
 	/* NOTES: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+	/* >> SCROLL TO TOP: START
+	***************************************************************************************************************/
+        
+        .scroll-to-top {
+			position: fixed;
+			bottom: 0 !important;
+			right: 0 !important;
+			background: transparent;
+			background-color: transparent;
+			color: #323a45;
+			z-index: 100;
+			display: none;
+			font-size: 2.5em;
+			margin: 0 !important;
+        }
+        
+        .scroll-to-top:hover {
+        	background: transparent;
+        	background-color: transparent;
+        	color: #0071bc;
+        }
+
+	/* SCROLL TO TOP: END
 	***************************************************************************************************************/
     /*
 	********
@@ -51,6 +83,23 @@
         }
 
 	/* NAVBAR SEARCH: END
+	***************************************************************************************************************/
+    /*
+	********
+	********
+	********
+	*/
+	/* >> CONFIRMATION PANEL: START
+	***************************************************************************************************************/
+	
+        .panel-confirm > .panel-heading {
+            background: #112e51;
+            background-color: #112e51;
+            color: #ffffff;
+            min-height: 3em !important;
+        }
+        
+    /* CONFIRMATION PANEL: END
 	***************************************************************************************************************/
     /*
 	********
@@ -218,7 +267,7 @@
         }
 
         .sidebar-status {
-            margin-top: -20px;
+
         }
 
         .validated {
@@ -262,17 +311,18 @@
         }
 
         #wrapper.toggled {
-            padding-left: 200px;
+            padding-left: 250px;
         }
 
         #sidebar-wrapper {
             z-index: 1000;
             position: fixed;
-            left: 215px;
+            left: 250px;
             width: 0;
-            height: 100%;
+            height: 85%;
             overflow-y: auto;
-            margin-left: -215px;
+            overflow-x: hidden;
+            margin-left: -250px;
             background: transparent;
             -webkit-transition: all 0.5s ease;
             -moz-transition: all 0.5s ease;
@@ -281,7 +331,7 @@
         }
 
         #wrapper.toggled #sidebar-wrapper {
-            width: 215px;
+            width: 250px;
         }
 
         #page-content-wrapper {
@@ -292,7 +342,7 @@
 
         #wrapper.toggled #page-content-wrapper {
             position: absolute;
-            margin-right: -215px;
+            margin-right: -250px;
         }
 
     /* WRAPPER + SIDEBAR: END
@@ -308,7 +358,7 @@
         .sidebar-nav {
             position: absolute;
             top: 0;
-            width: 215px;
+            width: 250px;
             margin: 0;
             padding: 0;
             list-style: none;
@@ -335,7 +385,7 @@
         }
 
         .sidebar-nav li {
-            text-indent: 15px;
+            text-indent: 0;
             background: transparent;
             padding: 0;
             font-size: .95em;
@@ -371,7 +421,7 @@
 
         @media (min-width: 768px) {
             #wrapper {
-                padding-left: 200px;
+                padding-left: 250px;
             }
 
             #wrapper.toggled {
@@ -379,7 +429,7 @@
             }
 
             #sidebar-wrapper {
-                width: 200px;
+                width: 250px;
             }
 
             #wrapper.toggled #sidebar-wrapper {

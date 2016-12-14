@@ -15,6 +15,7 @@
 	-		- NOTES
 			- BOOTSTRAP
 	-		- US WEB DESIGN STANDARDS
+			- ANGULAR DATATABLES
 	*/
 
 	/* NOTES: END
@@ -38,12 +39,14 @@
             height: 50px;
             border: 0;
             z-index: 110;
-        }     
-
+        }
+        
         .navbar-default .navbar-nav > li > a {
             cursor: pointer;
             text-decoration: none;
-            color: #ffffff;
+            color: #ffffff !important;
+            opacity: .9;
+            font-size: .9em;          
         }
 
         .navbar-default .navbar-nav > li > a:hover,
@@ -61,8 +64,8 @@
         }
 
         .navbar-default .dropdown-menu {
-            background: #205493;
-            background-color: #205493;
+            background: #112e51;
+            background-color: #112e51;
             color: #ffffff;
         }
 
@@ -121,7 +124,7 @@
             cursor: pointer;
             border-radius: 0;
         }
-        
+
         /*
         # Modal Header */
         .modal-header {
@@ -209,6 +212,65 @@
         }
 
     /* US WEB DESIGN STANDARDS: END
+	***************************************************************************************************************/
+	/*
+	********
+	********
+	********
+	*/
+	/* >> ANGULAR DATATABLES: START
+	***************************************************************************************************************/
+
+		.dataTable thead,
+		table thead th {
+			background: #112e51;
+			background-color: #112e51;
+			color: white;
+		}
+		
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+			background: #0071bc;
+			background-color: #0071bc;
+			color: #ffffff !important;
+			border: 1px transparent solid !important;
+		}
+		
+		.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+			background: #dddddd;
+			background-color: #dddddd;
+			color: #333333 !important;
+			border: 1px transparent solid !important;
+		}
+		
+		.dataTables_paginate {
+			margin-top: 10px;
+			margin-bottom: 50px;
+		}
+		
+		table.dataTable tr:nth-child(even) {
+			background: #f7f7f7;
+			background-color: #f7f7f7;
+		}
+		
+		table.dataTable tr:nth-child(odd) {
+			background: #ffffff;
+			background-color: #ffffff;
+		}
+		
+		table th, 
+		table td {
+			background: transparent;
+			background-color: transparent;
+			border: 1px #cccccc solid;
+			border-collapse: collapse;
+		}
+		
+		table.dataTable.no-footer {
+			border-bottom: 0;
+		}
+
+    /* ANGULAR DATATABLES: END
 	***************************************************************************************************************/
 	/*
 	********

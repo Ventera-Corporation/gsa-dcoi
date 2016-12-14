@@ -2,7 +2,7 @@
 <div class="page-header">                  
     <span class="inline" style="padding-top: 2px;">
     	<span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="" id="menu-toggle" style="font-size: .8em;" 
-    			data-ng-click="qc.tempData.selected.expandCollapseSidebar=!qc.tempData.selected.expandCollapseSidebar"></span>
+    			data-ng-click="qc.tempData.selected.expandCollapseSidebar=!qc.tempData.selected.expandCollapseSidebar"></span>&nbsp;&nbsp;
     		<span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">New</span>
     		<span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterActiveFlag">Current</span>
     		<span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterCompleteFlag">Past</span>
@@ -66,13 +66,15 @@
                     <div id="{{region.name}}" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapseRegions[region.code]">
                         <ul class="list-group">
                             <li class="list-group-item" data-ng-repeat="dataCenter in region.dataCenters">
-                            	<a href="" data-ng-click="qc.selectDataCenterName($parent.$index, dataCenter.dataCenterName)">{{dataCenter.dataCenterName}}</a>
-                            	<i class="fa fa-pencil sidebar-status pull-right inprogress" aria-hidden="true" 
+                            	<a href="" data-ng-click="qc.selectDataCenterName($parent.$index, dataCenter.dataCenterName)">
+                            	<i class="fa fa-pencil sidebar-status inprogress" aria-hidden="true" 
                             			data-ng-if="qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) !== -1"></i>
-                            	<i class="fa fa-check-circle-o sidebar-status pull-right validated" aria-hidden="true" 
+                            	<i class="fa fa-check-circle-o sidebar-status validated" aria-hidden="true" 
                             			data-ng-if="lc.isAdmin() && !qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) === -1 && qc.allDataCentersForDataCenterNameValidated($parent.$index, dataCenter.dataCenterName)"></i>
-                            	<i class="fa fa-exclamation-triangle sidebar-status pull-right" aria-hidden="true"
+                            	<i class="fa fa-exclamation-triangle sidebar-status" aria-hidden="true"
                             			data-ng-if="lc.isAdmin() && !qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) === -1 && !qc.allDataCentersForDataCenterNameValidated($parent.$index, dataCenter.dataCenterName)"></i>
+								&nbsp;&nbsp;{{dataCenter.dataCenterName}}
+								</a>
                             </li>
                         </ul>
                     </div>
@@ -96,7 +98,7 @@
                     <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" 
                     		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
                         <h4 class="panel-title">
-                            {{::dataCenter.dataCenterName}} | {{::dataCenter.dcoiDataCenterId}}
+                            {{::dataCenter.dataCenterName}} &nbsp;|&nbsp; {{::dataCenter.dcoiDataCenterId}}
 
                             <span class="pull-right vnt-normal-text-weight" data-ng-if="dataCenter.city && dataCenter.stateName">{{dataCenter.city}}, {{dataCenter.stateName}}</span>
                         </h4>
@@ -142,7 +144,7 @@
 									<div data-ng-include="'app/quarter/totalserverinfo.html'"></div>
 								</uib-tab>
 							 </uib-tabset>
-							
+							 
 							<div data-ng-include="'app/quarter/generalinfo.html'"></div>
 							<div data-ng-include="'app/quarter/status.html'"></div>
 
