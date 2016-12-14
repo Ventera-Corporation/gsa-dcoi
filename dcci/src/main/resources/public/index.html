@@ -24,6 +24,9 @@
 	
 				<!-- Data Table -->
 				<link rel="stylesheet" href="plugins/jquery/css/jquery.dataTables.min.css">
+				
+				 <!-- Angular UI -->
+				 <link rel="stylesheet" href="plugins/angularui/select.min.css">
 	
 	        <!-- # Custom CSS -->
 	
@@ -81,7 +84,7 @@
 	                        <a uib-dropdown-toggle role="button" aria-haspopup="true" aria-expanded="false">
 	                        	<span style="text-transform:capitalize">{{account.firstName}}&nbsp;{{account.lastName}}</span> <span class="caret"></span></a>
 	                        <ul uib-dropdown-menu>
-	                            <li><a href="">Settings</a></li>
+	                            <li><a href="#/settings">Settings</a></li>
 	                            <li><a href="" data-ng-click="lc.logout()">Logout</a></li>
 	                        </ul>
 	                    </li>
@@ -110,6 +113,7 @@
 		<script src="plugins/angularjs/angular-resource.min.js"></script>
 		<script src="plugins/angularjs/ui-bootstrap-2.3.0.min.js"></script>
 		<script src="plugins/angularjs/ui-bootstrap-tpls-2.3.0.min.js"></script>
+		<script src="plugins/angularui/select.min.js"></script>
 		<script src="plugins/lodash/lodash.js"></script>
 		
 		<!-- App libs -->
@@ -131,6 +135,9 @@
 		
 		<script src="app/search/search-controller.js"></script>
 		<script src="app/search/search-service.js"></script>
+		
+		<script src="app/admin/admin-controller.js"></script>
+		<script src="app/admin/admin-service.js"></script>
 		
 	</body>
 </html>

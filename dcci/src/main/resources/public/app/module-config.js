@@ -61,6 +61,12 @@
 			controller : 'SearchController',
 			controllerAs : 'sc',
 			resolve : {}
+		})
+		.when('/settings', {
+			templateUrl : 'app/admin/admin.html',
+			controller : 'AdminController',
+			controllerAs : 'admin',
+			resolve : {}
 		});
 	}
 })();
