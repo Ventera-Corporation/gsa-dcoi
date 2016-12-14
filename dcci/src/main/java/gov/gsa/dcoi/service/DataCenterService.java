@@ -101,8 +101,9 @@ public class DataCenterService {
 					// information for the current quarter
 					continue;
 				}
-
-				dataCenterDto = copyEntityToDto(dataCenterForQuarter, dataCenter, dataCenterDto);
+				
+				//Set the totals tab
+				dataCenterDto.setTotals(fieldOfficeService.createTotalsTab(dataCenterForQuarter));
 
 				List<FieldOffice> fieldOffices = fieldOfficeRepository
 						.findByDataCenterQuarterId(dataCenterForQuarter.getDataCenterQuarterId());
@@ -114,18 +115,9 @@ public class DataCenterService {
 						fieldOfficeDto.setComponentId(fieldOffice.getComponentId());
 						fieldOfficeDto.setDataCenterQuarterId(fieldOffice.getDataCenterQuarterId());
 						fieldOfficesDto.add(fieldOfficeDto);
-						// Create total tab
-						FieldOfficeDto fieldOfficeTotalDto = fieldOfficeService.copyEntityToDto(fieldOffice);
-						fieldOfficeTotalDto.setFieldOfficeName("Total");
-						fieldOfficesDto.add(fieldOfficeTotalDto);
 
 					} else {
-						// Create total tab
-						FieldOfficeDto fieldOfficeDto = fieldOfficeService.copyEntityToDto(fieldOffice);
-						fieldOfficeDto.setFieldOfficeName("Total");
-
 						fieldOfficesDto.add(fieldOfficeService.copyEntityToDto(fieldOffice));
-						fieldOfficesDto.add(fieldOfficeDto);
 						// dataCenterDto.getGeneralInfo().setComponentId(fieldOffice.getComponentId());
 					}
 				}
@@ -136,8 +128,8 @@ public class DataCenterService {
 		}
 		return regionDtos;
 	}
-
-		/**
+	
+	/**
 	 * Will save the edited information for data centers that are passed back
 	 * after a "save changes" call from the application
 	 * 

@@ -28,10 +28,6 @@ public class StatusDto {
 	private Integer closingFiscalQuarterId;
 	@Pattern(regexp = "DCOI-DC-[0-9]{5}")
 	private String issProvider;
-	private String sharedServicesPosition;
-	private String ownershipType;
-	private String recordStatus;
-	private String closingStage;
 
 	public String getSharedServicesPosition() {
 		if (this.issPositionId == null) {
@@ -203,22 +199,6 @@ public class StatusDto {
 
 	public void setElectricityIsMetered(Integer electricityIsMetered) {
 		this.electricityIsMetered = electricityIsMetered;
-	}
-
-	public void setSharedServicesPosition(String sharedServicesPosition) {
-		this.sharedServicesPosition = sharedServicesPosition;
-	}
-
-	public void setOwnershipType(String ownershipType) {
-		this.ownershipType = ownershipType;
-	}
-
-	public void setRecordStatus(String recordStatus) {
-		this.recordStatus = recordStatus;
-	}
-
-	public void setClosingStage(String closingStage) {
-		this.closingStage = closingStage;
 	}
 
 }

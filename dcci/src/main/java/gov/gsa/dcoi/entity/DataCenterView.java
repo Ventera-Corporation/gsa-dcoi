@@ -18,10 +18,10 @@ public class DataCenterView {
 	private String stateName;
 	private String countryName;
 	private String publishedName;
-	private Integer recordStatusName;
-	private Integer recordValidityName;
-	private Integer ownershipTypeName;
-	private Integer dataCenterTierName;
+	private String recordStatusName;
+	private String recordValidityName;
+	private String ownershipTypeName;
+	private String dataCenterTierName;
 	private Integer grossFloorArea;
 	private Integer totalCustomerFloorArea;
 	private Double annualCostPerSqFt;
@@ -32,7 +32,7 @@ public class DataCenterView {
 	private Double totalITPowerCapacity;
 	private Double avgElectricityUsage;
 	private Double avgITElectricityUsage;
-	private Integer costPerkWh;
+	private Double costPerkWh;
 	private Integer automatedMonitoring;
 	private Double serverUtilization;
 	private Double fte;
@@ -49,7 +49,7 @@ public class DataCenterView {
 	private String coreClassificationName;
 	private String closingStageName;
 	private Integer fiscalYear;
-	private Integer fiscalQuarter;
+	private String fiscalQuarter;
 	private String issPositionName;
 	private String issProvider;
 
@@ -125,35 +125,35 @@ public class DataCenterView {
 		this.publishedName = publishedName;
 	}
 
-	public Integer getRecordStatusName() {
+	public String getRecordStatusName() {
 		return recordStatusName;
 	}
 
-	public void setRecordStatusName(Integer recordStatusName) {
+	public void setRecordStatusName(String recordStatusName) {
 		this.recordStatusName = recordStatusName;
 	}
 
-	public Integer getRecordValidityName() {
+	public String getRecordValidityName() {
 		return recordValidityName;
 	}
 
-	public void setRecordValidityName(Integer recordValidityName) {
+	public void setRecordValidityName(String recordValidityName) {
 		this.recordValidityName = recordValidityName;
 	}
 
-	public Integer getOwnershipTypeName() {
+	public String getOwnershipTypeName() {
 		return ownershipTypeName;
 	}
 
-	public void setOwnershipTypeName(Integer ownershipTypeName) {
+	public void setOwnershipTypeName(String ownershipTypeName) {
 		this.ownershipTypeName = ownershipTypeName;
 	}
 
-	public Integer getDataCenterTierName() {
+	public String getDataCenterTierName() {
 		return dataCenterTierName;
 	}
 
-	public void setDataCenterTierName(Integer dataCenterTierName) {
+	public void setDataCenterTierName(String dataCenterTierName) {
 		this.dataCenterTierName = dataCenterTierName;
 	}
 
@@ -237,11 +237,11 @@ public class DataCenterView {
 		this.avgITElectricityUsage = avgITElectricityUsage;
 	}
 
-	public Integer getCostPerkWh() {
+	public Double getCostPerkWh() {
 		return costPerkWh;
 	}
 
-	public void setCostPerkWh(Integer costPerkWh) {
+	public void setCostPerkWh(Double costPerkWh) {
 		this.costPerkWh = costPerkWh;
 	}
 
@@ -373,11 +373,11 @@ public class DataCenterView {
 		this.fiscalYear = fiscalYear;
 	}
 
-	public Integer getFiscalQuarter() {
+	public String getFiscalQuarter() {
 		return fiscalQuarter;
 	}
 
-	public void setFiscalQuarter(Integer fiscalQuarter) {
+	public void setFiscalQuarter(String fiscalQuarter) {
 		this.fiscalQuarter = fiscalQuarter;
 	}
 

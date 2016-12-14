@@ -53,6 +53,22 @@ public class DataCenterViewRepository {
 					while (rs.next()) {
 						dataCenterView.setDataCenterName(rs.getString("data_center_name"));
 						dataCenterView.setDcoiDataCenterId(rs.getString("dcoi_data_center_id"));
+						dataCenterView.setStreetAddress(rs.getString("address"));
+						dataCenterView.setStreetAddress2(rs.getString("address2"));
+						dataCenterView.setCity(rs.getString("city"));
+						dataCenterView.setZipCode(rs.getString("zip_code"));
+						dataCenterView.setStateName(rs.getString("state_name"));
+						dataCenterView.setCountryName(rs.getString("country_name"));
+						dataCenterView.setPublishedName(rs.getString("published_name"));
+						dataCenterView.setRecordStatusName(rs.getString("record_status_name"));
+						dataCenterView.setRecordValidityName(rs.getString("record_validity_name"));
+						dataCenterView.setOwnershipTypeName(rs.getString("ownership_type_name"));
+						dataCenterView.setDataCenterTierName(rs.getString("data_center_tier_name"));
+						dataCenterView.setGrossFloorArea(rs.getInt("gross_floor_area"));
+						dataCenterView.setTotalCustomerFloorArea(rs.getInt("customer_floor_area_total"));
+						dataCenterView.setAnnualCostPerSqFt(rs.getDouble("annual_cost_sq_ft"));
+						dataCenterView.setOtherAgenciesServiced(rs.getString("other_agencies_serviced"));
+						
 						dataCenterViews.add(dataCenterView);
 					}
 					return dataCenterViews;
