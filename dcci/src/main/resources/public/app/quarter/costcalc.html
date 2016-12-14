@@ -1,47 +1,47 @@
 <!-- CATEGORY : COST CALCULATION -->
- +<div class="panel panel-default panel-category">
- +    <div class="panel-heading" data-toggle="collapse" 
- +    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc">
- +        <h4 class="panel-title">
- +            <span class="glyphicon glyphicon-minus" 
- +            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
- +            <span class="glyphicon glyphicon-plus" 
- +            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
- +            <span>&nbsp; Cost Calculation</span>
- +        </h4>
- +    </div>
- +
- +    <div id="totalsCostCalc" class="panel-collapse panel-cat-collapse collapse in" 
- +    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc">
- +        <div class="panel-body">
- +            <!-- Form Fields -->
- +            <div class="row">
- +                <div class="col-md-3 col-sm-6 col-xs-12">
- +                    <div class="form-group">
- +                        <label for="totalsCostCalcServerCost">Server Cost</label>
- +                        <span id="totalsCostCalcServerCost">{{(datacenter.totals.costCalc.serverCost | currency) || "None"}}</span>
- +                    </div>
- +                </div>
- +                <div class="col-md-3 col-sm-6 col-xs-12">
- +                    <div class="form-group">
- +                        <label for="totalsCostCalcStorageCost">Storage Cost</label>
- +                        <span id="totalsCostCalcStorageCost">{{(datacenter.totals.costCalc.storageCost | currency) || "None"}}</span>
- +                    </div>
- +                </div>
- +                <div class="col-md-3 col-sm-6 col-xs-12">
- +                    <div class="form-group">
- +                        <label for="totalsCostCalcMiscellaneous">Miscellaneous</label>
- +                        <span id="totalsCostCalcMiscellaneous">{{(datacenter.totals.costCalc.miscellaneous | currency) || "None"}}</span>
- +                    </div>
- +                </div>
- +                <div class="col-md-3 col-sm-6 col-xs-12">
- +                    <div class="form-group">
- +                        <label for="totalsCostCalcTotal">Total</label>
- +                        <span id="totalsCostCalcTotal">{{(datacenter.totals.costCalc.total | currency) || "None"}}</span>
- +                    </div>
- +                </div>
- +
- +            </div><!-- /.row -->
- +        </div><!-- /.panel-body -->
- +    </div>
-  </div><!-- /.panel-category -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
+            <span>&nbsp; Cost Calculation</span>
+        </h4>
+    </div>
+
+    <div id="totalsCostCalc" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsCostCalcServerCost">Server Cost</label>
+                        <span id="totalsCostCalcServerCost">{{(datacenter.totals.costCalc.serverCost | currency) || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsCostCalcStorageCost">Storage Cost</label>
+                        <span id="totalsCostCalcStorageCost">{{(datacenter.totals.costCalc.storageCost | currency) || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsCostCalcMiscellaneous">Miscellaneous</label>
+                        <span id="totalsCostCalcMiscellaneous">{{(datacenter.totals.costCalc.miscellaneous | currency) || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsCostCalcTotal">Total</label>
+                        <span id="totalsCostCalcTotal">{{(datacenter.totals.costCalc.total | currency) || "None"}}</span>
+                    </div>
+                </div>
+
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->
