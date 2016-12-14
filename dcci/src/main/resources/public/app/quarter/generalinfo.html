@@ -34,7 +34,7 @@
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoComponent" 
                             		data-ng-model="dataCenter.generalInfo.component">
-                            <div class="text-danger">{{qc.tempData.errorData.messages['componentRequired']}}</div>
+                            <div class="text-danger">{{qc.tempData.errorData.messages['component']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoComponent"
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.component || "None"}}</span>
@@ -46,7 +46,7 @@
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoDataCenterName" 
                             		data-ng-model="dataCenter.generalInfo.dataCenterName">
-                            <div class="text-danger">{{qc.tempData.errorData.messages['dataCenterNameRequired']}}</div>
+                            <div class="text-danger">{{qc.tempData.errorData.messages['dataCenterName']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoDataCenterName"
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dataCenterName || "None"}}</span>
@@ -58,6 +58,7 @@
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoDataCenterID" 
                             		data-ng-model="dataCenter.generalInfo.dcoiDataCenterId" placeholder="DCOI-DC-#####">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['dcoiDataCenterId']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoDataCenterID"
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dcoiDataCenterId || "None"}}</span>
@@ -83,6 +84,7 @@
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoPublishedName" 
                             		data-ng-model="dataCenter.generalInfo.publishedName">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['publishedName']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoPublishedName"
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.publishedName || "None"}}</span>
@@ -94,6 +96,7 @@
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoStreetAddress" 
                             		data-ng-model="dataCenter.generalInfo.streetAddress">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['streetAddress']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoStreetAddress"
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.streetAddress || "None"}}</span>
@@ -105,6 +108,7 @@
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoStreetAddress2" 
                             		data-ng-model="dataCenter.generalInfo.streetAddress2">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['streetAddress2']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoStreetAddress2"
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.streetAddress2 || "None"}}</span>
@@ -119,6 +123,7 @@
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="text" class="form-control" id="{{dataCenter.dataCenterId}}GeneralInfoCity" 
                             		data-ng-model="dataCenter.generalInfo.city">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['city']}}</div>
                         </div>
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoCity"
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.city || "None"}}</span>

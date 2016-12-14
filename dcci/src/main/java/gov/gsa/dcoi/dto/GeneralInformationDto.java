@@ -35,10 +35,11 @@ public class GeneralInformationDto {
 	private Integer stateId;
 	private Integer zipCode;
 	private Integer countryId;
-	@Size(max = 255)
+	@Size(min = 1, max = 255)
+	@NotNull
 	private String dataCenterName;
 	@NotNull
-	@Size(min = 1, max = 1024)
+	@Size(min = 1)
 	private String component;
 
 	public String getStateName() {

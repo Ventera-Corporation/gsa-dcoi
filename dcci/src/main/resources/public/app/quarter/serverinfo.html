@@ -21,7 +21,8 @@
                         <label for="{{fieldOffice.name}}ServerInfoServerUtilization">Server Utilization</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoServerUtilization"
-                            		data-ng-model="fieldOffice.serverInfo.serverUtilization" min="0" step="0.01">
+                            		data-ng-model="fieldOffice.serverInfo.serverUtilization">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['serverUtilization']}}</div>
                             <span class="input-group-addon">%</span>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoServerUtilization"
@@ -34,7 +35,8 @@
                         <label for="{{fieldOffice.name}}ServerInfoTotalMainframes">Total Mainframes</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalMainframes"
-                            		data-ng-model="fieldOffice.serverInfo.totalMainframes" min="0">
+                            		data-ng-model="fieldOffice.serverInfo.totalMainframes">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['totalMainframes']}}</div>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalMainframes"
                         		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalMainframes || "None"}}</span>
@@ -45,7 +47,8 @@
                         <label for="{{fieldOffice.name}}ServerInfoTotalWindowsServers">Total Windows Servers</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalWindowsServers" 
-                            		data-ng-model="fieldOffice.serverInfo.totalWindowsServers" min="0">
+                            		data-ng-model="fieldOffice.serverInfo.totalWindowsServers">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['totalWindowsServers']}}</div>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalWindowsServers"
                         		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalWindowsServers || "None"}}</span>
@@ -56,7 +59,8 @@
                         <label for="{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes">Total HPC Cluster Nodes</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNodes" 
-                            		data-ng-model="fieldOffice.serverInfo.totalHPCClusterNodes" min="0">
+                            		data-ng-model="fieldOffice.serverInfo.totalHPCClusterNodes">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['totalHPCClusterNodes']}}</div>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalHPCClusterNodes"
                         		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalHPCClusterNodes || "None"}}</span>
@@ -71,7 +75,8 @@
                         <label for="{{fieldOffice.name}}ServerInfoTotalOtherServers">Total Other Servers</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalOtherServers" 
-                            		data-ng-model="fieldOffice.serverInfo.totalOtherServers" min="0">
+                            		data-ng-model="fieldOffice.serverInfo.totalOtherServers">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['totalOtherServers']}}</div>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalOtherServers"
                         		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalOtherServers || "None"}}</span>
@@ -82,7 +87,8 @@
                         <label for="{{fieldOffice.name}}ServerInfoTotalVirtualHosts">Total Virtual Hosts</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalVirtualHosts" 
-                            		data-ng-model="fieldOffice.serverInfo.totalVirtualHosts" min="0">
+                            		data-ng-model="fieldOffice.serverInfo.totalVirtualHosts">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['totalVirtualHosts']}}</div>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalVirtualHosts"
                         		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalVirtualHosts || "None"}}</span>
@@ -93,7 +99,8 @@
                         <label for="{{fieldOffice.name}}ServerInfoTotalVirtualOS">Total Virtual OS</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalVirtualOS" 
-                            		data-ng-model="fieldOffice.serverInfo.totalVirtualOS" min="0">
+                            		data-ng-model="fieldOffice.serverInfo.totalVirtualOS">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['totalVirtualOS']}}</div>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalVirtualOS"
                         		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalVirtualOS || "None"}}</span>
@@ -104,7 +111,8 @@
                         <label for="{{fieldOffice.name}}ServerInfoTotalStorage">Total Storage</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoTotalStorage" 
-                            		data-ng-model="fieldOffice.serverInfo.totalStorage" min="0" step="0.01">
+                            		data-ng-model="fieldOffice.serverInfo.totalStorage">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['totalStorage']}}</div>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoTotalStorage"
                         		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.totalStorage || "None"}}</span>
@@ -118,7 +126,8 @@
                         <label for="{{fieldOffice.name}}ServerInfoUsedStorage">Used Storage</label>
                         <div class="input-group" data-ng-if="qc.tempData.editMode">
                             <input type="number" class="form-control" id="{{fieldOffice.name}}ServerInfoUsedStorage" 
-                            		data-ng-model="fieldOffice.serverInfo.usedStorage" min="0" step="0.01">
+                            		data-ng-model="fieldOffice.serverInfo.usedStorage">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['usedStorage']}}</div>
                         </div>
                         <span id="{{fieldOffice.name}}ServerInfoUsedStorage"
                         		data-ng-if="!qc.tempData.editMode">{{fieldOffice.serverInfo.usedStorage || "None"}}</span>
