@@ -45,7 +45,7 @@
 					});
 				}
 			}
-		}).when('/viewQuarter/:quarterId', {
+		}).when('/viewQuarter/:quarterId/:defaultDataCenterId?', {
 			templateUrl : 'app/quarter/quarter.html',
 			controller : 'QuarterController',
 			controllerAs : 'qc',

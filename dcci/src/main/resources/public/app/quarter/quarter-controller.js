@@ -3,9 +3,9 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', 'initData'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', '$routeParams', 'initData'];
 	
-	function QuarterController(QuarterService, $uibModal, $filter, initData){
+	function QuarterController(QuarterService, $uibModal, $filter, $routeParams, initData){
 		var qc = this;
 		qc.tempData = {};
 		qc.tempData.editMode = false;
@@ -64,10 +64,17 @@
 		}
 		
 		function initDefaultSelected(region, regionIdx){
-			if(qc.tempData.selected.regionIdx === undefined && region.dataCenters.length) {
+			if(!$routeParams.defaultDataCenterId && qc.tempData.selected.regionIdx === undefined && region.dataCenters.length) {
 				qc.tempData.selected.regionIdx = regionIdx;
 				qc.tempData.selected.dataCenterName = region.dataCenters[0].dataCenterName;
 				qc.tempData.selected.expandCollapseRegions[region.code] = true;
+			} else if($routeParams.defaultDataCenterId && qc.tempData.selected.regionIdx === undefined && region.dataCenters.length){
+				var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':$routeParams.defaultDataCenterId})[0];
+				if(foundDataCenter){
+					qc.tempData.selected.regionIdx = regionIdx;
+					qc.tempData.selected.dataCenterName = foundDataCenter.dataCenterName;
+					qc.tempData.selected.expandCollapseRegions[region.code] = true;
+				}
 			}
 		}
 		
