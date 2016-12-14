@@ -141,9 +141,9 @@
 					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode}, true)[0];
 					if(foundDataCenter){
 						if(isAdmin){
-							foundDataCenter.adminCompleteFlag = false;
+							foundDataCenter.adminCompleteFlag = 0;
 						} else {
-							foundDataCenter.ssoCompleteFlag = false;
+							foundDataCenter.ssoCompleteFlag = 0;
 						}
 						editedDataCenters.push(foundDataCenter);
 					}
@@ -246,8 +246,8 @@
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
-					dataCenter.ssoCompleteFlag = false;
-					dataCenter.adminCompleteFlag = true;
+					dataCenter.ssoCompleteFlag = 0;
+					dataCenter.adminCompleteFlag = 1;
 				}
 			});
 		}
@@ -260,15 +260,15 @@
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
-					dataCenter.ssoCompleteFlag = true;
-					dataCenter.adminCompleteFlag = true;
+					dataCenter.ssoCompleteFlag = 1;
+					dataCenter.adminCompleteFlag = 1;
 				}
 			});
 		}
 		
 		function allDataCentersValidated(){
 			for(var regionIdx = 0; regionIdx < qc.quarterData.regions.length; regionIdx++){
-				if(($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, {'ssoCompleteFlag':true, 'adminCompleteFlag':true}, true)).length
+				if(($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, {'ssoCompleteFlag':0, 'adminCompleteFlag':1}, true)).length
 						!== qc.quarterData.regions[regionIdx].dataCenters.length){
 					return false;
 				}
@@ -278,9 +278,9 @@
 		
 		function allDataCentersForDataCenterNameValidated(regionIdx, dataCenterName){
 			var needAttention = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
-					{'dataCenterName':dataCenterName, 'adminCompleteFlag':false}, true)).length;
+					{'dataCenterName':dataCenterName, 'adminCompleteFlag':0}, true)).length;
 			var areRejected = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
-					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':false}, true)).length;
+					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':0}, true)).length;
 			return !(needAttention || areRejected);
 		}
 		
