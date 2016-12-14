@@ -1,5 +1,6 @@
 package gov.gsa.dcoi.dto;
 
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -18,12 +19,13 @@ public class FacilityInformationDto {
 	@Min(0)
 	private Integer totalCustomerFloorArea;
 	@DecimalMin("0.00")
+	@DecimalMax("800000.00")
 	private Double annualCostPerSqFt;
 	@Size(max = 2048)
 	private String otherAgenciesServiced;
-	@DecimalMin("0.00")
-	private Integer totalPowerCapacity;
-	@DecimalMin("0.00")
+	@DecimalMin("0.01")
+	private Double totalPowerCapacity;
+	@DecimalMin("0.01")
 	private Double avgElectricityUsage;
 	@DecimalMin("0.00")
 	private Double totalITPowerCapacity;
@@ -31,12 +33,20 @@ public class FacilityInformationDto {
 	private Double avgITElectricityUsage;
 	@DecimalMin("0.00")
 	private Double fte;
-	@Min(0)
+	@Min(1)
 	private Double fteCost;
 	@Min(0)
 	private Integer rackCount;
-	@DecimalMin("0.00")
+	@DecimalMin("0.01")
 	private Double costPerkWh;
+	
+	
+	//@AssertTrue
+	//@JsonIgnore
+	//public boolean isGrossFloorAreaRequired(){
+	
+		
+	//}
 
 	public Integer getDataCenterInventoryId() {
 		return dataCenterInventoryId;
@@ -118,11 +128,11 @@ public class FacilityInformationDto {
 		this.avgITElectricityUsage = avgITElectricityUsage;
 	}
 
-	public Integer getTotalPowerCapacity() {
+	public Double getTotalPowerCapacity() {
 		return totalPowerCapacity;
 	}
 
-	public void setTotalPowerCapacity(Integer totalPowerCapacity) {
+	public void setTotalPowerCapacity(Double totalPowerCapacity) {
 		this.totalPowerCapacity = totalPowerCapacity;
 	}
 

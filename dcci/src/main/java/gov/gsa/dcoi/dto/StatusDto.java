@@ -1,5 +1,6 @@
 package gov.gsa.dcoi.dto;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import gov.gsa.dcoi.service.CommonHelper;
@@ -14,7 +15,9 @@ import gov.gsa.dcoi.service.CommonHelper;
 public class StatusDto {
 
 	private Integer dataCenterInventoryId;
+	@NotNull
 	private Integer recordStatusId;
+	@NotNull
 	private Integer recordValidityId;
 	private Integer ownershipTypeId;
 	private Integer dataCenterTierId;
@@ -23,6 +26,7 @@ public class StatusDto {
 	private Integer automatedMonitoring;
 	private Integer issPositionId;
 	private Integer coreClassificationId;
+	@NotNull
 	private Integer closingStageId;
 	private Integer closingFiscalYearId;
 	private Integer closingFiscalQuarterId;

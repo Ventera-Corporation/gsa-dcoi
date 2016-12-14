@@ -7,12 +7,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -120,13 +120,21 @@ public class QuarterController {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-	public void save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos, BindingResult result) {
-		// if (result.hasErrors()) {
+	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos,
+			HttpServletResponse response) {
+		// if(bindingResult.hasErrors()){
 		// System.out.println("here");
 		// }
+		Map<String, Object> returnMap = new HashMap<>();
+		// for(DataCenterDto dataCenterDto : dataCenterDtos.getList()){
+		// response.setHeader(arg0, arg1);
+		// validateDto(dataCenterDtos.getList());
+		// }
+		// validateDtos(dataCenterDtos.getList());
 		// System.out.println(request.getParameter("dataCenterDtos"));
 		// quarterService.costCalculation(dataCenterDtos);
 		dataCenterService.saveDataCenters(dataCenterDtos);
+		return returnMap;
 
 	}
 
