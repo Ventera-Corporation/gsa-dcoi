@@ -15,11 +15,16 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 import gov.gsa.dcoi.DcoiExceptionHandler;
+import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
 import gov.gsa.dcoi.dto.RegionDto;
+import gov.gsa.dcoi.dto.ServerInformationDto;
+import gov.gsa.dcoi.entity.CostCalculation;
+import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.QuarterReport;
+import gov.gsa.dcoi.repository.CostCalculationRepository;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 import gov.gsa.dcoi.repository.DataCenterViewRepository;
 import gov.gsa.dcoi.repository.QuarterStoredProcedure;
@@ -53,6 +58,9 @@ public class QuarterService {
 
 	@Autowired
 	DataCenterViewRepository exportRepository;
+	
+	@Autowired
+	CostCalculationRepository costCalculationRepository;
 
 	/**
 	 * This call creates the new quarter report and, will then populate all the
@@ -170,4 +178,49 @@ public class QuarterService {
 	public List<DataCenterView> findViewResultsByQuarterId(Long quarterId) {
 		return exportRepository.findViewResultsByQuarterId(quarterId);
 	}
+	/**
+	 * Cost calculation function to save information to back end
+	 * @param dataCenterDtos
+	 */
+	public void costCalculation(List<DataCenterDto> dataCenterDtos){
+		for(DataCenterDto dataCenter : dataCenterDtos){
+			CostCalculation costCalcEntity = new CostCalculation();
+			Double serverCostTotal = findServerDifferenceAndCost(dataCenter);
+			BeanUtils.copyProperties(dataCenter.getTotals().getCostCalc(), costCalcEntity);
+			costCalcEntity.setDataCenterQuarterId(dataCenter.getDataCenterQuarterId());
+			costCalcEntity.setServerCost(serverCostTotal);
+			costCalculationRepository.save(costCalcEntity);
+		}
+	}
+	
+	/**
+	 * Find the server totals for this quarter and the previous, and 
+	 * then calculate the overall server cost
+	 * @param dataCenterDto
+	 * @return
+	 */
+	private Double findServerDifferenceAndCost(DataCenterDto dataCenterDto){
+		
+		ServerInformationDto serverInfo = dataCenterDto.getTotals().getServerInfo();
+		Integer curQServerTotal = serverInfo.getTotalWindowsServers() + serverInfo.getTotalMainframes() +
+				serverInfo.getTotalHPCClusterNodes() + serverInfo.getTotalOtherServers();
+		
+		//Get the past quarter
+		DataCenterQuarter pastQuarterDataCenter = dataCenterQuarterRepository.findByQuarterReportIdAndDataCenterId(dataCenterDto.getQuarterReportId() - 1,
+				dataCenterDto.getDataCenterId());
+		Integer pastQServerTotal = pastQuarterDataCenter.getTotalWindowsServers() + pastQuarterDataCenter.getTotalMainframes()
+				+ pastQuarterDataCenter.getTotalHPCClusterNodes() + pastQuarterDataCenter.getTotalOtherServers();
+		
+		//Compute the difference
+		Integer serverDifference = pastQServerTotal - curQServerTotal;
+		Double serverTotalSavings;
+		if(serverDifference < 0){
+			serverTotalSavings = (double) 0;
+		}
+		else{
+			serverTotalSavings = (double) (serverDifference * 3000);
+		}
+		return serverTotalSavings;
+	}
+
 }

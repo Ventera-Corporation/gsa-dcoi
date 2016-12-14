@@ -39,6 +39,7 @@ public class DataCenterDto {
 	private StatusDto status;
 	@Valid
 	private List<FieldOfficeDto> fieldOffices;
+	private FieldOfficeDto totals;
 	private String stateName;
 
 	// ADD GETTER FOR STATENAME
@@ -164,6 +165,14 @@ public class DataCenterDto {
 
 	public void setQuarterReportId(Long quarterReportId) {
 		this.quarterReportId = quarterReportId;
+	}
+
+	public FieldOfficeDto getTotals() {
+		return totals;
+	}
+
+	public void setTotals(FieldOfficeDto totals) {
+		this.totals = totals;
 	}
 
 }

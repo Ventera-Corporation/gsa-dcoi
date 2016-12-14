@@ -4,9 +4,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import gov.gsa.dcoi.dto.CostCalculationDto;
 import gov.gsa.dcoi.dto.FacilityInformationDto;
 import gov.gsa.dcoi.dto.FieldOfficeDto;
 import gov.gsa.dcoi.dto.ServerInformationDto;
+import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.FieldOffice;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
 
@@ -65,7 +67,32 @@ public class FieldOfficeService {
 		fieldOfficeDto.setFieldOfficeName(CommonHelper.parseComponentId(fieldOfficeEntity.getComponentId()));
 
 		return fieldOfficeDto;
+	}
+	
+	/**
+	 * Copy properties from the data center quarter into the 
+	 * Dto to be used for the totals tab
+	 * 
+	 * @param fieldOfficeEntity
+	 * @param fieldOfficeDto
+	 * @return
+	 */
+	public FieldOfficeDto createTotalsTab(DataCenterQuarter dataCenterQuarter) {
+		FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
+		FacilityInformationDto facilityInformationDto = new FacilityInformationDto();
+		ServerInformationDto serverInformationDto = new ServerInformationDto();
 
+		BeanUtils.copyProperties(dataCenterQuarter, facilityInformationDto);
+		BeanUtils.copyProperties(dataCenterQuarter, serverInformationDto);
+
+		//BeanUtils.copyProperties(fieldOfficeEntity, fieldOfficeDto);
+
+		fieldOfficeDto.setFacilityInfo(facilityInformationDto);
+		fieldOfficeDto.setServerInfo(serverInformationDto);
+		fieldOfficeDto.setCostCalc(new CostCalculationDto());
+		fieldOfficeDto.setFieldOfficeName("Totals");
+
+		return fieldOfficeDto;
 	}
 
 }

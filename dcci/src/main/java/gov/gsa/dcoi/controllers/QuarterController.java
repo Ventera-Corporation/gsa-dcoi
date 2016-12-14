@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
+import gov.gsa.dcoi.dto.ValidList;
 import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.service.DataCenterService;
@@ -119,12 +120,13 @@ public class QuarterController {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-	public void save(@Valid @RequestBody DataCenterDto dataCenterDtos, BindingResult result) {
+	public void save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos, BindingResult result) {
 		// if (result.hasErrors()) {
 		// System.out.println("here");
 		// }
 		// System.out.println(request.getParameter("dataCenterDtos"));
-		// dataCenterService.saveDataCenters(dataCenterDtos);
+		// quarterService.costCalculation(dataCenterDtos);
+		dataCenterService.saveDataCenters(dataCenterDtos);
 
 	}
 

@@ -36,13 +36,13 @@ public class ExcelWriter {
 	 * @param searchResultsMap
 	 * @return
 	 */
-	public byte[] exportReportResults(String[] sheetTitles, Map<String[], List<List<String>>> searchResultsMap) {
+	public byte[] exportReportResults(String[] sheetTitles, Map<String[], List<List<String>>> exportResultsMap) {
 		HSSFWorkbook workbook = null;
 		ByteArrayOutputStream bos = null;
 		try {
 			workbook = new HSSFWorkbook();
 			int sheetNum = 0;
-			for (Map.Entry<String[], List<List<String>>> headersAndSearchResults : searchResultsMap.entrySet()) {
+			for (Map.Entry<String[], List<List<String>>> headersAndExportData : exportResultsMap.entrySet()) {
 				HSSFSheet sheet = null;
 				if (sheetTitles == null) {
 					sheet = workbook.createSheet("Results Sheet " + (sheetNum + 1));
@@ -56,13 +56,13 @@ public class ExcelWriter {
 				Row headerRow = sheet.createRow(0);
 				headerRow.setHeightInPoints(40);
 				int noOfColumns = 0;
-				for (String header : headersAndSearchResults.getKey()) {
+				for (String header : headersAndExportData.getKey()) {
 					Cell headerCell = headerRow.createCell(noOfColumns++);
 					headerCell.setCellValue(header);
 				}
 
 				int rowIdx = 1;
-				for (List<String> resultRow : headersAndSearchResults.getValue()) {
+				for (List<String> resultRow : headersAndExportData.getValue()) {
 					Row row = sheet.createRow(rowIdx++);
 					row.setHeightInPoints(25);
 					int cellIdx = 0;

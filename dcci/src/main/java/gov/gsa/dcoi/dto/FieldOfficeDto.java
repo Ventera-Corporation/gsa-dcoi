@@ -23,6 +23,7 @@ public class FieldOfficeDto {
 	private FacilityInformationDto facilityInfo;
 	@Valid
 	private ServerInformationDto serverInfo;
+	private CostCalculationDto costCalc;
 
 	// ADD GETTER FOR FIELD OFFICE NAME
 
@@ -72,6 +73,14 @@ public class FieldOfficeDto {
 
 	public void setComponentId(Integer componentId) {
 		this.componentId = componentId;
+	}
+
+	public CostCalculationDto getCostCalc() {
+		return costCalc;
+	}
+
+	public void setCostCalc(CostCalculationDto costCalc) {
+		this.costCalc = costCalc;
 	}
 
 }

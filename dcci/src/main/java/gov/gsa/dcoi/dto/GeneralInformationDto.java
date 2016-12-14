@@ -22,6 +22,7 @@ public class GeneralInformationDto {
 	private Integer parentDataCenterInventoryId;
 	private String agencyDataCenterId;
 	@NotNull
+	@Size(min = 1)
 	private String agencyAbbreviation;
 	@Size(max = 255)
 	private String publishedName;
@@ -37,7 +38,7 @@ public class GeneralInformationDto {
 	@Size(max = 255)
 	private String dataCenterName;
 	@NotNull
-	@Size(max = 1024)
+	@Size(min = 1, max = 1024)
 	private String component;
 
 	public String getStateName() {
