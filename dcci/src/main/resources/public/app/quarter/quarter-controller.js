@@ -80,7 +80,12 @@
 					activeFieldOfficeTabIdx: 0,
 					generalInfo: true,
 					status: true,
-					fieldOffices: []
+					fieldOffices: [],
+					totals: {
+						costCalc: true,
+						facilityInfo: true,
+						serverInfo: true	
+					}
 				};
 				var categories = {
 					facilityInfo: true,
