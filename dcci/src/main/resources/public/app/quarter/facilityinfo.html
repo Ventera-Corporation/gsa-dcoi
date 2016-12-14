@@ -25,7 +25,7 @@
 							<span class="input-group-addon">Sq. Ft.</span>
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoGrossFloorArea"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.grossFloorArea || "NONE"}}
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.grossFloorArea || "None"}}
                         		<small data-ng-show="fieldOffice.facilityInfo.grossFloorArea">Sq. Ft.</small></span>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
 							<span class="input-group-addon">Sq. Ft.</span>
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoTotalCustomerFloorArea"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.totalCustomerFloorArea || "NONE"}}
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.totalCustomerFloorArea || "None"}}
                         		<small data-ng-show="fieldOffice.facilityInfo.totalCustomerFloorArea">Sq. Ft.</small></span>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             		data-ng-model="fieldOffice.facilityInfo.annualCostPerSqFt" min="0" step="0.01">
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoAnnualCostPerSqFt"
-                        		data-ng-if="!qc.tempData.editMode">{{(fieldOffice.facilityInfo.annualCostPerSqFt | currency) || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{(fieldOffice.facilityInfo.annualCostPerSqFt | currency) || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -62,7 +62,7 @@
                             		data-ng-model="fieldOffice.facilityInfo.otherAgenciesServiced">
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoOtherAgenciesServiced"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.otherAgenciesServiced || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.otherAgenciesServiced || "None"}}</span>
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
                             <span class="input-group-addon">kWh</span>
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoAvgElectricityUsage"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.avgElectricityUsage || "NONE"}}
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.avgElectricityUsage || "None"}}
                         		<small data-ng-show="fieldOffice.facilityInfo.avgElectricityUsage">kWh</small></span>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                          	<span class="input-group-addon">kWh</span>
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoAvgITElectricityUsage"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.avgITElectricityUsage || "NONE"}}
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.avgITElectricityUsage || "None"}}
                         		<small data-ng-show="fieldOffice.facilityInfo.avgITElectricityUsage">kWh</small></span>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                         <span class="input-group-addon">kW</span>
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoTotalPowerCapacity"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.totalPowerCapacity || "NONE"}}
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.totalPowerCapacity || "None"}}
                         		<small data-ng-show="fieldOffice.facilityInfo.totalPowerCapacity">kW</small></span>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                             <span class="input-group-addon">kW</span>
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoTotalITPowerCapacity"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.totalITPowerCapacity || "NONE"}}
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.totalITPowerCapacity || "None"}}
                         		<small data-ng-show="fieldOffice.facilityInfo.totalITPowerCapacity">kW</small></span>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                             		data-ng-model="fieldOffice.facilityInfo.fte" min="0" step="0.01">
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoFTE"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.fte || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.fte || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -144,7 +144,7 @@
                             		data-ng-model="fieldOffice.facilityInfo.fteCost" min="0" step="0.01">
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoFTECost"
-                        		data-ng-if="!qc.tempData.editMode">{{(fieldOffice.facilityInfo.fteCost | currency) || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{(fieldOffice.facilityInfo.fteCost | currency) || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -155,7 +155,7 @@
                             		data-ng-model="fieldOffice.facilityInfo.rackCount" min="0">
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoRackCount"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.rackCount || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.rackCount || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -167,7 +167,7 @@
                            		data-ng-model="fieldOffice.facilityInfo.costPerkWh" min="0" step="0.01">
                         </div>
                         <span id="{{fieldOffice.name}}FacilityInfoCostPerkWh"
-                        		data-ng-if="!qc.tempData.editMode">{{(fieldOffice.facilityInfo.costPerkWh | currency) || "NONE"}}</span>
+                        		data-ng-if="!qc.tempData.editMode">{{(fieldOffice.facilityInfo.costPerkWh | currency) || "None"}}</span>
                     </div>
                 </div>
             </div><!-- /.row -->
