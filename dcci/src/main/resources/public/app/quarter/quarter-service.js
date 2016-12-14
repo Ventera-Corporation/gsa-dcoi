@@ -17,14 +17,14 @@
 				return $http({
 					url: '/quarter/create',
 					method: 'POST',
-					params: {dueDate: dueDate}
+					data: dueDate
 				}).then(returnData);
 			},
 			saveQuarter : function(editedDataCenters) {
 				return $http({
 					url: '/quarter/save',
 					method: 'POST',
-					params: {dataCenterDtos: editedDataCenters}
+					data: editedDataCenters
 				}).then(returnData);
 			},
 			viewQuarter : function(quarterId) {
@@ -44,28 +44,28 @@
 				return $http({
 					url: '/datacenter/add',
 					method: 'POST',
-					params: {dataCenterDto: dataCenterData}
+					data:  dataCenterData
 				}).then(returnData);
 			},
 			submitDataCenter : function(dataCenterId) {
 				return $http({
 					url: '/datacenter/submit',
 					method: 'POST',
-					params: {dataCenterId: dataCenterId}
+					data:  dataCenterId
 				}).then(returnData);
 			},
 			rejectDataCenter : function(dataCenterId) {
 				return $http({
 					url: '/datacenter/reject',
 					method: 'POST',
-					params: {dataCenterId: dataCenterId}
+					data:  dataCenterId
 				}).then(returnData);
 			},
 			validateDataCenter : function(dataCenterId) {
 				return $http({
 					url: '/datacenter/validate',
 					method: 'POST',
-					params: {dataCenterId: dataCenterId}
+					data: dataCenterId
 				}).then(returnData);
 			},
 			completeQuarter : function() {
