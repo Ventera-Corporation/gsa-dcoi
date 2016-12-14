@@ -1,0 +1,107 @@
+<!-- CATEGORY : FACILITY INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.facilityInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.facilityInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.facilityInfo"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.facilityInfo"></span>
+            <span>&nbsp; Facility Info</span>
+        </h4>
+    </div>
+
+    <div id="totalsFacilityInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.facilityInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoGrossFloorArea">Gross Floor Area</label>
+                        <span id="totalsFacilityInfoGrossFloorArea">{{datacenter.totals.facilityInfo.grossFloorArea || "NONE"}}
+                        		<small data-ng-show="datacenter.totals.facilityInfo.grossFloorArea">Sq. Ft.</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoTotalCustomerFloorArea">Total Customer Floor Area</label>
+                        <span id="totalsFacilityInfoTotalCustomerFloorArea">{{datacenter.totals.facilityInfo.totalCustomerFloorArea || "NONE"}}
+                        		<small data-ng-show="datacenter.totals.facilityInfo.totalCustomerFloorArea">Sq. Ft.</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoAnnualCostPerSqFt">Annual Cost per Sq. Ft.</label>
+                        <span id="totalsFacilityInfoAnnualCostPerSqFt">{{(datacenter.totals.facilityInfo.annualCostPerSqFt | currency) || "NONE"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoOtherAgenciesServiced">Other Agencies Serviced</label>
+                        <span id="totalsFacilityInfoOtherAgenciesServiced">{{datacenter.totals.facilityInfo.otherAgenciesServiced || "NONE"}}</span>
+                    </div>
+                </div>
+
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoAvgElectricityUsage">Avg. Electricity Usage</label>
+                        <span id="totalsFacilityInfoAvgElectricityUsage">{{datacenter.totals.facilityInfo.avgElectricityUsage || "NONE"}}
+                        		<small data-ng-show="datacenter.totals.facilityInfo.avgElectricityUsage">kWh</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoAvgITElectricityUsage">Avg. IT Electricity Usage</label>
+                        <span id="totalsFacilityInfoAvgITElectricityUsage">{{datacenter.totals.facilityInfo.avgITElectricityUsage || "NONE"}}
+                        		<small data-ng-show="datacenter.totals.facilityInfo.avgITElectricityUsage">kWh</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoTotalPowerCapacity">Total Power Capacity</label>
+                        <span id="totalsFacilityInfoTotalPowerCapacity">{{datacenter.totals.facilityInfo.totalPowerCapacity || "NONE"}}
+                        		<small data-ng-show="datacenter.totals.facilityInfo.totalPowerCapacity">kW</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoTotalITPowerCapacity">Total IT Power Capacity</label>
+                        <span id="totalsFacilityInfoTotalITPowerCapacity">{{datacenter.totals.facilityInfo.totalITPowerCapacity || "NONE"}}
+                        		<small data-ng-show="datacenter.totals.facilityInfo.totalITPowerCapacity">kW</small></span>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoFTE">FTE</label>
+                        <span id="totalsFacilityInfoFTE">{{datacenter.totals.facilityInfo.fte || "NONE"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoFTECost">FTE Cost</label>
+                        <span id="totalsFacilityInfoFTECost">{{(datacenter.totals.facilityInfo.fteCost | currency) || "NONE"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoRackCount">Rack Count</label>
+                        <span id="totalsFacilityInfoRackCount">{{datacenter.totals.facilityInfo.rackCount || "NONE"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="totalsFacilityInfoCostPerkWh">Cost per kWh</label>
+                        <span id="totalsFacilityInfoCostPerkWh">{{(datacenter.totals.facilityInfo.costPerkWh | currency) || "NONE"}}</span>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

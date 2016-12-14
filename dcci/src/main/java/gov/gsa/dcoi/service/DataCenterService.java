@@ -3,6 +3,7 @@ package gov.gsa.dcoi.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import java.lang.Iterable;
 
 import javax.transaction.Transactional;
 
@@ -58,7 +59,7 @@ public class DataCenterService {
 	public List<DataCenterQuarter> findByQuarterReportId(Long curQuarterId) {
 		return dataCenterQuarterRepository.findByQuarterReportId(curQuarterId);
 	}
-
+	
 	/**
 	 * Search
 	 * 
@@ -67,7 +68,7 @@ public class DataCenterService {
 	public List<DataCenterDto> executeSearch() {
 		Iterator<DataCenterQuarter> allQuarters = dataCenterQuarterRepository.findAll().iterator();
 		List<DataCenterDto> returnDataCenters = new ArrayList<DataCenterDto>();
-		while (allQuarters.hasNext()) {
+		while(allQuarters.hasNext()){
 			DataCenterDto dataCenterDto = new DataCenterDto();
 			DataCenterQuarter quarter = allQuarters.next();
 			List<DataCenter> dataCenters = dataCenterRepository.findByDataCenterId(quarter.getDataCenterId());
@@ -76,7 +77,7 @@ public class DataCenterService {
 		return returnDataCenters;
 	}
 
-	/**
+		/**
 	 * Populate the regionsDto Lists to display back for a quarter
 	 * 
 	 * @param quarterReportId
@@ -136,7 +137,7 @@ public class DataCenterService {
 		return regionDtos;
 	}
 
-	/**
+		/**
 	 * Will save the edited information for data centers that are passed back
 	 * after a "save changes" call from the application
 	 * 
@@ -189,7 +190,7 @@ public class DataCenterService {
 		return regionDtos;
 	}
 
-	/**
+/**
 	 * copy the Entity Properties to the DataCenterDto to be displayed on the
 	 * front end
 	 * 
@@ -217,7 +218,7 @@ public class DataCenterService {
 		return dataCenterDto;
 	}
 
-	/**
+		/**
 	 * Copy the dto information to the dataCenterQuarterEntity
 	 * 
 	 * @param dataCenterDto

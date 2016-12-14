@@ -39,9 +39,9 @@
 			controller : 'QuarterController',
 			controllerAs : 'qc',
 			resolve : {
-				quarterData : function(QuarterService) {
+				initData : function(QuarterService) {
 					return QuarterService.initQuarter().then(function(data) {
-						return data.quarterData;
+						return data;
 					});
 				}
 			}
@@ -50,9 +50,9 @@
 			controller : 'QuarterController',
 			controllerAs : 'qc',
 			resolve : {
-				quarterData : function(QuarterService, $route){
+				initData : function(QuarterService, $route){
 					return QuarterService.viewQuarter($route.current.params.quarterId).then(function(data) {
-						return data.quarterData;
+						return data;
 					});
 				}
 			}
@@ -60,11 +60,7 @@
 			templateUrl : 'app/search/search.html',
 			controller : 'SearchController',
 			controllerAs : 'sc',
-			resolve : {
-				advancedSearchMode : function() {
-					return false;
-				}
-			}
+			resolve : {}
 		});
 	}
 })();

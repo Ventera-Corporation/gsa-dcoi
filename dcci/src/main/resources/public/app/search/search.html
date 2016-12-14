@@ -1,6 +1,11 @@
+<!-- PAGE HEADER -->
+<div class="page-header">
+	Query Data Centers
+</div>
+
 <!-- MAIN CONTAINER -->
-<div class="container-fluid"  style="padding-top:40px;">
-	<table datatable="ng" class="row-border hover">
+<div class="container-fluid" style="padding-top: 100px;">
+	<table data-datatable="ng" class="row-border hover">
 		<thead>
 			<tr>
 				<th>Data Center Name</th>
@@ -10,7 +15,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="result in sc.searchResults">
+			<tr data-ng-repeat="result in sc.searchResults">
 				<td>{{result.dataCenterName}}</td>
 				<td>{{result.generalInfo.dcoiDataCenterId}}</td>
 				<td>{{result.address}}</td>
@@ -18,6 +23,28 @@
 			</tr>
 		</tbody>
 	</table>
-</div>
-<!-- /.container-fluid -->
+</div><!-- /.container-fluid -->
 
+<!-- SCROLL TO TOP BUTTON -->
+<button class="scroll-to-top" type="button" href="javascript:" id="return-to-top" title="Back to Top">
+		<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+</button>
+
+
+<!-- TEMP : Scroll to top -->
+<script>
+$(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+        $('#return-to-top').display('block');
+    } else {
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        $('#return-to-top').display('none');
+    }
+});
+$('#return-to-top').click(function() {      // When arrow is clicked
+    $('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+    }, 500);
+});
+</script>

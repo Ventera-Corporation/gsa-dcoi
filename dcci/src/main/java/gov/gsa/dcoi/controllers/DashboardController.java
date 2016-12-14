@@ -42,7 +42,7 @@ public class DashboardController {
 	 * @return Map<String, Object> returnMap
 	 */
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> initDashboard() {
 		Map<String, Object> returnMap = new HashMap<>();
 		DashboardDto dashboardData = new DashboardDto();

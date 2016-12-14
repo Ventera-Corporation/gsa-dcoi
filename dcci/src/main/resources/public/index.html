@@ -71,13 +71,15 @@
 	            </div>
 	
 	            <!-- Collect the nav links, forms, and other content for toggling -->
-	            <div class="collapse navbar-collapse navbar-right" id="DCOi-nav" data-ng-if="authenticated">
-	            	<a class="navbar-brand" href="#/search/searchResults"><span class="glyphicon glyphicon-search glyph-style" aria-hidden="true" role="button"></span>
-	            		&nbsp;&nbsp;<span class="vnt-source-sans-pro-regular">Query</span></a>
+	            <div class="collapse navbar-collapse navbar-right" id="DCOi-nav" data-ng-if="authenticated">              
 	                <ul class="nav navbar-nav navbar-right" data-ng-controller="LoginController">
+	                    <li>
+	                    	<a href="#/search/searchResults"><span class="glyphicon glyphicon-search" aria-hidden="true" role="button"></span>
+	            			&nbsp;Search</a>
+	            		</li>
 	                    <li uib-dropdown>
 	                        <a uib-dropdown-toggle role="button" aria-haspopup="true" aria-expanded="false">
-	                        	<span style="text-transform:capitalize">{{account.firstName}}&nbsp;{{account.lastName}}</span><span class="caret"></span></a>
+	                        	<span style="text-transform:capitalize">{{account.firstName}}&nbsp;{{account.lastName}}</span> <span class="caret"></span></a>
 	                        <ul uib-dropdown-menu>
 	                            <li><a href="">Settings</a></li>
 	                            <li><a href="" data-ng-click="lc.logout()">Logout</a></li>

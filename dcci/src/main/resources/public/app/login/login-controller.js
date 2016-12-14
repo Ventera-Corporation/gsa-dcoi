@@ -55,7 +55,7 @@
 			    controllerAs : 'cc',
 			    resolve : {
 			    	message: function () {
-			    		return 	"Are you sure to logout?";
+			    		return 	"Are you sure you want to logout?";
 			        }
 			    }
 			});
