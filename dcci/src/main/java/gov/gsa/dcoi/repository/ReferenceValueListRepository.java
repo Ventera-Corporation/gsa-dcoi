@@ -29,19 +29,19 @@ public class ReferenceValueListRepository {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReferenceValueListRepository.class);
 
-	private static final String GET_RECORD_VALIDITY_REF_LIST = " SELECT record_validity_id, record_validity_name FROM ref_record_validity ";
-	private static final String GET_RECORD_STATUS_REF_LIST = " SELECT record_status_id, record_status_name FROM ref_record_status";
-	private static final String GET_STATE_REF_LIST = " SELECT state_id, state_code FROM ref_state rs";
+	private static final String GET_RECORD_VALIDITY_REF_LIST = " SELECT record_validity_id, record_validity_name, active_flag FROM ref_record_validity ";
+	private static final String GET_RECORD_STATUS_REF_LIST = " SELECT record_status_id, record_status_name, active_flag FROM ref_record_status";
+	private static final String GET_STATE_REF_LIST = " SELECT state_id, state_code, active_flag FROM ref_state rs";
 	private static final String GET_FISCAL_YEAR_REF_LIST = " SELECT fiscal_year_id, fiscal_year FROM ref_fiscal_year";
 	private static final String GET_FISCAL_QUARTER_REF_LIST = " SELECT fiscal_quarter_id, fiscal_quarter FROM ref_fiscal_quarter";
-	private static final String GET_REGION_REF_LIST = " SELECT region_id, region_name FROM ref_region";
-	private static final String GET_OWNERSHIP_TYPE_REF_LIST = " SELECT ownership_type_id, ownership_type_name FROM ref_ownership_type";
-	private static final String GET_ISS_POSITION_REF_LIST = " SELECT iss_position_id, iss_position_name FROM ref_iss_position";
-	private static final String GET_DATA_CENTER_TIER_REF_LIST = " SELECT data_center_tier_id, data_center_tier_name FROM ref_data_center_tier";
-	private static final String GET_COUNTRY_REF_LIST = " SELECT country_id, country_name FROM ref_country";
-	private static final String GET_CORE_CLASSIFICATION_REF_LIST = " SELECT core_classification_id, core_classification_name FROM ref_core_classification";
-	private static final String GET_CLOSING_STAGE_REF_LIST = " SELECT closing_stage_id, closing_stage_name FROM ref_closing_stage";
-	private static final String GET_COMPONENT_REF_LIST = " SELECT field_office_id, field_office_name FROM field_office";
+	private static final String GET_REGION_REF_LIST = " SELECT region_id, region_name, active_flag, gsa_region_number FROM ref_region";
+	private static final String GET_OWNERSHIP_TYPE_REF_LIST = " SELECT ownership_type_id, ownership_type_name, active_flag FROM ref_ownership_type";
+	private static final String GET_ISS_POSITION_REF_LIST = " SELECT iss_position_id, iss_position_name, active_flag FROM ref_iss_position";
+	private static final String GET_DATA_CENTER_TIER_REF_LIST = " SELECT data_center_tier_id, data_center_tier_name, active_flag FROM ref_data_center_tier";
+	private static final String GET_COUNTRY_REF_LIST = " SELECT country_id, country_name, active_flag FROM ref_country";
+	private static final String GET_CORE_CLASSIFICATION_REF_LIST = " SELECT core_classification_id, core_classification_name, active_flag FROM ref_core_classification";
+	private static final String GET_CLOSING_STAGE_REF_LIST = " SELECT closing_stage_id, closing_stage_name, active_flag FROM ref_closing_stage";
+	private static final String GET_COMPONENT_REF_LIST = " SELECT field_office_id, field_office_name, active_flag FROM field_office";
 
 	@Autowired(required = true)
 	private JdbcTemplate jdbcTemplate;
@@ -62,6 +62,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("record_validity_id"));
 								refValueObject.setValue(rs.getString("record_validity_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
@@ -95,6 +96,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("record_status_id"));
 								refValueObject.setValue(rs.getString("record_status_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
@@ -127,6 +129,7 @@ public class ReferenceValueListRepository {
 						GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 						refValueObject.setId(rs.getInt("state_id"));
 						refValueObject.setValue(rs.getString("state_code"));
+						refValueObject.setActiveFlag(rs.getInt("active_flag"));
 						refValueObjects.add(refValueObject);
 					}
 					if (LOGGER.isDebugEnabled()) {
@@ -221,7 +224,9 @@ public class ReferenceValueListRepository {
 					while (rs.next()) {
 						GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 						refValueObject.setId(rs.getInt("region_id"));
-						refValueObject.setValue(rs.getString("region_name"));
+						refValueObject.setValue("R" + rs.getInt("gsa_region_number"));
+						refValueObject.setActiveFlag(rs.getInt("active_flag"));
+						refValueObject.setCode("r"+ rs.getString("gsa_region_number").toLowerCase().replace(" ", ""));
 						refValueObjects.add(refValueObject);
 					}
 					if (LOGGER.isDebugEnabled()) {
@@ -253,6 +258,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("ownership_type_id"));
 								refValueObject.setValue(rs.getString("ownership_type_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
@@ -286,6 +292,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("iss_position_id"));
 								refValueObject.setValue(rs.getString("iss_position_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
@@ -318,6 +325,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("data_center_tier_id"));
 								refValueObject.setValue(rs.getString("data_center_tier_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
@@ -351,6 +359,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("country_id"));
 								refValueObject.setValue(rs.getString("country_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
@@ -382,6 +391,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("core_classification_id"));
 								refValueObject.setValue(rs.getString("core_classification_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
@@ -414,6 +424,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("closing_stage_id"));
 								refValueObject.setValue(rs.getString("closing_stage_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
@@ -446,6 +457,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("field_office_id"));
 								refValueObject.setValue(rs.getString("field_office_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
