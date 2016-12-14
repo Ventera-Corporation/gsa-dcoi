@@ -28,6 +28,9 @@
 			},
 			expandCollapsePanels: {}
 		};
+//		angular.foreach(initData.referenceValueLists.regionRefValueList, function(regionRefValue){
+//			qc.tempData.selected.expandCollapseRegions[regionRefValue.code] = false;
+//		});
 		qc.tempData.wasInEditMode = {
 			dataCenterNames:[],
 			dataCenterIds:[]
