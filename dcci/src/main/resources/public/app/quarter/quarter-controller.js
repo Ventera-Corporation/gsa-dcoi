@@ -51,6 +51,7 @@
 		qc.rejectDataCenter = rejectDataCenter;
 		qc.validateDataCenter = validateDataCenter;
 		qc.allDataCentersValidated = allDataCentersValidated;
+		qc.numDataCentersNeedAttentionForDataCenterName = numDataCentersNeedAttentionForDataCenterName;
 		qc.allDataCentersForDataCenterNameValidated = allDataCentersForDataCenterNameValidated;
 		qc.completeQuarter = completeQuarter;
 		qc.exportQuarter = exportQuarter;
@@ -135,21 +136,7 @@
 		}
 		
 		function saveQuarter(isAdmin){
-			var editedDataCenters = [];
-			angular.forEach(qc.tempData.wasInEditMode.dataCenterIds, function(dataCenterIdInEditMode){
-				angular.forEach(qc.quarterData.regions, function(region){
-					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode}, true)[0];
-					if(foundDataCenter){
-						if(isAdmin){
-							foundDataCenter.adminCompleteFlag = 0;
-						} else {
-							foundDataCenter.ssoCompleteFlag = 0;
-						}
-						editedDataCenters.push(foundDataCenter);
-					}
-				});
-			});
-			QuarterService.saveQuarter(qc.getEditedDataCenters()).then(function (data){
+			QuarterService.saveQuarter(qc.getEditedDataCenters(isAdmin)).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
@@ -164,12 +151,17 @@
 			});
 		}
 		
-		function getEditedDataCenters(){
+		function getEditedDataCenters(isAdmin){
 			var editedDataCenters = [];
 			angular.forEach(qc.tempData.wasInEditMode.dataCenterIds, function(dataCenterIdInEditMode){
 				angular.forEach(qc.quarterData.regions, function(region){
 					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode}, true)[0];
 					if(foundDataCenter){
+						if(isAdmin){
+							foundDataCenter.adminCompleteFlag = 0;
+						} else {
+							foundDataCenter.ssoCompleteFlag = 0;
+						}
 						editedDataCenters.push(foundDataCenter);
 					}
 				});
@@ -268,20 +260,26 @@
 		
 		function allDataCentersValidated(){
 			for(var regionIdx = 0; regionIdx < qc.quarterData.regions.length; regionIdx++){
-				if(($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, {'ssoCompleteFlag':0, 'adminCompleteFlag':1}, true)).length
-						!== qc.quarterData.regions[regionIdx].dataCenters.length){
+				var numDataCentersAreValidated = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
+						{'ssoCompleteFlag':1, 'adminCompleteFlag':1}, true)).length;
+				if(qc.quarterData.regions[regionIdx].dataCenters.length !== numDataCentersAreValidated){
 					return false;
 				}
 			}
 			return true;
 		}
 		
+		function numDataCentersNeedAttentionForDataCenterName(regionIdx, dataCenterName){
+			return ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
+					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':1, 'adminCompleteFlag':0}, true)).length;
+		}
+		
 		function allDataCentersForDataCenterNameValidated(regionIdx, dataCenterName){
-			var needAttention = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
-					{'dataCenterName':dataCenterName, 'adminCompleteFlag':0}, true)).length;
-			var areRejected = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
-					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':0}, true)).length;
-			return !(needAttention || areRejected);
+			var numDataCentersWithDataCenterName = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
+					{'dataCenterName':dataCenterName}, true)).length;
+			var numDataCentersAreValidated = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
+					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':1, 'adminCompleteFlag':1}, true)).length;
+			return numDataCentersWithDataCenterName === numDataCentersAreValidated;
 		}
 		
 		function completeQuarter(){
