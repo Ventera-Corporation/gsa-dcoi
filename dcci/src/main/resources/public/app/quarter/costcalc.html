@@ -1,74 +1,47 @@
 <!-- CATEGORY : COST CALCULATION -->
-<div class="panel panel-default panel-category">
-    <div class="panel-heading" data-toggle="collapse" 
-    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].costCalc=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].costCalc">
-        <h4 class="panel-title">
-            <span class="glyphicon glyphicon-minus" 
-            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].costCalc"></span>
-            <span class="glyphicon glyphicon-plus" 
-            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].costCalc"></span>
-            <span>&nbsp; Cost Calculation</span>
-        </h4>
-    </div>
-
-    <div id="{{fieldOffice.name}}CostCalc" class="panel-collapse panel-cat-collapse collapse in" 
-    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].costCalc">
-        <div class="panel-body">
-            <!-- Form Fields -->
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="{{fieldOffice.name}}CostCalcServerCost">Server Cost</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}CostCalcServerCost" 
-                            		data-ng-model="fieldOffice.costCalc.serverCost" min="0">
-                        </div>
-                        <span id="{{fieldOffice.name}}CostCalcServerCost"
-                        		data-ng-if="!qc.tempData.editMode"><small data-ng-show="fieldOffice.costCalc.serverCost">$</small>
-                        		{{(fieldOffice.costCalc.serverCost | currency) || "None"}}</span>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="{{fieldOffice.name}}CostCalcStorageCost">Storage Cost</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}CostCalcStorageCost" 
-                            		data-ng-model="fieldOffice.costCalc.storageCost" min="0" step="0.01">
-                        </div>
-                        <span id="{{fieldOffice.name}}CostCalcStorageCost"
-                        		data-ng-if="!qc.tempData.editMode"><small data-ng-show="fieldOffice.costCalc.storageCost">$</small>
-                        		{{(fieldOffice.costCalc.storageCost | currency) || "None"}}</span>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="{{fieldOffice.name}}CostCalcMiscellaneous">Miscellaneous</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                        	<span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}CostCalcMiscellaneous" 
-                            		data-ng-model="fieldOffice.costCalc.miscellaneous" min="0" step="0.01">
-                        </div>
-                        <span id="{{fieldOffice.name}}CostCalcMiscellaneous"
-                        		data-ng-if="!qc.tempData.editMode"><small data-ng-show="fieldOffice.costCalc.miscellaneous">$</small>
-                        		{{(fieldOffice.costCalc.miscellaneous | currency) || "None"}}</span>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="{{fieldOffice.name}}CostCalcTotal">Total</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="{{fieldOffice.name}}CostCalcTotal" 
-                            		data-ng-model="fieldOffice.costCalc.total">
-                        </div>
-                        <span id="{{fieldOffice.name}}CostCalcTotal"
-                        		data-ng-if="!qc.tempData.editMode"><small data-ng-show="fieldOffice.costCalc.total">$</small>
-                        		{{(fieldOffice.costCalc.total | currency) || "None"}}</span>
-                    </div>
-                </div>
-
-            </div><!-- /.row -->
-        </div><!-- /.panel-body -->
-    </div>
-</div><!-- /.panel-category -->
+ +<div class="panel panel-default panel-category">
+ +    <div class="panel-heading" data-toggle="collapse" 
+ +    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc">
+ +        <h4 class="panel-title">
+ +            <span class="glyphicon glyphicon-minus" 
+ +            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
+ +            <span class="glyphicon glyphicon-plus" 
+ +            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
+ +            <span>&nbsp; Cost Calculation</span>
+ +        </h4>
+ +    </div>
+ +
+ +    <div id="totalsCostCalc" class="panel-collapse panel-cat-collapse collapse in" 
+ +    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc">
+ +        <div class="panel-body">
+ +            <!-- Form Fields -->
+ +            <div class="row">
+ +                <div class="col-md-3 col-sm-6 col-xs-12">
+ +                    <div class="form-group">
+ +                        <label for="totalsCostCalcServerCost">Server Cost</label>
+ +                        <span id="totalsCostCalcServerCost">{{(datacenter.totals.costCalc.serverCost | currency) || "None"}}</span>
+ +                    </div>
+ +                </div>
+ +                <div class="col-md-3 col-sm-6 col-xs-12">
+ +                    <div class="form-group">
+ +                        <label for="totalsCostCalcStorageCost">Storage Cost</label>
+ +                        <span id="totalsCostCalcStorageCost">{{(datacenter.totals.costCalc.storageCost | currency) || "None"}}</span>
+ +                    </div>
+ +                </div>
+ +                <div class="col-md-3 col-sm-6 col-xs-12">
+ +                    <div class="form-group">
+ +                        <label for="totalsCostCalcMiscellaneous">Miscellaneous</label>
+ +                        <span id="totalsCostCalcMiscellaneous">{{(datacenter.totals.costCalc.miscellaneous | currency) || "None"}}</span>
+ +                    </div>
+ +                </div>
+ +                <div class="col-md-3 col-sm-6 col-xs-12">
+ +                    <div class="form-group">
+ +                        <label for="totalsCostCalcTotal">Total</label>
+ +                        <span id="totalsCostCalcTotal">{{(datacenter.totals.costCalc.total | currency) || "None"}}</span>
+ +                    </div>
+ +                </div>
+ +
+ +            </div><!-- /.row -->
+ +        </div><!-- /.panel-body -->
+ +    </div>
+  </div><!-- /.panel-category -->
