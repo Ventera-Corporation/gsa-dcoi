@@ -3,7 +3,6 @@ package gov.gsa.dcoi.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
-import java.lang.Iterable;
 
 import javax.transaction.Transactional;
 
@@ -101,7 +100,8 @@ public class DataCenterService {
 					// information for the current quarter
 					continue;
 				}
-				
+				dataCenterDto = copyEntityToDto(dataCenterForQuarter, dataCenter, dataCenterDto);
+
 				//Set the totals tab
 				dataCenterDto.setTotals(fieldOfficeService.createTotalsTab(dataCenterForQuarter));
 
