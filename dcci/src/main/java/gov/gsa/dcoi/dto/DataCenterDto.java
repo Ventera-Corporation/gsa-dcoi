@@ -24,8 +24,10 @@ public class DataCenterDto {
 	private String dataCenterName;
 	@Pattern(regexp = "DCOI-DC-[0-9]{5}")
 	private String dcoiDataCenterId;
+	private Long dataCenterQuarterId;
+	private Long quarterReportId;
 	private Integer dataCenterId;
-	private String city;   
+	private String city;
 	private Integer stateId;
 	private Integer regionId;
 	private Integer totalNumDataCenters;
@@ -146,6 +148,22 @@ public class DataCenterDto {
 
 	public void setStateName(String stateName) {
 		this.stateName = stateName;
+	}
+
+	public Long getDataCenterQuarterId() {
+		return dataCenterQuarterId;
+	}
+
+	public void setDataCenterQuarterId(Long dataCenterQuarterId) {
+		this.dataCenterQuarterId = dataCenterQuarterId;
+	}
+
+	public Long getQuarterReportId() {
+		return quarterReportId;
+	}
+
+	public void setQuarterReportId(Long quarterReportId) {
+		this.quarterReportId = quarterReportId;
 	}
 
 }

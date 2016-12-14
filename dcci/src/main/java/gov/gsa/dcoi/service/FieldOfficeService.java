@@ -32,8 +32,13 @@ public class FieldOfficeService {
 	 * @return
 	 */
 	public FieldOffice copyDtoToVO(FieldOfficeDto fieldOfficeDto, FieldOffice fieldOfficeVO) {
-		BeanUtils.copyProperties(fieldOfficeDto.getFacilityInfo(), fieldOfficeVO);
-		BeanUtils.copyProperties(fieldOfficeDto.getServerInfo(), fieldOfficeVO);
+		if (fieldOfficeDto.getFacilityInfo() != null) {
+			BeanUtils.copyProperties(fieldOfficeDto.getFacilityInfo(), fieldOfficeVO);
+		}
+		if (fieldOfficeDto.getServerInfo() != null) {
+			BeanUtils.copyProperties(fieldOfficeDto.getServerInfo(), fieldOfficeVO);
+		}
+		BeanUtils.copyProperties(fieldOfficeDto, fieldOfficeVO);
 		return fieldOfficeVO;
 	}
 
@@ -52,6 +57,8 @@ public class FieldOfficeService {
 
 		BeanUtils.copyProperties(fieldOfficeEntity, facilityInformationDto);
 		BeanUtils.copyProperties(fieldOfficeEntity, serverInformationDto);
+
+		BeanUtils.copyProperties(fieldOfficeEntity, fieldOfficeDto);
 
 		fieldOfficeDto.setFacilityInfo(facilityInformationDto);
 		fieldOfficeDto.setServerInfo(serverInformationDto);

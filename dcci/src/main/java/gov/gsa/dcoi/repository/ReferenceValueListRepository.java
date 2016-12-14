@@ -29,19 +29,19 @@ public class ReferenceValueListRepository {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReferenceValueListRepository.class);
 
-	private static final String GET_RECORD_VALIDITY_REF_LIST = " SELECT record_validity_id, record_validity_name FROM ref_record_validity rrv WHERE rrv.active_flag = 1 ";
-	private static final String GET_RECORD_STATUS_REF_LIST = " SELECT record_status_id, record_status_name FROM ref_record_status rrs WHERE rrs.active_flag = 1";
-	private static final String GET_STATE_REF_LIST = " SELECT state_id, state_code FROM ref_state rs WHERE rs.active_flag = 1";
+	private static final String GET_RECORD_VALIDITY_REF_LIST = " SELECT record_validity_id, record_validity_name FROM ref_record_validity ";
+	private static final String GET_RECORD_STATUS_REF_LIST = " SELECT record_status_id, record_status_name FROM ref_record_status";
+	private static final String GET_STATE_REF_LIST = " SELECT state_id, state_code FROM ref_state rs";
 	private static final String GET_FISCAL_YEAR_REF_LIST = " SELECT fiscal_year_id, fiscal_year FROM ref_fiscal_year";
 	private static final String GET_FISCAL_QUARTER_REF_LIST = " SELECT fiscal_quarter_id, fiscal_quarter FROM ref_fiscal_quarter";
-	private static final String GET_REGION_REF_LIST = " SELECT region_id, region_name FROM ref_region rr WHERE rr.active_flag = 1";
-	private static final String GET_OWNERSHIP_TYPE_REF_LIST = " SELECT ownership_type_id, ownership_type_name FROM ref_ownership_type rot WHERE rot.active_flag = 1";
-	private static final String GET_ISS_POSITION_REF_LIST = " SELECT iss_position_id, iss_position_name FROM ref_iss_position rip WHERE rip.active_flag = 1";
-	private static final String GET_DATA_CENTER_TIER_REF_LIST = " SELECT data_center_tier_id, data_center_tier_name FROM ref_data_center_tier rdct WHERE rdct.active_flag = 1";
-	private static final String GET_COUNTRY_REF_LIST = " SELECT country_id, country_name FROM ref_country rc WHERE rc.active_flag = 1";
-	private static final String GET_CORE_CLASSIFICATION_REF_LIST = " SELECT core_classification_id, core_classification_name FROM ref_core_classification rcc WHERE rcc.active_flag = 1";
-	private static final String GET_CLOSING_STAGE_REF_LIST = " SELECT closing_stage_id, closing_stage_name FROM ref_closing_stage rcs WHERE rcs.active_flag = 1";
-	private static final String GET_COMPONENT_REF_LIST = " SELECT field_office_id, field_office_name FROM field_office fo WHERE fo.active_flag = 1";
+	private static final String GET_REGION_REF_LIST = " SELECT region_id, region_name FROM ref_region";
+	private static final String GET_OWNERSHIP_TYPE_REF_LIST = " SELECT ownership_type_id, ownership_type_name FROM ref_ownership_type";
+	private static final String GET_ISS_POSITION_REF_LIST = " SELECT iss_position_id, iss_position_name FROM ref_iss_position";
+	private static final String GET_DATA_CENTER_TIER_REF_LIST = " SELECT data_center_tier_id, data_center_tier_name FROM ref_data_center_tier";
+	private static final String GET_COUNTRY_REF_LIST = " SELECT country_id, country_name FROM ref_country";
+	private static final String GET_CORE_CLASSIFICATION_REF_LIST = " SELECT core_classification_id, core_classification_name FROM ref_core_classification";
+	private static final String GET_CLOSING_STAGE_REF_LIST = " SELECT closing_stage_id, closing_stage_name FROM ref_closing_stage";
+	private static final String GET_COMPONENT_REF_LIST = " SELECT field_office_id, field_office_name FROM field_office";
 
 	@Autowired(required = true)
 	private JdbcTemplate jdbcTemplate;

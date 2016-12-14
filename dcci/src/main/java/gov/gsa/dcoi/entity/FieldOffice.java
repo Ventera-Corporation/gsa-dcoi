@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class FieldOffice {
 
 	@Id
-	private Integer dataCenterInventoryId;
+	private Long dataCenterInventoryId;
 
 	private Long dataCenterQuarterId;
 	@Column(name = "field_office_id")
@@ -63,11 +63,11 @@ public class FieldOffice {
 	@Column(name = "storage_used")
 	private Double usedStorage;
 
-	public Integer getDataCenterInventoryId() {
+	public Long getDataCenterInventoryId() {
 		return dataCenterInventoryId;
 	}
 
-	public void setDataCenterInventoryId(Integer dataCenterInventoryId) {
+	public void setDataCenterInventoryId(Long dataCenterInventoryId) {
 		this.dataCenterInventoryId = dataCenterInventoryId;
 	}
 

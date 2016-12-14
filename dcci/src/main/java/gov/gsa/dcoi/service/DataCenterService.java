@@ -77,7 +77,7 @@ public class DataCenterService {
 		return returnDataCenters;
 	}
 
-	/**
+		/**
 	 * Populate the regionsDto Lists to display back for a quarter
 	 * 
 	 * @param quarterReportId
@@ -108,16 +108,28 @@ public class DataCenterService {
 						.findByDataCenterQuarterId(dataCenterForQuarter.getDataCenterQuarterId());
 				for (FieldOffice fieldOffice : fieldOffices) {
 					if (fieldOffice.getGrossFloorArea() == null && fieldOffice.getTotalITPowerCapacity() == null) {
-						// do nothing - will pass back an empty object
+						// Pass back a sparse fieldOfficeDto
+						FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
+						fieldOfficeDto.setDataCenterInventoryId(fieldOffice.getDataCenterQuarterId());
+						fieldOfficeDto.setComponentId(fieldOffice.getComponentId());
+						fieldOfficeDto.setDataCenterQuarterId(fieldOffice.getDataCenterQuarterId());
+						fieldOfficesDto.add(fieldOfficeDto);
+						// Create total tab
+						FieldOfficeDto fieldOfficeTotalDto = fieldOfficeService.copyEntityToDto(fieldOffice);
+						fieldOfficeTotalDto.setFieldOfficeName("Total");
+						fieldOfficesDto.add(fieldOfficeTotalDto);
 
 					} else {
+						// Create total tab
+						FieldOfficeDto fieldOfficeDto = fieldOfficeService.copyEntityToDto(fieldOffice);
+						fieldOfficeDto.setFieldOfficeName("Total");
+
 						fieldOfficesDto.add(fieldOfficeService.copyEntityToDto(fieldOffice));
+						fieldOfficesDto.add(fieldOfficeDto);
 						// dataCenterDto.getGeneralInfo().setComponentId(fieldOffice.getComponentId());
 					}
 				}
-				if (!fieldOfficesDto.isEmpty()) {
-					dataCenterDto.setFieldOffices(fieldOfficesDto);
-				}
+				dataCenterDto.setFieldOffices(fieldOfficesDto);
 				dataCenterDtos.add(dataCenterDto);
 			}
 			region.setDataCenters(dataCenterDtos);
@@ -125,7 +137,7 @@ public class DataCenterService {
 		return regionDtos;
 	}
 
-	/**
+		/**
 	 * Will save the edited information for data centers that are passed back
 	 * after a "save changes" call from the application
 	 * 
@@ -140,13 +152,22 @@ public class DataCenterService {
 			BeanUtils.copyProperties(dataCenterDto.getGeneralInfo(), dataCenterEntity);
 			BeanUtils.copyProperties(dataCenterDto.getStatus(), dataCenterEntity);
 			dataCenterRepository.save(dataCenterEntity);
-			dataCenterQuarterRepository.save(copyDtoToEntity(dataCenterDto));
+
 			List<FieldOfficeDto> fieldOffices = dataCenterDto.getFieldOffices();
 			for (FieldOfficeDto fieldOfficeDto : fieldOffices) {
-				FieldOffice fieldOfficeEntity = new FieldOffice();
-				fieldOfficeEntity = fieldOfficeService.copyDtoToVO(fieldOfficeDto, fieldOfficeEntity);
-				fieldOfficeRepository.save(fieldOfficeEntity);
+
+				// Add check for totals tab
+				if (!"Total".equals(fieldOfficeDto.getFieldOfficeName())) {
+					dataCenterQuarterRepository.save(copyDtoToEntity(dataCenterDto, fieldOfficeDto));
+					FieldOffice fieldOfficeEntity = new FieldOffice();
+					fieldOfficeEntity = fieldOfficeService.copyDtoToVO(fieldOfficeDto, fieldOfficeEntity);
+					fieldOfficeRepository.save(fieldOfficeEntity);
+				}
+				// if (fieldOfficeDto != null) {
+
+				// }
 			}
+
 		}
 
 	}
@@ -169,7 +190,7 @@ public class DataCenterService {
 		return regionDtos;
 	}
 
-	/**
+/**
 	 * copy the Entity Properties to the DataCenterDto to be displayed on the
 	 * front end
 	 * 
@@ -178,31 +199,48 @@ public class DataCenterService {
 	 * @param dataCenterDto
 	 * @return
 	 */
-	private DataCenterDto copyEntityToDto(DataCenterQuarter dataCenterQuarterEntity, DataCenter dataCenterEntity, DataCenterDto dataCenterDto) {
-		
+	private DataCenterDto copyEntityToDto(DataCenterQuarter dataCenterQuarterEntity, DataCenter dataCenterEntity,
+			DataCenterDto dataCenterDto) {
+
 		// General Information
-		BeanUtils.copyProperties(dataCenterEntity,dataCenterDto);
+		BeanUtils.copyProperties(dataCenterEntity, dataCenterDto);
 		GeneralInformationDto generalInformationDto = new GeneralInformationDto();
-		BeanUtils.copyProperties(dataCenterEntity,generalInformationDto);
+		BeanUtils.copyProperties(dataCenterEntity, generalInformationDto);
+
 		generalInformationDto.setPublishedName(dataCenterQuarterEntity.getPublishedName());
 		dataCenterDto.setGeneralInfo(generalInformationDto);
 		// Status
 		StatusDto statusDto = new StatusDto();
-		BeanUtils.copyProperties(statusDto,dataCenterQuarterEntity);
+		BeanUtils.copyProperties(statusDto, dataCenterQuarterEntity);
 		dataCenterDto.setStatus(statusDto);
+
+		BeanUtils.copyProperties(dataCenterQuarterEntity, dataCenterDto);
 		return dataCenterDto;
 	}
 
-	/**
+		/**
 	 * Copy the dto information to the dataCenterQuarterEntity
 	 * 
 	 * @param dataCenterDto
 	 * @return
 	 */
-	private DataCenterQuarter copyDtoToEntity(DataCenterDto dataCenterDto) {
+	private DataCenterQuarter copyDtoToEntity(DataCenterDto dataCenterDto, FieldOfficeDto fieldOfficeDto) {
+		// Set dataCenterDto
 		DataCenterQuarter dataCenterQuarter = new DataCenterQuarter();
+		BeanUtils.copyProperties(dataCenterDto, dataCenterQuarter);
 		BeanUtils.copyProperties(dataCenterDto.getGeneralInfo(), dataCenterQuarter);
 		BeanUtils.copyProperties(dataCenterDto.getStatus(), dataCenterQuarter);
+
+		// Set Field Office Info
+		if (fieldOfficeDto != null) {
+			BeanUtils.copyProperties(fieldOfficeDto, dataCenterQuarter);
+			if (fieldOfficeDto.getFacilityInfo() != null) {
+				BeanUtils.copyProperties(fieldOfficeDto.getFacilityInfo(), dataCenterQuarter);
+			}
+			if (fieldOfficeDto.getServerInfo() != null) {
+				BeanUtils.copyProperties(fieldOfficeDto.getServerInfo(), dataCenterQuarter);
+			}
+		}
 
 		return dataCenterQuarter;
 	}

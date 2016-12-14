@@ -39,8 +39,6 @@ public class GeneralInformationDto {
 	@NotNull
 	@Size(max = 1024)
 	private String component;
-	private String country;
-	private String stateName;
 
 	public String getStateName() {
 		if (this.stateId == null) {
@@ -56,12 +54,10 @@ public class GeneralInformationDto {
 		return CommonHelper.parseCountryId(this.countryId);
 	}
 
-	// public String getComponent() {
-	// if(this.componentId == null){
-	// return "NONE";
-	// }
-	// return CommonHelper.parseComponentId(this.componentId);
-	// }
+	/**
+	 * public String getComponent() { if (this.componentId == null) { return
+	 * "NONE"; } return CommonHelper.parseComponentId(this.componentId); }
+	 **/
 
 	public Integer getDataCenterInventoryId() {
 		return dataCenterInventoryId;
@@ -181,14 +177,6 @@ public class GeneralInformationDto {
 
 	public String getComponent() {
 		return component;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public void setStateName(String stateName) {
-		this.stateName = stateName;
 	}
 
 }
