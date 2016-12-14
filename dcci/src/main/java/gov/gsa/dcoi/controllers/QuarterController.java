@@ -2,14 +2,17 @@ package gov.gsa.dcoi.controllers;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,8 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
+import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.service.DataCenterService;
+import gov.gsa.dcoi.service.ExcelWriter;
 import gov.gsa.dcoi.service.FieldOfficeService;
 import gov.gsa.dcoi.service.QuarterService;
 import gov.gsa.dcoi.service.ReferenceValueListService;
@@ -39,6 +44,9 @@ public class QuarterController {
 
 	@Autowired
 	DataCenterService dataCenterService;
+
+	@Autowired
+	ExcelWriter excelService;
 
 	/**
 	 * Initialize adding a new Quarter
@@ -111,9 +119,12 @@ public class QuarterController {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-	public void save(@RequestBody List<DataCenterDto> dataCenterDtos, HttpServletRequest request) {
+	public void save(@Valid @RequestBody DataCenterDto dataCenterDtos, BindingResult result) {
+		// if (result.hasErrors()) {
+		// System.out.println("here");
+		// }
 		// System.out.println(request.getParameter("dataCenterDtos"));
-		dataCenterService.saveDataCenters(dataCenterDtos);
+		// dataCenterService.saveDataCenters(dataCenterDtos);
 
 	}
 
@@ -128,5 +139,53 @@ public class QuarterController {
 		FiscalQuarterReportDto quarterReportDto = new FiscalQuarterReportDto();
 		BeanUtils.copyProperties(quarterReport, quarterReportDto);
 		return quarterReportDto;
+	}
+
+	/**
+	 * Perform the query for data center view results and format those results
+	 * into an excel workbook for the user to download
+	 * 
+	 * @param quarterId
+	 * @return
+	 */
+	@RequestMapping(value = "export", method = RequestMethod.POST)
+	public byte[] exportSearchResults(Long quarterId) {
+
+		String[] sheetTitles = { "Quarter Report" };
+		return excelService.exportReportResults(sheetTitles,
+				buildResultsForExport(findViewResultsByQuarterId(quarterId)));
+	}
+
+	/**
+	 * Get the data center view results that are necessary for the final quarter
+	 * report
+	 * 
+	 * @param quarterId
+	 * @return
+	 */
+	private List<DataCenterView> findViewResultsByQuarterId(Long quarterId) {
+		return quarterService.findViewResultsByQuarterId(quarterId);
+	}
+
+	/**
+	 * Build the map that is necessary to turn the search results into data
+	 * points that are associated with a header and can be displayed in excel
+	 * 
+	 * @param searchResults
+	 * @return
+	 */
+	private Map<String[], List<List<String>>> buildResultsForExport(List<DataCenterView> searchResults) {
+		Map<String[], List<List<String>>> searchResultsMap = new LinkedHashMap<>();
+		List<List<String>> dataCenterViewSearchResults = new LinkedList<>();
+		for (DataCenterView searchResultVO : searchResults) {
+			List<String> dataCenterViewSearchResult = new LinkedList<>();
+			dataCenterViewSearchResult.add(searchResultVO.getDataCenterName());
+			dataCenterViewSearchResult.add(searchResultVO.getDcoiDataCenterId());
+			dataCenterViewSearchResults.add(dataCenterViewSearchResult);
+		}
+
+		String[] exportColumnNames = { "DATA CENTER NAME", "DATA CENTER ID" };
+		searchResultsMap.put(exportColumnNames, dataCenterViewSearchResults);
+		return searchResultsMap;
 	}
 }

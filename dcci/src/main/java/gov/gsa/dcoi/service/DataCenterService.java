@@ -107,21 +107,28 @@ public class DataCenterService {
 						.findByDataCenterQuarterId(dataCenterForQuarter.getDataCenterQuarterId());
 				for (FieldOffice fieldOffice : fieldOffices) {
 					if (fieldOffice.getGrossFloorArea() == null && fieldOffice.getTotalITPowerCapacity() == null) {
-						// do nothing - will pass back an empty object
+						// Pass back a sparse fieldOfficeDto
 						FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
 						fieldOfficeDto.setDataCenterInventoryId(fieldOffice.getDataCenterQuarterId());
 						fieldOfficeDto.setComponentId(fieldOffice.getComponentId());
 						fieldOfficeDto.setDataCenterQuarterId(fieldOffice.getDataCenterQuarterId());
 						fieldOfficesDto.add(fieldOfficeDto);
+						// Create total tab
+						FieldOfficeDto fieldOfficeTotalDto = fieldOfficeService.copyEntityToDto(fieldOffice);
+						fieldOfficeTotalDto.setFieldOfficeName("Total");
+						fieldOfficesDto.add(fieldOfficeTotalDto);
 
 					} else {
+						// Create total tab
+						FieldOfficeDto fieldOfficeDto = fieldOfficeService.copyEntityToDto(fieldOffice);
+						fieldOfficeDto.setFieldOfficeName("Total");
+
 						fieldOfficesDto.add(fieldOfficeService.copyEntityToDto(fieldOffice));
+						fieldOfficesDto.add(fieldOfficeDto);
 						// dataCenterDto.getGeneralInfo().setComponentId(fieldOffice.getComponentId());
 					}
 				}
-				if (!fieldOfficesDto.isEmpty()) {
-					dataCenterDto.setFieldOffices(fieldOfficesDto);
-				}
+				dataCenterDto.setFieldOffices(fieldOfficesDto);
 				dataCenterDtos.add(dataCenterDto);
 			}
 			region.setDataCenters(dataCenterDtos);
@@ -149,12 +156,15 @@ public class DataCenterService {
 			for (FieldOfficeDto fieldOfficeDto : fieldOffices) {
 
 				// Add check for totals tab
-				dataCenterQuarterRepository.save(copyDtoToEntity(dataCenterDto, fieldOfficeDto));
-				if (fieldOfficeDto != null) {
+				if (!"Total".equals(fieldOfficeDto.getFieldOfficeName())) {
+					dataCenterQuarterRepository.save(copyDtoToEntity(dataCenterDto, fieldOfficeDto));
 					FieldOffice fieldOfficeEntity = new FieldOffice();
 					fieldOfficeEntity = fieldOfficeService.copyDtoToVO(fieldOfficeDto, fieldOfficeEntity);
 					fieldOfficeRepository.save(fieldOfficeEntity);
 				}
+				// if (fieldOfficeDto != null) {
+
+				// }
 			}
 
 		}

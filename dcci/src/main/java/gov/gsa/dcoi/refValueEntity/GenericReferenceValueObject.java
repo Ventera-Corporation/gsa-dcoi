@@ -10,6 +10,7 @@ public class GenericReferenceValueObject {
 
 	private int id;
 	private String value;
+	private int activeFlag;
 
 	public int getId() {
 		return id;
@@ -25,6 +26,14 @@ public class GenericReferenceValueObject {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public int getActiveFlag() {
+		return activeFlag;
+	}
+
+	public void setActiveFlag(int activeFlag) {
+		this.activeFlag = activeFlag;
 	}
 
 }

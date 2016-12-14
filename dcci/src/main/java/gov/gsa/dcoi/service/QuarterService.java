@@ -18,8 +18,10 @@ import gov.gsa.dcoi.DcoiExceptionHandler;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
 import gov.gsa.dcoi.dto.RegionDto;
+import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
+import gov.gsa.dcoi.repository.DataCenterViewRepository;
 import gov.gsa.dcoi.repository.QuarterStoredProcedure;
 import gov.gsa.dcoi.repository.QuarterReportRepository;
 
@@ -48,6 +50,9 @@ public class QuarterService {
 
 	@Autowired
 	DataCenterService dataCenterService;
+
+	@Autowired
+	DataCenterViewRepository exportRepository;
 
 	/**
 	 * This call creates the new quarter report and, will then populate all the
@@ -154,5 +159,15 @@ public class QuarterService {
 		}
 		return true;
 
+	}
+
+	/**
+	 * Get the data center view results that are necessary for the final report
+	 * 
+	 * @param quarterId
+	 * @return
+	 */
+	public List<DataCenterView> findViewResultsByQuarterId(Long quarterId) {
+		return exportRepository.findViewResultsByQuarterId(quarterId);
 	}
 }

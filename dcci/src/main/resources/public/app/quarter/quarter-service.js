@@ -76,9 +76,9 @@
 			},
 			exportQuarter : function(quarterId) {
 				return $http({
-					url: '/quarter/init',
-					method: 'GET',
-					params: {quarterId: quarterId},
+					url: '/quarter/export',
+					method: 'POST',
+					data: quarterId,
 					responseType: "arraybuffer"
 				}).then(returnData);
 			}
