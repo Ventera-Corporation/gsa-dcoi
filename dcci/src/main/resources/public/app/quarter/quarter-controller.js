@@ -12,25 +12,12 @@
 		qc.tempData.selected = {
 			//default
 			expandCollapseSidebar: true,
-			expandCollapseRegions: {
-				newEngland: false,
-				northeastAndCaribbean: false,
-				midAtlantic: false,
-				southeastSunbelt: false,
-				greatLakes: false,
-				heartland: false,
-				greaterSouthwest: false,
-				rockyMountain: false,
-				pacificRim: false,
-				northwestArctic: false,
-				nationalCapital: false,
-				cloud: false
-			},
+			expandCollapseRegions: {},
 			expandCollapsePanels: {}
 		};
-//		angular.foreach(initData.referenceValueLists.regionRefValueList, function(regionRefValue){
-//			qc.tempData.selected.expandCollapseRegions[regionRefValue.code] = false;
-//		});
+		angular.forEach(initData.referenceValueLists.regionRefValueList, function(regionRefValue){
+			qc.tempData.selected.expandCollapseRegions[regionRefValue.code] = false;
+		});
 		qc.tempData.wasInEditMode = {
 			dataCenterNames:[],
 			dataCenterIds:[]
