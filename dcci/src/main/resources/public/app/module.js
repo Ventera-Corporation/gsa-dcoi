@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'http-auth-interceptor','datatables']);
+	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'ui.select', 'http-auth-interceptor','datatables']);
 	
 	angular.module('dcoiApp').constant('USER_ROLES', {
 	    all: '*',
@@ -73,40 +73,29 @@
 	    // Get already authenticated user account
 	    AuthenticationService.getAccount();
 	    
-	    // Default Search Options
+	    // Default DataTable Options
 	    DTDefaultOptions.setOption("deferRender", true);
 	    DTDefaultOptions.setOption("scrollX", true);
-	    DTDefaultOptions.setOption("scrollY", true);
-	   
 	    // Pagination
 	    DTDefaultOptions.setOption("paging", true);
 	    DTDefaultOptions.setOption("paginationType", "full_numbers");
 	    DTDefaultOptions.setOption("displayLength", 10);
-	    DTDefaultOptions.setOption("language", language);
-	    
+	    DTDefaultOptions.setOption("order", [[ 0, "desc" ]]);
+	    // Labels
 	    var language = {
             "sEmptyTable":     "No available data",
             "sInfo":           "Showing _START_ to _END_ of _TOTAL_ records",
-            "sInfoEmpty":      "Showing 0 to 0 of 0 records",
+            "sInfoEmpty":      "0 records",
             "sInfoFiltered":   "(filtered from _MAX_ total records)",
             "sInfoPostFix":    "",
             "sInfoThousands":  ",",
-            "sLengthMenu":     "Show _MENU_ records",
+            "sLengthMenu":     "Records per page:_MENU_",
             "sLoadingRecords": "Loading...",
             "sProcessing":     "Processing...",
-            "sSearch":         "Query Data:",
-            "sZeroRecords":    "No matching records found",
-            "oPaginate": {
-                "sFirst":    "First",
-                "sLast":     "Last",
-                "sNext":     "Next",
-                "sPrevious": "Previous"
-            },
-            "oAria": {
-                "sSortAscending":  ": activate to sort column ascending",
-                "sSortDescending": ": activate to sort column descending"
-            }
-        }
+            "sSearch":         "Query:",
+            "sZeroRecords":    "No records found",
 
+        }
+	    DTDefaultOptions.setOption("language", language);
 	});
 })();

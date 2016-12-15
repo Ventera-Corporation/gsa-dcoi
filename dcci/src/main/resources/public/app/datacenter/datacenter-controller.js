@@ -12,6 +12,7 @@
 		dcc.stateRefValueList = initData.stateRefValueList;
 		dcc.cancel = cancel;
 		dcc.initDataCenterData = initDataCenterData;
+		dcc.selectedCloudRegion = selectedCloudRegion;
 		dcc.add = add;
 		
 		function cancel() {
@@ -24,6 +25,15 @@
 				dcc.regionRefValueList = data.regionRefValueList;
 				dcc.stateRefValueList = data.stateRefValueList;
 			});
+		}
+		
+		function selectedCloudRegion(regionId){
+			for(var idx=0; idx < dcc.regionRefValueList.length; idx++){
+				if(dcc.regionRefValueList[idx].id === regionId){
+					return dcc.regionRefValueList[idx].id === 12;
+				}
+			}
+			return false;
 		}
 		
 		function add() {

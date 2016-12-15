@@ -26,12 +26,14 @@
 		qc.referenceValueLists = initData.referenceValueLists;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
+		qc.removeDupes = removeDupes;
 		qc.selectDataCenterName = selectDataCenterName;
 		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
 		qc.editQuarter = editQuarter;
 		qc.createQuarter = createQuarter;
 		qc.saveQuarter = saveQuarter;
 		qc.getEditedDataCenters = getEditedDataCenters;
+		qc.updateDataCenterIdTotalsTabs = updateDataCenterIdTotalsTabs;
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
 		qc.submitDataCenter = submitDataCenter;
@@ -63,6 +65,16 @@
 					qc.tempData.selected.expandCollapseRegions[region.code] = true;
 				}
 			}
+		}
+		
+		function removeDupes(dataCenters){
+			var uniqueDataCenterNames = [];
+			angular.forEach(dataCenters, function(dataCenter){
+				if(($filter('filter')(uniqueDataCenterNames, dataCenter.dataCenterName, true)).length === 0){
+					uniqueDataCenterNames.push(dataCenter.dataCenterName);
+				}
+			});
+			return uniqueDataCenterNames;
 		}
 		
 		function selectDataCenterName(regionIdx, dataCenterName){
@@ -136,10 +148,11 @@
 					qc.tempData.errorData = data;
 				} else {
 					//show success message
-					qc.tempData.successData = data.successData;
+					qc.tempData.successData = data;
 					//reset all of the edited panels
 					qc.tempData.wasInEditMode.dataCenterNames = [];
 					qc.tempData.wasInEditMode.dataCenterIds = [];
+					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
 					qc.tempData.editMode = false;
 				}
 			});
@@ -161,6 +174,18 @@
 				});
 			});
 			return editedDataCenters;
+		}
+		
+		function updateDataCenterIdTotalsTabs(dataCenterIdTotalsPairs){
+			//update the totals tab for each datacenterIdTotalsPair
+			angular.forEach(dataCenterIdTotalsPairs, function(dataCenterIdTotalsPair){
+				angular.forEach(qc.quarterData.regions, function(region){
+					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdTotalsPair.dataCenterId}, true)[0];
+					if(foundDataCenter){
+						foundDataCenter.totals = dataCenterIdTotalsPair.totals;
+					}
+				});
+			});
 		}
 		
 		function addNewDataCenterModal(){
@@ -212,14 +237,15 @@
 			});
 		}
 		
-		function submitDataCenter(dataCenterId){
-			QuarterService.submitDataCenter(dataCenterId).then(function (data){
+		function submitDataCenter(dataCenter){
+			QuarterService.submitDataCenter(dataCenter.dataCenterId).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
+					dataCenter.ssoCompleteFlag = 1;
 				}
 			});
 		}
@@ -246,6 +272,7 @@
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
+					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
 					dataCenter.ssoCompleteFlag = 1;
 					dataCenter.adminCompleteFlag = 1;
 				}

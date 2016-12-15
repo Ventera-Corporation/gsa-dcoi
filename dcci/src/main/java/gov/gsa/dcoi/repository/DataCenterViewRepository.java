@@ -1,5 +1,6 @@
 package gov.gsa.dcoi.repository;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import gov.gsa.dcoi.DcoiExceptionHandler;
 import gov.gsa.dcoi.entity.DataCenterView;
@@ -29,7 +31,7 @@ public class DataCenterViewRepository {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataCenterViewRepository.class);
 
 	private static final String GET_ALL_DATA_CENTERS_FOR_QUARTER = "SELECT * FROM vw_DCOI_DataCenters vddc";
-	private static final String GET_DATA_CENTERS_FOR_QUARTER = GET_ALL_DATA_CENTERS_FOR_QUARTER + " WHERE vddc.quarter_report_id = ?";
+	private static final String GET_DATA_CENTERS_FOR_QUARTER = GET_ALL_DATA_CENTERS_FOR_QUARTER + " WHERE vddc.fiscal_year = 2016";
 
 	@Autowired(required = true)
 	private JdbcTemplate jdbcTemplate;
@@ -41,12 +43,13 @@ public class DataCenterViewRepository {
 	 * @param quarterId
 	 * @return
 	 */
-	public List<DataCenterView> findViewResultsByQuarterId(Long quarterReportId) {
+	@Transactional(readOnly=true)
+	public List<DataCenterView> findViewResultsByQuarterId(Long quarterId) {
 		try {
 			if (LOGGER.isDebugEnabled()) {
-				LOGGER.debug("Getting Data Center View Data for: " + quarterReportId);
+				LOGGER.debug("Getting Data Center View Data for: " + quarterId);
 			}
-			return jdbcTemplate.query(GET_DATA_CENTERS_FOR_QUARTER,  new String[] { quarterReportId.toString() }, new ResultSetExtractor<List<DataCenterView>>() {
+			return jdbcTemplate.query(GET_DATA_CENTERS_FOR_QUARTER, new String[] {quarterId.toString()} new ResultSetExtractor<List<DataCenterView>>() {
 				@Override
 				public List<DataCenterView> extractData(ResultSet rs) throws SQLException {
 					return processResults(rs);
@@ -60,10 +63,11 @@ public class DataCenterViewRepository {
 	}
 	
 	/**
-	 * Return all results
+	 * Return all Data Center Records (All Quarters)
 	 * 
 	 * @return
 	 */
+	@Transactional(readOnly=true)
 	public List<DataCenterView> findAllDataCenterRecords() {
 		try {
 			
@@ -91,6 +95,7 @@ public class DataCenterViewRepository {
 		while (rs.next()) {
 			DataCenterView dataCenterView = new DataCenterView();
 			dataCenterView.setQuarterReportId(rs.getInt("quarter_report_id"));
+			dataCenterView.setDataCenterId(rs.getInt("data_center_id"));
 			dataCenterView.setDataCenterName(rs.getString("data_center_name"));
 			dataCenterView.setStreetAddress(rs.getString("address"));
 			dataCenterView.setStreetAddress2(rs.getString("address2"));
