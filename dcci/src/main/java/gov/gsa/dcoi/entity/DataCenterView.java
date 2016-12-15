@@ -63,7 +63,7 @@ public class DataCenterView {
 	}
 	
 	public String getDataCenterName() {
-		return dataCenterName;
+		return (String)getDisplayValue(this.dataCenterName,"String");
 	}
 
 	public void setDataCenterName(String dataCenterName) {
@@ -71,7 +71,7 @@ public class DataCenterView {
 	}
 
 	public String getDcoiDataCenterId() {
-		return dcoiDataCenterId;
+		return (String)getDisplayValue(this.dcoiDataCenterId,"String");
 	}
 
 	public void setDcoiDataCenterId(String dcoiDataCenterId) {
@@ -79,7 +79,7 @@ public class DataCenterView {
 	}
 
 	public String getStreetAddress() {
-		return streetAddress;
+		return (String)getDisplayValue(this.streetAddress,"String");
 	}
 
 	public void setStreetAddress(String streetAddress) {
@@ -87,7 +87,7 @@ public class DataCenterView {
 	}
 
 	public String getStreetAddress2() {
-		return streetAddress2;
+		return (String)getDisplayValue(this.streetAddress2,"String");
 	}
 
 	public void setStreetAddress2(String streetAddress2) {
@@ -95,7 +95,7 @@ public class DataCenterView {
 	}
 
 	public String getCity() {
-		return city;
+		return (String)getDisplayValue(this.city,"String");
 	}
 
 	public void setCity(String city) {
@@ -103,7 +103,7 @@ public class DataCenterView {
 	}
 
 	public String getZipCode() {
-		return zipCode;
+		return (String)getDisplayValue(this.zipCode,"String");
 	}
 
 	public void setZipCode(String zipCode) {
@@ -111,7 +111,7 @@ public class DataCenterView {
 	}
 
 	public String getStateName() {
-		return stateName;
+		return (String)getDisplayValue(this.stateName,"String");
 	}
 
 	public void setStateName(String stateName) {
@@ -119,7 +119,7 @@ public class DataCenterView {
 	}
 
 	public String getCountryName() {
-		return countryName;
+		return (String)getDisplayValue(this.countryName,"String");
 	}
 
 	public void setCountryName(String countryName) {
@@ -127,7 +127,7 @@ public class DataCenterView {
 	}
 
 	public String getAgencyDataCenterName() {
-		return agencyDataCenterName;
+		return (String)getDisplayValue(this.agencyDataCenterName,"String");
 	}
 
 	public void setAgencyDataCenterName(String agencyDataCenterName) {
@@ -135,7 +135,7 @@ public class DataCenterView {
 	}
 	
 	public String getPublishedName() {
-		return publishedName;
+		return (String)getDisplayValue(this.publishedName,"String");
 	}
 
 	public void setPublishedName(String publishedName) {
@@ -143,7 +143,7 @@ public class DataCenterView {
 	}
 
 	public String getRecordStatusName() {
-		return recordStatusName;
+		return (String)getDisplayValue(this.recordStatusName,"String");
 	}
 
 	public void setRecordStatusName(String recordStatusName) {
@@ -151,7 +151,7 @@ public class DataCenterView {
 	}
 
 	public String getRecordValidityName() {
-		return recordValidityName;
+		return (String)getDisplayValue(this.recordValidityName,"String");
 	}
 
 	public void setRecordValidityName(String recordValidityName) {
@@ -159,7 +159,7 @@ public class DataCenterView {
 	}
 
 	public String getOwnershipTypeName() {
-		return ownershipTypeName;
+		return (String)getDisplayValue(this.ownershipTypeName,"String");
 	}
 
 	public void setOwnershipTypeName(String ownershipTypeName) {
@@ -167,7 +167,7 @@ public class DataCenterView {
 	}
 
 	public String getDataCenterTierName() {
-		return dataCenterTierName;
+		return (String)getDisplayValue(this.dataCenterTierName,"String");
 	}
 
 	public void setDataCenterTierName(String dataCenterTierName) {
@@ -175,7 +175,7 @@ public class DataCenterView {
 	}
 
 	public Integer getGrossFloorArea() {
-		return grossFloorArea;
+		return (Integer)getDisplayValue(this.grossFloorArea,"Integer");
 	}
 
 	public void setGrossFloorArea(Integer grossFloorArea) {
@@ -183,7 +183,7 @@ public class DataCenterView {
 	}
 
 	public Integer getTotalCustomerFloorArea() {
-		return totalCustomerFloorArea;
+		return (Integer)getDisplayValue(this.totalCustomerFloorArea,"Integer");
 	}
 
 	public void setTotalCustomerFloorArea(Integer totalCustomerFloorArea) {
@@ -191,7 +191,7 @@ public class DataCenterView {
 	}
 
 	public Double getAnnualCostPerSqFt() {
-		return annualCostPerSqFt;
+		return (Double)getDisplayValue(this.annualCostPerSqFt,"Double");
 	}
 
 	public void setAnnualCostPerSqFt(Double annualCostPerSqFt) {
@@ -199,7 +199,7 @@ public class DataCenterView {
 	}
 
 	public String getOtherAgenciesServiced() {
-		return otherAgenciesServiced;
+		return (String)getDisplayValue(this.otherAgenciesServiced,"String");
 	}
 
 	public void setOtherAgenciesServiced(String otherAgenciesServiced) {
@@ -207,7 +207,7 @@ public class DataCenterView {
 	}
 
 	public Integer getElectricityIncludedInCost() {
-		return electricityIncludedInCost;
+		return (Integer)getDisplayValue(this.electricityIncludedInCost,"Integer");
 	}
 
 	public void setElectricityIncludedInCost(Integer electricityIncludedInCost) {
@@ -215,7 +215,7 @@ public class DataCenterView {
 	}
 
 	public Integer getElectricityIsMetered() {
-		return electricityIsMetered;
+		return (Integer)getDisplayValue(this.electricityIsMetered,"Integer");
 	}
 
 	public void setElectricityIsMetered(Integer electricityIsMetered) {
@@ -223,7 +223,7 @@ public class DataCenterView {
 	}
 
 	public Double getTotalPowerCapacity() {
-		return totalPowerCapacity;
+		return (Double)getDisplayValue(this.totalPowerCapacity,"Double");
 	}
 
 	public void setTotalPowerCapacity(Double totalPowerCapacity) {
@@ -231,7 +231,7 @@ public class DataCenterView {
 	}
 
 	public Double getTotalITPowerCapacity() {
-		return totalITPowerCapacity;
+		return (Double)getDisplayValue(this.totalITPowerCapacity,"Double");
 	}
 
 	public void setTotalITPowerCapacity(Double totalITPowerCapacity) {
@@ -239,7 +239,7 @@ public class DataCenterView {
 	}
 
 	public Double getAvgElectricityUsage() {
-		return avgElectricityUsage;
+		return (Double)getDisplayValue(this.avgElectricityUsage,"Double");
 	}
 
 	public void setAvgElectricityUsage(Double avgElectricityUsage) {
@@ -247,7 +247,7 @@ public class DataCenterView {
 	}
 
 	public Double getAvgITElectricityUsage() {
-		return avgITElectricityUsage;
+		return (Double)getDisplayValue(this.avgITElectricityUsage,"Double");
 	}
 
 	public void setAvgITElectricityUsage(Double avgITElectricityUsage) {
@@ -255,7 +255,7 @@ public class DataCenterView {
 	}
 
 	public Double getCostPerkWh() {
-		return costPerkWh;
+		return (Double)getDisplayValue(this.costPerkWh,"Double");
 	}
 
 	public void setCostPerkWh(Double costPerkWh) {
@@ -263,7 +263,7 @@ public class DataCenterView {
 	}
 
 	public Integer getAutomatedMonitoring() {
-		return automatedMonitoring;
+		return (Integer)getDisplayValue(this.automatedMonitoring,"Integer");
 	}
 
 	public void setAutomatedMonitoring(Integer automatedMonitoring) {
@@ -271,7 +271,7 @@ public class DataCenterView {
 	}
 
 	public Double getServerUtilization() {
-		return serverUtilization;
+		return (Double)getDisplayValue(this.serverUtilization,"Double");
 	}
 
 	public void setServerUtilization(Double serverUtilization) {
@@ -279,7 +279,7 @@ public class DataCenterView {
 	}
 
 	public Double getFte() {
-		return fte;
+		return (Double)getDisplayValue(this.fte,"Double");
 	}
 
 	public void setFte(Double fte) {
@@ -287,7 +287,7 @@ public class DataCenterView {
 	}
 
 	public Integer getFteCost() {
-		return fteCost;
+		return (Integer)getDisplayValue(this.fteCost,"Integer");
 	}
 
 	public void setFteCost(Integer fteCost) {
@@ -295,7 +295,7 @@ public class DataCenterView {
 	}
 
 	public Integer getRackCount() {
-		return rackCount;
+		return (Integer)getDisplayValue(this.rackCount,"Integer");
 	}
 
 	public void setRackCount(Integer rackCount) {
@@ -303,7 +303,7 @@ public class DataCenterView {
 	}
 
 	public Integer getTotalMainframes() {
-		return totalMainframes;
+		return (Integer)getDisplayValue(this.totalMainframes,"Integer");
 	}
 
 	public void setTotalMainframes(Integer totalMainframes) {
@@ -311,7 +311,7 @@ public class DataCenterView {
 	}
 
 	public Integer getTotalWindowsServers() {
-		return totalWindowsServers;
+		return (Integer)getDisplayValue(this.totalWindowsServers,"Integer");
 	}
 
 	public void setTotalWindowsServers(Integer totalWindowsServers) {
@@ -319,7 +319,7 @@ public class DataCenterView {
 	}
 
 	public Integer getTotalHPCClusterNodes() {
-		return totalHPCClusterNodes;
+		return (Integer)getDisplayValue(this.totalHPCClusterNodes,"Integer");
 	}
 
 	public void setTotalHPCClusterNodes(Integer totalHPCClusterNodes) {
@@ -327,7 +327,7 @@ public class DataCenterView {
 	}
 
 	public Integer getTotalOtherServers() {
-		return totalOtherServers;
+		return (Integer)getDisplayValue(this.totalOtherServers,"Integer");
 	}
 
 	public void setTotalOtherServers(Integer totalOtherServers) {
@@ -335,7 +335,7 @@ public class DataCenterView {
 	}
 
 	public Integer getTotalVirtualHosts() {
-		return totalVirtualHosts;
+		return (Integer)getDisplayValue(this.totalVirtualHosts,"Integer");
 	}
 
 	public void setTotalVirtualHosts(Integer totalVirtualHosts) {
@@ -343,7 +343,7 @@ public class DataCenterView {
 	}
 
 	public Integer getTotalVirtualOS() {
-		return totalVirtualOS;
+		return (Integer)getDisplayValue(this.totalVirtualOS,"Integer");
 	}
 
 	public void setTotalVirtualOS(Integer totalVirtualOS) {
@@ -351,7 +351,7 @@ public class DataCenterView {
 	}
 
 	public Double getTotalStorage() {
-		return totalStorage;
+		return (Double)getDisplayValue(this.totalStorage,"Double");
 	}
 
 	public void setTotalStorage(Double totalStorage) {
@@ -359,7 +359,7 @@ public class DataCenterView {
 	}
 
 	public Double getUsedStorage() {
-		return usedStorage;
+		return (Double)getDisplayValue(this.usedStorage,"Double");
 	}
 
 	public void setUsedStorage(Double usedStorage) {
@@ -367,15 +367,15 @@ public class DataCenterView {
 	}
 
 	public String getCoreClassificationName() {
-		return coreClassificationName;
+		return (String)getDisplayValue(this.coreClassificationName,"String");
 	}
-
+	
 	public void setCoreClassificationName(String coreClassificationName) {
 		this.coreClassificationName = coreClassificationName;
 	}
 
 	public String getClosingStageName() {
-		return closingStageName;
+		return (String)getDisplayValue(this.closingStageName,"String");
 	}
 
 	public void setClosingStageName(String closingStageName) {
@@ -391,7 +391,7 @@ public class DataCenterView {
 	}
 
 	public String getFiscalQuarter() {
-		return fiscalQuarter;
+		return (String)getDisplayValue(this.fiscalQuarter,"String");
 	}
 
 	public void setFiscalQuarter(String fiscalQuarter) {
@@ -399,7 +399,7 @@ public class DataCenterView {
 	}
 
 	public String getIssPositionName() {
-		return issPositionName;
+		return (String)getDisplayValue(this.issPositionName,"String");
 	}
 
 	public void setIssPositionName(String issPositionName) {
@@ -407,15 +407,30 @@ public class DataCenterView {
 	}
 
 	public String getIssProvider() {
-		return issProvider;
+		return (String)getDisplayValue(this.issProvider,"String");
 	}
 
 	public void setIssProvider(String issProvider) {
 		this.issProvider = issProvider;
 	}
 	
-	private Object getDisplayValue(Object object){
-		return null;
+	private Object getDisplayValue(Object object,String type){
+		if(type.equals("String")){
+			if(object==null || object.toString()==""){
+				return "None";
+			}
+		}
+		else if(type.equals("Integer")){
+			if(object==null){
+				return Integer.valueOf(0);
+			}
+		}
+		else if(type.equals("Double")){
+			if(object==null){
+				return Double.valueOf(0);
+			}
+		}
+		return object;
 	}
 
 }
