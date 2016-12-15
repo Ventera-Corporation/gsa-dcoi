@@ -31,7 +31,7 @@ public class DataCenterViewRepository {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataCenterViewRepository.class);
 
 	private static final String GET_ALL_DATA_CENTERS_FOR_QUARTER = "SELECT * FROM vw_DCOI_DataCenters vddc";
-	private static final String GET_DATA_CENTERS_FOR_QUARTER = GET_ALL_DATA_CENTERS_FOR_QUARTER + "WHERE vddc.fiscal_year = 2016";
+	private static final String GET_DATA_CENTERS_FOR_QUARTER = GET_ALL_DATA_CENTERS_FOR_QUARTER + " WHERE vddc.fiscal_year = 2016";
 
 	@Autowired(required = true)
 	private JdbcTemplate jdbcTemplate;
@@ -49,7 +49,7 @@ public class DataCenterViewRepository {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("Getting Data Center View Data for: " + quarterId);
 			}
-			return jdbcTemplate.query(GET_DATA_CENTERS_FOR_QUARTER, new ResultSetExtractor<List<DataCenterView>>() {
+			return jdbcTemplate.query(GET_DATA_CENTERS_FOR_QUARTER, new String[] {quarterId.toString()} new ResultSetExtractor<List<DataCenterView>>() {
 				@Override
 				public List<DataCenterView> extractData(ResultSet rs) throws SQLException {
 					return processResults(rs);

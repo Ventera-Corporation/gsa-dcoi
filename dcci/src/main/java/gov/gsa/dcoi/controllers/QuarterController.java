@@ -1,3 +1,4 @@
+
 package gov.gsa.dcoi.controllers;
 
 import java.util.Date;
@@ -176,7 +177,7 @@ public class QuarterController {
 	 * @return
 	 */
 	@RequestMapping(value = "export", method = RequestMethod.POST)
-	public byte[] exportSearchResults(Long quarterId) {
+	public byte[] exportSearchResults(@RequestBody Long quarterId) {
 
 		String[] sheetTitles = { "Quarter Report" };
 		return excelService.exportReportResults(sheetTitles,
@@ -208,11 +209,62 @@ public class QuarterController {
 			List<String> dataCenterViewSearchResult = new LinkedList<>();
 			dataCenterViewSearchResult.add(searchResultVO.getDataCenterName());
 			dataCenterViewSearchResult.add(searchResultVO.getDcoiDataCenterId());
+			dataCenterViewSearchResult.add(searchResultVO.getStreetAddress());
+			dataCenterViewSearchResult.add(searchResultVO.getStreetAddress2());
+			dataCenterViewSearchResult.add(searchResultVO.getCity());
+			dataCenterViewSearchResult.add(searchResultVO.getZipCode());
+			dataCenterViewSearchResult.add(searchResultVO.getStateName());
+			dataCenterViewSearchResult.add(searchResultVO.getCountryName());
+			dataCenterViewSearchResult.add(searchResultVO.getAgencyDataCenterName());
+			dataCenterViewSearchResult.add(searchResultVO.getPublishedName());
+			dataCenterViewSearchResult.add(searchResultVO.getRecordStatusName());
+			dataCenterViewSearchResult.add(searchResultVO.getRecordValidityName());
+			dataCenterViewSearchResult.add(searchResultVO.getOwnershipTypeName());
+			dataCenterViewSearchResult.add(searchResultVO.getDataCenterTierName());
+			dataCenterViewSearchResult.add(searchResultVO.getGrossFloorArea().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalCustomerFloorArea().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getAnnualCostPerSqFt().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getOtherAgenciesServiced());
+			dataCenterViewSearchResult.add(searchResultVO.getElectricityIncludedInCost().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getElectricityIsMetered().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalPowerCapacity().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalITPowerCapacity().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getAvgElectricityUsage().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getAvgITElectricityUsage().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getCostPerkWh().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getAutomatedMonitoring().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getServerUtilization().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getFte().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getFteCost().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getRackCount().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalMainframes().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalWindowsServers().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalHPCClusterNodes().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalOtherServers().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalVirtualHosts().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalVirtualOS().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalStorage().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getUsedStorage().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getCoreClassificationName());
+			dataCenterViewSearchResult.add(searchResultVO.getClosingStageName());
+			dataCenterViewSearchResult.add(searchResultVO.getFiscalYear().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getFiscalQuarter());
+			dataCenterViewSearchResult.add(searchResultVO.getIssPositionName());
+			dataCenterViewSearchResult.add(searchResultVO.getIssProvider());
 			dataCenterViewSearchResults.add(dataCenterViewSearchResult);
 		}
 
-		String[] exportColumnNames = { "DATA CENTER NAME", "DATA CENTER ID" };
+		String[] exportColumnNames = { "DATA CENTER NAME", "DATA CENTER ID",
+				"STREET ADDRESS", "STREET ADDRESS 2", "CITY", "ZIPCODE", "STATE NAME", "COUNTRY NAME",
+				"AGENCY DATA CENTER NAME", "PUBLISHED NAME", "RECORD STATUS NAME", "RECORD VALIDITY ID", "OWNERSHIP TYPE NAME",
+				"DATA CENER TIER NAME", "GROSS FLOOR AREA", "TOTAL CUSTOMER FLOOR AREA", "ANNUAL COST PER SQ FT", "OTHER AGENCIES SERVICED",
+				"ELECTRICTY INCLUDED IN COST", "ELECTRICTY IS METERED", "TOTAL POWER CAPACITY", "TOTAL IT POWER CAPACITY", "AVG ELECTRICITY USAGE",
+				"AVG IT ELECTRICITY USAGE", "COST PER KWH", "AUTOMATED MONITORING", "SERVER UTILIZATION", "FTE", "FTE COST", "RACK COUNT",
+				"TOTAL MAINFRAMES", "TOTAL WINDOWS SERVERS", "TOTAL HPC CLUSTER NODES", "TOTAL OTHER SERVERS", "TOTAL VIRTUAL HOSTS","TOTAL VIRTUAL OS",
+				"TOTAL STORAGE", "USED STORAGE", "CORE CLASSIFICATION NAME", "CLOSING STAGE NAME", "FISCAL YEAR", "FISCAL QUARTER", "ISS POSITION NAME",
+				"ISS PROVIDER"};
 		searchResultsMap.put(exportColumnNames, dataCenterViewSearchResults);
 		return searchResultsMap;
 	}
 }
+
