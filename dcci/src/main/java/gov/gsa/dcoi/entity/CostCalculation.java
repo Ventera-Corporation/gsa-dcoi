@@ -30,11 +30,17 @@ public class CostCalculation {
 	@Column(name = "total_amount")
 	private Double total;
 	private Double savingsAmount;
+	@Column(name = "avoidance_year_1")
 	private Integer avoidanceYear1;
+	@Column(name = "avoidance_amount_year_1")
 	private Double avoidanceAmountYear1;
+	@Column(name = "avoidance_year_2")
 	private Integer avoidanceYear2;
+	@Column(name = "avoidance_amount_year_2")
 	private Double avoidanceAmountYear2;
+	@Column(name = "avoidance_year_3")
 	private Integer avoidanceYear3;
+	@Column(name = "avoidance_amount_year_3")
 	private Double avoidanceAmountYear3;
 
 	public Long getDataCenterCostId() {
