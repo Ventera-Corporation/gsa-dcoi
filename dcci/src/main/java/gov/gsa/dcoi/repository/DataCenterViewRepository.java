@@ -1,5 +1,6 @@
 package gov.gsa.dcoi.repository;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import gov.gsa.dcoi.DcoiExceptionHandler;
 import gov.gsa.dcoi.entity.DataCenterView;
@@ -41,6 +43,7 @@ public class DataCenterViewRepository {
 	 * @param quarterId
 	 * @return
 	 */
+	@Transactional(readOnly=true)
 	public List<DataCenterView> findViewResultsByQuarterId(Long quarterId) {
 		try {
 			if (LOGGER.isDebugEnabled()) {
@@ -60,10 +63,11 @@ public class DataCenterViewRepository {
 	}
 	
 	/**
-	 * Return all results
+	 * Return all Data Center Records (All Quarters)
 	 * 
 	 * @return
 	 */
+	@Transactional(readOnly=true)
 	public List<DataCenterView> findAllDataCenterRecords() {
 		try {
 			
