@@ -109,9 +109,11 @@
                     <div id="{{dataCenter.dataCenterName}}-body" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
                         <div class="panel-body">
 							
-							<div class="pull-right" data-ng-if="!lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && !dataCenter.ssoCompleteFlag">
-								<button class="usa-button usa-button-primary" type="button" 
+							<div class="pull-right" data-ng-if="!lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag">
+								<button class="usa-button usa-button-primary" type="button" data-ng-if="!dataCenter.ssoCompleteFlag"
 										data-ng-click="qc.submitDataCenter(dataCenter.dataCenterId)">Submit</button>
+								<button class="usa-button usa-button-primary" type="button" data-ng-if="dataCenter.ssoCompleteFlag" 
+										disabled>Submitted</button>
 							</div>
 							<div class="pull-right" data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && dataCenter.ssoCompleteFlag && !dataCenter.adminCompleteFlag">
 								<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;
