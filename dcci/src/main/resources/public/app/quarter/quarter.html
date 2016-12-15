@@ -111,7 +111,7 @@
 							
 							<div class="pull-right" data-ng-if="!lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag">
 								<button class="usa-button usa-button-primary" type="button" data-ng-if="!dataCenter.ssoCompleteFlag"
-										data-ng-click="qc.submitDataCenter(dataCenter.dataCenterId)">Submit</button>
+										data-ng-click="qc.submitDataCenter(dataCenter)">Submit</button>
 								<button class="usa-button usa-button-primary" type="button" data-ng-if="dataCenter.ssoCompleteFlag" 
 										disabled>Submitted</button>
 							</div>

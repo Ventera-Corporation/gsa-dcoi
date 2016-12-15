@@ -212,8 +212,8 @@
 			});
 		}
 		
-		function submitDataCenter(dataCenterId){
-			QuarterService.submitDataCenter(dataCenterId).then(function (data){
+		function submitDataCenter(dataCenter){
+			QuarterService.submitDataCenter(dataCenter.dataCenterId).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
