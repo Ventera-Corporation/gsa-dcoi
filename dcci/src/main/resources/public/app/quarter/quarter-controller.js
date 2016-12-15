@@ -294,7 +294,7 @@
 					//show errors
 					qc.tempData.errorData = data;
 				} else {
-					var blob = new Blob([data.successData], {type: 'application/xls'});
+					var blob = new Blob([data], {type: 'application/xls'});
 					window.navigator.msSaveOrOpenBlob(blob, 
 							"Quarter" + qc.quarterData.fiscalQuarterReport.fiscalQuarter 
 							+ qc.quarterData.fiscalQuarterReport.fiscalYear + ".xls");

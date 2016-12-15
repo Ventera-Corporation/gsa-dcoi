@@ -136,7 +136,7 @@
 									<div data-ng-include="'app/quarter/facilityinfo.html'"></div>
 									<div data-ng-include="'app/quarter/serverinfo.html'"></div>
 								</uib-tab>
-								<uib-tab data-ng-if="lc.isAdmin() && !qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && dataCenter.ssoCompleteFlag"
+								<uib-tab data-ng-if="lc.isAdmin() && !qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && dataCenter.ssoCompleteFlag"
 										data-index="dataCenter.fieldOffices.length + 1" data-style="cursor: pointer" 
 										data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx = dataCenter.fieldOffices.length + 1">
 									<uib-tab-heading><H5>Totals</H5></uib-tab-heading>
