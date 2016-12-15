@@ -27,14 +27,14 @@
             <div class="form-group">
                 <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
                 <select id="data-center-region" data-ng-model="dcc.dataCenter.regionId"
-                		data-ng-options="o.id as o.value for o in dcc.regionRefValueList">
+                		data-ng-options="o.id as o.value for o in dcc.regionRefValueList | filter:{'activeFlag':1}">
                     <option value="">Select One</option>
                 </select>
             </div>
         </div>
 	</div><!-- /.row -->
 	
-	<div class="row" data-ng-if="dcc.dataCenter.regionId !== '11'">
+	<div class="row" data-ng-if="!dcc.selectedCloudRegion(dcc.dataCenter.regionId)">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-city">City</label>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label for="data-center-state">State</label>
                 <select id="data-center-state" data-ng-model="dcc.dataCenter.stateId"
-                		data-ng-options="o.id as o.value for o in dcc.stateRefValueList">
+                		data-ng-options="o.id as o.value for o in dcc.stateRefValueList | filter:{'activeFlag':1}">
                 	<option value="">Select One</option>
                 </select>
             </div>

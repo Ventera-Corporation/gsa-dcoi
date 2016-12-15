@@ -135,7 +135,7 @@
                         <span id="{{dataCenter.dataCenterId}}GeneralInfoState"
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.stateName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}GeneralInfoState" data-ng-model="dataCenter.generalInfo.stateId"
-								data-ng-if="qc.tempData.editMode" data-ng-options="o.id as o.value for o in qc.referenceValueLists.stateRefValueList">
+								data-ng-if="qc.tempData.editMode" data-ng-options="o.id as o.value for o in qc.referenceValueLists.stateRefValueList | filter:{'activeFlag':1}">
                             <option value="">Select One</option>
                         </select>
                     </div>
@@ -158,7 +158,7 @@
                         		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.countryName || "None"}}</span>
                         <select id="{{dataCenter.dataCenterId}}GeneralInfoCountry" 
                         		data-ng-model="dataCenter.generalInfo.countryId" data-ng-if="qc.tempData.editMode"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.countryRefValueList">
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.countryRefValueList | filter:{'activeFlag':1}">
                             <option value="">Select One</option>
                         </select>
                     </div>
