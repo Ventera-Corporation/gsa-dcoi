@@ -220,7 +220,7 @@
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
-					dataCenter.ssoCompleteFlag = 0;
+					dataCenter.ssoCompleteFlag = 1;
 				}
 			});
 		}
