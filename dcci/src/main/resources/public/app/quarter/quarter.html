@@ -99,7 +99,7 @@
                     <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" 
                     		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
                         <h4 class="panel-title">
-                            {{::dataCenter.dataCenterName}} &nbsp;|&nbsp; {{::dataCenter.dcoiDataCenterId}}
+                            {{::dataCenter.dataCenterName}}<span data-ng-if="dataCenter.dcoiDataCenterId">&nbsp;|&nbsp;</span>{{::dataCenter.dcoiDataCenterId}}
 
                             <span class="pull-right vnt-normal-text-weight" data-ng-if="dataCenter.city && dataCenter.stateName">{{dataCenter.city}}, {{dataCenter.stateName}}</span>
                         </h4>

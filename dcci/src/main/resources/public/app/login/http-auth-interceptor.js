@@ -53,23 +53,23 @@
       return {
         'request': function(config) {
         	numLoadings++;
-        	$("#ajaxSpinner").show();
-        	$("#angularNgView").hide();
+        	angular.element("#ajaxSpinner").show();
+        	angular.element("#angularNgView").hide();
         	return config;
         },
         'response': function(response) {
         	numLoadings--;
         	if(numLoadings === 0){
-            	$("#ajaxSpinner").hide();
-            	$("#angularNgView").show();
+        		angular.element("#ajaxSpinner").hide();
+        		angular.element("#angularNgView").show();
         	}
         	return response;
         },
         'responseError': function(rejection) {
         	numLoadings--;
         	if(numLoadings === 0){
-            	$("#ajaxSpinner").hide();
-            	$("#angularNgView").show();
+        		angular.element("#ajaxSpinner").hide();
+        		angular.element("#angularNgView").show();
         	}
           var config = rejection.config || {};
           if (!config.ignoreAuthModule) {
