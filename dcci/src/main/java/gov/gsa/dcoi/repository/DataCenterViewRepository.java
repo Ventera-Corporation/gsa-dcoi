@@ -49,7 +49,7 @@ public class DataCenterViewRepository {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("Getting Data Center View Data for: " + quarterId);
 			}
-			return jdbcTemplate.query(GET_DATA_CENTERS_FOR_QUARTER, new String[] {quarterId.toString()} new ResultSetExtractor<List<DataCenterView>>() {
+			return jdbcTemplate.query(GET_DATA_CENTERS_FOR_QUARTER, new String[] {quarterId.toString()}, new ResultSetExtractor<List<DataCenterView>>() {
 				@Override
 				public List<DataCenterView> extractData(ResultSet rs) throws SQLException {
 					return processResults(rs);
