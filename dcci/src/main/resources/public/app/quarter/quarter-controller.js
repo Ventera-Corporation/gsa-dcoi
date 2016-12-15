@@ -26,6 +26,7 @@
 		qc.referenceValueLists = initData.referenceValueLists;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
+		qc.removeDupes = removeDupes;
 		qc.selectDataCenterName = selectDataCenterName;
 		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
 		qc.editQuarter = editQuarter;
@@ -64,6 +65,16 @@
 					qc.tempData.selected.expandCollapseRegions[region.code] = true;
 				}
 			}
+		}
+		
+		function removeDupes(dataCenters){
+			var uniqueDataCenterNames = [];
+			angular.forEach(dataCenters, function(dataCenter){
+				if(($filter('filter')(uniqueDataCenterNames, dataCenter.dataCenterName, true)).length === 0){
+					uniqueDataCenterNames.push(dataCenter.dataCenterName);
+				}
+			});
+			return uniqueDataCenterNames;
 		}
 		
 		function selectDataCenterName(regionIdx, dataCenterName){
