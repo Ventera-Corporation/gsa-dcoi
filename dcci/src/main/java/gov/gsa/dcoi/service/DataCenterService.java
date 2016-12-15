@@ -122,7 +122,7 @@ public class DataCenterService {
 					if (fieldOffice.getGrossFloorArea() == null && fieldOffice.getTotalITPowerCapacity() == null) {
 						// Pass back a sparse fieldOfficeDto
 						FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
-						fieldOfficeDto.setDataCenterInventoryId(fieldOffice.getDataCenterQuarterId());
+						fieldOfficeDto.setDataCenterInventoryId(fieldOffice.getDataCenterInventoryId());
 						fieldOfficeDto.setComponentId(fieldOffice.getComponentId());
 						fieldOfficeDto.setDataCenterQuarterId(fieldOffice.getDataCenterQuarterId());
 						fieldOfficesDto.add(fieldOfficeDto);
@@ -157,6 +157,9 @@ public class DataCenterService {
 			dataCenterRepository.save(dataCenterEntity);
 
 			List<FieldOfficeDto> fieldOffices = dataCenterDto.getFieldOffices();
+			if (fieldOffices == null) {
+				return;
+			}
 			for (FieldOfficeDto fieldOfficeDto : fieldOffices) {
 
 				// Add check for totals tab
@@ -318,8 +321,8 @@ public class DataCenterService {
 	 * 
 	 * @param dataCenterQuarter
 	 */
-	public void save(DataCenterQuarter dataCenterQuarter) {
-		dataCenterQuarterRepository.save(dataCenterQuarter);
+	public DataCenterQuarter save(DataCenterQuarter dataCenterQuarter) {
+		return dataCenterQuarterRepository.save(dataCenterQuarter);
 	}
 
 	/**

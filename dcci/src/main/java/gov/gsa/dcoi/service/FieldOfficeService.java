@@ -34,6 +34,16 @@ public class FieldOfficeService {
 	CostCalculationRepository costCalcRepository;
 
 	/**
+	 * Save field office value object into database
+	 * 
+	 * @param fieldOffice
+	 * @return
+	 */
+	public FieldOffice save(FieldOffice fieldOffice) {
+		return fieldOfficeRepository.save(fieldOffice);
+	}
+
+	/**
 	 * Copy fields from the dto to the value object
 	 * 
 	 * @param fieldOfficeDto

@@ -3,7 +3,7 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', '$routeParams', 'initData'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', '$routeParams', 'initData', '$location'];
 	
 	function QuarterController(QuarterService, $uibModal, $filter, $routeParams, initData){
 		var qc = this;
@@ -229,7 +229,8 @@
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
-					dataCenterData.dataCenterId = data.successData.dataCenterId;
+					dataCenterData = data.dataCenterData;
+					//dataCenterData.dataCenterId = data.dataCenterId;
 					var regionIdx = addDataCenterToRegion(dataCenterData);
 					selectDataCenterName(regionIdx, dataCenterData.dataCenterName);
 					qc.editQuarter();

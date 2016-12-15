@@ -50,7 +50,7 @@ public class QuarterController {
 
 	@Autowired
 	ExcelWriter excelService;
-	
+
 	@Autowired
 	MessageSource messageSource;
 
@@ -128,13 +128,14 @@ public class QuarterController {
 	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos) {
 
 		Map<String, Object> returnMap = new HashMap<>();
-		//Add Admin Check
+		// Add Admin Check
 		returnMap.put("dataCenterIdTotalsPairs", quarterService.costCalculation(dataCenterDtos.getList()));
 		dataCenterService.saveDataCenters(dataCenterDtos.getList());
+		returnMap.put("successData", "This page is successfully saved.");
 		return returnMap;
 
 	}
-	
+
 	/**
 	 * Save Quarter information
 	 * 
@@ -146,15 +147,14 @@ public class QuarterController {
 	public Map<String, Object> complete() {
 		Map<String, Object> returnMap;
 		returnMap = quarterService.completeQuarter();
-		if(returnMap.get("errorMessage") != null){
+		if (returnMap.get("errorMessage") != null) {
 			return returnMap;
 		}
-		returnMap.put("successsMessage", new DcoiRestMessage(messageSource.getMessage("completeQuarterSuccess", null, null)));
+		returnMap.put("successsMessage",
+				new DcoiRestMessage(messageSource.getMessage("completeQuarterSuccess", null, null)));
 		return returnMap;
 
 	}
-	
-	
 
 	/**
 	 * Populate the fiscal quarter report dto for use on the front end from the
@@ -254,17 +254,17 @@ public class QuarterController {
 			dataCenterViewSearchResults.add(dataCenterViewSearchResult);
 		}
 
-		String[] exportColumnNames = { "DATA CENTER NAME", "DATA CENTER ID",
-				"STREET ADDRESS", "STREET ADDRESS 2", "CITY", "ZIPCODE", "STATE NAME", "COUNTRY NAME",
-				"AGENCY DATA CENTER NAME", "PUBLISHED NAME", "RECORD STATUS NAME", "RECORD VALIDITY ID", "OWNERSHIP TYPE NAME",
-				"DATA CENER TIER NAME", "GROSS FLOOR AREA", "TOTAL CUSTOMER FLOOR AREA", "ANNUAL COST PER SQ FT", "OTHER AGENCIES SERVICED",
-				"ELECTRICTY INCLUDED IN COST", "ELECTRICTY IS METERED", "TOTAL POWER CAPACITY", "TOTAL IT POWER CAPACITY", "AVG ELECTRICITY USAGE",
-				"AVG IT ELECTRICITY USAGE", "COST PER KWH", "AUTOMATED MONITORING", "SERVER UTILIZATION", "FTE", "FTE COST", "RACK COUNT",
-				"TOTAL MAINFRAMES", "TOTAL WINDOWS SERVERS", "TOTAL HPC CLUSTER NODES", "TOTAL OTHER SERVERS", "TOTAL VIRTUAL HOSTS","TOTAL VIRTUAL OS",
-				"TOTAL STORAGE", "USED STORAGE", "CORE CLASSIFICATION NAME", "CLOSING STAGE NAME", "FISCAL YEAR", "FISCAL QUARTER", "ISS POSITION NAME",
-				"ISS PROVIDER"};
+		String[] exportColumnNames = { "DATA CENTER NAME", "DATA CENTER ID", "STREET ADDRESS", "STREET ADDRESS 2",
+				"CITY", "ZIPCODE", "STATE NAME", "COUNTRY NAME", "AGENCY DATA CENTER NAME", "PUBLISHED NAME",
+				"RECORD STATUS NAME", "RECORD VALIDITY ID", "OWNERSHIP TYPE NAME", "DATA CENER TIER NAME",
+				"GROSS FLOOR AREA", "TOTAL CUSTOMER FLOOR AREA", "ANNUAL COST PER SQ FT", "OTHER AGENCIES SERVICED",
+				"ELECTRICTY INCLUDED IN COST", "ELECTRICTY IS METERED", "TOTAL POWER CAPACITY",
+				"TOTAL IT POWER CAPACITY", "AVG ELECTRICITY USAGE", "AVG IT ELECTRICITY USAGE", "COST PER KWH",
+				"AUTOMATED MONITORING", "SERVER UTILIZATION", "FTE", "FTE COST", "RACK COUNT", "TOTAL MAINFRAMES",
+				"TOTAL WINDOWS SERVERS", "TOTAL HPC CLUSTER NODES", "TOTAL OTHER SERVERS", "TOTAL VIRTUAL HOSTS",
+				"TOTAL VIRTUAL OS", "TOTAL STORAGE", "USED STORAGE", "CORE CLASSIFICATION NAME", "CLOSING STAGE NAME",
+				"FISCAL YEAR", "FISCAL QUARTER", "ISS POSITION NAME", "ISS PROVIDER" };
 		searchResultsMap.put(exportColumnNames, dataCenterViewSearchResults);
 		return searchResultsMap;
 	}
 }
-
