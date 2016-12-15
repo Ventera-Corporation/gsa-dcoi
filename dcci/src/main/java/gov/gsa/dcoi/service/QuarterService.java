@@ -1,5 +1,6 @@
 package gov.gsa.dcoi.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +19,6 @@ import gov.gsa.dcoi.DcoiExceptionHandler;
 import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.CostCalculationDto;
 import gov.gsa.dcoi.dto.DataCenterDto;
-import gov.gsa.dcoi.dto.FieldOfficeDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
 import gov.gsa.dcoi.dto.RegionDto;
@@ -213,8 +213,8 @@ public class QuarterService {
 	 * @return
 	 */
 	@Transactional
-	public Map<Integer, FieldOfficeDto> costCalculation(List<DataCenterDto> dataCenterDtos){
-		Map<Integer, FieldOfficeDto> costCalcMap = new HashMap<>();
+	public List<Map<String, Object>> costCalculation(List<DataCenterDto> dataCenterDtos){
+		List<Map<String, Object>> dataCenterIdTotalsPairs = new ArrayList<>();
 		for(DataCenterDto dataCenter : dataCenterDtos){
 			CostCalculation costCalcEntity = new CostCalculation();
 			Double serverCostTotal = findServerDifferenceAndCost(dataCenter);
@@ -225,11 +225,12 @@ public class QuarterService {
 			costCalcEntity = costCalculationRepository.save(costCalcEntity);
 			
 			BeanUtils.copyProperties(costCalcEntity, dataCenter.getTotals());
-			
-			costCalcMap.put(dataCenter.getDataCenterId(), dataCenter.getTotals());
-			
+			Map<String, Object> costCalcMap = new HashMap<>();
+			costCalcMap.put("dataCenterId", dataCenter.getDataCenterId());
+			costCalcMap.put("totals", dataCenter.getTotals());
+			dataCenterIdTotalsPairs.add(costCalcMap);
 		}
-		return costCalcMap;
+		return dataCenterIdTotalsPairs;
 	}
 	
 	/**

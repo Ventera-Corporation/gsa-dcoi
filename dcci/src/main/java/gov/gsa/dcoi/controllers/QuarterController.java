@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -129,7 +128,7 @@ public class QuarterController {
 
 		Map<String, Object> returnMap = new HashMap<>();
 		//Add Admin Check
-		quarterService.costCalculation(dataCenterDtos.getList());
+		returnMap.put("dataCenterIdTotalsPairs", quarterService.costCalculation(dataCenterDtos.getList()));
 		dataCenterService.saveDataCenters(dataCenterDtos.getList());
 		return returnMap;
 

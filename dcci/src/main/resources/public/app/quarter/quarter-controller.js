@@ -32,6 +32,7 @@
 		qc.createQuarter = createQuarter;
 		qc.saveQuarter = saveQuarter;
 		qc.getEditedDataCenters = getEditedDataCenters;
+		qc.updateDataCenterIdTotalsTabs = updateDataCenterIdTotalsTabs;
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
 		qc.submitDataCenter = submitDataCenter;
@@ -136,10 +137,11 @@
 					qc.tempData.errorData = data;
 				} else {
 					//show success message
-					qc.tempData.successData = data.successData;
+					qc.tempData.successData = data;
 					//reset all of the edited panels
 					qc.tempData.wasInEditMode.dataCenterNames = [];
 					qc.tempData.wasInEditMode.dataCenterIds = [];
+					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
 					qc.tempData.editMode = false;
 				}
 			});
@@ -161,6 +163,18 @@
 				});
 			});
 			return editedDataCenters;
+		}
+		
+		function updateDataCenterIdTotalsTabs(dataCenterIdTotalsPairs){
+			//update the totals tab for each datacenterIdTotalsPair
+			angular.forEach(dataCenterIdTotalsPairs, function(dataCenterIdTotalsPair){
+				angular.forEach(qc.quarterData.regions, function(region){
+					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdTotalsPair.dataCenterId}, true)[0];
+					if(foundDataCenter){
+						foundDataCenter.totals = dataCenterIdTotalsPair.totals;
+					}
+				});
+			});
 		}
 		
 		function addNewDataCenterModal(){
@@ -247,6 +261,7 @@
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
+					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
 					dataCenter.ssoCompleteFlag = 1;
 					dataCenter.adminCompleteFlag = 1;
 				}
