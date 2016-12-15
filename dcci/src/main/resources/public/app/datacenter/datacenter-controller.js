@@ -30,7 +30,7 @@
 		function selectedCloudRegion(regionId){
 			for(var idx=0; idx < dcc.regionRefValueList.length; idx++){
 				if(dcc.regionRefValueList[idx].id === regionId){
-					return dcc.regionRefValueList[idx].code === 'r0';
+					return dcc.regionRefValueList[idx].id === 12;
 				}
 			}
 			return false;
