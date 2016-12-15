@@ -26,7 +26,7 @@
         		data-ng-if="qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag">Save Changes</button>
         <button class="usa-button usa-button-primary" type="button" 
         		data-ng-click="qc.createQuarter()"
-        		data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">Create Quarter</button>
+        		data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">Create Quarter</button>
 		<button class="usa-button usa-button-validate" type="button"
 				data-ng-click="qc.completeQuarter()"
 				data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag"
