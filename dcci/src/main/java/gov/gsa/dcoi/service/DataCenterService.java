@@ -265,6 +265,7 @@ public class DataCenterService {
 			return returnMap;
 		}
 		dataCenterQuarter.setSsoCompleteFlag(1);
+		dataCenterQuarter.setAdminCompleteFlag(0);
 		dataCenterQuarterRepository.save(dataCenterQuarter);
 		return returnMap;
 	}

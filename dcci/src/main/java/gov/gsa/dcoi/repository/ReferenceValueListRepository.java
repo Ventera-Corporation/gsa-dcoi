@@ -227,6 +227,10 @@ public class ReferenceValueListRepository {
 						refValueObject.setValue("R" + rs.getInt("gsa_region_number"));
 						refValueObject.setActiveFlag(rs.getInt("active_flag"));
 						refValueObject.setCode("r"+ rs.getString("gsa_region_number").toLowerCase().replace(" ", ""));
+						if("R0".equals(refValueObject.getValue())){
+							refValueObject.setValue("R00");
+							refValueObject.setCode("r00");
+						}
 						refValueObjects.add(refValueObject);
 					}
 					if (LOGGER.isDebugEnabled()) {
