@@ -2,6 +2,7 @@ package gov.gsa.dcoi.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 public class DataCenter {
 
 	@Id
+	@GeneratedValue
 	private Integer dataCenterId;
 	private String dataCenterName;
 	private String dcoiDataCenterId;

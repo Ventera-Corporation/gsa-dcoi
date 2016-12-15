@@ -160,7 +160,7 @@ public class QuarterService {
 			quarterReport.setQuarterActiveFlag(1);
 			quarterReport.setQuarterInProgressFlag(0);
 			quarterReportRepository.save(quarterReport);
-			returnMap.put("successMessage",
+			returnMap.put("successData",
 					new DcoiRestMessage(messageSource.getMessage("createQuarterSuccess", null, null)));
 			return returnMap;
 		} catch (DataAccessException dae) {
@@ -242,6 +242,12 @@ public class QuarterService {
 				costCalcEntity = new CostCalculation();
 			}
 			Double serverCostTotal = findServerDifferenceAndCost(dataCenter);
+			if (serverCostTotal == null) {
+				Map<String, Object> costCalcMap = new HashMap<>();
+				costCalcMap.put("dataCenterId", dataCenter.getDataCenterId());
+				costCalcMap.put("totals", 0);
+				return dataCenterIdTotalsPairs;
+			}
 			BeanUtils.copyProperties(dataCenter.getTotals().getCostCalc(), costCalcEntity);
 			costCalcEntity.setDataCenterQuarterId(dataCenter.getDataCenterQuarterId());
 			costCalcEntity.setServerCost(serverCostTotal);
@@ -283,8 +289,11 @@ public class QuarterService {
 	 * @param dataCenterDto
 	 * @return
 	 */
-	@Transactional
 	private Double findServerDifferenceAndCost(DataCenterDto dataCenterDto) {
+
+		if (dataCenterDto.getTotals() == null) {
+			return null;
+		}
 
 		ServerInformationDto serverInfo = dataCenterDto.getTotals().getServerInfo();
 		Double curQServerTotal = addServerCounts(serverInfo);
