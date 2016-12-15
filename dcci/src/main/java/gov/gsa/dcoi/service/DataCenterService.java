@@ -53,10 +53,10 @@ public class DataCenterService {
 
 	@Autowired
 	CacheManager cacheManager;
-	
+
 	@Autowired
 	MessageSource messageSource;
-	
+
 	@Autowired
 	QuarterReportRepository quarterReportRepository;
 
@@ -69,7 +69,7 @@ public class DataCenterService {
 	public List<DataCenterQuarter> findByQuarterReportId(Long curQuarterId) {
 		return dataCenterQuarterRepository.findByQuarterReportId(curQuarterId);
 	}
-	
+
 	/**
 	 * Search
 	 * 
@@ -78,7 +78,7 @@ public class DataCenterService {
 	public List<DataCenterDto> executeSearch() {
 		Iterator<DataCenterQuarter> allQuarters = dataCenterQuarterRepository.findAll().iterator();
 		List<DataCenterDto> returnDataCenters = new ArrayList<DataCenterDto>();
-		while(allQuarters.hasNext()){
+		while (allQuarters.hasNext()) {
 			DataCenterDto dataCenterDto = new DataCenterDto();
 			DataCenterQuarter quarter = allQuarters.next();
 			List<DataCenter> dataCenters = dataCenterRepository.findByDataCenterId(quarter.getDataCenterId());
@@ -87,7 +87,7 @@ public class DataCenterService {
 		return returnDataCenters;
 	}
 
-		/**
+	/**
 	 * Populate the regionsDto Lists to display back for a quarter
 	 * 
 	 * @param quarterReportId
@@ -113,7 +113,7 @@ public class DataCenterService {
 				}
 				dataCenterDto = copyEntityToDto(dataCenterForQuarter, dataCenter, dataCenterDto);
 
-				//Set the totals tab
+				// Set the totals tab
 				dataCenterDto.setTotals(fieldOfficeService.createTotalsTab(dataCenterForQuarter));
 
 				List<FieldOffice> fieldOffices = fieldOfficeRepository
@@ -139,7 +139,7 @@ public class DataCenterService {
 		}
 		return regionDtos;
 	}
-	
+
 	/**
 	 * Will save the edited information for data centers that are passed back
 	 * after a "save changes" call from the application
@@ -193,7 +193,7 @@ public class DataCenterService {
 		return regionDtos;
 	}
 
-/**
+	/**
 	 * copy the Entity Properties to the DataCenterDto to be displayed on the
 	 * front end
 	 * 
@@ -221,7 +221,7 @@ public class DataCenterService {
 		return dataCenterDto;
 	}
 
-		/**
+	/**
 	 * Copy the dto information to the dataCenterQuarterEntity
 	 * 
 	 * @param dataCenterDto
@@ -247,19 +247,20 @@ public class DataCenterService {
 
 		return dataCenterQuarter;
 	}
-	
+
 	/**
 	 * Set SSO complete flag to be true
+	 * 
 	 * @param dataCenterId
 	 * @return
 	 */
-	public Map<String, Object> setSSOCompleteFlag(Integer dataCenterId){
+	public Map<String, Object> setSSOCompleteFlag(Integer dataCenterId) {
 		Map<String, Object> returnMap = new HashMap<>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
-		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository.
-				findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
-		
-		if(dataCenterQuarter == null){
+		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository
+				.findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
+
+		if (dataCenterQuarter == null) {
 			returnMap.put("errorMessage", new DcoiRestMessage(messageSource.getMessage("submitError", null, null)));
 			return returnMap;
 		}
@@ -268,19 +269,20 @@ public class DataCenterService {
 		dataCenterQuarterRepository.save(dataCenterQuarter);
 		return returnMap;
 	}
-	
+
 	/**
 	 * Set Admin complete flag to be true
+	 * 
 	 * @param dataCenterId
 	 * @return
 	 */
-	public Map<String, Object> setAdminCompleteFlag(Integer dataCenterId){
+	public Map<String, Object> setAdminCompleteFlag(Integer dataCenterId) {
 		Map<String, Object> returnMap = new HashMap<>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
-		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository.
-				findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
-		
-		if(dataCenterQuarter == null){
+		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository
+				.findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
+
+		if (dataCenterQuarter == null) {
 			returnMap.put("errorMessage", new DcoiRestMessage(messageSource.getMessage("validateError", null, null)));
 			return returnMap;
 		}
@@ -288,19 +290,20 @@ public class DataCenterService {
 		dataCenterQuarterRepository.save(dataCenterQuarter);
 		return returnMap;
 	}
-	
+
 	/**
 	 * Set SSO complete flag back to 0, the sso will now have to edit it again
+	 * 
 	 * @param dataCenterId
 	 * @return
 	 */
-	public Map<String, Object> rejectDataCenter(Integer dataCenterId){
+	public Map<String, Object> rejectDataCenter(Integer dataCenterId) {
 		Map<String, Object> returnMap = new HashMap<>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
-		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository.
-				findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
-		
-		if(dataCenterQuarter == null){
+		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository
+				.findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
+
+		if (dataCenterQuarter == null) {
 			returnMap.put("errorMessage", new DcoiRestMessage(messageSource.getMessage("rejectError", null, null)));
 			return returnMap;
 		}
@@ -309,6 +312,43 @@ public class DataCenterService {
 		dataCenterQuarterRepository.save(dataCenterQuarter);
 		return returnMap;
 	}
-	
+
+	/**
+	 * Save data center quarter object
+	 * 
+	 * @param dataCenterQuarter
+	 */
+	public void save(DataCenterQuarter dataCenterQuarter) {
+		dataCenterQuarterRepository.save(dataCenterQuarter);
+	}
+
+	/**
+	 * Find the total number of data centers, the completed data centers and the
+	 * in progress data centers for a quarter
+	 * 
+	 * @param quarterReportId
+	 * @return
+	 */
+	public List<Integer> findDCCountsForQuarter(Long quarterReportId) {
+		List<Integer> totalsList = new ArrayList<>();
+		Iterator<DataCenterQuarter> dataCenterQuarterList = dataCenterQuarterRepository
+				.findByQuarterReportId(quarterReportId).iterator();
+		Integer totalCount = 0;
+		Integer completedCount = 0;
+		Integer inProgress = 0;
+		while (dataCenterQuarterList.hasNext()) {
+			totalCount += 1;
+			DataCenterQuarter dataCenterQuarter = dataCenterQuarterList.next();
+			if (dataCenterQuarter.getAdminCompleteFlag() == 1 && dataCenterQuarter.getSsoCompleteFlag() == 1) {
+				completedCount += 1;
+			} else {
+				inProgress += 1;
+			}
+		}
+		totalsList.add(0, totalCount);
+		totalsList.add(1, completedCount);
+		totalsList.add(2, inProgress);
+		return totalsList;
+	}
 
 }

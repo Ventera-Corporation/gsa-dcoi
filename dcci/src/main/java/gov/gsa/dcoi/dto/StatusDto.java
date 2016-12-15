@@ -30,7 +30,7 @@ public class StatusDto {
 	private Integer closingStageId;
 	private Integer closingFiscalYearId;
 	private Integer closingFiscalQuarterId;
-	@Pattern(regexp = "DCOI-DC-[0-9]{5}")
+	//@Pattern(regexp = "DCOI-DC-[0-9]{5}")
 	private String issProvider;
 
 	public String getSharedServicesPosition() {

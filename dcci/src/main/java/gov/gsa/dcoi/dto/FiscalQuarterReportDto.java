@@ -23,6 +23,9 @@ public class FiscalQuarterReportDto {
 	private Integer quarterInProgressFlag;
 	private Integer quarterCompleteFlag;
 	private Integer quarterSubmittedFlag;
+	private Integer totalNumDataCenters;
+	private Integer dataCentersInProgress;
+	private Integer dataCentersCompleted;
 
 	/**
 	 * Constructor for fiscalQuarterReportDto - used to initialize create new
@@ -47,11 +50,11 @@ public class FiscalQuarterReportDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getQuarterId() {
+	public Long getQuarterId() {
 		return quarterId;
 	}
 
-	public void setQuarterId(long quarterId) {
+	public void setQuarterId(Long quarterId) {
 		this.quarterId = quarterId;
 	}
 
@@ -118,6 +121,34 @@ public class FiscalQuarterReportDto {
 
 	public void setQuarterSubmittedFlag(int quarterSubmittedFlag) {
 		this.quarterSubmittedFlag = quarterSubmittedFlag;
+	}
+
+	public Integer getDataCentersInProgress() {
+		return dataCentersInProgress;
+	}
+
+	public void setDataCentersInProgress(Integer dataCentersInProgress) {
+		this.dataCentersInProgress = dataCentersInProgress;
+	}
+
+	public Integer getDataCentersCompleted() {
+		return dataCentersCompleted;
+	}
+
+	public void setDataCentersCompleted(Integer dataCentersCompleted) {
+		this.dataCentersCompleted = dataCentersCompleted;
+	}
+
+	public void setFiscalQuarterId(Integer fiscalQuarterId) {
+		this.fiscalQuarterId = fiscalQuarterId;
+	}
+
+	public Integer getTotalNumDataCenters() {
+		return totalNumDataCenters;
+	}
+
+	public void setTotalNumDataCenters(Integer totalNumDataCenters) {
+		this.totalNumDataCenters = totalNumDataCenters;
 	}
 
 }
