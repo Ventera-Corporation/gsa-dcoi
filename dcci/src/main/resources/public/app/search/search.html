@@ -8,49 +8,47 @@
 	<table data-datatable="ng" class="row-border hover">
 		<thead>
 			<tr>
-				<th>Fiscal Year</th>
-				<th>Quarter</th>
-				<th>Data Center ID</th>
-				<th>Data Center Name</th>
-				<th>Closing Stage</th>
-				<th>Agency Abbreviation</th>
+				<th style="white-space: nowrap">Quarter - Fiscal Year</th>
+				<th style="white-space: nowrap">Data Center ID</th>
+				<th style="white-space: nowrap">Data Center Name</th>
+				<th style="white-space: nowrap">Closing Stage</th>
+				<th>Agency<br/>Abbreviation</th>
 				<th>Component</th>
-				<th>Record Status</th>
-				<th>Record Validity</th>
-				<th>Published Name</th>
-				<th>Ownership Type</th>
-				<th>Interagency Shared Services Position</th>
+				<th>Record<br/>Status</th>
+				<th>Record<br/>Validity</th>
+				<th>Published<br/>Name</th>
+				<th>Ownership<br/>Type</th>
+				<th>Interagency<br/>Shared Services<br/>Position</th>
 				<th>ISS Provider</th>
-				<th>Data Center Tier</th>
+				<th>Data Center<br/>Tier</th>
 				<th>Country</th>
-				<th>Gross Floor Area (Sq. Ft.)</th>
-				<th>Total Customer Floor Area (Sq. Ft.)</th>
-				<th>Electricity is Metered</th>
+				<th>Gross Floor<br/>Area <span style="white-space: nowrap">(Sq. Ft.)</span></th>
+				<th>Total Customer<br/>Floor Area <span style="white-space: nowrap">(Sq. Ft.)</span></th>
+				<th>Electricity<br/>is Metered</th>
 				<th>Avg Electricity Usage (kWh)</th>
 				<th>Avg IT Electricity Usage (kWh)</th>
-				<th>Automated Monitoring</th>
-				<th>Server Utilization</th>
+				<th>Automated<br/>Monitoring</th>
+				<th>Server<br/>Utilization</th>
 				<th>FTE</th>
 				<th>Rack Count</th>
-				<th>Total Mainframes</th>
-				<th>Total Windows Servers</th>
-				<th>Total HPC Cluster Nodes</th>
-				<th>Total Other Servers</th>
-				<th>Total Virtual Hosts</th>
-				<th>Total Virtual OS</th>
-				<th>Total Storage</th>
-				<th>Used Storage</th>
+				<th>Total<br/>Mainframes</th>
+				<th>Total<br/>Windows Servers</th>
+				<th>Total<br/>HPC Cluster Nodes</th>
+				<th>Total<br/>Other Servers</th>
+				<th>Total<br/>Virtual Hosts</th>
+				<th>Total<br/>Virtual OS</th>
+				<th>Total<br/>Storage</th>
+				<th>Used<br/>Storage</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr data-ng-repeat="result in sc.searchResults">
-				<td>{{result.fiscalYear}}</td>
-				<td><a href="#/viewQuarter/{{result.quarterReportId}}">{{result.fiscalQuarter}}</a></td>
+				<td><a href="#/viewQuarter/{{result.quarterReportId}}">{{result.fiscalQuarter}} {{result.fiscalYear}}</a></td>
 				<td><a href="#/viewQuarter/{{result.quarterReportId}}/{{result.dataCenterId}}">{{result.dcoiDataCenterId}}</a></td>
 				<td><a href="#/viewQuarter/{{result.quarterReportId}}/{{result.dataCenterId}}">{{result.dataCenterName}}</a></td>
 				<td>{{result.closingStageName}}</td>
 				<td>{{result.agencyDataCenterName}}</td>
-				<td>{{result.agencyDataCenterName}}</td>
+				<td>GSA</td>
 				<td>{{result.recordStatusName}}</td>
 				<td>{{result.recordValidityName}}</td>
 				<td>{{result.publishedName}}</td>
@@ -80,3 +78,27 @@
 		</tbody>
 	</table>
 </div><!-- /.container-fluid -->
+
+
+<!-- TEMP : Scroll to top -->
+<!-- SCROLL TO TOP BUTTON -->
+<button class="scroll-to-top" type="button" id="return-to-top" title="Back to Top">
+	<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+</button>
+
+<script>
+	$(window).scroll(function() {
+	    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+	        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+	        $('#return-to-top').show();
+	    } else {
+	        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+	        $('#return-to-top').hide();
+	    }
+	});
+	$('#return-to-top').click(function() {      // When arrow is clicked
+	    $('body,html').animate({
+	        scrollTop : 0                       // Scroll to top of body
+	    }, 500);
+	});
+</script>

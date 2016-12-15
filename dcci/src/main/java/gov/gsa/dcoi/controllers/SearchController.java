@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,7 @@ public class SearchController {
 	 * Search
 	 */
 	@RequestMapping(value = "/results", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	@ResponseBody
 	public Map<String, Object> search() {
 		Map<String, Object> returnData = new HashMap<String, Object>();
