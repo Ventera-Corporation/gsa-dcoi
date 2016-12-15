@@ -1,7 +1,9 @@
 package gov.gsa.dcoi.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Iterator;
 
 import javax.transaction.Transactional;
@@ -9,8 +11,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
+import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FieldOfficeDto;
 import gov.gsa.dcoi.dto.GeneralInformationDto;
@@ -19,10 +23,12 @@ import gov.gsa.dcoi.dto.StatusDto;
 import gov.gsa.dcoi.entity.DataCenter;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.FieldOffice;
+import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 import gov.gsa.dcoi.repository.DataCenterRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
+import gov.gsa.dcoi.repository.QuarterReportRepository;
 
 /**
  * Service class to handle database connection and information collection for
@@ -48,6 +54,12 @@ public class DataCenterService {
 
 	@Autowired
 	CacheManager cacheManager;
+	
+	@Autowired
+	MessageSource messageSource;
+	
+	@Autowired
+	QuarterReportRepository quarterReportRepository;
 
 	/**
 	 * Find data center quarter information by the quarter report ID
@@ -236,5 +248,67 @@ public class DataCenterService {
 
 		return dataCenterQuarter;
 	}
+	
+	/**
+	 * Set SSO complete flag to be true
+	 * @param dataCenterId
+	 * @return
+	 */
+	public Map<String, Object> setSSOCompleteFlag(Integer dataCenterId){
+		Map<String, Object> returnMap = new HashMap<>();
+		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
+		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository.
+				findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
+		
+		if(dataCenterQuarter == null){
+			returnMap.put("errorMessage", new DcoiRestMessage(messageSource.getMessage("submitError", null, null)));
+			return returnMap;
+		}
+		dataCenterQuarter.setSsoCompleteFlag(1);
+		dataCenterQuarterRepository.save(dataCenterQuarter);
+		return returnMap;
+	}
+	
+	/**
+	 * Set Admin complete flag to be true
+	 * @param dataCenterId
+	 * @return
+	 */
+	public Map<String, Object> setAdminCompleteFlag(Integer dataCenterId){
+		Map<String, Object> returnMap = new HashMap<>();
+		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
+		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository.
+				findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
+		
+		if(dataCenterQuarter == null){
+			returnMap.put("errorMessage", new DcoiRestMessage(messageSource.getMessage("validateError", null, null)));
+			return returnMap;
+		}
+		dataCenterQuarter.setAdminCompleteFlag(1);
+		dataCenterQuarterRepository.save(dataCenterQuarter);
+		return returnMap;
+	}
+	
+	/**
+	 * Set SSO complete flag back to 0, the sso will now have to edit it again
+	 * @param dataCenterId
+	 * @return
+	 */
+	public Map<String, Object> rejectDataCenter(Integer dataCenterId){
+		Map<String, Object> returnMap = new HashMap<>();
+		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
+		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository.
+				findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
+		
+		if(dataCenterQuarter == null){
+			returnMap.put("errorMessage", new DcoiRestMessage(messageSource.getMessage("rejectError", null, null)));
+			return returnMap;
+		}
+		dataCenterQuarter.setSsoCompleteFlag(0);
+		dataCenterQuarter.setAdminCompleteFlag(1);
+		dataCenterQuarterRepository.save(dataCenterQuarter);
+		return returnMap;
+	}
+	
 
 }

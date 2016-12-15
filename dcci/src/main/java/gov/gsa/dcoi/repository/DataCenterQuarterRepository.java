@@ -36,6 +36,4 @@ public interface DataCenterQuarterRepository extends PagingAndSortingRepository<
 	 */
 	public DataCenterQuarter findByQuarterReportIdAndDataCenterId(@Param("quarter_report_id") Long quarterReportId,
 			@Param("data_center_id") Integer dataCenterId);
-	
-	
 }

@@ -12,12 +12,14 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
@@ -48,6 +50,9 @@ public class QuarterController {
 
 	@Autowired
 	ExcelWriter excelService;
+	
+	@Autowired
+	MessageSource messageSource;
 
 	/**
 	 * Initialize adding a new Quarter
@@ -115,28 +120,41 @@ public class QuarterController {
 	/**
 	 * Save Quarter information
 	 * 
-	 * @param dataCenterDtoList
+	 * @param dataCenterDtos
 	 * @return
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos,
-			HttpServletResponse response) {
-		// if(bindingResult.hasErrors()){
-		// System.out.println("here");
-		// }
+	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos) {
+
 		Map<String, Object> returnMap = new HashMap<>();
-		// for(DataCenterDto dataCenterDto : dataCenterDtos.getList()){
-		// response.setHeader(arg0, arg1);
-		// validateDto(dataCenterDtos.getList());
-		// }
-		// validateDtos(dataCenterDtos.getList());
-		// System.out.println(request.getParameter("dataCenterDtos"));
-		// quarterService.costCalculation(dataCenterDtos);
-		dataCenterService.saveDataCenters(dataCenterDtos);
+		//Add Admin Check
+		quarterService.costCalculation(dataCenterDtos.getList());
+		dataCenterService.saveDataCenters(dataCenterDtos.getList());
 		return returnMap;
 
 	}
+	
+	/**
+	 * Save Quarter information
+	 * 
+	 * @param dataCenterDtoList
+	 * @return
+	 */
+	@RequestMapping(value = "/complete", method = RequestMethod.POST)
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	public Map<String, Object> complete() {
+		Map<String, Object> returnMap;
+		returnMap = quarterService.completeQuarter();
+		if(returnMap.get("errorMessage") != null){
+			return returnMap;
+		}
+		returnMap.put("successsMessage", new DcoiRestMessage(messageSource.getMessage("completeQuarterSuccess", null, null)));
+		return returnMap;
+
+	}
+	
+	
 
 	/**
 	 * Populate the fiscal quarter report dto for use on the front end from the
