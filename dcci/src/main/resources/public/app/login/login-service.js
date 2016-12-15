@@ -23,7 +23,7 @@ angular.module('dcoiApp').service('AuthenticationService', function($rootScope, 
 		
 		getAccount : function() {
 		    $rootScope.loadingAccount = true;
-		    $http.get('security/account').then(function(response) {
+		    $http.get('/security/account').then(function(response) {
 		    	authService.loginConfirmed(response.data);
 		    });
 		},
@@ -46,7 +46,7 @@ angular.module('dcoiApp').service('AuthenticationService', function($rootScope, 
 		    $rootScope.authenticationError = false;
 		    $rootScope.authenticated = false;
 		    $rootScope.account = null;
-		    $http.get('security/logout');
+		    $http.get('/security/logout');
 		    Session.invalidate();
 		    authService.loginCancelled();
 		}
