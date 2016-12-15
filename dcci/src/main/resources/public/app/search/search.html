@@ -45,9 +45,9 @@
 		<tbody>
 			<tr data-ng-repeat="result in sc.searchResults">
 				<td>{{result.fiscalYear}}</td>
-				<td>{{result.fiscalQuarter}}</td>
-				<td>{{result.dcoiDataCenterId}}</td>
-				<td>{{result.dataCenterName}}</td>
+				<td><a href="#/viewQuarter/{{result.quarterReportId}}">{{result.fiscalQuarter}}</a></td>
+				<td><a href="#/viewQuarter/{{result.quarterReportId}}/{{result.dataCenterId}}">{{result.dcoiDataCenterId}}</a></td>
+				<td><a href="#/viewQuarter/{{result.quarterReportId}}/{{result.dataCenterId}}">{{result.dataCenterName}}</a></td>
 				<td>{{result.closingStageName}}</td>
 				<td>{{result.agencyDataCenterName}}</td>
 				<td>{{result.agencyDataCenterName}}</td>

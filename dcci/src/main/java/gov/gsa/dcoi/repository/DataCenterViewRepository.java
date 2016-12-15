@@ -91,6 +91,7 @@ public class DataCenterViewRepository {
 		while (rs.next()) {
 			DataCenterView dataCenterView = new DataCenterView();
 			dataCenterView.setQuarterReportId(rs.getInt("quarter_report_id"));
+			dataCenterView.setDataCenterId(rs.getInt("data_center_id"));
 			dataCenterView.setDataCenterName(rs.getString("data_center_name"));
 			dataCenterView.setStreetAddress(rs.getString("address"));
 			dataCenterView.setStreetAddress2(rs.getString("address2"));
