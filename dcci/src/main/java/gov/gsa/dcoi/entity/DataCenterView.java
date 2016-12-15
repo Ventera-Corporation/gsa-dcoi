@@ -8,7 +8,7 @@ package gov.gsa.dcoi.entity;
  *
  */
 public class DataCenterView {
-
+	private Integer quarterReportId;
 	private String dataCenterName;
 	private String dcoiDataCenterId;
 	private String streetAddress;
@@ -17,6 +17,7 @@ public class DataCenterView {
 	private String zipCode;
 	private String stateName;
 	private String countryName;
+	private String agencyDataCenterName;
 	private String publishedName;
 	private String recordStatusName;
 	private String recordValidityName;
@@ -53,6 +54,14 @@ public class DataCenterView {
 	private String issPositionName;
 	private String issProvider;
 
+	public Integer getQuarterReportId() {
+		return quarterReportId;
+	}
+
+	public void setQuarterReportId(Integer quarterReportId) {
+		this.quarterReportId = quarterReportId;
+	}
+	
 	public String getDataCenterName() {
 		return dataCenterName;
 	}
@@ -117,6 +126,14 @@ public class DataCenterView {
 		this.countryName = countryName;
 	}
 
+	public String getAgencyDataCenterName() {
+		return agencyDataCenterName;
+	}
+
+	public void setAgencyDataCenterName(String agencyDataCenterName) {
+		this.agencyDataCenterName = agencyDataCenterName;;
+	}
+	
 	public String getPublishedName() {
 		return publishedName;
 	}
@@ -395,6 +412,10 @@ public class DataCenterView {
 
 	public void setIssProvider(String issProvider) {
 		this.issProvider = issProvider;
+	}
+	
+	private Object getDisplayValue(Object object){
+		return null;
 	}
 
 }

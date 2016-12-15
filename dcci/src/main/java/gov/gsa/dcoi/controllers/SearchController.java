@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.service.DataCenterService;
+import gov.gsa.dcoi.repository.DataCenterViewRepository;
 
 /**
  * Controller for Searches
@@ -20,16 +21,16 @@ import gov.gsa.dcoi.service.DataCenterService;
 public class SearchController {
 	
 	@Autowired
-	DataCenterService dataCenterService;
+	DataCenterViewRepository viewRepository;
 	
 	/**
 	 * Search
 	 */
 	@RequestMapping(value = "/results", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> searchGlobal() {
+	public Map<String, Object> search() {
 		Map<String, Object> returnData = new HashMap<String, Object>();
-		returnData.put("searchResults", dataCenterService.executeSearch());
+		returnData.put("searchResults", viewRepository.findAllDataCenterRecords());
 		return returnData;
 	}
 	

@@ -74,6 +74,39 @@
 	    AuthenticationService.getAccount();
 	    
 	    // Default Search Options
-	    DTDefaultOptions.setDisplayLength(10);
+	    DTDefaultOptions.setOption("deferRender", true);
+	    DTDefaultOptions.setOption("scrollX", true);
+	    DTDefaultOptions.setOption("scrollY", true);
+	   
+	    // Pagination
+	    DTDefaultOptions.setOption("paging", true);
+	    DTDefaultOptions.setOption("paginationType", "full_numbers");
+	    DTDefaultOptions.setOption("displayLength", 10);
+	    DTDefaultOptions.setOption("language", language);
+	    
+	    var language = {
+            "sEmptyTable":     "No available data",
+            "sInfo":           "Showing _START_ to _END_ of _TOTAL_ records",
+            "sInfoEmpty":      "Showing 0 to 0 of 0 records",
+            "sInfoFiltered":   "(filtered from _MAX_ total records)",
+            "sInfoPostFix":    "",
+            "sInfoThousands":  ",",
+            "sLengthMenu":     "Show _MENU_ records",
+            "sLoadingRecords": "Loading...",
+            "sProcessing":     "Processing...",
+            "sSearch":         "Query Data:",
+            "sZeroRecords":    "No matching records found",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sLast":     "Last",
+                "sNext":     "Next",
+                "sPrevious": "Previous"
+            },
+            "oAria": {
+                "sSortAscending":  ": activate to sort column ascending",
+                "sSortDescending": ": activate to sort column descending"
+            }
+        }
+
 	});
 })();

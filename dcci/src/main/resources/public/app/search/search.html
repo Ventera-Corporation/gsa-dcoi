@@ -8,43 +8,75 @@
 	<table data-datatable="ng" class="row-border hover">
 		<thead>
 			<tr>
-				<th>Data Center Name</th>
+				<th>Fiscal Year</th>
+				<th>Quarter</th>
 				<th>Data Center ID</th>
-				<th>Street Address</th>
-				<th>City</th>
+				<th>Data Center Name</th>
+				<th>Closing Stage</th>
+				<th>Agency Abbreviation</th>
+				<th>Component</th>
+				<th>Record Status</th>
+				<th>Record Validity</th>
+				<th>Published Name</th>
+				<th>Ownership Type</th>
+				<th>Inter-Agency Shared Services Position</th>
+				<th>ISS Provider</th>
+				<th>Data Center Tier</th>
+				<th>Country</th>
+				<th>Gross Floor Area</th>
+				<th>Total Customer Floor Area</th>
+				<th>Electricity is Metered</th>
+				<th>Avg Electricity Usage</th>
+				<th>Avg IT Electricity Usage</th>
+				<th>Automated Monitoring</th>
+				<th>Server Utilization</th>
+				<th>FTE</th>
+				<th>Rack Count</th>
+				<th>Total Mainframes</th>
+				<th>Total Windows Servers</th>
+				<th>Total HPC Cluster Nodes</th>
+				<th>Total Other Servers</th>
+				<th>Total Virtual Hosts</th>
+				<th>Total Virtual OS</th>
+				<th>Total Storage</th>
+				<th>Used Storage</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr data-ng-repeat="result in sc.searchResults">
+				<td>{{result.fiscalYear}}</td>
+				<td>{{result.fiscalQuarter}}</td>
+				<td>{{result.dcoiDataCenterId}}</td>
 				<td>{{result.dataCenterName}}</td>
-				<td>{{result.generalInfo.dcoiDataCenterId}}</td>
-				<td>{{result.address}}</td>
-				<td>{{result.city}}</td>
+				<td>{{result.closingStageName}}</td>
+				<td>{{result.agencyDataCenterName}}</td>
+				<td>{{result.agencyDataCenterName}}</td>
+				<td>{{result.recordStatusName}}</td>
+				<td>{{result.recordValidityName}}</td>
+				<td>{{result.publishedName}}</td>
+				<td>{{result.ownershipTypeName;}}</td>
+				<td>{{result.issPositionName}}</td>
+				<td>{{result.issProvider}}</td>
+				<td>{{result.dataCenterTierName}}</td>
+				<td>{{result.countryName}}</td>
+				<td>{{result.grossFloorArea}}</td>
+				<td>{{result.totalCustomerFloorArea}}</td>
+				<td>{{result.electricityIsMetered}}</td>
+				<td>{{result.avgElectricityUsage}}</td>
+				<td>{{result.avgITElectricityUsage}}</td>
+				<td>{{result.automatedMonitoring}}</td>
+				<td>{{result.serverUtilization}}</td>
+				<td>{{result.fte}}</td>
+				<td>{{result.rackCount}}</td>
+				<td>{{result.totalMainframes}}</td>
+				<td>{{result.totalWindowsServers}}</td>
+				<td>{{result.totalHPCClusterNodes}}</td>
+				<td>{{result.totalOtherServers}}</td>
+				<td>{{result.totalVirtualHosts}}</td>
+				<td>{{result.totalVirtualOS}}</td>
+				<td>{{result.totalStorage}}</td>
+				<td>{{result.usedStorage}}</td>
 			</tr>
 		</tbody>
 	</table>
 </div><!-- /.container-fluid -->
-
-<!-- SCROLL TO TOP BUTTON -->
-<button class="scroll-to-top" type="button" href="javascript:" id="return-to-top" title="Back to Top">
-		<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-</button>
-
-
-<!-- TEMP : Scroll to top -->
-<script>
-$(window).scroll(function() {
-    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(200);    // Fade in the arrow
-        $('#return-to-top').display('block');
-    } else {
-        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
-        $('#return-to-top').display('none');
-    }
-});
-$('#return-to-top').click(function() {      // When arrow is clicked
-    $('body,html').animate({
-        scrollTop : 0                       // Scroll to top of body
-    }, 500);
-});
-</script>
