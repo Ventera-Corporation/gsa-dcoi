@@ -37,8 +37,9 @@ public class FiscalQuarterReportDto {
 		quarterActiveFlag = 0;
 		quarterInProgressFlag = 0;
 		quarterCompleteFlag = 0;
+		quarterSubmittedFlag = 0;
 		if (quarterReportDto.getFiscalQuarterId() == 4) {
-			fiscalYearId += 1;
+			fiscalYearId = quarterReportDto.getFiscalYearId() + 1;
 			fiscalQuarterId = 1;
 		} else {
 			fiscalYearId = quarterReportDto.getFiscalYearId();
