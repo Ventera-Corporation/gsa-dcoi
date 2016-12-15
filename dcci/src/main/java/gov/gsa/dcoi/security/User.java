@@ -14,6 +14,7 @@ public class User {
 	private boolean activeFlag;
 
 	private List<UserRole> roles;
+	private List<String> userFieldOffices;
 
 	public int getDcoiUserId() {
 		return dcoiUserId;
@@ -62,12 +63,20 @@ public class User {
 	public void setActiveFlag(boolean activeFlag) {
 		this.activeFlag = activeFlag;
 	}
-
+	
 	public List<UserRole> getRoles() {
 		return roles;
 	}
 
 	public void setRoles(List<UserRole> roles) {
 		this.roles = roles;
+	}
+	
+	public List<String> getUserFieldOffices() {
+		return userFieldOffices;
+	}
+
+	public void setUserFieldOffices(List<String> userFieldOffices) {
+		this.userFieldOffices = userFieldOffices;
 	}
 }
