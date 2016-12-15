@@ -26,7 +26,8 @@
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.recordStatusRefValueList">
                             <option value="">Select One</option>
                         </select>
-                        <div class="text-danger">{{qc.tempData.errorData.messages['recordStatusId']}}</div>
+                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['recordStatusId']}}</div>
+                        
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -39,7 +40,7 @@
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.recordValidityRefValueList">
                             <option value="">Select One</option>
                         </select>
-                        <div class="text-danger">{{qc.tempData.errorData.messages['recordValidityId']}}</div>
+                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['recordValidityId']}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -52,7 +53,7 @@
                         		data-ng-options="o.id as o.value for o in qc.referenceValueLists.closingStageRefValueList">
                             <option value="">Select One</option>
                         </select>
-                        <div class="text-danger">{{qc.tempData.errorData.messages['closingStageId']}}</div>
+                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['closingStageId']}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
