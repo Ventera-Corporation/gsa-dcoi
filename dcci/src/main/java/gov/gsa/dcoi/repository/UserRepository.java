@@ -17,7 +17,7 @@ import gov.gsa.dcoi.DcoiException;
 import gov.gsa.dcoi.DcoiExceptionHandler;
 import gov.gsa.dcoi.security.User;
 import gov.gsa.dcoi.security.UserRole;
-import gov.gsa.dcoi.security.UserAgencyComponent;
+import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
 
 /**
  * Description: Repository for handling data access for User and User Role
@@ -33,11 +33,14 @@ public class UserRepository {
 			+ "du WHERE du.email_address = ? ";
 	private static final String GET_USER_ROLES_SQL = "SELECT role_name FROM dcoi_user_role dur "
 			+ "INNER JOIN dcoi_role dr ON dr.dcoi_role_id = dur.dcoi_role_id" + " WHERE dur.dcoi_user_id = ? ";
-	private static final String GET_USER_AGENCY_COMPONENTS_SQL = "SELECT agency_component_id FROM dcoi_user_agency_component duac "
-			+ "WHERE duac.dcoi_user_id = ? and duac.active_flag = 1";
+	private static final String GET_USER_FIELD_OFFICES_SQL = "SELECT field_office_id FROM dcoi_user_field_office duf "
+			+ "WHERE duf.dcoi_user_id = ? and duf.active_flag = 1";
 
 	@Autowired(required = true)
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	ReferenceValueListRepository refValueService;
 	
 	/**
 	 * Get a list of all users
@@ -56,7 +59,7 @@ public class UserRepository {
 						user.setLastName(rs.getString("last_name"));
 						user.setEmailAddress(rs.getString("email_address"));
 						user.setRoles(findRolesByUserId(user.getDcoiUserId()));
-						user.setUserAgencyComponents(findUserAgencyComponents(user.getDcoiUserId()));
+						user.setUserFieldOffices(findUserFieldOffices(user.getDcoiUserId()));
 						allUsers.add(user);
 						
 						if (LOGGER.isDebugEnabled()) {
@@ -144,21 +147,29 @@ public class UserRepository {
 	 * @param userId
 	 * @return
 	 */
-	public List<String> findUserAgencyComponents(int userId) throws DcoiException {
+	public List<String> findUserFieldOffices(int userId) throws DcoiException {
 		try {
-			return jdbcTemplate.query(GET_USER_AGENCY_COMPONENTS_SQL, new Integer[] { userId },
+			return jdbcTemplate.query(GET_USER_FIELD_OFFICES_SQL, new Integer[] { userId },
 					new ResultSetExtractor<List<String>>() {
 				public List<String> extractData(ResultSet rs) throws SQLException, DataAccessException {
 					List<String> components = new ArrayList<String>();
+					List<Integer> fieldOffices = new ArrayList<Integer>();
 					while (rs.next()) {
-						components.add(String.valueOf(rs.getInt("agency_component_id")));			
+						fieldOffices.add(rs.getInt("field_office_id"));			
+					}
+					for (GenericReferenceValueObject component : refValueService.findAllComponents()){
+						for(Integer fieldOffice : fieldOffices){
+							if(component.getId()==fieldOffice){
+								components.add(component.getValue());
+							}
+						}
 					}
 					return components;
 				}
 			});
 		} catch (DataAccessException e) {
 			LOGGER.error(e.getMessage());
-			throw DcoiExceptionHandler.throwDcoiException("Exception in findUserAgencyComponents: " + e.getMessage());
+			throw DcoiExceptionHandler.throwDcoiException("Exception in findUserFieldOffices: " + e.getMessage());
 		}
 	}
 }

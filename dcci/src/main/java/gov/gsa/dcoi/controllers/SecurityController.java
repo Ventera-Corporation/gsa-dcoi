@@ -47,6 +47,7 @@ public class SecurityController {
 	 * Show the Admin/Settings page
 	 */
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@ResponseBody
 	public List<User> getAllUsers() {
 		List<User> users = userRepository.findAllUsers();
