@@ -8,17 +8,17 @@ package gov.gsa.dcoi.refValueEntity;
  */
 public class GenericReferenceValueObject {
 
-	private int id;
+	private Integer id;
 	private String value;
 	private String code;
-	private int activeFlag;
+	private Integer activeFlag;
 	
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -30,11 +30,11 @@ public class GenericReferenceValueObject {
 		this.value = value;
 	}
 
-	public int getActiveFlag() {
+	public Integer getActiveFlag() {
 		return activeFlag;
 	}
 
-	public void setActiveFlag(int activeFlag) {
+	public void setActiveFlag(Integer activeFlag) {
 		this.activeFlag = activeFlag;
 	}
 
