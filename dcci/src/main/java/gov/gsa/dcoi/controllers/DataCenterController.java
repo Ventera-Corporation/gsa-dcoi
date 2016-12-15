@@ -3,6 +3,9 @@ package gov.gsa.dcoi.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.entity.DataCenter;
+import gov.gsa.dcoi.entity.DataCenterQuarter;
+import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.repository.DataCenterRepository;
 import gov.gsa.dcoi.service.DataCenterService;
+import gov.gsa.dcoi.service.QuarterService;
 import gov.gsa.dcoi.service.ReferenceValueListService;
 
 /**
@@ -33,6 +39,9 @@ public class DataCenterController {
 
 	@Autowired
 	MessageSource messageSource;
+
+	@Autowired
+	QuarterService quarterService;
 
 	/**
 	 * Initialize adding new Data Center.
@@ -52,19 +61,31 @@ public class DataCenterController {
 	/**
 	 * Method to add new Data Center.
 	 * 
-	 * @param dataCenter
+	 * @param dataCenterDto
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-	public Map<String, Object> addNewDataCenter(DataCenter dataCenter) {
+	public Map<String, Object> addNewDataCenter(@Valid @RequestBody DataCenterDto dataCenterDto) {
+		DataCenter dataCenter = new DataCenter();
+
+		DataCenterQuarter dataCenterQuarter = new DataCenterQuarter();
+		BeanUtils.copyProperties(dataCenterDto, dataCenter);
 		dataCenterDao.save(dataCenter);
+
+		// Get quarter report id
+		QuarterReport quarterReport = quarterService.findByQuarterInProgressFlag();
+		dataCenterDto.setQuarterReportId(quarterReport.getQuarterId());
+		BeanUtils.copyProperties(dataCenterDto, dataCenterQuarter);
+		dataCenterService.save(dataCenterQuarter);
+
 		return new HashMap<>();
 	}
-	
+
 	/**
-	 * Submit a data center, completed by an SSO and moves the 
-	 * data center into the admin bucket
+	 * Submit a data center, completed by an SSO and moves the data center into
+	 * the admin bucket
+	 * 
 	 * @param dataCenterId
 	 * @return
 	 */
@@ -73,16 +94,17 @@ public class DataCenterController {
 	public Map<String, Object> submit(@RequestBody Integer dataCenterId) {
 		Map<String, Object> returnMap;
 		returnMap = dataCenterService.setSSOCompleteFlag(dataCenterId);
-		if(returnMap.get("errorMessage") != null){
+		if (returnMap.get("errorMessage") != null) {
 			return returnMap;
 		}
 		returnMap.put("successsMessage", new DcoiRestMessage(messageSource.getMessage("submitSuccess", null, null)));
 		return returnMap;
 	}
-	
+
 	/**
-	 * Validate a data center from an admin's perspective
-	 * Just a sanity check to set the adminComplete flag to 1
+	 * Validate a data center from an admin's perspective Just a sanity check to
+	 * set the adminComplete flag to 1
+	 * 
 	 * @param dataCenterId
 	 * @return
 	 */
@@ -91,16 +113,17 @@ public class DataCenterController {
 	public Map<String, Object> validate(@RequestBody Integer dataCenterId) {
 		Map<String, Object> returnMap;
 		returnMap = dataCenterService.setAdminCompleteFlag(dataCenterId);
-		if(returnMap.get("errorMessage") != null){
+		if (returnMap.get("errorMessage") != null) {
 			return returnMap;
 		}
 		returnMap.put("successsMessage", new DcoiRestMessage(messageSource.getMessage("validateSuccess", null, null)));
 		return returnMap;
 	}
-	
+
 	/**
-	 * Validate a data center from an admin's perspective
-	 * Just a sanity check to set the adminComplete flag to 1
+	 * Validate a data center from an admin's perspective Just a sanity check to
+	 * set the adminComplete flag to 1
+	 * 
 	 * @param dataCenterId
 	 * @return
 	 */
@@ -109,7 +132,7 @@ public class DataCenterController {
 	public Map<String, Object> reject(@RequestBody Integer dataCenterId) {
 		Map<String, Object> returnMap;
 		returnMap = dataCenterService.rejectDataCenter(dataCenterId);
-		if(returnMap.get("errorMessage") != null){
+		if (returnMap.get("errorMessage") != null) {
 			return returnMap;
 		}
 		returnMap.put("successsMessage", new DcoiRestMessage(messageSource.getMessage("rejectSuccess", null, null)));

@@ -1,5 +1,7 @@
 package gov.gsa.dcoi.service;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,8 +10,10 @@ import gov.gsa.dcoi.dto.CostCalculationDto;
 import gov.gsa.dcoi.dto.FacilityInformationDto;
 import gov.gsa.dcoi.dto.FieldOfficeDto;
 import gov.gsa.dcoi.dto.ServerInformationDto;
+import gov.gsa.dcoi.entity.CostCalculation;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.FieldOffice;
+import gov.gsa.dcoi.repository.CostCalculationRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
 
 /**
@@ -25,6 +29,9 @@ public class FieldOfficeService {
 
 	@Autowired
 	FieldOfficeRepository fieldOfficeRepository;
+
+	@Autowired
+	CostCalculationRepository costCalcRepository;
 
 	/**
 	 * Copy fields from the dto to the value object
@@ -68,10 +75,10 @@ public class FieldOfficeService {
 
 		return fieldOfficeDto;
 	}
-	
+
 	/**
-	 * Copy properties from the data center quarter into the 
-	 * Dto to be used for the totals tab
+	 * Copy properties from the data center quarter into the Dto to be used for
+	 * the totals tab
 	 * 
 	 * @param fieldOfficeEntity
 	 * @param fieldOfficeDto
@@ -85,11 +92,20 @@ public class FieldOfficeService {
 		BeanUtils.copyProperties(dataCenterQuarter, facilityInformationDto);
 		BeanUtils.copyProperties(dataCenterQuarter, serverInformationDto);
 
-		//BeanUtils.copyProperties(fieldOfficeEntity, fieldOfficeDto);
+		// BeanUtils.copyProperties(fieldOfficeEntity, fieldOfficeDto);
 
 		fieldOfficeDto.setFacilityInfo(facilityInformationDto);
 		fieldOfficeDto.setServerInfo(serverInformationDto);
-		fieldOfficeDto.setCostCalc(new CostCalculationDto());
+		List<CostCalculation> costCalcList = costCalcRepository
+				.findByDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
+		if (costCalcList != null && !costCalcList.isEmpty()) {
+			CostCalculation costCalc = costCalcList.get(costCalcList.size() - 1);
+			CostCalculationDto costCalcDto = new CostCalculationDto();
+			BeanUtils.copyProperties(costCalc, costCalcDto);
+			fieldOfficeDto.setCostCalc(costCalcDto);
+		} else {
+			fieldOfficeDto.setCostCalc(new CostCalculationDto());
+		}
 		fieldOfficeDto.setFieldOfficeName("Totals");
 
 		return fieldOfficeDto;

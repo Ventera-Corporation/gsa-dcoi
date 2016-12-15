@@ -61,13 +61,15 @@ public class QuarterService {
 
 	@Autowired
 	DataCenterViewRepository exportRepository;
-	
+
 	@Autowired
 	CostCalculationRepository costCalculationRepository;
-	
+
 	@Autowired
 	MessageSource messageSource;
-	
+
+	@Autowired
+	CostCalculationRepository costCalcRepository;
 
 	/**
 	 * This call creates the new quarter report and, will then populate all the
@@ -87,24 +89,26 @@ public class QuarterService {
 		return returnMap;
 
 	}
-	
+
 	/**
-	 * Complete quarter report - sets the quarterActiveFlag to 0 
-	 * and the quarter submitted flag to 1
+	 * Complete quarter report - sets the quarterActiveFlag to 0 and the quarter
+	 * submitted flag to 1
+	 * 
 	 * @return
 	 */
-	public Map<String, Object> completeQuarter(){
+	public Map<String, Object> completeQuarter() {
 		Map<String, Object> returnMap = new HashMap<>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
-		if(quarterReport == null){
-			returnMap.put("errorMessage", new DcoiRestMessage(messageSource.getMessage("completeQuarterError", null, null)));
+		if (quarterReport == null) {
+			returnMap.put("errorMessage",
+					new DcoiRestMessage(messageSource.getMessage("completeQuarterError", null, null)));
 			return returnMap;
 		}
 		quarterReport.setQuarterActiveFlag(0);
 		quarterReport.setQuarterSubmittedFlag(1);
 		quarterReportRepository.save(quarterReport);
 		return returnMap;
-		
+
 	}
 
 	/**
@@ -183,6 +187,17 @@ public class QuarterService {
 	}
 
 	/**
+	 * Find quarter reports by the in progress flag
+	 * 
+	 * @return
+	 */
+	public QuarterReport findByQuarterInProgressFlag() {
+
+		return quarterReportRepository.findByQuarterInProgressFlag(1);
+
+	}
+
+	/**
 	 * Find the data centers by the active flag
 	 * 
 	 * @return
@@ -207,24 +222,34 @@ public class QuarterService {
 	public List<DataCenterView> findViewResultsByQuarterId(Long quarterId) {
 		return exportRepository.findViewResultsByQuarterId(quarterId);
 	}
+
 	/**
 	 * Cost calculation function to save information to back end
+	 * 
 	 * @param dataCenterDtos
 	 * @return
 	 */
 	@Transactional
-	public List<Map<String, Object>> costCalculation(List<DataCenterDto> dataCenterDtos){
+	public List<Map<String, Object>> costCalculation(List<DataCenterDto> dataCenterDtos) {
 		List<Map<String, Object>> dataCenterIdTotalsPairs = new ArrayList<>();
-		for(DataCenterDto dataCenter : dataCenterDtos){
-			CostCalculation costCalcEntity = new CostCalculation();
+		for (DataCenterDto dataCenter : dataCenterDtos) {
+			CostCalculation costCalcEntity;
+			List<CostCalculation> costCalcList = costCalcRepository
+					.findByDataCenterQuarterId(dataCenter.getDataCenterQuarterId());
+			if (costCalcList != null && !costCalcList.isEmpty()) {
+				costCalcEntity = costCalcList.get(costCalcList.size() - 1);
+			} else {
+				costCalcEntity = new CostCalculation();
+			}
 			Double serverCostTotal = findServerDifferenceAndCost(dataCenter);
 			BeanUtils.copyProperties(dataCenter.getTotals().getCostCalc(), costCalcEntity);
 			costCalcEntity.setDataCenterQuarterId(dataCenter.getDataCenterQuarterId());
 			costCalcEntity.setServerCost(serverCostTotal);
-			costCalcEntity.setTotal(serverCostTotal + setTotalCost(dataCenter));
+			Double totalCost = serverCostTotal + setTotalCost(dataCenter);
+			costCalcEntity.setTotal(totalCost);
 			costCalcEntity = costCalculationRepository.save(costCalcEntity);
-			
-			BeanUtils.copyProperties(costCalcEntity, dataCenter.getTotals());
+
+			BeanUtils.copyProperties(costCalcEntity, dataCenter.getTotals().getCostCalc());
 			Map<String, Object> costCalcMap = new HashMap<>();
 			costCalcMap.put("dataCenterId", dataCenter.getDataCenterId());
 			costCalcMap.put("totals", dataCenter.getTotals());
@@ -232,93 +257,96 @@ public class QuarterService {
 		}
 		return dataCenterIdTotalsPairs;
 	}
-	
+
 	/**
 	 * Helper method to return the total cost
+	 * 
 	 * @param dataCenterDto
 	 * @return
 	 */
-	private Double setTotalCost(DataCenterDto dataCenterDto){
+	private Double setTotalCost(DataCenterDto dataCenterDto) {
 		CostCalculationDto costCalcDto = dataCenterDto.getTotals().getCostCalc();
 		Double costTotals = 0d;
-		if(costCalcDto.getMiscellaneous() != null){
+		if (costCalcDto.getMiscellaneous() != null) {
 			costTotals += costCalcDto.getMiscellaneous();
 		}
-		if(costCalcDto.getStorageCost() != null){
+		if (costCalcDto.getStorageCost() != null) {
 			costTotals += costCalcDto.getStorageCost();
 		}
 		return costTotals;
 	}
-	
+
 	/**
-	 * Find the server totals for this quarter and the previous, and 
-	 * then calculate the overall server cost
+	 * Find the server totals for this quarter and the previous, and then
+	 * calculate the overall server cost
+	 * 
 	 * @param dataCenterDto
 	 * @return
 	 */
 	@Transactional
-	private Double findServerDifferenceAndCost(DataCenterDto dataCenterDto){
-		
+	private Double findServerDifferenceAndCost(DataCenterDto dataCenterDto) {
+
 		ServerInformationDto serverInfo = dataCenterDto.getTotals().getServerInfo();
 		Double curQServerTotal = addServerCounts(serverInfo);
-		
-		//Get the past quarter
-		DataCenterQuarter pastQuarterDataCenter = dataCenterQuarterRepository.findByQuarterReportIdAndDataCenterId(dataCenterDto.getQuarterReportId() - 1,
-				dataCenterDto.getDataCenterId());
-		
+
+		// Get the past quarter
+		DataCenterQuarter pastQuarterDataCenter = dataCenterQuarterRepository.findByQuarterReportIdAndDataCenterId(
+				dataCenterDto.getQuarterReportId() - 1, dataCenterDto.getDataCenterId());
+
 		Double pastQServerTotal;
-		if(pastQuarterDataCenter == null){
+		if (pastQuarterDataCenter == null) {
 			pastQServerTotal = 0d;
-		}else{
+		} else {
 			pastQServerTotal = addServerCounts(pastQuarterDataCenter);
 		}
-		
-		
-		//Compute the difference
+
+		// Compute the difference
 		Double serverDifference = pastQServerTotal - curQServerTotal;
-		
+
 		return serverDifference * 3000;
 	}
-	
+
 	/**
 	 * Add server counts together
+	 * 
 	 * @param pastQuarterDataCenter
 	 * @return
 	 */
-	private Double addServerCounts(DataCenterQuarter pastQuarterDataCenter){
-		Double serverCount =  0d;
-		if(pastQuarterDataCenter.getTotalWindowsServers() != null){
+	private Double addServerCounts(DataCenterQuarter pastQuarterDataCenter) {
+		Double serverCount = 0d;
+		if (pastQuarterDataCenter.getTotalWindowsServers() != null) {
 			serverCount += pastQuarterDataCenter.getTotalWindowsServers();
 		}
-		if(pastQuarterDataCenter.getTotalMainframes() != null){
+		if (pastQuarterDataCenter.getTotalMainframes() != null) {
 			serverCount += pastQuarterDataCenter.getTotalMainframes();
 		}
-		if(pastQuarterDataCenter.getTotalHPCClusterNodes() != null){
+		if (pastQuarterDataCenter.getTotalHPCClusterNodes() != null) {
 			serverCount += pastQuarterDataCenter.getTotalHPCClusterNodes();
 		}
-		if(pastQuarterDataCenter.getTotalOtherServers() != null){
+		if (pastQuarterDataCenter.getTotalOtherServers() != null) {
 			serverCount += pastQuarterDataCenter.getTotalOtherServers();
 		}
 		return serverCount;
 	}
-	
+
 	/**
 	 * Add server counts together
+	 * 
 	 * @param pastQuarterDataCenter
 	 * @return
 	 */
-	private Double addServerCounts(ServerInformationDto serverInfo){
-		Double serverCount =  0d;
-		if(serverInfo.getTotalWindowsServers() != null){
+	private Double addServerCounts(ServerInformationDto serverInfo) {
+		Double serverCount = 0d;
+		if (serverInfo.getTotalWindowsServers() != null) {
 			serverCount += serverInfo.getTotalWindowsServers();
 		}
-		if(serverInfo.getTotalMainframes() != null){
+		if (serverInfo.getTotalMainframes() != null) {
 			serverCount += serverInfo.getTotalMainframes();
 		}
-		if(serverInfo.getTotalHPCClusterNodes() != null){
+		if (serverInfo.getTotalHPCClusterNodes() != null) {
 			serverCount += serverInfo.getTotalHPCClusterNodes();
 		}
-		if(serverInfo.getTotalOtherServers() != null){
+		if (serverInfo.getTotalOtherServers() != null) {
 			serverCount += serverInfo.getTotalOtherServers();
 		}
 		return serverCount;

@@ -17,6 +17,7 @@ import gov.gsa.dcoi.dto.DashboardDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.service.DashboardService;
+import gov.gsa.dcoi.service.DataCenterService;
 import gov.gsa.dcoi.service.QuarterService;
 
 /**
@@ -35,6 +36,9 @@ public class DashboardController {
 	@Autowired
 	QuarterService quarterService;
 
+	@Autowired
+	DataCenterService dataCenterService;
+
 	/**
 	 * Method to initialize the dashboard screen with the information about the
 	 * various quarters
@@ -49,6 +53,12 @@ public class DashboardController {
 		List<FiscalQuarterReportDto> quarterReportDtos;
 
 		quarterReportDtos = bulkConvertEntityToDto(dashboardService.initDashboard());
+		for (FiscalQuarterReportDto quarterReportDto : quarterReportDtos) {
+			List<Integer> countsList = dataCenterService.findDCCountsForQuarter(quarterReportDto.getQuarterId());
+			quarterReportDto.setTotalNumDataCenters(countsList.get(0));
+			quarterReportDto.setDataCentersCompleted(countsList.get(1));
+			quarterReportDto.setDataCentersInProgress(countsList.get(2));
+		}
 		if (!quarterService.findQuarterByActiveOrInProgressFlag()) {
 			quarterReportDtos.add(new FiscalQuarterReportDto(quarterReportDtos.get(quarterReportDtos.size() - 1)));
 		}
