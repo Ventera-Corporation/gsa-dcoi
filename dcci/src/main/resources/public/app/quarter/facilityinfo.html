@@ -1,73 +1,73 @@
 <!-- CATEGORY : FACILITY INFORMATION -->
 <div class="panel panel-default panel-category">
     <div class="panel-heading" data-toggle="collapse" 
-    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo">
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo">
         <h4 class="panel-title">
             <span class="glyphicon glyphicon-minus" 
-            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo"></span>
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo"></span>
             <span class="glyphicon glyphicon-plus" 
-            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo"></span>
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo"></span>
             <span>&nbsp; Facility Info</span>
         </h4>
     </div>
 
-    <div id="{{fieldOffice.name}}FacilityInfo" class="panel-collapse panel-cat-collapse collapse in" 
-    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].facilityInfo">
+    <div id="dataCenter{{dataCenter.dataCenterId}}FacilityInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo">
         <div class="panel-body">
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoGrossFloorArea">Gross Floor Area</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoGrossFloorArea" 
-                            		data-ng-model="fieldOffice.facilityInfo.grossFloorArea">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoGrossFloorArea">Gross Floor Area</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoGrossFloorArea" 
+                            		data-ng-model="dataCenter.facilityInfo.grossFloorArea">
 							<span class="input-group-addon">Sq. Ft.</span>
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['grossFloorArea']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoGrossFloorArea"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.grossFloorArea || "None"}}
-                        		<small data-ng-show="fieldOffice.facilityInfo.grossFloorArea">Sq. Ft.</small></span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['grossFloorArea']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoGrossFloorArea"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.facilityInfo.grossFloorArea || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.grossFloorArea">Sq. Ft.</small></span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoTotalCustomerFloorArea">Total Customer Floor Area</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalCustomerFloorArea" 
-                            		data-ng-model="fieldOffice.facilityInfo.totalCustomerFloorArea">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoTotalCustomerFloorArea">Total Customer Floor Area</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoTotalCustomerFloorArea" 
+                            		data-ng-model="dataCenter.facilityInfo.totalCustomerFloorArea">
 							<span class="input-group-addon">Sq. Ft.</span>
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['totalCustomerFloorArea']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoTotalCustomerFloorArea"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.totalCustomerFloorArea || "None"}}
-                        		<small data-ng-show="fieldOffice.facilityInfo.totalCustomerFloorArea">Sq. Ft.</small></span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['totalCustomerFloorArea']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoTotalCustomerFloorArea"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.facilityInfo.totalCustomerFloorArea || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.totalCustomerFloorArea">Sq. Ft.</small></span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoAnnualCostPerSqFt">Annual Cost per Sq. Ft.</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoAnnualCostPerSqFt">Annual Cost per Sq. Ft.</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
                         	<span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoAnnualCostPerSqFt" 
-                            		data-ng-model="fieldOffice.facilityInfo.annualCostPerSqFt">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoAnnualCostPerSqFt" 
+                            		data-ng-model="dataCenter.facilityInfo.annualCostPerSqFt">
                             		<div class="text-danger">{{qc.tempData.errorData.messages['annualCostPerSqFt']}}</div>
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['annualCostPerSqFt']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoAnnualCostPerSqFt"
-                        		data-ng-if="!qc.tempData.editMode">{{(fieldOffice.facilityInfo.annualCostPerSqFt | currency) || "None"}}</span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['annualCostPerSqFt']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoAnnualCostPerSqFt"
+                        		data-ng-if="!qc.tempData.editMode">{{(dataCenter.facilityInfo.annualCostPerSqFt | currency) || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoOtherAgenciesServiced">Other Agencies Serviced</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="{{fieldOffice.name}}FacilityInfoOtherAgenciesServiced" 
-                            		data-ng-model="fieldOffice.facilityInfo.otherAgenciesServiced">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoOtherAgenciesServiced">Other Agencies Serviced</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoOtherAgenciesServiced" 
+                            		data-ng-model="dataCenter.facilityInfo.otherAgenciesServiced">
                             		<div class="text-danger">{{qc.tempData.errorData.messages['otherAgenciesServiced']}}</div>
                         </div>
-                        <span id="{{fieldOffice.name}}FacilityInfoOtherAgenciesServiced"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.otherAgenciesServiced || "None"}}</span>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoOtherAgenciesServiced"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.facilityInfo.otherAgenciesServiced || "None"}}</span>
                     </div>
                 </div>
 
@@ -76,59 +76,59 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoAvgElectricityUsage">Avg. Electricity Usage</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoAvgElectricityUsage" 
-                            		data-ng-model="fieldOffice.facilityInfo.avgElectricityUsage">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoAvgElectricityUsage">Avg. Electricity Usage</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoAvgElectricityUsage" 
+                            		data-ng-model="dataCenter.facilityInfo.avgElectricityUsage">
                             <span class="input-group-addon">kWh</span>
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['avgElectricityUsage']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoAvgElectricityUsage"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.avgElectricityUsage || "None"}}
-                        		<small data-ng-show="fieldOffice.facilityInfo.avgElectricityUsage">kWh</small></span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['avgElectricityUsage']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoAvgElectricityUsage"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.facilityInfo.avgElectricityUsage || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.avgElectricityUsage">kWh</small></span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoAvgITElectricityUsage">Avg. IT Electricity Usage</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoAvgITElectricityUsage" 
-                            		data-ng-model="fieldOffice.facilityInfo.avgITElectricityUsage">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoAvgITElectricityUsage">Avg. IT Electricity Usage</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoAvgITElectricityUsage" 
+                            		data-ng-model="dataCenter.facilityInfo.avgITElectricityUsage">
                          	<span class="input-group-addon">kWh</span>
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['avgITElectricityUsage']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoAvgITElectricityUsage"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.avgITElectricityUsage || "None"}}
-                        		<small data-ng-show="fieldOffice.facilityInfo.avgITElectricityUsage">kWh</small></span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['avgITElectricityUsage']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoAvgITElectricityUsage"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.facilityInfo.avgITElectricityUsage || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.avgITElectricityUsage">kWh</small></span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoTotalPowerCapacity">Total Power Capacity</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                        <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalPowerCapacity" 
-                        		data-ng-model="fieldOffice.facilityInfo.totalPowerCapacity">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoTotalPowerCapacity">Total Power Capacity</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
+                        <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoTotalPowerCapacity" 
+                        		data-ng-model="dataCenter.facilityInfo.totalPowerCapacity">
                         <span class="input-group-addon">kW</span>
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['totalPowerCapacity']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoTotalPowerCapacity"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.totalPowerCapacity || "None"}}
-                        		<small data-ng-show="fieldOffice.facilityInfo.totalPowerCapacity">kW</small></span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['totalPowerCapacity']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoTotalPowerCapacity"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.facilityInfo.totalPowerCapacity || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.totalPowerCapacity">kW</small></span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoTotalITPowerCapacity">Total IT Power Capacity</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoTotalITPowerCapacity" 
-                            		data-ng-model="fieldOffice.facilityInfo.totalITPowerCapacity">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoTotalITPowerCapacity">Total IT Power Capacity</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoTotalITPowerCapacity" 
+                            		data-ng-model="dataCenter.facilityInfo.totalITPowerCapacity">
                             <span class="input-group-addon">kW</span>
                             
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['totalITPowerCapacity']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoTotalITPowerCapacity"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.totalITPowerCapacity || "None"}}
-                        		<small data-ng-show="fieldOffice.facilityInfo.totalITPowerCapacity">kW</small></span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['totalITPowerCapacity']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoTotalITPowerCapacity"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.facilityInfo.totalITPowerCapacity || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.totalITPowerCapacity">kW</small></span>
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -136,55 +136,55 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoFTE">FTE</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoFTE" 
-                            		data-ng-model="fieldOffice.facilityInfo.fte">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoFTE">FTE</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoFTE" 
+                            		data-ng-model="dataCenter.facilityInfo.fte">
                             		<div class="text-danger">{{qc.tempData.errorData.messages['fte']}}</div>
                         </div>
-                        <span id="{{fieldOffice.name}}FacilityInfoFTE"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.fte || "None"}}</span>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoFTE"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.facilityInfo.fte || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoFTECost">FTE Cost</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoFTECost">FTE Cost</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
                             <span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoFTECost" 
-                            		data-ng-model="fieldOffice.facilityInfo.fteCost">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoFTECost" 
+                            		data-ng-model="dataCenter.facilityInfo.fteCost">
                             		
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['fteCost']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoFTECost"
-                        		data-ng-if="!qc.tempData.editMode">{{(fieldOffice.facilityInfo.fteCost | currency) || "None"}}</span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['fteCost']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoFTECost"
+                        		data-ng-if="!qc.tempData.editMode">{{(dataCenter.facilityInfo.fteCost | currency) || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoRackCount">Rack Count</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoRackCount"
-                            		data-ng-model="fieldOffice.facilityInfo.rackCount">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoRackCount">Rack Count</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoRackCount"
+                            		data-ng-model="dataCenter.facilityInfo.rackCount">
                             		
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['rackCount']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoRackCount"
-                        		data-ng-if="!qc.tempData.editMode">{{fieldOffice.facilityInfo.rackCount || "None"}}</span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['rackCount']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoRackCount"
+                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.facilityInfo.rackCount || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="{{fieldOffice.name}}FacilityInfoCostPerkWh">Cost per kWh</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}FacilityInfoCostPerkWh">Cost per kWh</label>
+                        <div class="input-group" data-ng-show="qc.tempData.editMode">
                         	<span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" id="{{fieldOffice.name}}FacilityInfoCostPerkWh"
-                           		data-ng-model="fieldOffice.facilityInfo.costPerkWh">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoCostPerkWh"
+                           		data-ng-model="dataCenter.facilityInfo.costPerkWh">
 
                         </div>
-                        <div data-ng-if="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['costPerkWh']}}</div>
-                        <span id="{{fieldOffice.name}}FacilityInfoCostPerkWh"
-                        		data-ng-if="!qc.tempData.editMode">{{(fieldOffice.facilityInfo.costPerkWh | currency) || "None"}}</span>
+                        <div data-ng-show="qc.tempData.editMode" class="text-danger">{{qc.tempData.errorData.messages['costPerkWh']}}</div>
+                        <span id="dataCenter{{dataCenter.dataCenterId}}FacilityInfoCostPerkWh"
+                        		data-ng-if="!qc.tempData.editMode">{{(dataCenter.facilityInfo.costPerkWh | currency) || "None"}}</span>
                     </div>
                 </div>
             </div><!-- /.row -->

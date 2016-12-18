@@ -90,15 +90,14 @@
 					activeFieldOfficeTabIdx: 0,
 					generalInfo: true,
 					status: true,
+					facilityInfo: true,
 					fieldOffices: [],
 					totals: {
 						costCalc: true,
-						facilityInfo: true,
 						serverInfo: true	
 					}
 				};
 				var categories = {
-					facilityInfo: true,
 					serverInfo: true
 				};
 				angular.forEach(dataCenter.fieldOffices, function (){
