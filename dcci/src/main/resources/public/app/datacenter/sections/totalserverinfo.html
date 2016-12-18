@@ -18,27 +18,27 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoServerUtilization">Server Utilization</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoServerUtilization">{{dataCenter.totals.serverInfo.serverUtilization || "None"}}
+                        <strong>Server Utilization</strong>
+                        <span>{{::dataCenter.totals.serverInfo.serverUtilization || "None"}}
                         		<small data-ng-show="dataCenter.totals.serverInfo.serverUtilization">%</small></span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalMainframes">Total Mainframes</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalMainframes">{{dataCenter.totals.serverInfo.totalMainframes || "None"}}</span>
+                        <strong>Total Mainframes</strong>
+                        <span>{{::dataCenter.totals.serverInfo.totalMainframes || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalWindowsServers">Total Windows Servers</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalWindowsServers">{{dataCenter.totals.serverInfo.totalWindowsServers || "None"}}</span>
+                        <strong>Total Windows Servers</strong>
+                        <span>{{::dataCenter.totals.serverInfo.totalWindowsServers || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalHPCClusterNotes">Total HPC Cluster Nodes</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalHPCClusterNodes">{{dataCenter.totals.serverInfo.totalHPCClusterNodes || "None"}}</span>
+                        <strong>Total HPC Cluster Nodes</strong>
+                        <span>{{::dataCenter.totals.serverInfo.totalHPCClusterNodes || "None"}}</span>
                     </div>
                 </div>
 
@@ -47,26 +47,26 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalOtherServers">Total Other Servers</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalOtherServers">{{dataCenter.totals.serverInfo.totalOtherServers || "None"}}</span>
+                        <strong>Total Other Servers</strong>
+                        <span>{{::dataCenter.totals.serverInfo.totalOtherServers || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalVirtualHosts">Total Virtual Hosts</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalVirtualHosts">{{dataCenter.totals.serverInfo.totalVirtualHosts || "None"}}</span>
+                        <strong>Total Virtual Hosts</strong>
+                        <span>{{::dataCenter.totals.serverInfo.totalVirtualHosts || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalVirtualOS">Total Virtual OS</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalVirtualOS">{{dataCenter.totals.serverInfo.totalVirtualOS || "None"}}</span>
+                        <strong>Total Virtual OS</strong>
+                        <span>{{::dataCenter.totals.serverInfo.totalVirtualOS || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalStorage">Total Storage</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoTotalStorage">{{dataCenter.totals.serverInfo.totalStorage || "None"}}</span>
+                        <strong>Total Storage</strong>
+                        <span>{{::dataCenter.totals.serverInfo.totalStorage || "None"}}</span>
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -74,8 +74,8 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoUsedStorage">Used Storage</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}totalsServerInfoUsedStorage">{{dataCenter.totals.serverInfo.usedStorage || "None"}}</span>
+                        <strong>Used Storage</strong>
+                        <span>{{::dataCenter.totals.serverInfo.usedStorage || "None"}}</span>
                     </div>
                 </div>
             </div><!-- /.row -->

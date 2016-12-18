@@ -18,50 +18,26 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyAbbreviation">Agency Abbreviation <span class="vnt-red-text">*</span></label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyAbbreviation" 
-                            		data-ng-model="dataCenter.generalInfo.agencyAbbreviation">
-                            <div class="text-danger">{{qc.tempData.errorData.messages['agencyAbbreviation']}}</div>
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyAbbreviation"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.agencyAbbreviation || "None"}}</span>
+                        <strong>Agency Abbreviation</strong>
+                        <span>{{::dataCenter.generalInfo.agencyAbbreviation || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoComponent">Component <span class="vnt-red-text">*</span></label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoComponent" 
-                            		data-ng-model="dataCenter.generalInfo.component">
-                            <div class="text-danger">{{qc.tempData.errorData.messages['component']}}</div>
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoComponent"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.component || "None"}}</span>
+                        <strong>Component</strong>
+                        <span>{{::dataCenter.generalInfo.component || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterName">Data Center Name <span class="vnt-red-text">*</span></label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterName" 
-                            		data-ng-model="dataCenter.generalInfo.dataCenterName">
-                            <div class="text-danger">{{qc.tempData.errorData.messages['dataCenterName']}}</div>
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterName"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dataCenterName || "None"}}</span>
+                        <strong>Data Center Name</strong>
+                        <span>{{::dataCenter.generalInfo.dataCenterName || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterID">Data Center ID</label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterID" 
-                            		data-ng-model="dataCenter.generalInfo.dcoiDataCenterId" placeholder="DCOI-DC-#####">
-                            		<div class="text-danger">{{qc.tempData.errorData.messages['dcoiDataCenterId']}}</div>
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterID"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.dcoiDataCenterId || "None"}}</span>
+                        <strong>Data Center ID</strong>
+                        <span>{{::dataCenter.generalInfo.dcoiDataCenterId || "None"}}</span>
                     </div>
                 </div>
             </div>
@@ -69,49 +45,26 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyDataCenterID">Agency Data Center ID</label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyDataCenterID" 
-                            		data-ng-model="dataCenter.generalInfo.agencyDataCenterId">
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyDataCenterID"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.agencyDataCenterId || "None"}}</span>
+                        <strong>Agency Data Center ID</strong>
+                        <span>{{::dataCenter.generalInfo.agencyDataCenterId || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoPublishedName">Published Name</label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoPublishedName" 
-                            		data-ng-model="dataCenter.generalInfo.publishedName">
-                            		<div class="text-danger">{{qc.tempData.errorData.messages['publishedName']}}</div>
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoPublishedName"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.publishedName || "None"}}</span>
+                        <strong>Published Name</strong>
+                        <span>{{::dataCenter.generalInfo.publishedName || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress">Street Address</label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress" 
-                            		data-ng-model="dataCenter.generalInfo.streetAddress">
-                            		<div class="text-danger">{{qc.tempData.errorData.messages['streetAddress']}}</div>
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.streetAddress || "None"}}</span>
+                        <strong>Street Address</strong>
+                        <span>{{::dataCenter.generalInfo.streetAddress || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress2">Street Address 2</label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress2" 
-                            		data-ng-model="dataCenter.generalInfo.streetAddress2">
-                            		<div class="text-danger">{{qc.tempData.errorData.messages['streetAddress2']}}</div>
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress2"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.streetAddress2 || "None"}}</span>
+                        <strong>Street Address 2</strong>
+                        <span>{{::dataCenter.generalInfo.streetAddress2 || "None"}}</span>
                     </div>
                 </div>
             </div>
@@ -119,48 +72,26 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCity">City</label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCity" 
-                            		data-ng-model="dataCenter.generalInfo.city">
-                            		<div class="text-danger">{{qc.tempData.errorData.messages['city']}}</div>
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCity"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.city || "None"}}</span>
+                        <strong>City</strong>
+                        <span>{{::dataCenter.generalInfo.city || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoState">State</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoState"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.stateName || "None"}}</span>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoState" data-ng-model="dataCenter.generalInfo.stateId"
-								data-ng-show="qc.tempData.editMode" data-ng-options="o.id as o.value for o in qc.referenceValueLists.stateRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
+                        <strong>State</strong>
+                        <span>{{::dataCenter.generalInfo.stateName || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoZipCode">Zip Code</label>
-                        <div class="input-group" data-ng-show="qc.tempData.editMode">
-                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoZipCode" 
-                            		data-ng-model="dataCenter.generalInfo.zipCode">
-                        </div>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoZipCode"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.zipCode || "None"}}</span>
+                        <strong>Zip Code</strong>
+                        <span>{{::dataCenter.generalInfo.zipCode || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCountry">Country</label>
-                        <span id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCountry"
-                        		data-ng-if="!qc.tempData.editMode">{{dataCenter.generalInfo.countryName || "None"}}</span>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCountry" 
-                        		data-ng-model="dataCenter.generalInfo.countryId" data-ng-show="qc.tempData.editMode"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.countryRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
+                        <strong>Country</strong>
+                        <span>{{::dataCenter.generalInfo.countryName || "None"}}</span>
                     </div>
                 </div>
             </div>
