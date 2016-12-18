@@ -3,9 +3,9 @@
 	
 	angular.module('dcoiApp').controller('AddNewDataCenterModalController', AddNewDataCenterModalController);
 	
-	AddNewDataCenterModalController.$inject = ['QuarterService', '$uibModalInstance', 'initData'];
+	AddNewDataCenterModalController.$inject = ['DataCenterService', '$uibModalInstance', 'initData'];
 	
-	function AddNewDataCenterModalController(QuarterService, $uibModalInstance, initData){
+	function AddNewDataCenterModalController(DataCenterService, $uibModalInstance, initData){
 		var andcc = this;
 		andcc.dataCenter = initData.dataCenterData;
 		andcc.regionRefValueList = initData.regionRefValueList;
@@ -20,7 +20,7 @@
 		}
 		
 		function initDataCenterData() {
-			QuarterService.initDataCenter().then(function (data){
+			DataCenterService.initDataCenter().then(function (data){
 				andcc.dataCenter = data.dataCenterData;
 				andcc.regionRefValueList = data.regionRefValueList;
 				andcc.stateRefValueList = data.stateRefValueList;
