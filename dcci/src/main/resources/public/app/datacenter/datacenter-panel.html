@@ -1,5 +1,5 @@
 <!-- DATA CENTER PANEL-->
-<div class="panel panel-default panel-dc"
+<div class="panel panel-default panel-dc" data-ng-controller="DataCenterController as dcc"
 		data-ng-repeat="dataCenter in qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters | filter:{dataCenterName:qc.tempData.selected.dataCenterName}:true"
 		data-ng-init="qc.initDefaultPanelExpanded(dataCenter)">
 	<!-- Data Center Header -->

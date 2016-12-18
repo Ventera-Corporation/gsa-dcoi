@@ -36,9 +36,6 @@
 		qc.updateDataCenterIdTotalsTabs = updateDataCenterIdTotalsTabs;
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
-		qc.submitDataCenter = submitDataCenter;
-		qc.rejectDataCenter = rejectDataCenter;
-		qc.validateDataCenter = validateDataCenter;
 		qc.allDataCentersValidated = allDataCentersValidated;
 		qc.numDataCentersNeedAttentionForDataCenterName = numDataCentersNeedAttentionForDataCenterName;
 		qc.allDataCentersForDataCenterNameValidated = allDataCentersForDataCenterNameValidated;
@@ -233,48 +230,6 @@
 					var regionIdx = addDataCenterToRegion(dataCenterData);
 					selectDataCenterName(regionIdx, dataCenterData.dataCenterName);
 					qc.editQuarter();
-				}
-			});
-		}
-		
-		function submitDataCenter(dataCenter){
-			QuarterService.submitDataCenter(dataCenter.dataCenterId).then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
-					dataCenter.ssoCompleteFlag = 1;
-				}
-			});
-		}
-		
-		function rejectDataCenter(dataCenter){
-			QuarterService.rejectDataCenter(dataCenter.dataCenterId).then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
-					dataCenter.ssoCompleteFlag = 0;
-					dataCenter.adminCompleteFlag = 1;
-				}
-			});
-		}
-		
-		function validateDataCenter(dataCenter){
-			QuarterService.validateDataCenter(dataCenter.dataCenterId).then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
-					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
-					dataCenter.ssoCompleteFlag = 1;
-					dataCenter.adminCompleteFlag = 1;
 				}
 			});
 		}

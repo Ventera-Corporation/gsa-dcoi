@@ -41,27 +41,6 @@
 					data:  dataCenterData
 				}).then(returnData);
 			},
-			submitDataCenter : function(dataCenterId) {
-				return $http({
-					url: '/datacenter/submit',
-					method: 'POST',
-					data:  dataCenterId
-				}).then(returnData);
-			},
-			rejectDataCenter : function(dataCenterId) {
-				return $http({
-					url: '/datacenter/reject',
-					method: 'POST',
-					data:  dataCenterId
-				}).then(returnData);
-			},
-			validateDataCenter : function(dataCenterId) {
-				return $http({
-					url: '/datacenter/validate',
-					method: 'POST',
-					data: dataCenterId
-				}).then(returnData);
-			},
 			completeQuarter : function() {
 				return $http({
 					url: '/quarter/complete',
