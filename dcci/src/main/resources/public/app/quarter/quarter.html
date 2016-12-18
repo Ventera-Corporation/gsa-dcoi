@@ -11,76 +11,7 @@
     <!-- MAIN CONTAINER -->
     <div id="page-content-wrapper">
         <div class="container-fluid">
-                            
-            <div class="panel-group" id="accordion">
-
-                <!-- DATA CENTER PANEL-->
-                <!-- Data Center Header -->
-                <div class="panel panel-default panel-dc"
-                		data-ng-repeat="dataCenter in qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters | filter:{dataCenterName:qc.tempData.selected.dataCenterName}:true"
-                		data-ng-init="qc.initDefaultPanelExpanded(dataCenter)">
-                    <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" 
-                    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
-                        <h4 class="panel-title">
-                            {{::dataCenter.dataCenterName}}<span data-ng-if="dataCenter.dcoiDataCenterId">&nbsp;|&nbsp;</span>{{::dataCenter.dcoiDataCenterId}}
-
-                            <span class="pull-right vnt-normal-text-weight" data-ng-if="dataCenter.city && dataCenter.stateName">{{dataCenter.city}}, {{dataCenter.stateName}}</span>
-                        </h4>
-                    </div>
-
-                    <!-- Data Center Body -->
-                    <div id="{{dataCenter.dataCenterName}}-body" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
-                        <div class="panel-body">
-							<div class="pull-right">
-								<span data-ng-if="!lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag">
-									<button class="usa-button usa-button-primary" type="button" data-ng-if="!dataCenter.ssoCompleteFlag"
-											data-ng-click="qc.submitDataCenter(dataCenter)">Submit</button>
-									<button class="usa-button usa-button-primary" type="button" data-ng-if="dataCenter.ssoCompleteFlag" 
-											disabled>Submitted</button>
-								</span>
-								<span data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && dataCenter.ssoCompleteFlag && !dataCenter.adminCompleteFlag">
-									<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;
-									<button class="usa-button usa-button-secondary" type="button" 
-											data-ng-click="qc.rejectDataCenter(dataCenter)"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Reject</button>
-									<button class="usa-button usa-button-validate" type="button" 
-											data-ng-click="qc.validateDataCenter(dataCenter)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Validate</button>
-								</span>
-								<span data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag">
-									<span data-ng-if="!dataCenter.ssoCompleteFlag"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;Please contact the assigned SSO.</span>
-									<button class="usa-button usa-button-secondary" type="button" data-ng-if="!dataCenter.ssoCompleteFlag && dataCenter.adminCompleteFlag"
-											disabled><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Rejected</button>
-									<button class="usa-button usa-button-validate" type="button" data-ng-if="dataCenter.ssoCompleteFlag && dataCenter.adminCompleteFlag"
-											disabled><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Validated</button>
-								</span>
-							</div>
-							<br/>
-							<br/>
-							<div data-ng-include="'app/quarter/generalinfo.html'"></div>
-							<div data-ng-include="'app/quarter/status.html'"></div>
-							<div data-ng-include="'app/quarter/facilityinfo.html'"></div>
-							
-							<!-- Tabs -->
-							<uib-tabset data-active="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx">
-								<uib-tab data-ng-repeat="fieldOffice in dataCenter.fieldOffices" data-index="$index" data-style="cursor: pointer" 
-										data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx = $index">
-									<uib-tab-heading><H5>{{fieldOffice.fieldOfficeName}}</H5></uib-tab-heading>
-									<div data-ng-include="'app/quarter/serverinfo.html'"></div>
-								</uib-tab>
-								<uib-tab data-ng-if="lc.isAdmin() && !qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && dataCenter.ssoCompleteFlag"
-										data-index="dataCenter.fieldOffices.length + 1" data-style="cursor: pointer" 
-										data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx = dataCenter.fieldOffices.length + 1">
-									<uib-tab-heading><H5>Totals</H5></uib-tab-heading>
-									<div data-ng-include="'app/quarter/totalserverinfo.html'"></div>
-									<div data-ng-include="'app/quarter/costcalc.html'"></div>
-								</uib-tab>
-							 </uib-tabset>
-
-                        </div><!-- /.panel-body -->
-                    </div><!--/.panel-collapse -->
-                </div><!-- /.panel-dc -->
-
-            </div><!-- /.panel-group -->
-
+            <div class="panel-group" data-ng-include="'app/datacenter/datacenter-panel.html'"></div><!-- /.panel-group -->
         </div><!-- /.container-fluid -->
     </div><!-- /#page-content-wrapper -->
 

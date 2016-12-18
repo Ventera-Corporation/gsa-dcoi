@@ -1,0 +1,21 @@
+<span data-ng-if="!lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag">
+	<button class="usa-button usa-button-primary" type="button" data-ng-if="!dataCenter.ssoCompleteFlag"
+			data-ng-click="qc.submitDataCenter(dataCenter)">Submit</button>
+	<button class="usa-button usa-button-primary" type="button" data-ng-if="dataCenter.ssoCompleteFlag" 
+			disabled>Submitted</button>
+</span>
+<span data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && dataCenter.ssoCompleteFlag && !dataCenter.adminCompleteFlag">
+	<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;
+	<button class="usa-button usa-button-secondary" type="button" 
+			data-ng-click="qc.rejectDataCenter(dataCenter)"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Reject</button>
+	<button class="usa-button usa-button-validate" type="button" 
+			data-ng-click="qc.validateDataCenter(dataCenter)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Validate</button>
+</span>
+<span data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag">
+	<span data-ng-if="!dataCenter.ssoCompleteFlag">
+		<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;Please contact the assigned SSO.</span>
+	<button class="usa-button usa-button-secondary" type="button" data-ng-if="!dataCenter.ssoCompleteFlag && dataCenter.adminCompleteFlag"
+			disabled><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Rejected</button>
+	<button class="usa-button usa-button-validate" type="button" data-ng-if="dataCenter.ssoCompleteFlag && dataCenter.adminCompleteFlag"
+			disabled><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Validated</button>
+</span>
