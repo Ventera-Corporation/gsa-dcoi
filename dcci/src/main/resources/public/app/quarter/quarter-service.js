@@ -34,12 +34,6 @@
 					params: {quarterId: quarterId}
 				}).then(returnData);
 			},
-			initDataCenter : function() {
-				return $http({
-					url: '/datacenter/init',
-					method: 'GET'
-				}).then(returnData);
-			},
 			addDataCenter : function(dataCenterData) {
 				return $http({
 					url: '/datacenter/add',

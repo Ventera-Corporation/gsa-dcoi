@@ -195,8 +195,8 @@
 			    controllerAs: 'andcc',
 			    backdrop: 'static',
 			    resolve: {
-					initData: function(){
-						return QuarterService.initDataCenter().then(function (data){
+					initData: function(DataCenterService){
+						return DataCenterService.initDataCenter().then(function (data){
 							return data;
 						});
 					}
