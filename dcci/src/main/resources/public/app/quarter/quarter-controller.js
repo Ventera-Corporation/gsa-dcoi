@@ -190,7 +190,7 @@
 		function addNewDataCenterModal(){
 			var modalInstance = $uibModal.open({
 			    animation: true,
-			    templateUrl: 'app/datacenter/addnewdatacentermodal.html',
+			    templateUrl: 'app/datacenter/addnewdatacenter-modal.html',
 			    controller: 'AddNewDataCenterModalController',
 			    controllerAs: 'andcc',
 			    backdrop: 'static',
