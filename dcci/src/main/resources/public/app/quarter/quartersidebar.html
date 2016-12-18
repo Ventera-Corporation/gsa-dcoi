@@ -1,0 +1,41 @@
+<ul class="sidebar-nav">
+	<div class="panel-group">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<button class="usa-button usa-button-primary" type="button" 
+						data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag"
+						data-ng-click="qc.addNewDataCenterModal()">New Data Center</button>
+			</div>
+		</div>
+		<div class="panel panel-default" data-ng-repeat="region in qc.quarterData.regions"
+				data-ng-init="qc.initDefaultSelected(region, $index)">
+			<div class="panel-heading" data-ng-click="qc.tempData.selected.expandCollapseRegions[region.code]=!qc.tempData.selected.expandCollapseRegions[region.code]">
+				<h4 class="panel-title">
+					<span data-ng-if="region.dataCenters.length">
+						<span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapseRegions[region.code]"></span>
+						<span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapseRegions[region.code]"></span>
+						<span>&nbsp;</span>
+					</span>
+					<span>{{region.name}}</span>
+				</h4>
+			</div>
+			<div id="{{region.name}}" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapseRegions[region.code]">
+				<ul class="list-group">
+					<li class="list-group-item" data-ng-repeat="dataCenterName in qc.removeDupes(region.dataCenters)">
+						<a href="" data-ng-click="qc.selectDataCenterName($parent.$index, dataCenterName)">
+							<i class="fa fa-pencil sidebar-status inprogress" aria-hidden="true" 
+									data-ng-if="qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenterName) !== -1"></i>
+							<i class="fa fa-check-circle-o sidebar-status validated" aria-hidden="true" 
+									data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenterName) === -1 && qc.allDataCentersForDataCenterNameValidated($parent.$index, dataCenterName)"></i>
+							<i class="fa fa-exclamation-triangle sidebar-status" aria-hidden="true"
+									data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenterName) === -1 && qc.numDataCentersNeedAttentionForDataCenterName($parent.$index, dataCenterName)"></i>
+							&nbsp;&nbsp;{{dataCenterName}}
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div><!-- /.panel-group -->
+</ul>
