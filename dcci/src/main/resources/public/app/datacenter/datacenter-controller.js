@@ -3,41 +3,48 @@
 	
 	angular.module('dcoiApp').controller('DataCenterController', DataCenterController);
 	
-	DataCenterController.$inject = ['QuarterService', '$uibModalInstance', 'initData'];
+	DataCenterController.$inject = ['DataCenterService'];
 	
-	function DataCenterController(QuarterService, $uibModalInstance, initData){
+	function DataCenterController(DataCenterService){
 		var dcc = this;
-		dcc.dataCenter = initData.dataCenterData;
-		dcc.regionRefValueList = initData.regionRefValueList;
-		dcc.stateRefValueList = initData.stateRefValueList;
-		dcc.cancel = cancel;
-		dcc.initDataCenterData = initDataCenterData;
-		dcc.selectedCloudRegion = selectedCloudRegion;
-		dcc.add = add;
+		dcc.submitDataCenter = submitDataCenter;
+		dcc.rejectDataCenter = rejectDataCenter;
+		dcc.validateDataCenter = validateDataCenter;
 		
-		function cancel() {
-			$uibModalInstance.dismiss('cancel');
-		}
-		
-		function initDataCenterData() {
-			QuarterService.initDataCenter().then(function (data){
-				dcc.dataCenter = data.dataCenterData;
-				dcc.regionRefValueList = data.regionRefValueList;
-				dcc.stateRefValueList = data.stateRefValueList;
+		function submitDataCenter(dataCenter){
+			DataCenterService.submitDataCenter(dataCenter.dataCenterId).then(function (data){
+				if(data.error){
+					//show errors
+				} else {
+					//show success message
+					dataCenter.ssoCompleteFlag = 1;
+				}
 			});
 		}
 		
-		function selectedCloudRegion(regionId){
-			for(var idx=0; idx < dcc.regionRefValueList.length; idx++){
-				if(dcc.regionRefValueList[idx].id === regionId){
-					return dcc.regionRefValueList[idx].id === 12;
+		function rejectDataCenter(dataCenter){
+			DataCenterService.rejectDataCenter(dataCenter.dataCenterId).then(function (data){
+				if(data.error){
+					//show errors
+				} else {
+					//show success message
+					dataCenter.ssoCompleteFlag = 0;
+					dataCenter.adminCompleteFlag = 1;
 				}
-			}
-			return false;
+			});
 		}
 		
-		function add() {
-			$uibModalInstance.close(dcc.dataCenter);
+		function validateDataCenter(dataCenter){
+			DataCenterService.validateDataCenter(dataCenter.dataCenterId).then(function (data){
+				if(data.error){
+					//show errors
+				} else {
+					//show success message
+					dataCenter.ssoCompleteFlag = 1;
+					dataCenter.adminCompleteFlag = 1;
+				}
+			});
 		}
 	}
 })();
+

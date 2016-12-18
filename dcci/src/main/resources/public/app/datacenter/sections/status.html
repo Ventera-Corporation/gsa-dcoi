@@ -1,0 +1,109 @@
+<!-- CATEGORY : STATUS -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status"></span>
+            <span>&nbsp; Status</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}Status" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Record Status <span class="vnt-red-text">*</span></strong>
+                        <span>{{::dataCenter.status.recordStatusName || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Record Validity <span class="vnt-red-text">*</span></strong>
+                        <span>{{::dataCenter.status.recordValidityName || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Closing Stage <span class="vnt-red-text">*</span></strong>
+                        <span>{{::dataCenter.status.closingStageName || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Ownership Type</strong>
+                        <span>{{::dataCenter.status.ownershipTypeName || "None"}}</span>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Data Center Tier</strong>
+                        <span>{{::dataCenter.status.dataCenterTierName || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Electricity is Metered</strong>
+                        <span>{{::dataCenter.status.electricityIsMeteredName || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Automated Monitoring</strong>
+                        <span>{{::dataCenter.status.automatedMonitoringName || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>ISS Position</strong>
+                        <span>{{::dataCenter.status.issPositionName || "None"}}</span>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>ISS Provider</strong>
+	                    <span>{{::dataCenter.status.issProvider || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Closing Fiscal Year</strong>
+                        <span>{{::dataCenter.status.closingFiscalYearName || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Closing Quarter</strong>
+                        <span>{{::dataCenter.status.closingQuarterName || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Electricity Included in Cost</strong>
+                        <span>{{::dataCenter.status.electricityIncludedInCostName || "None"}}</span>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Core Classification</strong>
+                        <span>{{::dataCenter.status.coreClassificationName || "None"}}</span>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

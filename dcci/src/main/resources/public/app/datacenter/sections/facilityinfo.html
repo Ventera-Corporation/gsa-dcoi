@@ -1,0 +1,107 @@
+<!-- CATEGORY : FACILITY INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo"></span>
+            <span>&nbsp; Facility Info</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}FacilityInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Gross Floor Area</strong>
+                        <span>{{::dataCenter.facilityInfo.grossFloorArea || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.grossFloorArea">Sq. Ft.</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total Customer Floor Area</strong>
+                        <span>{{::dataCenter.facilityInfo.totalCustomerFloorArea || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.totalCustomerFloorArea">Sq. Ft.</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Annual Cost per Sq. Ft.</strong>
+                        <span>{{::(dataCenter.facilityInfo.annualCostPerSqFt | currency) || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Other Agencies Serviced</strong>
+                        <span>{{::dataCenter.facilityInfo.otherAgenciesServiced || "None"}}</span>
+                    </div>
+                </div>
+
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Avg. Electricity Usage</strong>
+                        <span>{{::dataCenter.facilityInfo.avgElectricityUsage || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.avgElectricityUsage">kWh</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Avg. IT Electricity Usage</strong>
+                        <span>{{::dataCenter.facilityInfo.avgITElectricityUsage || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.avgITElectricityUsage">kWh</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total Power Capacity</strong>
+                        <span>{{::dataCenter.facilityInfo.totalPowerCapacity || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.totalPowerCapacity">kW</small></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total IT Power Capacity</strong>
+                        <span>{{::dataCenter.facilityInfo.totalITPowerCapacity || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.totalITPowerCapacity">kW</small></span>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>FTE</strong>
+                        <span>{{::dataCenter.facilityInfo.fte || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>FTE Cost</strong>
+                        <span>{{::(dataCenter.facilityInfo.fteCost | currency) || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Rack Count</strong>
+                        <span>{{::dataCenter.facilityInfo.rackCount || "None"}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Cost per kWh</strong>
+                        <span>{{::(dataCenter.facilityInfo.costPerkWh | currency) || "None"}}</span>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

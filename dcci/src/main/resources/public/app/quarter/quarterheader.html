@@ -1,0 +1,40 @@
+<span class="inline" style="padding-top: 2px;">
+	<span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="" id="menu-toggle" style="font-size: .8em;" 
+    		data-ng-click="qc.tempData.selected.expandCollapseSidebar=!qc.tempData.selected.expandCollapseSidebar"></span>&nbsp;&nbsp;
+    <span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">New</span>
+    <span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterActiveFlag">Current</span>
+    <span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterCompleteFlag">Past</span>
+    Quarter - {{::qc.quarterData.fiscalQuarterReport.fiscalQuarter}} {{::qc.quarterData.fiscalQuarterReport.fiscalYear}}
+</span>
+
+<div class="pull-right">
+	<span class="inline" for="duedate"
+    		data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag || qc.quarterData.dueDate">
+    	<h4>Due Date:</h4>
+    </span>
+	<span class="inline">
+		<input class="form-control" type="text" id="duedate" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"
+        			data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">
+		<span id="duedate" name="duedate" 
+				data-ng-if="!(lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag)">{{qc.quarterData.dueDate}}</span>
+	</span>
+	<button class="usa-button usa-button-outline" type="button" 
+			data-ng-if="!qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"
+			data-ng-click="qc.editQuarter()">Edit</button>
+	<button class="usa-button usa-button-primary" type="button" 
+			data-ng-if="qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"
+			data-ng-click="qc.saveQuarter(lc.isAdmin())">Save Changes</button>
+	<button class="usa-button usa-button-primary" type="button" 
+			data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag"
+			data-ng-click="qc.createQuarter()">Create Quarter</button>
+	<button class="usa-button usa-button-validate" type="button"
+			data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag"
+			data-ng-click="qc.completeQuarter()"
+			data-ng-disabled="!qc.allDataCentersValidated()">
+		<span data-ng-if="qc.allDataCentersValidated()">
+			<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;</span>Complete</button>
+	<button class="usa-button usa-button-primary" type="button"
+			data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"
+			data-ng-click="qc.exportQuarter()">
+		<i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;Export</button>
+    </div>

@@ -1,0 +1,145 @@
+<!-- CATEGORY : GENERAL INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo"></span>
+            <span>&nbsp; General Info</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}GeneralInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyAbbreviation">Agency Abbreviation <span class="vnt-red-text">*</span></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyAbbreviation" 
+                            		data-ng-model="dataCenter.generalInfo.agencyAbbreviation">
+                            <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['agencyAbbreviation']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoComponent">Component <span class="vnt-red-text">*</span></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoComponent" 
+                            		data-ng-model="dataCenter.generalInfo.component">
+                            <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['component']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterName">Data Center Name <span class="vnt-red-text">*</span></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterName" 
+                            		data-ng-model="dataCenter.generalInfo.dataCenterName">
+                            <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['dataCenterName']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterID">Data Center ID</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoDataCenterID" 
+                            		data-ng-model="dataCenter.generalInfo.dcoiDataCenterId" placeholder="DCOI-DC-#####">
+                            <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['dcoiDataCenterId']}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyDataCenterID">Agency Data Center ID</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoAgencyDataCenterID" 
+                            		data-ng-model="dataCenter.generalInfo.agencyDataCenterId">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoPublishedName">Published Name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoPublishedName" 
+                            		data-ng-model="dataCenter.generalInfo.publishedName">
+                           	<div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['publishedName']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress">Street Address</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress" 
+                            		data-ng-model="dataCenter.generalInfo.streetAddress">
+                            <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['streetAddress']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress2">Street Address 2</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoStreetAddress2" 
+                            		data-ng-model="dataCenter.generalInfo.streetAddress2">
+                            <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['streetAddress2']}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCity">City</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCity" 
+                            		data-ng-model="dataCenter.generalInfo.city">
+                            <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['city']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoState">State</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoState" data-ng-model="dataCenter.generalInfo.stateId"
+								data-ng-show="qc.tempData.editMode" data-ng-options="o.id as o.value for o in qc.referenceValueLists.stateRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoZipCode">Zip Code</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoZipCode" 
+                            		data-ng-model="dataCenter.generalInfo.zipCode">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCountry">Country</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}GeneralInfoCountry" 
+                        		data-ng-model="dataCenter.generalInfo.countryId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.countryRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

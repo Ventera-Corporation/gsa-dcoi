@@ -1,0 +1,16 @@
+<!-- DATA CENTER PANEL-->
+<div class="panel panel-default panel-dc" data-ng-controller="DataCenterController as dcc"
+		data-ng-repeat="dataCenter in qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters | filter:{dataCenterName:qc.tempData.selected.dataCenterName}:true"
+		data-ng-init="qc.initDefaultPanelExpanded(dataCenter)">
+	<!-- Data Center Header -->
+	<div class="panel-heading" data-ng-include="'app/datacenter/datacenter-panelheader.html'"
+			data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
+	</div>
+
+	<!-- Data Center Body -->
+	<div id="dataCentr{{dataCenter.dataCenterId}}-body" class="panel-collapse collapse in" >
+		<div class="panel-body" data-ng-include="'app/datacenter/datacenter-panelbody.html'"
+				data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
+		</div><!-- /.panel-body -->
+	</div><!--/.panel-collapse -->
+</div><!-- /.panel-dc -->

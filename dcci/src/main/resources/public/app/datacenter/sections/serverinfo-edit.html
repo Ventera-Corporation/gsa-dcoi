@@ -1,0 +1,104 @@
+<!-- CATEGORY : SERVER INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
+            <span>&nbsp; Server Info</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoServerUtilization">Server Utilization</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoServerUtilization"
+                            		data-ng-model="fieldOffice.serverInfo.serverUtilization">
+                            		<div class="text-danger">{{qc.tempData.errorData.messages['serverUtilization']}}</div>
+                            <span class="input-group-addon">%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalMainframes">Total Mainframes</label>
+                        <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalMainframes"
+                        		data-ng-model="fieldOffice.serverInfo.totalMainframes">
+                        <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['totalMainframes']}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalWindowsServers">Total Windows Servers</label>
+                        <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalWindowsServers" 
+                        		data-ng-model="fieldOffice.serverInfo.totalWindowsServers">
+                        <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['totalWindowsServers']}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalHPCClusterNotes">Total HPC Cluster Nodes</label>
+                        <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalHPCClusterNodes" 
+                        		data-ng-model="fieldOffice.serverInfo.totalHPCClusterNodes">
+                        <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['totalHPCClusterNodes']}}</div>
+                    </div>
+                </div>
+
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalOtherServers">Total Other Servers</label>
+                        <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalOtherServers" 
+                        		data-ng-model="fieldOffice.serverInfo.totalOtherServers">
+                        <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['totalOtherServers']}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalVirtualHosts">Total Virtual Hosts</label>
+                        <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalVirtualHosts" 
+                        		data-ng-model="fieldOffice.serverInfo.totalVirtualHosts">
+                        <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['totalVirtualHosts']}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalVirtualOS">Total Virtual OS</label>
+                        <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalVirtualOS" 
+                        		data-ng-model="fieldOffice.serverInfo.totalVirtualOS">
+                        <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['totalVirtualOS']}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalStorage">Total Storage</label>
+                        <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoTotalStorage" 
+                        		data-ng-model="fieldOffice.serverInfo.totalStorage">
+                        <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['totalStorage']}}</div>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoUsedStorage">Used Storage</label>
+                        <input type="number" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfoUsedStorage" 
+                        		data-ng-model="fieldOffice.serverInfo.usedStorage">
+                        <div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['usedStorage']}}</div>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->
