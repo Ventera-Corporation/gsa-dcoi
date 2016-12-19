@@ -18,22 +18,11 @@ public class FieldOfficeDto {
 	private Long dataCenterQuarterId;
 	private Integer componentId;
 	private String fieldOfficeName;
-
-	@Valid
-	private FacilityInformationDto facilityInfo;
 	@Valid
 	private ServerInformationDto serverInfo;
 	private CostCalculationDto costCalc;
 
 	// ADD GETTER FOR FIELD OFFICE NAME
-
-	public FacilityInformationDto getFacilityInfo() {
-		return facilityInfo;
-	}
-
-	public void setFacilityInfo(FacilityInformationDto facilityInfo) {
-		this.facilityInfo = facilityInfo;
-	}
 
 	public ServerInformationDto getServerInfo() {
 		return serverInfo;

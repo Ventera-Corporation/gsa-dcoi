@@ -1,6 +1,9 @@
 
 package gov.gsa.dcoi.controllers;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -9,7 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import gov.gsa.dcoi.DcoiRestErrorResponse;
 import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
@@ -38,6 +45,8 @@ import gov.gsa.dcoi.service.ReferenceValueListService;
 @RestController
 @RequestMapping("/quarter")
 public class QuarterController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(QuarterController.class);
 
 	@Autowired
 	QuarterService quarterService;
@@ -95,10 +104,23 @@ public class QuarterController {
 	public Map<String, Object> viewQuarter(Long quarterId) {
 		Map<String, Object> returnMap = new HashMap<>();
 		QuarterDto quarterDto = quarterService.viewQuarter(quarterId);
+		QuarterDto pastQuarterDto = quarterService.viewQuarter(findPastQuarter(quarterId));
 		returnMap.put("quarterData", quarterDto);
 		returnMap.put("referenceValueLists", ReferenceValueListService.refValueLists);
+		returnMap.put("pastQuarterData", pastQuarterDto);
 		return returnMap;
 
+	}
+
+	/**
+	 * Find the quarter report id for the previous quarter
+	 * 
+	 * @param quarterId
+	 * @return
+	 */
+	private Long findPastQuarter(Long quarterId) {
+		QuarterReport quarterReport = quarterService.findPastQuarter(quarterId);
+		return quarterReport.getQuarterId();
 	}
 
 	/**
@@ -109,9 +131,28 @@ public class QuarterController {
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-	public Map<String, Object> createQuarter(Date dueDate) {
+	public Map<String, Object> createQuarter(@Pattern(regexp = "([0-9]{2})/([0-9]{2})/([0-9]{4})") String dueDate) {
+		Map<String, Object> returnMap = new HashMap<>();
+		DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+		try {
+			Date inputDate = format.parse(dueDate);
+			if (null != inputDate) {
+				if (inputDate.before(new Date())) {
+					DcoiRestErrorResponse response = new DcoiRestErrorResponse();
+					String newMessage = messageSource.getMessage("dateNotInPast", null, null);
+
+					response.getMessages().put("dateNotInPast", newMessage);
+					returnMap.put("dateNotInPast", newMessage);
+					return returnMap;
+				}
+			}
+		} catch (ParseException pe) {
+			LOGGER.error(pe.getMessage());
+			String newMessage = messageSource.getMessage("dateNotInPast", null, null);
+			returnMap.put("dateNotInPast", newMessage);
+			return returnMap;
+		}
 		// Should only do validation on the due date
-		Map<String, Object> returnMap;
 		returnMap = quarterService.createQuarter(dueDate);
 		return returnMap;
 

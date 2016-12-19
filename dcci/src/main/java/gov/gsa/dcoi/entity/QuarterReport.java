@@ -1,7 +1,5 @@
 package gov.gsa.dcoi.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,7 +20,7 @@ public class QuarterReport {
 	private Long quarterId;
 	private Integer fiscalYearId;
 	private Integer fiscalQuarterId;
-	private Date quarterDueDate;
+	private String quarterDueDate;
 	@Column(name = "active_flag")
 	private Integer quarterActiveFlag;
 	@Column(name = "in_progress_flag")
@@ -54,11 +52,11 @@ public class QuarterReport {
 		this.fiscalQuarterId = fiscalQuarterId;
 	}
 
-	public Date getQuarterDueDate() {
+	public String getQuarterDueDate() {
 		return quarterDueDate;
 	}
 
-	public void setQuarterDueDate(Date quarterDueDate) {
+	public void setQuarterDueDate(String quarterDueDate) {
 		this.quarterDueDate = quarterDueDate;
 	}
 

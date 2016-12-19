@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
-import gov.gsa.dcoi.refValueRepository.StateReferenceRepository;
 import gov.gsa.dcoi.repository.ReferenceValueListRepository;
 
 /**
@@ -23,9 +22,6 @@ import gov.gsa.dcoi.repository.ReferenceValueListRepository;
  */
 @Component
 public class ReferenceValueListService {
-
-	@Autowired
-	StateReferenceRepository stateRefRepository;
 
 	@Autowired
 	ReferenceValueListRepository refValueListRepository;
@@ -66,7 +62,6 @@ public class ReferenceValueListService {
 	 */
 	private void initRecordValidity() {
 		refValueLists.put("recordValidityRefValueList", refValueListRepository.findAllRecordValidities());
-
 	}
 
 	/**
@@ -82,13 +77,11 @@ public class ReferenceValueListService {
 	 * Initialize fiscal years ref value list
 	 */
 	private void initFiscalYear() {
-
 		refValueLists.put("fiscalYearsRefValueList", refValueListRepository.findAllFiscalYears());
-
 	}
 
 	/**
-	 * Initialize fiscal qaurters ref value list
+	 * Initialize fiscal quarters ref value list
 	 */
 	private void initFiscalQuarter() {
 		refValueLists.put("fiscalQuartersRefValueList", refValueListRepository.findAllFiscalQuarters());
@@ -103,7 +96,7 @@ public class ReferenceValueListService {
 	}
 
 	/**
-	 * Initliaze ownership type ref value list
+	 * Initialize ownership type ref value list
 	 */
 	private void initOwnershipType() {
 		refValueLists.put("ownershipTypeRefValueList", refValueListRepository.findAllOwnershipTypes());
