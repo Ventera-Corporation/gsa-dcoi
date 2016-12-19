@@ -19,27 +19,27 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Gross Floor Area</strong>
-                        <span>{{::dataCenter.facilityInfo.grossFloorArea || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.grossFloorArea">Sq. Ft.</small></span>
+                        <div>{{::dataCenter.facilityInfo.grossFloorArea || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.grossFloorArea">Sq. Ft.</small></div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Total Customer Floor Area</strong>
-                        <span>{{::dataCenter.facilityInfo.totalCustomerFloorArea || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.totalCustomerFloorArea">Sq. Ft.</small></span>
+                        <div>{{::dataCenter.facilityInfo.totalCustomerFloorArea || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.totalCustomerFloorArea">Sq. Ft.</small></div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Annual Cost per Sq. Ft.</strong>
-                        <span>{{::(dataCenter.facilityInfo.annualCostPerSqFt | currency) || "None"}}</span>
+                        <div>{{::(dataCenter.facilityInfo.annualCostPerSqFt | currency) || "None"}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Other Agencies Serviced</strong>
-                        <span>{{::dataCenter.facilityInfo.otherAgenciesServiced || "None"}}</span>
+                        <div>{{::dataCenter.facilityInfo.otherAgenciesServiced || "None"}}</div>
                     </div>
                 </div>
 
@@ -49,29 +49,29 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Avg. Electricity Usage</strong>
-                        <span>{{::dataCenter.facilityInfo.avgElectricityUsage || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.avgElectricityUsage">kWh</small></span>
+                        <div>{{::dataCenter.facilityInfo.avgElectricityUsage || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.avgElectricityUsage">kWh</small></div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Avg. IT Electricity Usage</strong>
-                        <span>{{::dataCenter.facilityInfo.avgITElectricityUsage || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.avgITElectricityUsage">kWh</small></span>
+                        <div>{{::dataCenter.facilityInfo.avgITElectricityUsage || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.avgITElectricityUsage">kWh</small></div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Total Power Capacity</strong>
-                        <span>{{::dataCenter.facilityInfo.totalPowerCapacity || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.totalPowerCapacity">kW</small></span>
+                        <div>{{::dataCenter.facilityInfo.totalPowerCapacity || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.totalPowerCapacity">kW</small></div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Total IT Power Capacity</strong>
-                        <span>{{::dataCenter.facilityInfo.totalITPowerCapacity || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.totalITPowerCapacity">kW</small></span>
+                        <div>{{::dataCenter.facilityInfo.totalITPowerCapacity || "None"}}
+                        		<small data-ng-show="dataCenter.facilityInfo.totalITPowerCapacity">kW</small></div>
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -80,25 +80,25 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>FTE</strong>
-                        <span>{{::dataCenter.facilityInfo.fte || "None"}}</span>
+                        <div>{{::dataCenter.facilityInfo.fte || "None"}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>FTE Cost</strong>
-                        <span>{{::(dataCenter.facilityInfo.fteCost | currency) || "None"}}</span>
+                        <div>{{::(dataCenter.facilityInfo.fteCost | currency) || "None"}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Rack Count</strong>
-                        <span>{{::dataCenter.facilityInfo.rackCount || "None"}}</span>
+                        <div>{{::dataCenter.facilityInfo.rackCount || "None"}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <strong>Cost per kWh</strong>
-                        <span>{{::(dataCenter.facilityInfo.costPerkWh | currency) || "None"}}</span>
+                        <div>{{::(dataCenter.facilityInfo.costPerkWh | currency) || "None"}}</div>
                     </div>
                 </div>
             </div><!-- /.row -->

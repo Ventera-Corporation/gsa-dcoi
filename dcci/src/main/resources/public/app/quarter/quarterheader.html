@@ -1,6 +1,5 @@
 <span class="inline" style="padding-top: 2px;">
-	<span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="" id="menu-toggle" style="font-size: .8em;" 
-    		data-ng-click="qc.tempData.selected.expandCollapseSidebar=!qc.tempData.selected.expandCollapseSidebar"></span>&nbsp;&nbsp;
+	<span class="glyphicon glyphicon-align-justify" aria-hidden="true" style="font-size: .8em;"></span>&nbsp;&nbsp;
     <span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">New</span>
     <span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterActiveFlag">Current</span>
     <span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterCompleteFlag">Past</span>
@@ -37,4 +36,4 @@
 			data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"
 			data-ng-click="qc.exportQuarter()">
 		<i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;Export</button>
-    </div>
+</div>
