@@ -7,17 +7,21 @@
 </span>
 
 <div class="pull-right">
-	<span class="inline" for="duedate"
-    		data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag || qc.quarterData.dueDate">
-    	<h4>Due Date:</h4>
-    </span>
 	<span class="inline">
-		<input class="form-control" type="text" id="duedate" name="duedate" style="max-width: 150px;" data-ng-model="qc.quarterData.dueDate"
-        			data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">
+		<span for="duedate"
+    		data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag || qc.quarterData.fiscalQuarterReport.quarterDueDate">
+	    	<h4>Due Date:</h4>
+	    </span>
+		<input class="form-control" type="text" id="duedate" name="duedate" style="max-width: 150px;" 
+				data-ng-model="qc.quarterData.fiscalQuarterReport.quarterDueDate"
+        		data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">
 		<span id="duedate" name="duedate" 
-				data-ng-if="!(lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag)">{{qc.quarterData.dueDate}}</span>
+				data-ng-if="!(lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag)">
+				{{qc.quarterData.fiscalQuarterReport.quarterDueDate}}</span>
+		<span class="text-danger" 
+				data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && qc.tempData.errorData">
+				{{qc.tempData.errorData.messages['quarterDueDate']}}</span>
 	</span>
-	<div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['dueDate']}}</div>
 	<button class="usa-button usa-button-outline" type="button" 
 			data-ng-if="!qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"
 			data-ng-click="qc.editQuarter()">Edit</button>
