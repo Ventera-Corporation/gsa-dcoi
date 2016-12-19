@@ -101,6 +101,7 @@
 		}
 		
 		function editQuarter(){
+			qc.tempData.errorData = {};
 			qc.tempData.editMode = true;
 			//need to keep track of which panels were visited where we started in editMode
 			qc.tempData.wasInEditMode.dataCenterNames.push(qc.tempData.selected.dataCenterName);
