@@ -30,7 +30,7 @@
 								data-ng-if="qc.quarterData.fiscalQuarterReport.quarterActiveFlag && qsbc.displayStatusSymbolForDataCenterName(lc.isAdmin(), region, qc.tempData.wasInEditMode.dataCenterNames, dataCenterName) === 3"></i>
 						<i class="fa fa-pencil sidebar-status inprogress" aria-hidden="true" 
 								data-ng-if="qc.quarterData.fiscalQuarterReport.quarterActiveFlag && qsbc.displayStatusSymbolForDataCenterName(lc.isAdmin(), region, qc.tempData.wasInEditMode.dataCenterNames, dataCenterName) === 4"></i>
-						&nbsp;&nbsp;{{dataCenterName}}
+						<span data-ng-style="qc.tempData.selected.dataCenterName == dataCenterName ? {'font-weight':'700', 'color':'#0071bc'} : {}">&nbsp;{{dataCenterName}}</span>
 					</a>
 				</li>
 			</ul>

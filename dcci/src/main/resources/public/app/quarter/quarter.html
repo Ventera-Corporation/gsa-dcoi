@@ -2,7 +2,7 @@
 <div class="page-header" data-ng-include="'app/quarter/quarterheader.html'"></div>
 
 <!-- OUTER WRAPPER -->
-<div id="wrapper">
+<div id="wrapper{{qc.tempData.editMode ? '.toggled' : ''}}">
 
     <!-- SIDEBAR -->
     <div id="sidebar-wrapper">
