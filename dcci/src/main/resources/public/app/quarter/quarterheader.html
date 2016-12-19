@@ -17,6 +17,7 @@
 		<span id="duedate" name="duedate" 
 				data-ng-if="!(lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag)">{{qc.quarterData.dueDate}}</span>
 	</span>
+	<div class="text-danger" data-ng-if="qc.tempData.errorData">{{qc.tempData.errorData.messages['dueDate']}}</div>
 	<button class="usa-button usa-button-outline" type="button" 
 			data-ng-if="!qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"
 			data-ng-click="qc.editQuarter()">Edit</button>
