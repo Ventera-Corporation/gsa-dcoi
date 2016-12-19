@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close pull-right" data-ng-click="dcc.cancel()">&times;</button>
+    <button type="button" class="close pull-right" data-ng-click="andcc.cancel()">&times;</button>
     <span class="pull-left"><h3 class="modal-title">New Data Center</h3></span>
 </div><!-- /.modal-header -->
 
@@ -11,14 +11,14 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-name">Data Center Name <span class="vnt-red-text">*</span></label>
-                <input type="text" class="form-control" id="data-center-name" data-ng-model="dcc.dataCenter.dataCenterName">
+                <input type="text" class="form-control" id="data-center-name" data-ng-model="andcc.dataCenter.dataCenterName">
             </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
-                <label for="dcoi-data-center-id">Data Center ID <span class="vnt-red-text">*</span></label>
+                <label for="dcoi-data-center-id">Data Center ID</label>
                 <input type="text" class="form-control" id="dcoi-data-center-id" 
-                		data-ng-model="dcc.dataCenter.dcoiDataCenterId" placeholder="DCOI-DC-#####">
+                		data-ng-model="andcc.dataCenter.dcoiDataCenterId" placeholder="DCOI-DC-#####">
             </div>
         </div>
 	</div><!-- /.row -->
@@ -26,26 +26,26 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
-                <select id="data-center-region" data-ng-model="dcc.dataCenter.regionId"
-                		data-ng-options="o.id as o.value for o in dcc.regionRefValueList | filter:{'activeFlag':1}">
+                <select id="data-center-region" data-ng-model="andcc.dataCenter.regionId"
+                		data-ng-options="o.id as o.value for o in andcc.regionRefValueList | filter:{'activeFlag':1}">
                     <option value="">Select One</option>
                 </select>
             </div>
         </div>
 	</div><!-- /.row -->
 	
-	<div class="row" data-ng-if="!dcc.selectedCloudRegion(dcc.dataCenter.regionId)">
+	<div class="row" data-ng-if="!andcc.selectedCloudRegion(andcc.dataCenter.regionId)">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-city">City</label>
-                <input type="text" class="form-control" id="data-center-city" data-ng-model="dcc.dataCenter.city">
+                <input type="text" class="form-control" id="data-center-city" data-ng-model="andcc.dataCenter.city">
             </div>
 		</div> 
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-state">State</label>
-                <select id="data-center-state" data-ng-model="dcc.dataCenter.stateId"
-                		data-ng-options="o.id as o.value for o in dcc.stateRefValueList | filter:{'activeFlag':1}">
+                <select id="data-center-state" data-ng-model="andcc.dataCenter.stateId"
+                		data-ng-options="o.id as o.value for o in andcc.stateRefValueList | filter:{'activeFlag':1}">
                 	<option value="">Select One</option>
                 </select>
             </div>
@@ -56,7 +56,7 @@
 
 <div class="modal-footer">
     <button type="button" class="usa-button usa-button-primary" 
-    		data-ng-disabled="!(dcc.dataCenter.dataCenterName.length && dcc.dataCenter.dcoiDataCenterId.length && dcc.dataCenter.regionId !== null)" 
-    		data-ng-click="dcc.add()">Add</button>
-    <button type="button" class="usa-button usa-button-outline" data-ng-click="dcc.cancel()">Cancel</button>
+    		data-ng-disabled="!(andcc.dataCenter.dataCenterName.length && andcc.dataCenter.regionId !== null)" 
+    		data-ng-click="andcc.add()">Add</button>
+    <button type="button" class="usa-button usa-button-outline" data-ng-click="andcc.cancel()">Cancel</button>
 </div><!-- /.modal-footer -->

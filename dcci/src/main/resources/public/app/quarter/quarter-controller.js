@@ -26,7 +26,6 @@
 		qc.referenceValueLists = initData.referenceValueLists;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
-		qc.removeDupes = removeDupes;
 		qc.selectDataCenterName = selectDataCenterName;
 		qc.initDefaultPanelExpanded = initDefaultPanelExpanded;
 		qc.editQuarter = editQuarter;
@@ -36,12 +35,7 @@
 		qc.updateDataCenterIdTotalsTabs = updateDataCenterIdTotalsTabs;
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
-		qc.submitDataCenter = submitDataCenter;
-		qc.rejectDataCenter = rejectDataCenter;
-		qc.validateDataCenter = validateDataCenter;
 		qc.allDataCentersValidated = allDataCentersValidated;
-		qc.numDataCentersNeedAttentionForDataCenterName = numDataCentersNeedAttentionForDataCenterName;
-		qc.allDataCentersForDataCenterNameValidated = allDataCentersForDataCenterNameValidated;
 		qc.completeQuarter = completeQuarter;
 		qc.exportQuarter = exportQuarter;
 		
@@ -67,16 +61,6 @@
 			}
 		}
 		
-		function removeDupes(dataCenters){
-			var uniqueDataCenterNames = [];
-			angular.forEach(dataCenters, function(dataCenter){
-				if(($filter('filter')(uniqueDataCenterNames, dataCenter.dataCenterName, true)).length === 0){
-					uniqueDataCenterNames.push(dataCenter.dataCenterName);
-				}
-			});
-			return uniqueDataCenterNames;
-		}
-		
 		function selectDataCenterName(regionIdx, dataCenterName){
 			qc.tempData.selected.regionIdx = regionIdx;
 			qc.tempData.selected.dataCenterName = dataCenterName;
@@ -90,15 +74,14 @@
 					activeFieldOfficeTabIdx: 0,
 					generalInfo: true,
 					status: true,
+					facilityInfo: true,
 					fieldOffices: [],
 					totals: {
 						costCalc: true,
-						facilityInfo: true,
 						serverInfo: true	
 					}
 				};
 				var categories = {
-					facilityInfo: true,
 					serverInfo: true
 				};
 				angular.forEach(dataCenter.fieldOffices, function (){
@@ -118,6 +101,7 @@
 		}
 		
 		function editQuarter(){
+			qc.tempData.errorData = {};
 			qc.tempData.editMode = true;
 			//need to keep track of which panels were visited where we started in editMode
 			qc.tempData.wasInEditMode.dataCenterNames.push(qc.tempData.selected.dataCenterName);
@@ -150,8 +134,6 @@
 					//show success message
 					qc.tempData.successData = data;
 					//reset all of the edited panels
-					qc.tempData.wasInEditMode.dataCenterNames = [];
-					qc.tempData.wasInEditMode.dataCenterIds = [];
 					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
 					qc.tempData.editMode = false;
 				}
@@ -191,13 +173,13 @@
 		function addNewDataCenterModal(){
 			var modalInstance = $uibModal.open({
 			    animation: true,
-			    templateUrl: 'app/datacenter/datacenter.html',
-			    controller: 'DataCenterController',
-			    controllerAs: 'dcc',
+			    templateUrl: 'app/datacenter/addnewdatacenter-modal.html',
+			    controller: 'AddNewDataCenterModalController',
+			    controllerAs: 'andcc',
 			    backdrop: 'static',
 			    resolve: {
-					initData: function(){
-						return QuarterService.initDataCenter().then(function (data){
+					initData: function(DataCenterService){
+						return DataCenterService.initDataCenter().then(function (data){
 							return data;
 						});
 					}
@@ -238,48 +220,6 @@
 			});
 		}
 		
-		function submitDataCenter(dataCenter){
-			QuarterService.submitDataCenter(dataCenter.dataCenterId).then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
-					dataCenter.ssoCompleteFlag = 1;
-				}
-			});
-		}
-		
-		function rejectDataCenter(dataCenter){
-			QuarterService.rejectDataCenter(dataCenter.dataCenterId).then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
-					dataCenter.ssoCompleteFlag = 0;
-					dataCenter.adminCompleteFlag = 1;
-				}
-			});
-		}
-		
-		function validateDataCenter(dataCenter){
-			QuarterService.validateDataCenter(dataCenter.dataCenterId).then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
-					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
-					dataCenter.ssoCompleteFlag = 1;
-					dataCenter.adminCompleteFlag = 1;
-				}
-			});
-		}
-		
 		function allDataCentersValidated(){
 			for(var regionIdx = 0; regionIdx < qc.quarterData.regions.length; regionIdx++){
 				var numDataCentersAreValidated = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
@@ -289,19 +229,6 @@
 				}
 			}
 			return true;
-		}
-		
-		function numDataCentersNeedAttentionForDataCenterName(regionIdx, dataCenterName){
-			return ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
-					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':1, 'adminCompleteFlag':0}, true)).length;
-		}
-		
-		function allDataCentersForDataCenterNameValidated(regionIdx, dataCenterName){
-			var numDataCentersWithDataCenterName = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
-					{'dataCenterName':dataCenterName}, true)).length;
-			var numDataCentersAreValidated = ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
-					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':1, 'adminCompleteFlag':1}, true)).length;
-			return numDataCentersWithDataCenterName === numDataCentersAreValidated;
 		}
 		
 		function completeQuarter(){

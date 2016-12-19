@@ -31,7 +31,7 @@ public class DataCenterViewRepository {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataCenterViewRepository.class);
 
 	private static final String GET_ALL_DATA_CENTERS_FOR_QUARTER = "SELECT * FROM vw_DCOI_DataCenters vddc";
-	private static final String GET_DATA_CENTERS_FOR_QUARTER = GET_ALL_DATA_CENTERS_FOR_QUARTER + " WHERE vddc.fiscal_year = 2016";
+	private static final String GET_DATA_CENTERS_FOR_QUARTER = GET_ALL_DATA_CENTERS_FOR_QUARTER + " WHERE vddc.quarter_report_id = ?";
 
 	@Autowired(required = true)
 	private JdbcTemplate jdbcTemplate;

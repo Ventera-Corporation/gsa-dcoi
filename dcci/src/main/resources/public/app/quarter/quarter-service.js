@@ -34,38 +34,11 @@
 					params: {quarterId: quarterId}
 				}).then(returnData);
 			},
-			initDataCenter : function() {
-				return $http({
-					url: '/datacenter/init',
-					method: 'GET'
-				}).then(returnData);
-			},
 			addDataCenter : function(dataCenterData) {
 				return $http({
 					url: '/datacenter/add',
 					method: 'POST',
 					data:  dataCenterData
-				}).then(returnData);
-			},
-			submitDataCenter : function(dataCenterId) {
-				return $http({
-					url: '/datacenter/submit',
-					method: 'POST',
-					data:  dataCenterId
-				}).then(returnData);
-			},
-			rejectDataCenter : function(dataCenterId) {
-				return $http({
-					url: '/datacenter/reject',
-					method: 'POST',
-					data:  dataCenterId
-				}).then(returnData);
-			},
-			validateDataCenter : function(dataCenterId) {
-				return $http({
-					url: '/datacenter/validate',
-					method: 'POST',
-					data: dataCenterId
 				}).then(returnData);
 			},
 			completeQuarter : function() {

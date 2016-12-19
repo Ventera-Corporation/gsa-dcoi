@@ -1,0 +1,162 @@
+<!-- CATEGORY : STATUS -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status"></span>
+            <span>&nbsp; Status</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}Status" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusRecordStatus">Record Status <span class="vnt-red-text">*</span></label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusRecordStatus" 
+                        		data-ng-model="dataCenter.status.recordStatusId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.recordStatusRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                        <div data-ng-if="qc.tempData.errorData" class="text-danger">{{qc.tempData.errorData.messages['recordStatusId']}}</div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusRecordValidity">Record Validity <span class="vnt-red-text">*</span></label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusRecordValidity" 
+                        		data-ng-model="dataCenter.status.recordValidityId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.recordValidityRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                        <div data-ng-if="qc.tempData.errorData" class="text-danger">{{qc.tempData.errorData.messages['recordValidityId']}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusClosingStage">Closing Stage <span class="vnt-red-text">*</span></label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusClosingStage" 
+                        		data-ng-model="dataCenter.status.closingStageId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.closingStageRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                        <div data-ng-if="qc.tempData.errorData" class="text-danger">{{qc.tempData.errorData.messages['closingStageId']}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusOwnershipType">Ownership Type</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusOwnershipType" 
+                        		data-ng-model="dataCenter.status.ownershipTypeId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.ownershipTypeRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusDataCenterTier">Data Center Tier</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusDataCenterTier" 
+                        		data-ng-model="dataCenter.status.dataCenterTierId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.dataCenterTierRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIsMetered">Electricity is Metered</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIsMetered" 
+                        		data-ng-model="dataCenter.status.electricityIsMeteredId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusAutomatedMonitoring">Automated Monitoring</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusAutomatedMonitoring" 
+                        		data-ng-model="dataCenter.status.automatedMonitoringId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusIssPosition">ISS Position</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusIssPosition" 
+                        		data-ng-model="dataCenter.status.issPositionId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.issPositionRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusISSProvider">ISS Provider</label>
+                        <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}StatusISSProvider" 
+                        		data-ng-model="dataCenter.status.issProvider">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusClosingFiscalYear">Closing Fiscal Year</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusClosingFiscalYear" 
+                        		data-ng-model="dataCenter.status.closingFiscalYearId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.fiscalYearsRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusClosingQuarter">Closing Quarter</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusClosingQuarterId" 
+                        		data-ng-model="dataCenter.status.closingQuarter"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.fiscalQuartersRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost" 
+                        		data-ng-model="dataCenter.status.electricityIncludedInCostId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusCoreClassification">Core Classification</label>
+                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusCoreClassification" 
+                        		data-ng-model="dataCenter.status.coreClassificationId"
+                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.coreClassificationRefValueList | filter:{'activeFlag':1}">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

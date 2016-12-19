@@ -1,0 +1,84 @@
+<!-- CATEGORY : SERVER INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
+            <span>&nbsp; Server Info</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Server Utilization</strong>
+                        <div>{{::fieldOffice.serverInfo.serverUtilization || "None"}}
+                        		<small data-ng-show="fieldOffice.serverInfo.serverUtilization">%</small></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total Mainframes</strong>
+                        <div>{{::fieldOffice.serverInfo.totalMainframes || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total Windows Servers</strong>
+                        <div>{{::fieldOffice.serverInfo.totalWindowsServers || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total HPC Cluster Nodes</strong>
+                        <div>{{::fieldOffice.serverInfo.totalHPCClusterNodes || "None"}}</div>
+                    </div>
+                </div>
+
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total Other Servers</strong>
+                        <div>{{::fieldOffice.serverInfo.totalOtherServers || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total Virtual Hosts</strong>
+                        <div>{{::fieldOffice.serverInfo.totalVirtualHosts || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total Virtual OS</strong>
+                        <div>{{::fieldOffice.serverInfo.totalVirtualOS || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Total Storage</strong>
+                        <div>{{::fieldOffice.serverInfo.totalStorage || "None"}}</div>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Used Storage</strong>
+                        <div>{{::fieldOffice.serverInfo.usedStorage || "None"}}</div>
+                    </div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

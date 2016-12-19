@@ -1,162 +1,18 @@
 <!-- PAGE HEADER -->
-<div class="page-header">                  
-    <span class="inline" style="padding-top: 2px;">
-    	<span class="glyphicon glyphicon-align-justify" role="button" aria-hidden="true" href="" id="menu-toggle" style="font-size: .8em;" 
-    			data-ng-click="qc.tempData.selected.expandCollapseSidebar=!qc.tempData.selected.expandCollapseSidebar"></span>&nbsp;&nbsp;
-    		<span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">New</span>
-    		<span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterActiveFlag">Current</span>
-    		<span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterCompleteFlag">Past</span>
-    		Quarter - {{::qc.quarterData.fiscalQuarterReport.fiscalQuarter}} {{::qc.quarterData.fiscalQuarterReport.fiscalYear}}
-    </span>
-
-    <div class="pull-right">
-    	<span class="inline" for="duedate"
-        			data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag || qc.quarterData.dueDate"><h4>Due Date:</h4></span>
-        <span class="inline">
-        	<input class="form-control" type="text" id="duedate" name="duedate" style="max-width: 150px;"
-        			data-ng-model="qc.quarterData.dueDate"
-        			data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">
-        	<span id="duedate" name="duedate" data-ng-if="!qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">{{qc.quarterData.dueDate}}</span>
-        </span>
-        <button class="usa-button usa-button-outline" type="button" 
-        		data-ng-click="qc.editQuarter()"
-        		data-ng-if="!qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag">Edit</button>
-        <button class="usa-button usa-button-primary" type="button" 
-        		data-ng-click="qc.saveQuarter(lc.isAdmin())"
-        		data-ng-if="qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag">Save Changes</button>
-        <button class="usa-button usa-button-primary" type="button" 
-        		data-ng-click="qc.createQuarter()"
-        		data-ng-if="!qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">Create Quarter</button>
-		<button class="usa-button usa-button-validate" type="button"
-				data-ng-click="qc.completeQuarter()"
-				data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag"
-				data-ng-disabled="!qc.allDataCentersValidated()">
-					<span data-ng-if="qc.allDataCentersValidated()"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;</span>Complete</button>
-		<button class="usa-button usa-button-primary" type="button"
-				data-ng-click="qc.exportQuarter()"
-				data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"><i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;Export</button>
-    </div>
-</div>
+<div class="page-header" data-ng-include="'app/quarter/quarterheader.html'"></div>
 
 <!-- OUTER WRAPPER -->
 <div id="wrapper">
 
     <!-- SIDEBAR -->
-    <div id="sidebar-wrapper" data-ng-show="qc.tempData.selected.expandCollapseSidebar">
-        <ul class="sidebar-nav">
-            <div class="panel-group">
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <button class="usa-button usa-button-primary" type="button" data-ng-click="qc.addNewDataCenterModal()"
-                        		data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">New Data Center</button>
-                    </div>
-                </div>
-                <div class="panel panel-default" data-ng-repeat="region in qc.quarterData.regions"
-                		data-ng-init="qc.initDefaultSelected(region, $index)">
-                    <div class="panel-heading" data-ng-click="qc.tempData.selected.expandCollapseRegions[region.code]=!qc.tempData.selected.expandCollapseRegions[region.code]">
-                        <h4 class="panel-title">
-                        	<span data-ng-if="region.dataCenters.length">
-	                        	<span class="glyphicon glyphicon-minus" data-ng-if="qc.tempData.selected.expandCollapseRegions[region.code]"></span>
-	            				<span class="glyphicon glyphicon-plus" data-ng-if="!qc.tempData.selected.expandCollapseRegions[region.code]"></span>
-	                            <span>&nbsp;</span>
-                            </span>
-                            <span>{{region.name}}</span>
-                        </h4>
-                    </div>
-                    <div id="{{region.name}}" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapseRegions[region.code]">
-                        <ul class="list-group">
-                            <li class="list-group-item" data-ng-repeat="dataCenterName in qc.removeDupes(region.dataCenters)">
-                            	<a href="" data-ng-click="qc.selectDataCenterName($parent.$index, dataCenterName)">
-                            	<i class="fa fa-pencil sidebar-status inprogress" aria-hidden="true" 
-                            			data-ng-if="qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenterName) !== -1"></i>
-                            	<i class="fa fa-check-circle-o sidebar-status validated" aria-hidden="true" 
-                            			data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenterName) === -1 && qc.allDataCentersForDataCenterNameValidated($parent.$index, dataCenterName)"></i>
-                            	<i class="fa fa-exclamation-triangle sidebar-status" aria-hidden="true"
-                            			data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenterName) === -1 && qc.numDataCentersNeedAttentionForDataCenterName($parent.$index, dataCenterName)"></i>
-								&nbsp;&nbsp;{{dataCenterName}}
-								</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div><!-- /.panel-group -->
-        </ul>
+    <div id="sidebar-wrapper">
+    	<ul class="sidebar-nav" data-ng-include="'app/quarter/quartersidebar.html'"></ul>
     </div><!-- /#sidebar-wrapper -->
 
     <!-- MAIN CONTAINER -->
     <div id="page-content-wrapper">
         <div class="container-fluid">
-                            
-            <div class="panel-group" id="accordion">
-
-                <!-- DATA CENTER PANEL-->
-                <!-- Data Center Header -->
-                <div class="panel panel-default panel-dc"
-                		data-ng-repeat="dataCenter in qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters | filter:{dataCenterName:qc.tempData.selected.dataCenterName}:true"
-                		data-ng-init="qc.initDefaultPanelExpanded(dataCenter)">
-                    <div class="panel-heading accordion-toggle" data-parent="#accordion" data-toggle="collapse" 
-                    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
-                        <h4 class="panel-title">
-                            {{::dataCenter.dataCenterName}}<span data-ng-if="dataCenter.dcoiDataCenterId">&nbsp;|&nbsp;</span>{{::dataCenter.dcoiDataCenterId}}
-
-                            <span class="pull-right vnt-normal-text-weight" data-ng-if="dataCenter.city && dataCenter.stateName">{{dataCenter.city}}, {{dataCenter.stateName}}</span>
-                        </h4>
-                    </div>
-
-                    <!-- Data Center Body -->
-                    <div id="{{dataCenter.dataCenterName}}-body" class="panel-collapse collapse in" data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
-                        <div class="panel-body">
-							
-							<div class="pull-right" data-ng-if="!lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag">
-								<button class="usa-button usa-button-primary" type="button" data-ng-if="!dataCenter.ssoCompleteFlag"
-										data-ng-click="qc.submitDataCenter(dataCenter)">Submit</button>
-								<button class="usa-button usa-button-primary" type="button" data-ng-if="dataCenter.ssoCompleteFlag" 
-										disabled>Submitted</button>
-							</div>
-							<div class="pull-right" data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag && dataCenter.ssoCompleteFlag && !dataCenter.adminCompleteFlag">
-								<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;
-								<button class="usa-button usa-button-secondary" type="button" 
-										data-ng-click="qc.rejectDataCenter(dataCenter)"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Reject</button>
-								<button class="usa-button usa-button-validate" type="button" 
-										data-ng-click="qc.validateDataCenter(dataCenter)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Validate</button>
-							</div>
-							<div class="pull-right" data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag">
-								<span data-ng-if="!dataCenter.ssoCompleteFlag"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;Please contact the assigned SSO.</span>
-								<button class="usa-button usa-button-secondary" type="button" data-ng-if="!dataCenter.ssoCompleteFlag && dataCenter.adminCompleteFlag"
-										disabled><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Rejected</button>
-								<button class="usa-button usa-button-validate" type="button" data-ng-if="dataCenter.ssoCompleteFlag && dataCenter.adminCompleteFlag"
-										disabled><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Validated</button>
-							</div>
-							
-							<!-- Tabs -->
-							<uib-tabset data-active="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx">
-								<uib-tab data-ng-repeat="fieldOffice in dataCenter.fieldOffices" data-index="$index" data-style="cursor: pointer" 
-										data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx = $index">
-									<uib-tab-heading><H5>{{fieldOffice.fieldOfficeName}}</H5></uib-tab-heading>
-									<div data-ng-include="'app/quarter/facilityinfo.html'"></div>
-									<div data-ng-include="'app/quarter/serverinfo.html'"></div>
-								</uib-tab>
-								<uib-tab data-ng-if="lc.isAdmin() && !qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && dataCenter.ssoCompleteFlag"
-										data-index="dataCenter.fieldOffices.length + 1" data-style="cursor: pointer" 
-										data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx = dataCenter.fieldOffices.length + 1">
-									<uib-tab-heading><H5>Totals</H5></uib-tab-heading>
-									<div data-ng-include="'app/quarter/costcalc.html'"></div>
-									<div data-ng-include="'app/quarter/totalfacilityinfo.html'"></div>
-									<div data-ng-include="'app/quarter/totalserverinfo.html'"></div>
-								</uib-tab>
-							 </uib-tabset>
-							 
-							<div data-ng-include="'app/quarter/generalinfo.html'"></div>
-							<div data-ng-include="'app/quarter/status.html'"></div>
-
-                        </div><!-- /.panel-body -->
-                    </div><!--/.panel-collapse -->
-                </div><!-- /.panel-dc -->
-
-            </div><!-- /.panel-group -->
-
+            <div class="panel-group" data-ng-include="'app/datacenter/datacenter-panel.html'"></div><!-- /.panel-group -->
         </div><!-- /.container-fluid -->
     </div><!-- /#page-content-wrapper -->
 

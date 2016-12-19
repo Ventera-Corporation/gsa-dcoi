@@ -18,38 +18,34 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="totalsCostCalcServerCost">Server Cost</label>
-                        <span id="totalsCostCalcServerCost">{{dataCenter.totals.costCalc.serverCost | currency}}</span>
+                        <strong>Server Cost</strong>
+                        <div>{{::dataCenter.totals.costCalc.serverCost | currency}}</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="totalsCostCalcStorageCost">Storage Cost</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
+                        <div class="input-group">
                             <span class="input-group-addon">$</span>
                             <input type="number" class="form-control" id="totalsCostCalcStorageCost" 
                             		data-ng-model="dataCenter.totals.costCalc.storageCost" min="0" step="0.01">
                         </div>
-                        <span id="totalsCostCalcStorageCost"
-                        		data-ng-if="!qc.tempData.editMode">{{(dataCenter.totals.costCalc.storageCost | currency) || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label for="totalsCostCalcMiscellaneous">Miscellaneous</label>
-                        <div class="input-group" data-ng-if="qc.tempData.editMode">
+                        <div class="input-group">
                         	<span class="input-group-addon">$</span>
                             <input type="number" class="form-control" id="totalsCostCalcMiscellaneous" 
                             		data-ng-model="dataCenter.totals.costCalc.miscellaneous" min="0" step="0.01">
                         </div>
-                        <span id="totalsCostCalcMiscellaneous"
-                        		data-ng-if="!qc.tempData.editMode">{{(dataCenter.totals.costCalc.miscellaneous | currency) || "None"}}</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label for="totalsCostCalcTotal">Total</label>
-                        <span id="totalsCostCalcTotal">{{dataCenter.totals.costCalc.total | currency}}</span>
+                        <strong>Total</strong>
+                        <div>{{::dataCenter.totals.costCalc.total | currency}}</div>
                     </div>
                 </div>
 

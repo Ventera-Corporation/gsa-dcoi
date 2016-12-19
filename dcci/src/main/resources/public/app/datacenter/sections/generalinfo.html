@@ -1,0 +1,100 @@
+<!-- CATEGORY : GENERAL INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo"></span>
+            <span>&nbsp; General Info</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}GeneralInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].generalInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Agency Abbreviation</strong>
+                        <div>{{::dataCenter.generalInfo.agencyAbbreviation || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Component</strong>
+                        <div>{{::dataCenter.generalInfo.component || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Data Center Name</strong>
+                        <div>{{::dataCenter.generalInfo.dataCenterName || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Data Center ID</strong>
+                        <div>{{::dataCenter.generalInfo.dcoiDataCenterId || "None"}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Agency Data Center ID</strong>
+                        <div>{{::dataCenter.generalInfo.agencyDataCenterId || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Published Name</strong>
+                        <div>{{::dataCenter.generalInfo.publishedName || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Street Address</strong>
+                        <div>{{::dataCenter.generalInfo.streetAddress || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Street Address 2</strong>
+                        <div>{{::dataCenter.generalInfo.streetAddress2 || "None"}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>City</strong>
+                        <div>{{::dataCenter.generalInfo.city || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>State</strong>
+                        <div>{{::dataCenter.generalInfo.stateName || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Zip Code</strong>
+                        <div>{{::dataCenter.generalInfo.zipCode || "None"}}</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <strong>Country</strong>
+                        <div>{{::dataCenter.generalInfo.countryName || "None"}}</div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

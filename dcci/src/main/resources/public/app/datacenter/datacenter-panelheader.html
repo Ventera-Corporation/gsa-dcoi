@@ -1,0 +1,4 @@
+<h4 class="panel-title">{{::dataCenter.dataCenterName}}
+	<span data-ng-if="dataCenter.dcoiDataCenterId">&nbsp;|&nbsp;</span>{{::dataCenter.dcoiDataCenterId}}
+	<span class="pull-right vnt-normal-text-weight" data-ng-if="dataCenter.city && dataCenter.stateName">{{dataCenter.city}}, {{dataCenter.stateName}}</span>
+</h4>
