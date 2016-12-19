@@ -37,7 +37,9 @@
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
 		qc.allDataCentersValidated = allDataCentersValidated;
+		qc.displayStatusSymbolForDataCenterName = displayStatusSymbolForDataCenterName;
 		qc.numDataCentersNeedAttentionForDataCenterName = numDataCentersNeedAttentionForDataCenterName;
+		qc.numDataCentersRejectedForDataCenterName = numDataCentersRejectedForDataCenterName;
 		qc.allDataCentersForDataCenterNameValidated = allDataCentersForDataCenterNameValidated;
 		qc.completeQuarter = completeQuarter;
 		qc.exportQuarter = exportQuarter;
@@ -146,8 +148,6 @@
 					//show success message
 					qc.tempData.successData = data;
 					//reset all of the edited panels
-					qc.tempData.wasInEditMode.dataCenterNames = [];
-					qc.tempData.wasInEditMode.dataCenterIds = [];
 					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
 					qc.tempData.editMode = false;
 				}
@@ -245,9 +245,38 @@
 			return true;
 		}
 		
+		function displayStatusSymbolForDataCenterName(regionIdx, dataCenterName){
+			//wasRejected
+			if(!qc.numDataCentersNeedAttentionForDataCenterName(regionIdx, dataCenterName) 
+					&& qc.numDataCentersRejectedForDataCenterName(regionIdx, dataCenterName)){
+				return 1;
+			}
+			//allValidated
+			if(qc.allDataCentersForDataCenterNameValidated(regionIdx, dataCenterName) 
+					&& !qc.numDataCentersNeedAttentionForDataCenterName(regionIdx, dataCenterName) 
+					&& !qc.numDataCentersRejectedForDataCenterName(regionIdx, dataCenterName)){
+				return 2;
+			}
+			//needsAttention
+			if(qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenterName) === -1 
+					&& qc.numDataCentersNeedAttentionForDataCenterName(regionIdx, dataCenterName)){
+				return 3;
+			}
+			//wasEdited
+			if(qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenterName) !== -1){
+				return 4;
+			}
+			return 0;
+		}
+		
 		function numDataCentersNeedAttentionForDataCenterName(regionIdx, dataCenterName){
 			return ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
 					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':1, 'adminCompleteFlag':0}, true)).length;
+		}
+		
+		function numDataCentersRejectedForDataCenterName(regionIdx, dataCenterName){
+			return ($filter('filter')(qc.quarterData.regions[regionIdx].dataCenters, 
+					{'dataCenterName':dataCenterName, 'ssoCompleteFlag':0, 'adminCompleteFlag':1}, true)).length;
 		}
 		
 		function allDataCentersForDataCenterNameValidated(regionIdx, dataCenterName){
