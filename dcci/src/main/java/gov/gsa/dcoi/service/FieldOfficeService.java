@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import gov.gsa.dcoi.dto.CostCalculationDto;
 import gov.gsa.dcoi.dto.FacilityInformationDto;
@@ -39,6 +40,7 @@ public class FieldOfficeService {
 	 * @param fieldOffice
 	 * @return
 	 */
+	@Transactional
 	public FieldOffice save(FieldOffice fieldOffice) {
 		return fieldOfficeRepository.save(fieldOffice);
 	}
@@ -51,9 +53,6 @@ public class FieldOfficeService {
 	 * @return
 	 */
 	public FieldOffice copyDtoToVO(FieldOfficeDto fieldOfficeDto, FieldOffice fieldOfficeVO) {
-		if (fieldOfficeDto.getFacilityInfo() != null) {
-			BeanUtils.copyProperties(fieldOfficeDto.getFacilityInfo(), fieldOfficeVO);
-		}
 		if (fieldOfficeDto.getServerInfo() != null) {
 			BeanUtils.copyProperties(fieldOfficeDto.getServerInfo(), fieldOfficeVO);
 		}
@@ -70,18 +69,17 @@ public class FieldOfficeService {
 	 * @return
 	 */
 	public FieldOfficeDto copyEntityToDto(FieldOffice fieldOfficeEntity) {
+		// Set name, id, etc
 		FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
-		FacilityInformationDto facilityInformationDto = new FacilityInformationDto();
-		ServerInformationDto serverInformationDto = new ServerInformationDto();
-
-		BeanUtils.copyProperties(fieldOfficeEntity, facilityInformationDto);
-		BeanUtils.copyProperties(fieldOfficeEntity, serverInformationDto);
-
 		BeanUtils.copyProperties(fieldOfficeEntity, fieldOfficeDto);
 
-		fieldOfficeDto.setFacilityInfo(facilityInformationDto);
+		// Set server info
+		ServerInformationDto serverInformationDto = new ServerInformationDto();
+		BeanUtils.copyProperties(fieldOfficeEntity, serverInformationDto);
+
 		fieldOfficeDto.setServerInfo(serverInformationDto);
-		fieldOfficeDto.setFieldOfficeName(CommonHelper.parseComponentId(fieldOfficeEntity.getComponentId()));
+		fieldOfficeDto.setFieldOfficeName("OCIO");
+		// fieldOfficeDto.setFieldOfficeName(CommonHelper.parseComponentId(fieldOfficeEntity.getComponentId()));
 
 		return fieldOfficeDto;
 	}
@@ -90,10 +88,10 @@ public class FieldOfficeService {
 	 * Copy properties from the data center quarter into the Dto to be used for
 	 * the totals tab
 	 * 
-	 * @param fieldOfficeEntity
-	 * @param fieldOfficeDto
+	 * @param dataCenterQuarter
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public FieldOfficeDto createTotalsTab(DataCenterQuarter dataCenterQuarter) {
 		FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
 		FacilityInformationDto facilityInformationDto = new FacilityInformationDto();
@@ -102,9 +100,6 @@ public class FieldOfficeService {
 		BeanUtils.copyProperties(dataCenterQuarter, facilityInformationDto);
 		BeanUtils.copyProperties(dataCenterQuarter, serverInformationDto);
 
-		// BeanUtils.copyProperties(fieldOfficeEntity, fieldOfficeDto);
-
-		fieldOfficeDto.setFacilityInfo(facilityInformationDto);
 		fieldOfficeDto.setServerInfo(serverInformationDto);
 		List<CostCalculation> costCalcList = costCalcRepository
 				.findByDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());

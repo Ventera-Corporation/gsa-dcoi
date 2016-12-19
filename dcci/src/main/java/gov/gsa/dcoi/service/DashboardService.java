@@ -34,7 +34,7 @@ public class DashboardService {
 	 * 
 	 * @return List<QuarterReport>
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<QuarterReport> initDashboard() {
 		return (List<QuarterReport>) quarterReportRepository.findAll();
 	}

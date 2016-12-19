@@ -17,7 +17,7 @@ public class GeneralInformationDto {
 
 	private Integer dataCenterInventoryId;
 	private Integer dataCenterId;
-	//@Pattern(regexp = "DCOI-DC-[0-9]{5}")
+	@Pattern(regexp = "(DCOI-DC-([0-9]{5})|DCOI-DC-([0-9]{6}))")
 	private String dcoiDataCenterId;
 	private Integer parentDataCenterInventoryId;
 	private String agencyDataCenterId;

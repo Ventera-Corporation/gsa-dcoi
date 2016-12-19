@@ -45,4 +45,15 @@ public interface QuarterReportRepository extends CrudRepository<QuarterReport, L
 	public QuarterReport findByQuarterActiveFlagOrQuarterInProgressFlag(@Param("active_flag") Integer activeFlag,
 			@Param("in_progress_flag") Integer inProgressFlag);
 
+	/**
+	 * Pulls back information about ONE quarter based on the fiscal year and
+	 * fiscal quarter of that quarter
+	 * 
+	 * @param fiscalYearId
+	 * @param fiscalQuarterId
+	 * @return
+	 */
+	public QuarterReport findByFiscalYearIdAndFiscalQuarterId(@Param("fiscal_year_id") Integer fiscalYearId,
+			@Param("fiscal_quarter_id") Integer fiscalQuarterId);
+
 }

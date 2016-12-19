@@ -1,7 +1,6 @@
 package gov.gsa.dcoi.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,16 +53,10 @@ public class QuarterService {
 	DataCenterQuarterRepository dataCenterQuarterRepository;
 
 	@Autowired
-	FieldOfficeService fieldOfficeService;
-
-	@Autowired
 	DataCenterService dataCenterService;
 
 	@Autowired
 	DataCenterViewRepository exportRepository;
-
-	@Autowired
-	CostCalculationRepository costCalculationRepository;
 
 	@Autowired
 	MessageSource messageSource;
@@ -96,6 +89,7 @@ public class QuarterService {
 	 * 
 	 * @return
 	 */
+	@Transactional
 	public Map<String, Object> completeQuarter() {
 		Map<String, Object> returnMap = new HashMap<>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
@@ -118,7 +112,7 @@ public class QuarterService {
 	 * @param quarterId
 	 * @return
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public QuarterDto viewQuarter(Long quarterId) {
 		QuarterDto viewQuarter = new QuarterDto();
 		QuarterReport quarterReport = quarterReportRepository.findOne(quarterId);
@@ -151,7 +145,7 @@ public class QuarterService {
 	 * @return
 	 */
 	@Transactional
-	public Map<String, Object> createQuarter(Date dueDate) {
+	public Map<String, Object> createQuarter(String dueDate) {
 		Map<String, Object> returnMap = new HashMap<>();
 		try {
 			QuarterReport quarterReport = quarterReportRepository.findByQuarterInProgressFlag(1);
@@ -176,7 +170,7 @@ public class QuarterService {
 	 * 
 	 * @return
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public Boolean findQuarterByActiveOrInProgressFlag() {
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlagOrQuarterInProgressFlag(1, 1);
 		if (quarterReport == null) {
@@ -191,6 +185,7 @@ public class QuarterService {
 	 * 
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public QuarterReport findByQuarterInProgressFlag() {
 
 		return quarterReportRepository.findByQuarterInProgressFlag(1);
@@ -202,7 +197,7 @@ public class QuarterService {
 	 * 
 	 * @return
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public Boolean findQuarterByActiveFlag() {
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
 		if (quarterReport == null) {
@@ -218,7 +213,7 @@ public class QuarterService {
 	 * @param quarterId
 	 * @return
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<DataCenterView> findViewResultsByQuarterId(Long quarterId) {
 		return exportRepository.findViewResultsByQuarterId(quarterId);
 	}
@@ -253,7 +248,7 @@ public class QuarterService {
 			costCalcEntity.setServerCost(serverCostTotal);
 			Double totalCost = serverCostTotal + setTotalCost(dataCenter);
 			costCalcEntity.setTotal(totalCost);
-			costCalcEntity = costCalculationRepository.save(costCalcEntity);
+			costCalcEntity = costCalcRepository.save(costCalcEntity);
 
 			BeanUtils.copyProperties(costCalcEntity, dataCenter.getTotals().getCostCalc());
 			Map<String, Object> costCalcMap = new HashMap<>();
@@ -313,6 +308,30 @@ public class QuarterService {
 		Double serverDifference = pastQServerTotal - curQServerTotal;
 
 		return serverDifference * 3000;
+	}
+
+	/**
+	 * Find information about the past quarter
+	 * 
+	 * @param quarterId
+	 * @return Long
+	 */
+	@Transactional(readOnly = true)
+	public QuarterReport findPastQuarter(Long quarterId) {
+		QuarterReport curQuarterReport = quarterReportRepository.findOne(quarterId);
+
+		Integer pastQuarterYear;
+		Integer pastQuarterQuarter;
+
+		if (curQuarterReport.getFiscalQuarterId() == 1) {
+			pastQuarterYear = curQuarterReport.getFiscalYearId() - 1;
+			pastQuarterQuarter = 4;
+		} else {
+			pastQuarterYear = curQuarterReport.getFiscalYearId();
+			pastQuarterQuarter = curQuarterReport.getFiscalQuarterId() - 1;
+		}
+
+		return quarterReportRepository.findByFiscalYearIdAndFiscalQuarterId(pastQuarterYear, pastQuarterQuarter);
 	}
 
 	/**

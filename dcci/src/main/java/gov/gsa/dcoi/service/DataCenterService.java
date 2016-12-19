@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
+import gov.gsa.dcoi.dto.FacilityInformationDto;
 import gov.gsa.dcoi.dto.FieldOfficeDto;
 import gov.gsa.dcoi.dto.GeneralInformationDto;
 import gov.gsa.dcoi.dto.RegionDto;
@@ -93,7 +94,7 @@ public class DataCenterService {
 	 * @param quarterReportId
 	 * @return
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<RegionDto> populateRegionDtosList(Long quarterReportId) {
 		List<RegionDto> regionDtos = populateInformationAboutRegions();
 		for (RegionDto region : regionDtos) {
@@ -154,6 +155,7 @@ public class DataCenterService {
 			BeanUtils.copyProperties(dataCenterDto, dataCenterEntity);
 			BeanUtils.copyProperties(dataCenterDto.getGeneralInfo(), dataCenterEntity);
 			BeanUtils.copyProperties(dataCenterDto.getStatus(), dataCenterEntity);
+			BeanUtils.copyProperties(dataCenterDto.getFacilityInfo(), dataCenterEntity);
 			dataCenterRepository.save(dataCenterEntity);
 
 			List<FieldOfficeDto> fieldOffices = dataCenterDto.getFieldOffices();
@@ -212,13 +214,20 @@ public class DataCenterService {
 		BeanUtils.copyProperties(dataCenterEntity, dataCenterDto);
 		GeneralInformationDto generalInformationDto = new GeneralInformationDto();
 		BeanUtils.copyProperties(dataCenterEntity, generalInformationDto);
-
 		generalInformationDto.setPublishedName(dataCenterQuarterEntity.getPublishedName());
+		generalInformationDto.setAgencyAbbreviation("GSA");
+		generalInformationDto.setComponent("OCIO");
 		dataCenterDto.setGeneralInfo(generalInformationDto);
+
 		// Status
 		StatusDto statusDto = new StatusDto();
 		BeanUtils.copyProperties(dataCenterQuarterEntity, statusDto);
 		dataCenterDto.setStatus(statusDto);
+
+		// Facility Info
+		FacilityInformationDto facilityInfoDto = new FacilityInformationDto();
+		BeanUtils.copyProperties(dataCenterQuarterEntity, facilityInfoDto);
+		dataCenterDto.setFacilityInfo(facilityInfoDto);
 
 		BeanUtils.copyProperties(dataCenterQuarterEntity, dataCenterDto);
 		return dataCenterDto;
@@ -236,13 +245,11 @@ public class DataCenterService {
 		BeanUtils.copyProperties(dataCenterDto, dataCenterQuarter);
 		BeanUtils.copyProperties(dataCenterDto.getGeneralInfo(), dataCenterQuarter);
 		BeanUtils.copyProperties(dataCenterDto.getStatus(), dataCenterQuarter);
+		BeanUtils.copyProperties(dataCenterDto.getFacilityInfo(), dataCenterQuarter);
 
 		// Set Field Office Info
 		if (fieldOfficeDto != null) {
 			BeanUtils.copyProperties(fieldOfficeDto, dataCenterQuarter);
-			if (fieldOfficeDto.getFacilityInfo() != null) {
-				BeanUtils.copyProperties(fieldOfficeDto.getFacilityInfo(), dataCenterQuarter);
-			}
 			if (fieldOfficeDto.getServerInfo() != null) {
 				BeanUtils.copyProperties(fieldOfficeDto.getServerInfo(), dataCenterQuarter);
 			}
@@ -257,6 +264,7 @@ public class DataCenterService {
 	 * @param dataCenterId
 	 * @return
 	 */
+	@Transactional
 	public Map<String, Object> setSSOCompleteFlag(Integer dataCenterId) {
 		Map<String, Object> returnMap = new HashMap<>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
@@ -279,6 +287,7 @@ public class DataCenterService {
 	 * @param dataCenterId
 	 * @return
 	 */
+	@Transactional
 	public Map<String, Object> setAdminCompleteFlag(Integer dataCenterId) {
 		Map<String, Object> returnMap = new HashMap<>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
@@ -300,6 +309,7 @@ public class DataCenterService {
 	 * @param dataCenterId
 	 * @return
 	 */
+	@Transactional
 	public Map<String, Object> rejectDataCenter(Integer dataCenterId) {
 		Map<String, Object> returnMap = new HashMap<>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
@@ -320,7 +330,9 @@ public class DataCenterService {
 	 * Save data center quarter object
 	 * 
 	 * @param dataCenterQuarter
+	 * @return
 	 */
+	@Transactional
 	public DataCenterQuarter save(DataCenterQuarter dataCenterQuarter) {
 		return dataCenterQuarterRepository.save(dataCenterQuarter);
 	}
@@ -332,6 +344,7 @@ public class DataCenterService {
 	 * @param quarterReportId
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public List<Integer> findDCCountsForQuarter(Long quarterReportId) {
 		List<Integer> totalsList = new ArrayList<>();
 		Iterator<DataCenterQuarter> dataCenterQuarterList = dataCenterQuarterRepository

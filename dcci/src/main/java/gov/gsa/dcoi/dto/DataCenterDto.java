@@ -22,7 +22,7 @@ public class DataCenterDto {
 
 	@Size(max = 255)
 	private String dataCenterName;
-	//@Pattern(regexp = "DCOI-DC-[0-9]{5}")
+	@Pattern(regexp = "(DCOI-DC-([0-9]{5})|DCOI-DC-([0-9]{6}))")
 	private String dcoiDataCenterId;
 	private Long dataCenterQuarterId;
 	private Long quarterReportId;
@@ -37,6 +37,8 @@ public class DataCenterDto {
 	private GeneralInformationDto generalInfo;
 	@Valid
 	private StatusDto status;
+	@Valid
+	private FacilityInformationDto facilityInfo;
 	@Valid
 	private List<FieldOfficeDto> fieldOffices;
 	private FieldOfficeDto totals;
@@ -173,6 +175,14 @@ public class DataCenterDto {
 
 	public void setTotals(FieldOfficeDto totals) {
 		this.totals = totals;
+	}
+
+	public FacilityInformationDto getFacilityInfo() {
+		return facilityInfo;
+	}
+
+	public void setFacilityInfo(FacilityInformationDto facilityInfo) {
+		this.facilityInfo = facilityInfo;
 	}
 
 }
