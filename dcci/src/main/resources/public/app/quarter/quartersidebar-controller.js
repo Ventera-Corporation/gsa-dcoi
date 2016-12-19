@@ -23,22 +23,25 @@
 			return uniqueDataCenterNames;
 		}
 		
-		function displayStatusSymbolForDataCenterName(region, wasInEditModeDataCenterNames, dataCenterName){
-			//wasRejected
-			if(!qsbc.numDataCentersNeedAttentionForDataCenterName(region, dataCenterName) 
-					&& qsbc.numDataCentersRejectedForDataCenterName(region, dataCenterName)){
-				return 1;
-			}
-			//allValidated
-			if(qsbc.allDataCentersForDataCenterNameValidated(region, dataCenterName) 
-					&& !qsbc.numDataCentersNeedAttentionForDataCenterName(region, dataCenterName) 
-					&& !qsbc.numDataCentersRejectedForDataCenterName(region, dataCenterName)){
-				return 2;
-			}
-			//needsAttention
-			if(wasInEditModeDataCenterNames.indexOf(dataCenterName) === -1 
-					&& qsbc.numDataCentersNeedAttentionForDataCenterName(region, dataCenterName)){
-				return 3;
+		function displayStatusSymbolForDataCenterName(isAdmin, region, wasInEditModeDataCenterNames, dataCenterName){
+			//only these symbols are for admin
+			if(isAdmin){
+				//wasRejected
+				if(!qsbc.numDataCentersNeedAttentionForDataCenterName(region, dataCenterName) 
+						&& qsbc.numDataCentersRejectedForDataCenterName(region, dataCenterName)){
+					return 1;
+				}
+				//allValidated
+				if(qsbc.allDataCentersForDataCenterNameValidated(region, dataCenterName) 
+						&& !qsbc.numDataCentersNeedAttentionForDataCenterName(region, dataCenterName) 
+						&& !qsbc.numDataCentersRejectedForDataCenterName(region, dataCenterName)){
+					return 2;
+				}
+				//needsAttention
+				if(wasInEditModeDataCenterNames.indexOf(dataCenterName) === -1 
+						&& qsbc.numDataCentersNeedAttentionForDataCenterName(region, dataCenterName)){
+					return 3;
+				}
 			}
 			//wasEdited
 			if(wasInEditModeDataCenterNames.indexOf(dataCenterName) !== -1){
