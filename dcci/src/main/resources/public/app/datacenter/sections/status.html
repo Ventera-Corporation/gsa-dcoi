@@ -17,91 +17,88 @@
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Record Status</strong>
-                        <div>{{::dataCenter.status.recordStatusName || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Record Status" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.recordStatusName}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Record Validity</strong>
-                        <div>{{::dataCenter.status.recordValidityName || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Record Validity" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.recordValidityName}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Closing Stage</strong>
-                        <div>{{::dataCenter.status.closingStageName || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Closing Stage" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.closingStageName}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Ownership Type</strong>
-                        <div>{{::dataCenter.status.ownershipTypeName || "None"}}</div>
-                    </div>
-                </div>
-            </div><!-- /.row -->
-
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Data Center Tier</strong>
-                        <div>{{::dataCenter.status.dataCenterTierName || "None"}}</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Electricity is Metered</strong>
-                        <div>{{::dataCenter.status.electricityIsMeteredName || "None"}}</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Automated Monitoring</strong>
-                        <div>{{::dataCenter.status.automatedMonitoringName || "None"}}</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>ISS Position</strong>
-                        <div>{{::dataCenter.status.issPositionName || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Ownership Type" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.ownershipTypeName}}"></div>
                 </div>
             </div><!-- /.row -->
-
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>ISS Provider</strong>
-	                    <div>{{::dataCenter.status.issProvider || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Data Center Tier" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.dataCenterTierName}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Closing Fiscal Year</strong>
-                        <div>{{::dataCenter.status.closingFiscalYearName || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Electricity is Metered" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.electricityIsMeteredName}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Closing Quarter</strong>
-                        <div>{{::dataCenter.status.closingQuarterName || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Automated Monitoring" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.automatedMonitoringName}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Electricity Included in Cost</strong>
-                        <div>{{::dataCenter.status.electricityIncludedInCostName || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="ISS Position" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.issPositionName}}"></div>
                 </div>
             </div><!-- /.row -->
-
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Core Classification</strong>
-                        <div>{{::dataCenter.status.coreClassificationName || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="ISS Provider" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.issProvider}}"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Closing Fiscal Year" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.closingFiscalYearName}}"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Closing Quarter" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.closingQuarterName}}"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Electricity Included in Cost" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.electricityIncludedInCostName}}"></div>
+                </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Core Classification" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.status.coreClassificationName}}"></div>
                 </div>
             </div><!-- /.row -->
         </div><!-- /.panel-body -->

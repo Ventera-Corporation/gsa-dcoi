@@ -17,30 +17,29 @@
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Server Cost</strong>
-                        <div>{{::dataCenter.totals.costCalc.serverCost | currency}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Server Cost" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.costCalc.serverCost | currency}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Storage Cost</strong>
-                        <div>{{::(dataCenter.totals.costCalc.storageCost | currency) || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Storage Cost" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.costCalc.storageCost | currency}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Miscellaneous</strong>
-                        <div>{{::(dataCenter.totals.costCalc.miscellaneous | currency) || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Miscellaneous" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.costCalc.miscellaneous | currency}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total</strong>
-                        <div>{{::dataCenter.totals.costCalc.total | currency}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Total" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.costCalc.total | currency}}"></div>
                 </div>
-
             </div><!-- /.row -->
         </div><!-- /.panel-body -->
     </div>

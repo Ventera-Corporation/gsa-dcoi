@@ -17,66 +17,64 @@
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Server Utilization</strong>
-                        <div>{{::dataCenter.totals.serverInfo.serverUtilization || "None"}}
-                        		<small data-ng-show="dataCenter.totals.serverInfo.serverUtilization">%</small></div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Server Utilization" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.serverInfo.serverUtilization}}"
+							data-view-addon="%"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total Mainframes</strong>
-                        <div>{{::dataCenter.totals.serverInfo.totalMainframes || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Total Mainframes" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalMainframes}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total Windows Servers</strong>
-                        <div>{{::dataCenter.totals.serverInfo.totalWindowsServers || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Total Windows Servers" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalWindowsServers}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total HPC Cluster Nodes</strong>
-                        <div>{{::dataCenter.totals.serverInfo.totalHPCClusterNodes || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Total HPC Cluster Nodes" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalHPCClusterNodes}}"></div>
                 </div>
-
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Total Other Servers" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalOtherServers}}"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Total Virtual Hosts" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalVirtualHosts}}"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Total Virtual OS" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalVirtualOS}}"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Total Storage" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalStorage}}"></div>
+                </div>
             </div><!-- /.row -->
 
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total Other Servers</strong>
-                        <div>{{::dataCenter.totals.serverInfo.totalOtherServers || "None"}}</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total Virtual Hosts</strong>
-                        <div>{{::dataCenter.totals.serverInfo.totalVirtualHosts || "None"}}</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total Virtual OS</strong>
-                        <div>{{::dataCenter.totals.serverInfo.totalVirtualOS || "None"}}</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total Storage</strong>
-                        <div>{{::dataCenter.totals.serverInfo.totalStorage || "None"}}</div>
-                    </div>
-                </div>
-            </div><!-- /.row -->
-
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Used Storage</strong>
-                        <div>{{::dataCenter.totals.serverInfo.usedStorage || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Used Storage" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.totals.serverInfo.usedStorage}}"></div>
                 </div>
             </div><!-- /.row -->
         </div><!-- /.panel-body -->

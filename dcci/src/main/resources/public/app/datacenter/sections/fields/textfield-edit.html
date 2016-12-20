@@ -1,0 +1,15 @@
+<div data-ng-class="pastQuarterValue !== newQuarterModel ? 'form-group has-warning' : 'form-group'">
+	<label for="{{fieldId}}">{{fieldName}}
+		<span class="vnt-red-text" data-ng-if="fieldRequired === 'true'">*</span>
+	</label>
+    <div class="input-group">
+		<span data-ng-if="inputAddonFront" class="input-group-addon">{{inputAddonFront}}</span>
+		<input type="{{fieldType}}" class="form-control" id="{{fieldId}}" 
+				data-ng-model="newQuarterModel" placeholder="{{placeholderText}}">
+		<span data-ng-if="inputAddonBack" class="input-group-addon">{{inputAddonBack}}</span>
+	</div>
+	<div class="text-danger" data-ng-if="errorMessage">{{errorMessage}}</div>
+	<span class="warning-text" data-ng-if="pastQuarterValue !== newQuarterModel">
+		<span>Past Value: {{pastQuarterValue || "None"}}</span>
+	</span>
+</div>

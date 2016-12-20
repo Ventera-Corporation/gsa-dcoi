@@ -93,6 +93,7 @@
 	        </div><!-- /.container-fluid -->
 	    </nav>
 	
+	    <div data-ng-view id="angularNgView"></div>
 		<div class="container" style="margin-top:300px" id="ajaxSpinner">
 		    <div class="row">
 		        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -100,7 +101,6 @@
 				</div>
 			</div>
 		</div>
-	    <div data-ng-view id="angularNgView"></div>
 		
 		<!-- JS Global Compulsory -->
 	    <script src="plugins/jquery/jquery.min.js"></script>
@@ -135,6 +135,9 @@
 		<script src="app/datacenter/addnewdatacentermodal-controller.js"></script>
 		<script src="app/datacenter/datacenter-controller.js"></script>
 		<script src="app/datacenter/datacenter-service.js"></script>
+		<script src="app/datacenter/sections/fields/fieldview-directive.js"></script>
+		<script src="app/datacenter/sections/fields/textfieldedit-directive.js"></script>
+		<script src="app/datacenter/sections/fields/selectfieldedit-directive.js"></script>
 		
 		<script src="app/search/search-controller.js"></script>
 		<script src="app/search/search-service.js"></script>

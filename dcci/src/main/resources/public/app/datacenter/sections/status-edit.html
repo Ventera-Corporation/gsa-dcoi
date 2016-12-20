@@ -17,144 +17,122 @@
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusRecordStatus">Record Status <span class="vnt-red-text">*</span></label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusRecordStatus" 
-                        		data-ng-model="dataCenter.status.recordStatusId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.recordStatusRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
-                        <div data-ng-if="qc.tempData.errorData" class="text-danger">{{qc.tempData.errorData.messages['recordStatusId']}}</div>
-                        
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Record Status" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusRecordStatus"
+							data-field-required="true"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.recordStatusId"
+							data-ref-value-list="qc.referenceValueLists.recordStatusRefValueList"
+							data-error-message="qc.tempData.errorData.messages['recordStatusId']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusRecordValidity">Record Validity <span class="vnt-red-text">*</span></label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusRecordValidity" 
-                        		data-ng-model="dataCenter.status.recordValidityId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.recordValidityRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
-                        <div data-ng-if="qc.tempData.errorData" class="text-danger">{{qc.tempData.errorData.messages['recordValidityId']}}</div>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Record Validity" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusRecordValidity"
+							data-field-required="true"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.recordValidityId"
+							data-ref-value-list="qc.referenceValueLists.recordValidityRefValueList"
+							data-error-message="qc.tempData.errorData.messages['recordValidityId']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusClosingStage">Closing Stage <span class="vnt-red-text">*</span></label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusClosingStage" 
-                        		data-ng-model="dataCenter.status.closingStageId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.closingStageRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
-                        <div data-ng-if="qc.tempData.errorData" class="text-danger">{{qc.tempData.errorData.messages['closingStageId']}}</div>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Closing Stage" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusClosingStage"
+							data-field-required="true"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.closingStageId"
+							data-ref-value-list="qc.referenceValueLists.closingStageRefValueList"
+							data-error-message="qc.tempData.errorData.messages['closingStageId']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusOwnershipType">Ownership Type</label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusOwnershipType" 
-                        		data-ng-model="dataCenter.status.ownershipTypeId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.ownershipTypeRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Ownership Type" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusOwnershipType"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.ownershipTypeId"
+							data-ref-value-list="qc.referenceValueLists.ownershipTypeRefValueList"></div>
                 </div>
             </div><!-- /.row -->
 
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusDataCenterTier">Data Center Tier</label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusDataCenterTier" 
-                        		data-ng-model="dataCenter.status.dataCenterTierId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.dataCenterTierRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Data Center Tier" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusDataCenterTier"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.dataCenterTierId"
+							data-ref-value-list="qc.referenceValueLists.dataCenterTierRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIsMetered">Electricity is Metered</label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIsMetered" 
-                        		data-ng-model="dataCenter.status.electricityIsMeteredId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Electricity is Metered" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIsMetered"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.electricityIsMeteredId"
+							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusAutomatedMonitoring">Automated Monitoring</label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusAutomatedMonitoring" 
-                        		data-ng-model="dataCenter.status.automatedMonitoringId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Automated Monitoring" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusAutomatedMonitoring"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.automatedMonitoringId"
+							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusIssPosition">ISS Position</label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusIssPosition" 
-                        		data-ng-model="dataCenter.status.issPositionId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.issPositionRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="ISS Position" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusIssPosition"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.issPositionId"
+							data-ref-value-list="qc.referenceValueLists.issPositionRefValueList"></div>
                 </div>
             </div><!-- /.row -->
 
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusISSProvider">ISS Provider</label>
-                        <input type="text" class="form-control" id="dataCenter{{dataCenter.dataCenterId}}StatusISSProvider" 
-                        		data-ng-model="dataCenter.status.issProvider">
-                    </div>
+					<div data-textfield-edit 
+							data-field-name="ISS Provider" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusISSProvider"
+							data-field-type="text"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.issProvider"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusClosingFiscalYear">Closing Fiscal Year</label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusClosingFiscalYear" 
-                        		data-ng-model="dataCenter.status.closingFiscalYearId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.fiscalYearsRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Closing Fiscal Year" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusClosingFiscalYear"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.closingFiscalYearId"
+							data-ref-value-list="qc.referenceValueLists.fiscalYearsRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusClosingQuarter">Closing Quarter</label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusClosingQuarterId" 
-                        		data-ng-model="dataCenter.status.closingQuarter"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.fiscalQuartersRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Closing Quarter" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusClosingQuarter"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.closingQuarterId"
+							data-ref-value-list="qc.referenceValueLists.fiscalQuartersRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost">Electricity Included in Cost</label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost" 
-                        		data-ng-model="dataCenter.status.electricityIncludedInCostId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.yesNoRefValueList">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Electricity Included in Cost" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.electricityIncludedInCostId"
+							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
                 </div>
             </div><!-- /.row -->
-
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label for="dataCenter{{dataCenter.dataCenterId}}StatusCoreClassification">Core Classification</label>
-                        <select id="dataCenter{{dataCenter.dataCenterId}}StatusCoreClassification" 
-                        		data-ng-model="dataCenter.status.coreClassificationId"
-                        		data-ng-options="o.id as o.value for o in qc.referenceValueLists.coreClassificationRefValueList | filter:{'activeFlag':1}">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
+					<div data-selectfield-edit 
+							data-field-name="Core Classification" 
+							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusCoreClassification"
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-model="dataCenter.status.coreClassificationId"
+							data-ref-value-list="qc.referenceValueLists.coreClassificationRefValueList"></div>
                 </div>
             </div><!-- /.row -->
         </div><!-- /.panel-body -->
