@@ -12,8 +12,7 @@
 				pastQuarterValue: "@",
 				newQuarterModel: "=",
 				refValueList: "=",
-				errorData: "@",
-				errorMessagesProp: "@"
+				errorMessage: "="
 			},
 			templateUrl: "app/datacenter/sections/fields/selectfield-edit.html"
 		}
