@@ -13,7 +13,8 @@
 				pastQuarterValue: "@",
 				newQuarterModel: "=",
 				placeholderText: "@",
-				inputAddon: "@",
+				inputAddonFront: "@",
+				inputAddonBack: "@",
 				errorMessage: "="
 			},
 			templateUrl: "app/datacenter/sections/fields/textfield-edit.html"

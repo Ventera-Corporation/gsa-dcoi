@@ -17,89 +17,86 @@
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Gross Floor Area</strong>
-                        <div>{{::dataCenter.facilityInfo.grossFloorArea || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.grossFloorArea">Sq. Ft.</small></div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Gross Floor Area" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.grossFloorArea}}"
+							data-view-addon="Sq. Ft."></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total Customer Floor Area</strong>
-                        <div>{{::dataCenter.facilityInfo.totalCustomerFloorArea || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.totalCustomerFloorArea">Sq. Ft.</small></div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Total Customer Floor Area" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.totalCustomerFloorArea}}"
+							data-view-addon="Sq. Ft."></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Annual Cost per Sq. Ft.</strong>
-                        <div>{{::(dataCenter.facilityInfo.annualCostPerSqFt | currency) || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Annual Cost per Sq. Ft." 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.annualCostPerSqFt | currency}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Other Agencies Serviced</strong>
-                        <div>{{::dataCenter.facilityInfo.otherAgenciesServiced || "None"}}</div>
-                    </div>
-                </div>
-
-            </div><!-- /.row -->
-
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Avg. Electricity Usage</strong>
-                        <div>{{::dataCenter.facilityInfo.avgElectricityUsage || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.avgElectricityUsage">kWh</small></div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Avg. IT Electricity Usage</strong>
-                        <div>{{::dataCenter.facilityInfo.avgITElectricityUsage || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.avgITElectricityUsage">kWh</small></div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total Power Capacity</strong>
-                        <div>{{::dataCenter.facilityInfo.totalPowerCapacity || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.totalPowerCapacity">kW</small></div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Total IT Power Capacity</strong>
-                        <div>{{::dataCenter.facilityInfo.totalITPowerCapacity || "None"}}
-                        		<small data-ng-show="dataCenter.facilityInfo.totalITPowerCapacity">kW</small></div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Other Agencies Serviced" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.otherAgenciesServiced}}"></div>
                 </div>
             </div><!-- /.row -->
-
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>FTE</strong>
-                        <div>{{::dataCenter.facilityInfo.fte || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Avg. Electricity Usage" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.avgElectricityUsage}}"
+							data-view-addon="kWh"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>FTE Cost</strong>
-                        <div>{{::(dataCenter.facilityInfo.fteCost | currency) || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Avg. IT Electricity Usage" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.avgITElectricityUsage}}"
+							data-view-addon="kWh"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Rack Count</strong>
-                        <div>{{::dataCenter.facilityInfo.rackCount || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Total Power Capacity" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.totalPowerCapacity}}"
+							data-view-addon="kW"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Cost per kWh</strong>
-                        <div>{{::(dataCenter.facilityInfo.costPerkWh | currency) || "None"}}</div>
-                    </div>
+					<div data-field-view 
+							data-field-name="Total IT Power Capacity" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.totalITPowerCapacity}}"
+							data-view-addon="kW"></div>
+                </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="FTE" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.fte}}"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="FTE Cost" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.fteCost | currency}}"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Rack Count" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.rackCount}}"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Cost per kWh" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.facilityInfo.costPerkWh | currency}}"></div>
                 </div>
             </div><!-- /.row -->
         </div><!-- /.panel-body -->
