@@ -9,11 +9,12 @@
 				fieldName: "@",
 				fieldId: "@",
 				fieldRequired: "@",
+				fieldType: "@",
 				pastQuarterValue: "@",
 				newQuarterModel: "=",
+				placeholderText: "@",
 				inputAddon: "@",
-				errorData: "@",
-				errorMessagesProp: "@"
+				errorMessage: "="
 			},
 			templateUrl: "app/datacenter/sections/fields/textfield-edit.html"
 		}

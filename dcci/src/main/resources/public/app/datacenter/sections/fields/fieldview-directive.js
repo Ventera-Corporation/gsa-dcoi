@@ -8,7 +8,8 @@
 			scope: {
 				fieldName: "@",
 				pastQuarterValue: "@",
-				newQuarterValue: "@"
+				newQuarterValue: "@",
+				viewAddon: "@"
 			},
 			templateUrl: "app/datacenter/sections/fields/field-view.html"
 		}

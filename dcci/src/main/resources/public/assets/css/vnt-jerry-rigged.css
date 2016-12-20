@@ -152,6 +152,7 @@
 
         .has-warning select, .has-warning div {
             border: 1px #fcb71c solid;
+            box-shadow: 0 0 0 2px #fcb71c;
         }
 
         .has-error .form-control {
