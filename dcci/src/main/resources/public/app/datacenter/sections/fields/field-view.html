@@ -1,0 +1,7 @@
+<div data-ng-class="pastQuarterValue !== newQuarterValue ? 'has-warning' : ''">
+	<strong>{{fieldName}}</strong>
+	<div>{{newQuarterValue || "None"}}</div>
+	<span class="warning-text" data-ng-if="pastQuarterValue !== newQuarterValue">
+		Past Value: {{pastQuarterValue || "None"}}
+	</span>
+</div>

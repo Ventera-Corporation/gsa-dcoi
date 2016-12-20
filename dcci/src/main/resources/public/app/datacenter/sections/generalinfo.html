@@ -29,10 +29,9 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <strong>Data Center Name</strong>
-                        <div>{{::dataCenter.generalInfo.dataCenterName || "None"}}</div>
-                    </div>
+					<div data-field-view data-field-name="Data Center Name" 
+							data-past-quarter-value="{{null}}" 
+							data-new-quarter-value="{{dataCenter.generalInfo.dataCenterName}}"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="form-group">
