@@ -23,6 +23,7 @@
 			dataCenterIds:[]
 		};
 		qc.quarterData = initData.quarterData;
+		qc.initData = initData;
 		qc.referenceValueLists = initData.referenceValueLists;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;

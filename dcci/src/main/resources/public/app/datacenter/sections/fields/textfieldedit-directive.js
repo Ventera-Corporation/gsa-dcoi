@@ -9,7 +9,6 @@
 				fieldName: "@",
 				fieldId: "@",
 				fieldRequired: "@",
-				fieldType: "@",
 				pastQuarterValue: "@",
 				newQuarterModel: "=",
 				placeholderText: "@",
