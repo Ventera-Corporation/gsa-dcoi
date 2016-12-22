@@ -20,7 +20,7 @@
 					var foundFieldOffice = $filter('filter')(foundDataCenter.fieldOffices,
 							{'fieldOfficeName':fc.fieldOffice.fieldOfficeName}, true)[0];
 					if(foundFieldOffice){
-						fc.newQuarterValue = foundFieldOffice[fc.sectionPropName][fc.fieldPropName];
+						fc.pastQuarterValue = foundFieldOffice[fc.sectionPropName][fc.fieldPropName];
 					}
 				} else if(fc.totals === 'true'){
 					fc.pastQuarterValue = foundDataCenter.totals[fc.sectionPropName][fc.fieldPropName];

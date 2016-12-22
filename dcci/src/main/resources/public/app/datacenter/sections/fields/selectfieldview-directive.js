@@ -10,6 +10,7 @@
 				fieldName: '@',
 				pastDataCenters: '=',
 				dataCenter: '=',
+				fieldOffice: '=',
 				totals: '@',
 				sectionPropName: '@',
 				fieldPropName: '@',

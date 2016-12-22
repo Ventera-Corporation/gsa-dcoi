@@ -11,6 +11,7 @@
 				fieldRequired: '@',
 				pastDataCenters: '=',
 				dataCenter: '=',
+				fieldOffice: '=',
 				totals: '@',
 				sectionPropName: '@',
 				fieldPropName: '@',
