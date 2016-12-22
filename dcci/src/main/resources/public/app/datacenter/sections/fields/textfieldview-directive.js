@@ -11,7 +11,7 @@
 				pastDataCenters: '=',
 				dataCenter: '=',
 				fieldOffice: '=',
-				totals: '@',
+				totalsName: '@',
 				sectionPropName: '@',
 				fieldPropName: '@',
 				newQuarterValue: '=',

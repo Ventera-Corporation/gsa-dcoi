@@ -22,8 +22,8 @@
 					if(foundFieldOffice){
 						fc.pastQuarterValue = foundFieldOffice[fc.sectionPropName][fc.fieldPropName];
 					}
-				} else if(fc.totals === 'true'){
-					fc.pastQuarterValue = foundDataCenter.totals[fc.sectionPropName][fc.fieldPropName];
+				} else if(fc.totalsName){
+					fc.pastQuarterValue = foundDataCenter[fc.totalsName][fc.sectionPropName][fc.fieldPropName];
 				} else {
 					fc.pastQuarterValue = foundDataCenter[fc.sectionPropName][fc.fieldPropName];
 				}

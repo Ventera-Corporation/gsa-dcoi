@@ -1,8 +1,9 @@
 <div data-ng-class="fc.pastQuarterValue !== fc.newQuarterValue ? 'form-group has-warning' : 'form-group'">
-	<label for="dataCenter{{fc.dataCenter.dataCenterId}}{{fc.fieldOffice.fieldOfficeName}}{{fc.sectionPropName}}{{fc.fieldPropName}}">{{fc.fieldName}}
+	<label for="dataCenter{{fc.dataCenter.dataCenterId}}{{fc.totalsName}}{{fc.fieldOffice.fieldOfficeName}}{{fc.sectionPropName}}{{fc.fieldPropName}}">
+		{{fc.fieldName}}
 		<span class="vnt-red-text" data-ng-if="fc.fieldRequired === 'true'">*</span>
 	</label>
-	<select id="dataCenter{{fc.dataCenter.dataCenterId}}{{fc.fieldOffice.fieldOfficeName}}{{fc.sectionPropName}}{{fc.fieldPropName}}"
+	<select id="dataCenter{{fc.dataCenter.dataCenterId}}{{fc.totalsName}}{{fc.fieldOffice.fieldOfficeName}}{{fc.sectionPropName}}{{fc.fieldPropName}}"
 			data-ng-model="fc.newQuarterValue"
 			data-ng-options="o.id as o.value for o in fc.refValueList | filter:{'activeFlag':1}">
 		<option value="">Select One</option>

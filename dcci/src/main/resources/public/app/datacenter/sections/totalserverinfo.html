@@ -17,64 +17,100 @@
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view
 							data-field-name="Server Utilization" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.serverInfo.serverUtilization}}"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="serverUtilization"
+							data-new-quarter-value="dataCenter['totals']['serverInfo']['serverUtilization']"
 							data-view-addon="%"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view 
 							data-field-name="Total Mainframes" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalMainframes}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalMainframes"
+							data-new-quarter-value="dataCenter['totals']['serverInfo']['totalMainframes']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view
 							data-field-name="Total Windows Servers" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalWindowsServers}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalWindowsServers"
+							data-new-quarter-value="dataCenter['totals']['serverInfo']['totalWindowsServers']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view
 							data-field-name="Total HPC Cluster Nodes" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalHPCClusterNodes}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalHPCClusterNodes"
+							data-new-quarter-value="dataCenter['totals']['serverInfo']['totalHPCClusterNodes']"></div>
                 </div>
             </div><!-- /.row -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view
 							data-field-name="Total Other Servers" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalOtherServers}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalOtherServers"
+							data-new-quarter-value="dataCenter['totals']['serverInfo']['totalOtherServers']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view
 							data-field-name="Total Virtual Hosts" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalVirtualHosts}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalVirtualHosts"
+							data-new-quarter-value="dataCenter['totals']['serverInfo']['totalVirtualHosts']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view
 							data-field-name="Total Virtual OS" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalVirtualOS}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalVirtualOS"
+							data-new-quarter-value="dataCenter['totals']['serverInfo']['totalVirtualOS']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view
 							data-field-name="Total Storage" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.serverInfo.totalStorage}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalVirtualOS"
+							data-new-quarter-value="dataCenter['totals']['serverInfo']['totalStorage']"></div>
                 </div>
             </div><!-- /.row -->
 
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view
 							data-field-name="Used Storage" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.serverInfo.usedStorage}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="usedStorage"
+							data-new-quarter-value="dataCenter['totals']['serverInfo']['usedStorage']"></div>
                 </div>
             </div><!-- /.row -->
         </div><!-- /.panel-body -->
