@@ -17,88 +17,139 @@
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Record Status" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.recordStatusName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="recordStatusId"
+							data-new-quarter-value="dataCenter['status']['recordStatusId']"
+							data-ref-value-list="qc.referenceValueLists.recordStatusRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Record Validity" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.recordValidityName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="recordValidityId"
+							data-new-quarter-value="dataCenter['status']['recordValidityId']"
+							data-ref-value-list="qc.referenceValueLists.recordValidityRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Closing Stage" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.closingStageName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="closingStageId"
+							data-new-quarter-value="dataCenter['status']['closingStageId']"
+							data-ref-value-list="qc.referenceValueLists.closingStageRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Ownership Type" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.ownershipTypeName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="ownershipTypeId"
+							data-new-quarter-value="dataCenter['status']['ownershipTypeId']"
+							data-ref-value-list="qc.referenceValueLists.ownershipTypeRefValueList"></div>
                 </div>
             </div><!-- /.row -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Data Center Tier" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.dataCenterTierName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="dataCenterTierId"
+							data-new-quarter-value="dataCenter['status']['dataCenterTierId']"
+							data-ref-value-list="qc.referenceValueLists.dataCenterTierRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Electricity is Metered" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.electricityIsMeteredName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="electricityIsMeteredId"
+							data-new-quarter-value="dataCenter['status']['countryId']"
+							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Automated Monitoring" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.automatedMonitoringName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="automatedMonitoringId"
+							data-new-quarter-value="dataCenter['status']['automatedMonitoringId']"
+							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="ISS Position" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.issPositionName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="issPositionId"
+							data-new-quarter-value="dataCenter['status']['issPositionId']"
+							data-ref-value-list="qc.referenceValueLists.issPositionRefValueList"></div>
                 </div>
             </div><!-- /.row -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-textfield-view
 							data-field-name="ISS Provider" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.issProvider}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="issProvider"
+							data-new-quarter-value="dataCenter['status']['issProvider']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Closing Fiscal Year" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.closingFiscalYearName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="closingFiscalYearId"
+							data-new-quarter-value="dataCenter['status']['closingFiscalYearId']"
+							data-ref-value-list="qc.referenceValueLists.fiscalYearsRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Closing Quarter" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.closingQuarterName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="closingQuarterId"
+							data-new-quarter-value="dataCenter['status']['closingQuarterId']"
+							data-ref-value-list="qc.referenceValueLists.fiscalQuartersRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Electricity Included in Cost" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.electricityIncludedInCostName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="electricityIncludedInCostId"
+							data-new-quarter-value="dataCenter['status']['electricityIncludedInCostId']"
+							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
                 </div>
             </div><!-- /.row -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-field-view 
+					<div data-selectfield-view
 							data-field-name="Core Classification" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.status.coreClassificationName}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="coreClassificationId"
+							data-new-quarter-value="dataCenter['status']['coreClassificationId']"
+							data-ref-value-list="qc.referenceValueLists.coreClassificationRefValueList"></div>
                 </div>
             </div><!-- /.row -->
         </div><!-- /.panel-body -->

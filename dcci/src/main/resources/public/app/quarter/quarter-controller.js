@@ -22,8 +22,8 @@
 			dataCenterNames:[],
 			dataCenterIds:[]
 		};
+		qc.pastQuarterData = initData.pastQuarterData;
 		qc.quarterData = initData.quarterData;
-		qc.initData = initData;
 		qc.referenceValueLists = initData.referenceValueLists;
 		qc.initQuarterData = initQuarterData;
 		qc.initDefaultSelected = initDefaultSelected;
@@ -53,7 +53,7 @@
 				qc.tempData.selected.dataCenterName = region.dataCenters[0].dataCenterName;
 				qc.tempData.selected.expandCollapseRegions[region.code] = true;
 			} else if($routeParams.defaultDataCenterId && qc.tempData.selected.regionIdx === undefined && region.dataCenters.length){
-				var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':$routeParams.defaultDataCenterId})[0];
+				var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':$routeParams.defaultDataCenterId}, true)[0];
 				if(foundDataCenter){
 					qc.tempData.selected.regionIdx = regionIdx;
 					qc.tempData.selected.dataCenterName = foundDataCenter.dataCenterName;
@@ -107,7 +107,7 @@
 			//need to keep track of which panels were visited where we started in editMode
 			qc.tempData.wasInEditMode.dataCenterNames.push(qc.tempData.selected.dataCenterName);
 			var currentlyDisplayedDataCenters = $filter('filter')(qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters, 
-					{'dataCenterName':qc.tempData.selected.dataCenterName});
+					{'dataCenterName':qc.tempData.selected.dataCenterName}, true);
 			angular.forEach(currentlyDisplayedDataCenters, function(dataCenter){
 				qc.tempData.wasInEditMode.dataCenterIds.push(dataCenter.dataCenterId);
 			});

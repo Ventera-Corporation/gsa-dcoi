@@ -19,39 +19,47 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Record Status" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusRecordStatus"
 							data-field-required="true"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.recordStatusId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="recordStatusId"
+							data-new-quarter-value="dataCenter['status']['recordStatusId']"
 							data-ref-value-list="qc.referenceValueLists.recordStatusRefValueList"
 							data-error-message="qc.tempData.errorData.messages['recordStatusId']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Record Validity" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusRecordValidity"
 							data-field-required="true"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.recordValidityId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="recordValidityId"
+							data-new-quarter-value="dataCenter['status']['recordValidityId']"
 							data-ref-value-list="qc.referenceValueLists.recordValidityRefValueList"
 							data-error-message="qc.tempData.errorData.messages['recordValidityId']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Closing Stage" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusClosingStage"
 							data-field-required="true"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.closingStageId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="closingStageId"
+							data-new-quarter-value="dataCenter['status']['closingStageId']"
 							data-ref-value-list="qc.referenceValueLists.closingStageRefValueList"
 							data-error-message="qc.tempData.errorData.messages['closingStageId']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
-							data-field-name="Ownership Type" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusOwnershipType"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.ownershipTypeId"
+							data-field-name="Ownership Type"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="ownershipTypeId"
+							data-new-quarter-value="dataCenter['status']['ownershipTypeId']"
 							data-ref-value-list="qc.referenceValueLists.ownershipTypeRefValueList"></div>
                 </div>
             </div><!-- /.row -->
@@ -60,33 +68,41 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Data Center Tier" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusDataCenterTier"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.dataCenterTierId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="dataCenterTierId"
+							data-new-quarter-value="dataCenter['status']['dataCenterTierId']"
 							data-ref-value-list="qc.referenceValueLists.dataCenterTierRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Electricity is Metered" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIsMetered"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.electricityIsMeteredId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="electricityIsMeteredId"
+							data-new-quarter-value="dataCenter['status']['electricityIsMeteredId']"
 							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Automated Monitoring" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusAutomatedMonitoring"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.automatedMonitoringId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="automatedMonitoringId"
+							data-new-quarter-value="dataCenter['status']['automatedMonitoringId']"
 							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="ISS Position" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusIssPosition"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.issPositionId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="issPositionId"
+							data-new-quarter-value="dataCenter['status']['issPositionId']"
 							data-ref-value-list="qc.referenceValueLists.issPositionRefValueList"></div>
                 </div>
             </div><!-- /.row -->
@@ -95,32 +111,40 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
 							data-field-name="ISS Provider" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusISSProvider"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.issProvider"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="issProvider"
+							data-new-quarter-value="dataCenter['status']['issProvider']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Closing Fiscal Year" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusClosingFiscalYear"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.closingFiscalYearId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="closingFiscalYearId"
+							data-new-quarter-value="dataCenter['status']['closingFiscalYearId']"
 							data-ref-value-list="qc.referenceValueLists.fiscalYearsRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Closing Quarter" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusClosingQuarter"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.closingQuarterId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="closingQuarterId"
+							data-new-quarter-value="dataCenter['status']['closingQuarterId']"
 							data-ref-value-list="qc.referenceValueLists.fiscalQuartersRefValueList"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Electricity Included in Cost" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusElectricityIncludedInCost"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.electricityIncludedInCostId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="electricityIncludedInCostId"
+							data-new-quarter-value="dataCenter['status']['electricityIncludedInCostId']"
 							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
                 </div>
             </div><!-- /.row -->
@@ -128,9 +152,11 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
 							data-field-name="Core Classification" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}StatusCoreClassification"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.status.coreClassificationId"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="coreClassificationId"
+							data-new-quarter-value="dataCenter['status']['coreClassificationId']"
 							data-ref-value-list="qc.referenceValueLists.coreClassificationRefValueList"></div>
                 </div>
             </div><!-- /.row -->
