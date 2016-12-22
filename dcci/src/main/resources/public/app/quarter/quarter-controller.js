@@ -78,8 +78,9 @@
 					facilityInfo: true,
 					fieldOffices: [],
 					totals: {
+						serverInfo: true,
 						costCalc: true,
-						serverInfo: true	
+						otherCalc: true
 					}
 				};
 				var categories = {
