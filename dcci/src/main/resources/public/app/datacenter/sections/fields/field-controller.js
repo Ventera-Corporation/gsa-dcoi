@@ -13,6 +13,7 @@
 		fc.findPastValueForDataCenter();
 
 		function findPastValueForDataCenter(){
+			fc.pastQuarterValue = null;
 			var foundDataCenter = $filter('filter')(fc.pastDataCenters, 
 					{'dataCenterId':fc.dataCenter.dataCenterId}, true)[0];
 			if(foundDataCenter){

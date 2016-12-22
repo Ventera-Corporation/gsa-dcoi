@@ -83,7 +83,7 @@ public class QuarterController {
 			QuarterReport quarterReport = (QuarterReport) returnData.get("quarterReport");
 			if (quarterReport != null) {
 				newQuarter.setFiscalQuarterReport(populateFiscalQuarterReportDto(quarterReport));
-				newQuarter.setRegions(dataCenterService.populateRegionDtosList(quarterReport.getQuarterId()));
+				newQuarter.setRegions(quarterService.populateRegionDtosList(quarterReport.getQuarterId()));
 			}
 
 			returnData.put("quarterData", newQuarter);

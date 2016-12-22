@@ -22,7 +22,7 @@
             </div>
         </div>
 	</div><!-- /.row -->
-    <div class="row">
+	<div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label for="data-center-region">Region <span class="vnt-red-text">*</span></label>
@@ -33,7 +33,6 @@
             </div>
         </div>
 	</div><!-- /.row -->
-	
 	<div class="row" data-ng-if="!andcc.selectedCloudRegion(andcc.dataCenter.regionId)">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
@@ -51,12 +50,27 @@
             </div>
         </div>
 	</div><!-- /.row -->
-
+	<hr/>
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12"><strong>Active Field Offices</strong> <span class="vnt-red-text">*</span></div>
+	</div><!-- /.row -->
+	<div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12" data-ng-repeat="fieldOffice in andcc.componentRefValueList | filter:{'activeFlag':1}">
+            <div class="form-group" data-ng-if="fieldOffice.id !== andcc.ALL_FIELD_OFFICE_COMPONENT_ID">
+				<input type="checkbox" id="fieldOffice{{fieldOffice.value}}"
+						data-ng-false-value="null" 
+						data-ng-true-value="{{fieldOffice.id}}" 
+						data-ng-change="andcc.checkUncheckItem($index, fieldOffice.value)"
+						data-ng-model="andcc.tempFieldOffices[$index]['componentId']">
+                <label for="fieldOffice{{fieldOffice.value}}">{{fieldOffice.value}}</label>
+            </div>
+		</div> 
+	</div><!-- /.row -->
 </div><!-- /.modal-body -->
 
 <div class="modal-footer">
     <button type="button" class="usa-button usa-button-primary" 
-    		data-ng-disabled="!(andcc.dataCenter.dataCenterName.length && andcc.dataCenter.regionId !== null)" 
+    		data-ng-disabled="!(andcc.dataCenter.dataCenterName.length && andcc.dataCenter.regionId !== null && andcc.removeNullValues(andcc.tempFieldOffices).length)" 
     		data-ng-click="andcc.add()">Add</button>
     <button type="button" class="usa-button usa-button-outline" data-ng-click="andcc.cancel()">Cancel</button>
 </div><!-- /.modal-footer -->

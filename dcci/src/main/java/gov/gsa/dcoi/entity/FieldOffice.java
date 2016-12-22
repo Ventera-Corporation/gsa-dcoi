@@ -24,7 +24,7 @@ public class FieldOffice {
 	private Long dataCenterQuarterId;
 	@Column(name = "field_office_id")
 	private Integer componentId;
-	private Integer parentDataCenterInventoryId;
+	private Long parentDataCenterInventoryId;
 
 	// Facility Information
 	private Integer grossFloorArea;
@@ -73,11 +73,11 @@ public class FieldOffice {
 		this.dataCenterInventoryId = dataCenterInventoryId;
 	}
 
-	public Integer getParentDataCenterInventoryId() {
+	public Long getParentDataCenterInventoryId() {
 		return parentDataCenterInventoryId;
 	}
 
-	public void setParentDataCenterInventoryId(Integer parentDataCenterInventoryId) {
+	public void setParentDataCenterInventoryId(Long parentDataCenterInventoryId) {
 		this.parentDataCenterInventoryId = parentDataCenterInventoryId;
 	}
 

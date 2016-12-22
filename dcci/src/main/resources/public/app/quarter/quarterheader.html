@@ -8,12 +8,11 @@
 
 <div class="pull-right">
 	<span class="inline">
-		<span for="duedate"
-    		data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag || qc.quarterData.fiscalQuarterReport.quarterDueDate">
+		<span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag || qc.quarterData.fiscalQuarterReport.quarterDueDate">
 	    	<h4>Due Date:</h4>
 	    </span>
 		<input class="form-control" type="text" id="duedate" name="duedate" style="max-width: 150px;" 
-				data-ng-model="qc.quarterData.fiscalQuarterReport.quarterDueDate"
+				data-ng-model="qc.quarterData.fiscalQuarterReport.quarterDueDate" title="Quarter Due Date"
         		data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">
 		<span id="duedate" name="duedate" 
 				data-ng-if="!(lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag)">

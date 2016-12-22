@@ -8,7 +8,7 @@
 			data-ng-options="o.id as o.value for o in fc.refValueList | filter:{'activeFlag':1}">
 		<option value="">Select One</option>
 	</select>
-	<div class="text-danger" data-ng-if="errorMessage">{{fc.errorMessage}}</div>
+	<div class="text-danger" data-ng-if="fc.errorMessage">{{fc.errorMessage}}</div>
 	<span class="warning-text" data-ng-if="fc.pastQuarterValue !== fc.newQuarterValue">
 		<span>Past Value: {{fc.getValueFromRefValueListForValueId(fc.pastQuarterValue)}}</span>
 	</span>

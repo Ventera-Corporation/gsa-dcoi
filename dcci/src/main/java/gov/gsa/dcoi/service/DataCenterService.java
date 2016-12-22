@@ -12,19 +12,18 @@ import org.springframework.cache.CacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FacilityInformationDto;
 import gov.gsa.dcoi.dto.FieldOfficeDto;
 import gov.gsa.dcoi.dto.GeneralInformationDto;
-import gov.gsa.dcoi.dto.RegionDto;
 import gov.gsa.dcoi.dto.StatusDto;
 import gov.gsa.dcoi.entity.DataCenter;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.FieldOffice;
 import gov.gsa.dcoi.entity.QuarterReport;
-import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 import gov.gsa.dcoi.repository.DataCenterRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
@@ -89,56 +88,28 @@ public class DataCenterService {
 	}
 
 	/**
-	 * Populate the regionsDto Lists to display back for a quarter
+	 * Populate the dataCenterDto Lists to display back for a quarter
 	 * 
 	 * @param quarterReportId
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public List<RegionDto> populateRegionDtosList(Long quarterReportId) {
-		List<RegionDto> regionDtos = populateInformationAboutRegions();
-		for (RegionDto region : regionDtos) {
-			List<DataCenterDto> dataCenterDtos = new ArrayList<>();
-			List<DataCenter> dataCenterStaticInfo = dataCenterRepository.findByRegionId(region.getRegionId());
-			for (DataCenter dataCenter : dataCenterStaticInfo) {
-				DataCenterDto dataCenterDto = new DataCenterDto();
-				List<FieldOfficeDto> fieldOfficesDto = new ArrayList<>();
-
-				BeanUtils.copyProperties(dataCenter, dataCenterDto);
-				DataCenterQuarter dataCenterForQuarter = dataCenterQuarterRepository
-						.findByQuarterReportIdAndDataCenterId(quarterReportId, dataCenter.getDataCenterId());
-				if (dataCenterForQuarter == null) {
-					// This data center has historical information, but no
-					// information for the current quarter
-					continue;
-				}
-				dataCenterDto = copyEntityToDto(dataCenterForQuarter, dataCenter, dataCenterDto);
-
-				// Set the totals tab
-				dataCenterDto.setTotals(fieldOfficeService.createTotalsTab(dataCenterForQuarter));
-
-				List<FieldOffice> fieldOffices = fieldOfficeRepository
-						.findByDataCenterQuarterId(dataCenterForQuarter.getDataCenterQuarterId());
-				for (FieldOffice fieldOffice : fieldOffices) {
-					if (fieldOffice.getGrossFloorArea() == null && fieldOffice.getTotalITPowerCapacity() == null) {
-						// Pass back a sparse fieldOfficeDto
-						FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
-						fieldOfficeDto.setDataCenterInventoryId(fieldOffice.getDataCenterInventoryId());
-						fieldOfficeDto.setComponentId(fieldOffice.getComponentId());
-						fieldOfficeDto.setDataCenterQuarterId(fieldOffice.getDataCenterQuarterId());
-						fieldOfficesDto.add(fieldOfficeDto);
-
-					} else {
-						fieldOfficesDto.add(fieldOfficeService.copyEntityToDto(fieldOffice));
-						// dataCenterDto.getGeneralInfo().setComponentId(fieldOffice.getComponentId());
-					}
-				}
-				dataCenterDto.setFieldOffices(fieldOfficesDto);
-				dataCenterDtos.add(dataCenterDto);
+	public List<DataCenterDto> populateDataCenterDtosList(Integer regionId, Long quarterReportId) {
+		List<DataCenterDto> dataCenterDtos = new ArrayList<>();
+		List<DataCenter> dataCenterStaticInfo = dataCenterRepository.findByRegionId(regionId);
+		for (DataCenter dataCenter : dataCenterStaticInfo) {
+			DataCenterDto dataCenterDto = new DataCenterDto();
+			BeanUtils.copyProperties(dataCenter, dataCenterDto);
+			DataCenterQuarter dataCenterForQuarter = dataCenterQuarterRepository
+					.findByQuarterReportIdAndDataCenterId(quarterReportId, dataCenter.getDataCenterId());
+			if (dataCenterForQuarter == null) {
+				// This data center has historical information, but no
+				// information for the current quarter
+				continue;
 			}
-			region.setDataCenters(dataCenterDtos);
+			dataCenterDtos.add(copyEntityToDto(dataCenterForQuarter, dataCenter, dataCenterDto));
 		}
-		return regionDtos;
+		return dataCenterDtos;
 	}
 
 	/**
@@ -158,44 +129,43 @@ public class DataCenterService {
 			BeanUtils.copyProperties(dataCenterDto.getFacilityInfo(), dataCenterEntity);
 			dataCenterRepository.save(dataCenterEntity);
 
-			List<FieldOfficeDto> fieldOffices = dataCenterDto.getFieldOffices();
-			if (fieldOffices == null) {
-				return;
+			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
+				dataCenterQuarterRepository.save(copyDtoToEntity(dataCenterDto, fieldOfficeDto));
+				fieldOfficeRepository.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
 			}
-			for (FieldOfficeDto fieldOfficeDto : fieldOffices) {
-
-				// Add check for totals tab
-				if (!"Total".equals(fieldOfficeDto.getFieldOfficeName())) {
-					dataCenterQuarterRepository.save(copyDtoToEntity(dataCenterDto, fieldOfficeDto));
-					FieldOffice fieldOfficeEntity = new FieldOffice();
-					fieldOfficeEntity = fieldOfficeService.copyDtoToVO(fieldOfficeDto, fieldOfficeEntity);
-					fieldOfficeRepository.save(fieldOfficeEntity);
-				}
-				// if (fieldOfficeDto != null) {
-
-				// }
-			}
-
 		}
-
 	}
 
 	/**
-	 * Temp method to populate the information about each of the regions
+	 * Will save the edited information for data centers that are passed back
+	 * after a "save changes" call from the application
 	 * 
+	 * @param dataCenterDtos
 	 * @return
 	 */
-	private List<RegionDto> populateInformationAboutRegions() {
-		List<RegionDto> regionDtos = new ArrayList<>();
-		for (GenericReferenceValueObject valueObject : ReferenceValueListService.refValueLists
-				.get("regionRefValueList")) {
-			RegionDto regionDto = new RegionDto();
-			regionDto.setName(valueObject.getValue());
-			regionDto.setCode(valueObject.getValue().toLowerCase().replace(" ", ""));
-			regionDto.setRegionId(valueObject.getId());
-			regionDtos.add(regionDto);
+	@Transactional
+	public DataCenterDto addAndReturnNewDataCenter(DataCenterDto dataCenterDto) {
+		// Save data center object
+		DataCenter dataCenter = new DataCenter();
+		BeanUtils.copyProperties(dataCenterDto, dataCenter);
+		dataCenter = dataCenterRepository.save(dataCenter);
+		// then copy data center object back for any updates
+		BeanUtils.copyProperties(dataCenter, dataCenterDto);
+
+		// Save Data Center Quarter object
+		DataCenterQuarter dataCenterQuarter = new DataCenterQuarter();
+		BeanUtils.copyProperties(dataCenter, dataCenterQuarter);
+		QuarterReport quarterReport = quarterReportRepository.findByQuarterInProgressFlag(1);
+		dataCenterQuarter.setQuarterReportId(quarterReport.getQuarterId());
+		dataCenterQuarter.setAdminCompleteFlag(0);
+		dataCenterQuarter.setSsoCompleteFlag(0);
+		dataCenterQuarter = save(dataCenterQuarter);
+		// save new field offices
+		for(FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()){
+			fieldOfficeDto.setDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
+			fieldOfficeService.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
 		}
-		return regionDtos;
+		return copyEntityToDto(dataCenterQuarter, dataCenter, dataCenterDto);
 	}
 
 	/**
@@ -207,7 +177,7 @@ public class DataCenterService {
 	 * @param dataCenterDto
 	 * @return
 	 */
-	private DataCenterDto copyEntityToDto(DataCenterQuarter dataCenterQuarterEntity, DataCenter dataCenterEntity,
+	public DataCenterDto copyEntityToDto(DataCenterQuarter dataCenterQuarterEntity, DataCenter dataCenterEntity,
 			DataCenterDto dataCenterDto) {
 
 		// General Information
@@ -215,8 +185,26 @@ public class DataCenterService {
 		GeneralInformationDto generalInformationDto = new GeneralInformationDto();
 		BeanUtils.copyProperties(dataCenterEntity, generalInformationDto);
 		generalInformationDto.setPublishedName(dataCenterQuarterEntity.getPublishedName());
-		generalInformationDto.setAgencyAbbreviation("GSA");
-		generalInformationDto.setComponent("OCIO");
+		if(StringUtils.isEmpty(generalInformationDto.getAgencyAbbreviation())){
+			generalInformationDto.setAgencyAbbreviation("GSA");
+		}
+		
+		// set the field offices and the component field in general info
+		List<FieldOfficeDto> fieldOfficeDtos = 
+				fieldOfficeService.populateFieldOfficeDtosList(dataCenterQuarterEntity.getDataCenterQuarterId());
+		dataCenterDto.setFieldOffices(fieldOfficeDtos);
+		if(StringUtils.isEmpty(generalInformationDto.getComponent())){
+			//if there is an OCIO field office set that as the component
+			for(FieldOfficeDto fieldOfficeDto : fieldOfficeDtos){
+				if("OCIO".equals(fieldOfficeDto.getFieldOfficeName())){
+					generalInformationDto.setComponent(fieldOfficeDto.getFieldOfficeName());
+				}
+			}
+			//if there is no OCIO field office, set the first one as the component
+			if(StringUtils.isEmpty(generalInformationDto.getComponent())){
+				generalInformationDto.setComponent(fieldOfficeDtos.get(0).getFieldOfficeName());
+			}
+		}
 		dataCenterDto.setGeneralInfo(generalInformationDto);
 
 		// Status
@@ -229,6 +217,9 @@ public class DataCenterService {
 		BeanUtils.copyProperties(dataCenterQuarterEntity, facilityInfoDto);
 		dataCenterDto.setFacilityInfo(facilityInfoDto);
 
+		// Set the totals tab
+		dataCenterDto.setTotals(fieldOfficeService.createTotalsTab(dataCenterQuarterEntity));
+		
 		BeanUtils.copyProperties(dataCenterQuarterEntity, dataCenterDto);
 		return dataCenterDto;
 	}

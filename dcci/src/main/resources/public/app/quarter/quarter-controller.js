@@ -197,7 +197,7 @@
 		
 		function addDataCenterToRegion(dataCenterData){
 			for(var i = 0; i < qc.quarterData.regions.length; i++){
-				if(qc.quarterData.regions[i].regionId == dataCenterData.regionId){
+				if(qc.quarterData.regions[i].regionId === dataCenterData.regionId){
 					qc.quarterData.regions[i].dataCenters.push(dataCenterData);
 					return i;
 				}
@@ -213,10 +213,9 @@
 				} else {
 					//show success message
 					qc.tempData.successData = data.successData;
-					dataCenterData = data.dataCenterData;
-					//dataCenterData.dataCenterId = data.dataCenterId;
-					var regionIdx = addDataCenterToRegion(dataCenterData);
-					selectDataCenterName(regionIdx, dataCenterData.dataCenterName);
+					var newdataCenterData = data.dataCenterData;
+					var regionIdx = addDataCenterToRegion(newdataCenterData);
+					selectDataCenterName(regionIdx, newdataCenterData.dataCenterName);
 					qc.editQuarter();
 				}
 			});

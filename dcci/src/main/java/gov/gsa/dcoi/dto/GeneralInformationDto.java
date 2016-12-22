@@ -4,8 +4,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import gov.gsa.dcoi.service.CommonHelper;
-
 /**
  * Dto that holds information regarding the general information of the data
  * center. This information is held at the data center level
@@ -41,25 +39,6 @@ public class GeneralInformationDto {
 	@NotNull
 	@Size(min = 1)
 	private String component;
-
-	public String getStateName() {
-		if (this.stateId == null) {
-			return null;
-		}
-		return CommonHelper.parseStateId(this.stateId);
-	}
-
-	public String getCountry() {
-		if (this.countryId == null) {
-			return "NONE";
-		}
-		return CommonHelper.parseCountryId(this.countryId);
-	}
-
-	/**
-	 * public String getComponent() { if (this.componentId == null) { return
-	 * "NONE"; } return CommonHelper.parseComponentId(this.componentId); }
-	 **/
 
 	public Integer getDataCenterInventoryId() {
 		return dataCenterInventoryId;

@@ -26,6 +26,7 @@ import gov.gsa.dcoi.entity.CostCalculation;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.QuarterReport;
+import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
 import gov.gsa.dcoi.repository.CostCalculationRepository;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 import gov.gsa.dcoi.repository.DataCenterViewRepository;
@@ -117,7 +118,7 @@ public class QuarterService {
 		QuarterDto viewQuarter = new QuarterDto();
 		QuarterReport quarterReport = quarterReportRepository.findOne(quarterId);
 		viewQuarter.setFiscalQuarterReport(populateFiscalQuarterReportDto(quarterReport));
-		List<RegionDto> regions = dataCenterService.populateRegionDtosList(quarterId);
+		List<RegionDto> regions = populateRegionDtosList(quarterId);
 		viewQuarter.setRegions(regions);
 		return viewQuarter;
 
@@ -378,6 +379,39 @@ public class QuarterService {
 			serverCount += serverInfo.getTotalOtherServers();
 		}
 		return serverCount;
+	}
+
+	/**
+	 * Populate the regionsDto Lists to display back for a quarter
+	 * 
+	 * @param quarterReportId
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public List<RegionDto> populateRegionDtosList(Long quarterReportId) {
+		List<RegionDto> regionDtos = populateInformationAboutRegions();
+		for (RegionDto region : regionDtos) {
+			region.setDataCenters(dataCenterService.populateDataCenterDtosList(region.getRegionId(), quarterReportId));
+		}
+		return regionDtos;
+	}
+
+	/**
+	 * Temp method to populate the information about each of the regions
+	 * 
+	 * @return
+	 */
+	private List<RegionDto> populateInformationAboutRegions() {
+		List<RegionDto> regionDtos = new ArrayList<>();
+		for (GenericReferenceValueObject valueObject : ReferenceValueListService.refValueLists
+				.get("regionRefValueList")) {
+			RegionDto regionDto = new RegionDto();
+			regionDto.setName(valueObject.getValue());
+			regionDto.setCode(valueObject.getValue().toLowerCase().replace(" ", ""));
+			regionDto.setRegionId(valueObject.getId());
+			regionDtos.add(regionDto);
+		}
+		return regionDtos;
 	}
 
 }

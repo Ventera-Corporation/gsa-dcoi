@@ -1,13 +1,10 @@
 package gov.gsa.dcoi.controllers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,10 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FieldOfficeDto;
-import gov.gsa.dcoi.entity.DataCenter;
-import gov.gsa.dcoi.entity.DataCenterQuarter;
-import gov.gsa.dcoi.entity.FieldOffice;
-import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.repository.DataCenterRepository;
 import gov.gsa.dcoi.service.DataCenterService;
 import gov.gsa.dcoi.service.FieldOfficeService;
@@ -60,9 +53,11 @@ public class DataCenterController {
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> initNewDataCenter() {
 		Map<String, Object> returnData = new HashMap<>();
-		returnData.put("newDataCenter", new DataCenterDto());
+		returnData.put("dataCenterData", new DataCenterDto());
+		returnData.put("fieldOfficeData", new FieldOfficeDto());
 		returnData.put("regionRefValueList", ReferenceValueListService.refValueLists.get("regionRefValueList"));
 		returnData.put("stateRefValueList", ReferenceValueListService.refValueLists.get("stateRefValueList"));
+		returnData.put("componentRefValueList", ReferenceValueListService.refValueLists.get("componentRefValueList"));
 		return returnData;
 	}
 
@@ -76,51 +71,9 @@ public class DataCenterController {
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> addNewDataCenter(@Valid @RequestBody DataCenterDto dataCenterDto) {
 		Map<String, Object> returnMap = new HashMap<>();
-		DataCenter dataCenter = new DataCenter();
-
-		// Save data center object
-		DataCenterQuarter dataCenterQuarter = new DataCenterQuarter();
-		BeanUtils.copyProperties(dataCenterDto, dataCenter);
-		dataCenter = dataCenterDao.save(dataCenter);
-
-		// Get quarter report id
-		QuarterReport quarterReport = quarterService.findByQuarterInProgressFlag();
-
-		// Save Data Center Quarter object
-		BeanUtils.copyProperties(dataCenter, dataCenterQuarter);
-		dataCenterQuarter.setQuarterReportId(quarterReport.getQuarterId());
-		dataCenterQuarter.setAdminCompleteFlag(0);
-		dataCenterQuarter.setSsoCompleteFlag(0);
-		dataCenterQuarter = dataCenterService.save(dataCenterQuarter);
-
-		// Set field offices object
-		FieldOffice fieldOffice = new FieldOffice();
-		fieldOffice.setComponentId(7);
-		fieldOffice.setDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
-		fieldOfficeService.save(fieldOffice);
-
+		returnMap.put("dataCenterData", dataCenterService.addAndReturnNewDataCenter(dataCenterDto));
 		returnMap.put("successData", "Data Center was added succesfully");
-		returnMap.put("dataCenterData", createDataCenterDto(dataCenterDto, fieldOffice, dataCenterQuarter));
-
 		return returnMap;
-	}
-
-	/**
-	 * Create a data center dto to pass back to the front end
-	 */
-	private DataCenterDto createDataCenterDto(DataCenterDto dataCenterDto, FieldOffice fieldOffice,
-			DataCenterQuarter dataCenterQuarter) {
-
-		BeanUtils.copyProperties(fieldOffice, dataCenterDto);
-		BeanUtils.copyProperties(dataCenterQuarter, dataCenterDto);
-
-		// Create field office dto
-		List<FieldOfficeDto> fieldOffices = new ArrayList<>();
-		fieldOffices.add(fieldOfficeService.copyEntityToDto(fieldOffice));
-
-		dataCenterDto.setFieldOffices(fieldOffices);
-		return dataCenterDto;
-
 	}
 
 	/**

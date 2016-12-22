@@ -3,6 +3,7 @@ package gov.gsa.dcoi.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import gov.gsa.dcoi.dto.ServerInformationDto;
 import gov.gsa.dcoi.entity.CostCalculation;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.FieldOffice;
+import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
 import gov.gsa.dcoi.repository.CostCalculationRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
 
@@ -79,8 +81,7 @@ public class FieldOfficeService {
 		BeanUtils.copyProperties(fieldOfficeEntity, serverInformationDto);
 
 		fieldOfficeDto.setServerInfo(serverInformationDto);
-		fieldOfficeDto.setFieldOfficeName("OCIO");
-		// fieldOfficeDto.setFieldOfficeName(CommonHelper.parseComponentId(fieldOfficeEntity.getComponentId()));
+		fieldOfficeDto.setFieldOfficeName(CommonHelper.parseComponentId(fieldOfficeEntity.getComponentId()));
 
 		return fieldOfficeDto;
 	}
@@ -127,6 +128,51 @@ public class FieldOfficeService {
 		fieldOfficeDto.setFieldOfficeName("Totals");
 
 		return fieldOfficeDto;
+	}
+
+	/**
+	 * Populate the fieldOfficeDto Lists to display back for a quarter
+	 * 
+	 * @param quarterReportId
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public List<FieldOfficeDto> populateFieldOfficeDtosList(Long dataCenterQuarterId) {
+		return populateInformationAboutFieldOffices(
+				fieldOfficeRepository.findByDataCenterQuarterId(dataCenterQuarterId));
+	}
+
+	/**
+	 * Temp method to populate the information about each of the field offices
+	 * 
+	 * @return
+	 */
+	private List<FieldOfficeDto> populateInformationAboutFieldOffices(List<FieldOffice> fieldOffices) {
+		List<FieldOfficeDto> fieldOfficeDtos = new ArrayList<>();
+		List<GenericReferenceValueObject> componentRefValueList = ReferenceValueListService.refValueLists.get("componentRefValueList");
+		//if there are no field offices create a default OCIO one
+		if(CollectionUtils.isNotEmpty(fieldOffices)){
+			for(FieldOffice fieldOffice : fieldOffices){
+				for (GenericReferenceValueObject valueObject : componentRefValueList) {
+					if(fieldOffice.getComponentId() == valueObject.getId()){
+						FieldOfficeDto fieldOfficeDto = copyEntityToDto(fieldOffice);
+						fieldOfficeDto.setComponentId(valueObject.getId());
+						fieldOfficeDto.setFieldOfficeName(valueObject.getValue());
+						fieldOfficeDtos.add(fieldOfficeDto);
+					}
+				}
+			}
+		} else {
+			for (GenericReferenceValueObject valueObject : componentRefValueList) {
+				if("OCIO".equals(valueObject.getValue())){
+					FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
+					fieldOfficeDto.setComponentId(valueObject.getId());
+					fieldOfficeDto.setFieldOfficeName(valueObject.getValue());
+					fieldOfficeDtos.add(fieldOfficeDto);
+				}
+			}
+		}
+		return fieldOfficeDtos;
 	}
 
 }
