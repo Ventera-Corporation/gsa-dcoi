@@ -21,6 +21,7 @@ public class FieldOfficeDto {
 	@Valid
 	private ServerInformationDto serverInfo;
 	private CostCalculationDto costCalc;
+	private OtherCalculationDto otherCalc;
 
 	// ADD GETTER FOR FIELD OFFICE NAME
 
@@ -70,6 +71,14 @@ public class FieldOfficeDto {
 
 	public void setCostCalc(CostCalculationDto costCalc) {
 		this.costCalc = costCalc;
+	}
+
+	public OtherCalculationDto getOtherCalc() {
+		return otherCalc;
+	}
+
+	public void setOtherCalc(OtherCalculationDto otherCalc) {
+		this.otherCalc = otherCalc;
 	}
 
 }

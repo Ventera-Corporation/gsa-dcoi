@@ -1,5 +1,6 @@
 package gov.gsa.dcoi.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -8,8 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import gov.gsa.dcoi.dto.CostCalculationDto;
-import gov.gsa.dcoi.dto.FacilityInformationDto;
 import gov.gsa.dcoi.dto.FieldOfficeDto;
+import gov.gsa.dcoi.dto.OtherCalculationDto;
 import gov.gsa.dcoi.dto.ServerInformationDto;
 import gov.gsa.dcoi.entity.CostCalculation;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
@@ -94,13 +95,12 @@ public class FieldOfficeService {
 	@Transactional(readOnly = true)
 	public FieldOfficeDto createTotalsTab(DataCenterQuarter dataCenterQuarter) {
 		FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
-		FacilityInformationDto facilityInformationDto = new FacilityInformationDto();
+		//server info totals
 		ServerInformationDto serverInformationDto = new ServerInformationDto();
-
-		BeanUtils.copyProperties(dataCenterQuarter, facilityInformationDto);
 		BeanUtils.copyProperties(dataCenterQuarter, serverInformationDto);
-
 		fieldOfficeDto.setServerInfo(serverInformationDto);
+		
+		//cost calc
 		List<CostCalculation> costCalcList = costCalcRepository
 				.findByDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
 		if (costCalcList != null && !costCalcList.isEmpty()) {
@@ -110,6 +110,19 @@ public class FieldOfficeService {
 			fieldOfficeDto.setCostCalc(costCalcDto);
 		} else {
 			fieldOfficeDto.setCostCalc(new CostCalculationDto());
+		}
+		
+		//other calc - TODO put in other calc repository
+		List<CostCalculation> otherCalcList = new ArrayList<>();
+//				costCalcRepository
+//				.findByDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
+		if (otherCalcList != null && !otherCalcList.isEmpty()) {
+			CostCalculation otherCalc = otherCalcList.get(otherCalcList.size() - 1);
+			OtherCalculationDto otherCalcDto = new OtherCalculationDto();
+			BeanUtils.copyProperties(otherCalc, otherCalcDto);
+			fieldOfficeDto.setOtherCalc(otherCalcDto);
+		} else {
+			fieldOfficeDto.setOtherCalc(new OtherCalculationDto());
 		}
 		fieldOfficeDto.setFieldOfficeName("Totals");
 

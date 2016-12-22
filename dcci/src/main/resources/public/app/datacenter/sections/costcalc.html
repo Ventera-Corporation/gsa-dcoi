@@ -7,7 +7,7 @@
             		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
             <span class="glyphicon glyphicon-plus" 
             		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
-            <span>&nbsp; Cost Calculation</span>
+            <span>&nbsp; Cost Calculations</span>
         </h4>
     </div>
 
@@ -22,7 +22,7 @@
 							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
 							data-data-center="dataCenter"
 							data-totals-name="totals"
-							data-section-prop-name="serverInfo"
+							data-section-prop-name="costCalc"
 							data-field-prop-name="serverCost"
 							data-new-quarter-value="dataCenter['totals']['costCalc']['serverCost'] | currency"
 							data-field-filter="currency"></div>
@@ -33,7 +33,7 @@
 							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
 							data-data-center="dataCenter"
 							data-totals-name="totals"
-							data-section-prop-name="serverInfo"
+							data-section-prop-name="costCalc"
 							data-field-prop-name="storageCost"
 							data-new-quarter-value="dataCenter['totals']['costCalc']['storageCost'] | currency"
 							data-field-filter="currency"></div>
@@ -44,7 +44,7 @@
 							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
 							data-data-center="dataCenter"
 							data-totals-name="totals"
-							data-section-prop-name="serverInfo"
+							data-section-prop-name="costCalc"
 							data-field-prop-name="miscellaneous"
 							data-new-quarter-value="dataCenter['totals']['costCalc']['miscellaneous'] | currency"
 							data-field-filter="currency"></div>
@@ -55,7 +55,7 @@
 							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
 							data-data-center="dataCenter"
 							data-totals-name="totals"
-							data-section-prop-name="serverInfo"
+							data-section-prop-name="costCalc"
 							data-field-prop-name="total"
 							data-new-quarter-value="dataCenter['totals']['costCalc']['total'] | currency"
 							data-field-filter="currency"></div>
