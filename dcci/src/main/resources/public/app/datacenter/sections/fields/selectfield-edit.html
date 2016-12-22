@@ -1,13 +1,14 @@
-<div data-ng-class="pastQuarterValue !== newQuarterModel ? 'form-group has-warning' : 'form-group'">
-	<label for="{{fieldId}}">{{fieldName}}
-		<span class="vnt-red-text" data-ng-if="fieldRequired === 'true'">*</span>
+<div data-ng-class="fc.pastQuarterValue !== fc.newQuarterValue ? 'form-group has-warning' : 'form-group'">
+	<label for="dataCenter{{fc.dataCenter.dataCenterId}}{{fc.sectionPropName}}{{fc.fieldPropName}}">{{fc.fieldName}}
+		<span class="vnt-red-text" data-ng-if="fc.fieldRequired === 'true'">*</span>
 	</label>
-	<select id="{{fieldId}}" data-ng-model="newQuarterModel"
-			data-ng-options="o.id as o.value for o in refValueList | filter:{'activeFlag':1}">
+	<select id="dataCenter{{fc.dataCenter.dataCenterId}}{{fc.sectionPropName}}{{fc.fieldPropName}}"
+			data-ng-model="fc.newQuarterValue"
+			data-ng-options="o.id as o.value for o in fc.refValueList | filter:{'activeFlag':1}">
 		<option value="">Select One</option>
 	</select>
-	<div class="text-danger" data-ng-if="errorMessage">{{errorMessage}}</div>
-	<span class="warning-text" data-ng-if="pastQuarterValue !== newQuarterModel">
-		<span>Past Value: {{pastQuarterValue || "None"}}</span>
+	<div class="text-danger" data-ng-if="errorMessage">{{fc.errorMessage}}</div>
+	<span class="warning-text" data-ng-if="fc.pastQuarterValue !== fc.newQuarterValue">
+		<span>Past Value: {{fc.getValueFromRefValueListForValueId(fc.pastQuarterValue) || "None"}}</span>
 	</span>
 </div>

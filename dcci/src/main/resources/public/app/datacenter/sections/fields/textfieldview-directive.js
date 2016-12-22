@@ -1,28 +1,24 @@
 (function(){
 	'use strict';
 	
-	angular.module('dcoiApp').directive('textfieldEdit', textfieldEdit);
+	angular.module('dcoiApp').directive('textfieldView', textfieldView);
 	
-	function textfieldEdit(){
+	function textfieldView(){
 		return {
 			scope: {},
 			bindToController: {
 				fieldName: '@',
-				fieldRequired: '@',
 				pastDataCenters: '=',
 				dataCenter: '=',
 				totals: '@',
 				sectionPropName: '@',
 				fieldPropName: '@',
 				newQuarterValue: '=',
-				placeholderText: '@',
-				inputAddonFront: '@',
-				inputAddonBack: '@',
-				errorMessage: '='
+				viewAddon: '@'
 			},
 			controller: 'FieldController',
 			controllerAs: 'fc',
-			templateUrl: 'app/datacenter/sections/fields/textfield-edit.html'
+			templateUrl: 'app/datacenter/sections/fields/textfield-view.html'
 		}
 	}
 })();

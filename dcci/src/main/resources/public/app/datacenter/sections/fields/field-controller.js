@@ -1,0 +1,43 @@
+(function(){
+	'use strict';
+	
+	angular.module('dcoiApp').controller('FieldController', FieldController);
+
+	FieldController.$inject = ['$filter'];
+	
+	function FieldController($filter){
+		var fc = this;
+		fc.findPastValueForDataCenter = findPastValueForDataCenter;
+		fc.getValueFromRefValueListForValueId = getValueFromRefValueListForValueId;
+		
+		fc.findPastValueForDataCenter();
+
+		function findPastValueForDataCenter(){
+			var foundDataCenter = $filter('filter')(fc.pastDataCenters, 
+					{'dataCenterId':fc.dataCenter.dataCenterId}, true)[0];
+			if(foundDataCenter){
+				if(fc.fieldOffice){
+					var foundFieldOffice = $filter('filter')(foundDataCenter.fieldOffices,
+							{'fieldOfficeName':fc.fieldOffice.fieldOfficeName}, true)[0];
+					if(foundFieldOffice){
+						fc.newQuarterValue = foundFieldOffice[fc.sectionPropName][fc.fieldPropName];
+					}
+				} else if(fc.totals === 'true'){
+					fc.pastQuarterValue = foundDataCenter.totals[fc.sectionPropName][fc.fieldPropName];
+				} else {
+					fc.pastQuarterValue = foundDataCenter[fc.sectionPropName][fc.fieldPropName];
+				}
+			}
+		}
+		
+		function getValueFromRefValueListForValueId(id){
+			if(id){
+				var foundRefValue = ($filter('filter')(fc.refValueList, {'id':id}, true)[0]);
+				fc.foundRefValue = foundRefValue;
+				if(foundRefValue){
+					return foundRefValue.value;
+				}
+			}
+		}
+	}
+})();
