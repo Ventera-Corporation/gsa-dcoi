@@ -19,30 +19,46 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-field-view 
 							data-field-name="Server Cost" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.costCalc.serverCost | currency}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="serverCost"
+							data-new-quarter-value="dataCenter['totals']['costCalc']['serverCost']"
+							data-input-addon-front="$"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
 							data-field-name="Storage Cost" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}TotalsCostCalcStorageCost"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.totals.costCalc.storageCost"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="storageCost"
+							data-new-quarter-value="dataCenter['totals']['costCalc']['storageCost']"
 							data-input-addon-front="$"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
 							data-field-name="Miscellaneous" 
-							data-field-id="dataCenter{{dataCenter.dataCenterId}}TotalsCostCalcMiscellaneous"
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-model="dataCenter.totals.costCalc.miscellaneous"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="miscellaneous"
+							data-new-quarter-value="dataCenter['totals']['costCalc']['miscellaneous']"
 							data-input-addon-front="$"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-field-view 
 							data-field-name="Total" 
-							data-past-quarter-value="{{null}}" 
-							data-new-quarter-value="{{dataCenter.totals.costCalc.total | currency}}"></div>
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="total"
+							data-new-quarter-value="dataCenter['totals']['costCalc']['total']"
+							data-input-addon-front="$"></div>
                 </div>
 
             </div><!-- /.row -->
