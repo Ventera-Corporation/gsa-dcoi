@@ -9,6 +9,6 @@
 	</select>
 	<div class="text-danger" data-ng-if="errorMessage">{{fc.errorMessage}}</div>
 	<span class="warning-text" data-ng-if="fc.pastQuarterValue !== fc.newQuarterValue">
-		<span>Past Value: {{fc.getValueFromRefValueListForValueId(fc.pastQuarterValue) || "None"}}</span>
+		<span>Past Value: {{fc.getValueFromRefValueListForValueId(fc.pastQuarterValue)}}</span>
 	</span>
 </div>

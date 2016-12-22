@@ -1,9 +1,9 @@
 <div data-ng-class="fc.pastQuarterValue !== fc.newQuarterValue ? 'has-warning' : ''">
 	<strong>{{fc.fieldName}}</strong>
-	<div>{{fc.getValueFromRefValueListForValueId(fc.newQuarterValue) || "None"}}
+	<div>{{fc.getValueFromRefValueListForValueId(fc.newQuarterValue)}}
 		<small data-ng-if="fc.viewAddon && fc.newQuarterValue">&nbsp;{{fc.viewAddon}}</small>
 	</div>
 	<span class="warning-text" data-ng-if="fc.pastQuarterValue !== fc.newQuarterValue">
-		Past Value: {{fc.getValueFromRefValueListForValueId(fc.pastQuarterValue) || "None"}}
+		Past Value: {{fc.getValueFromRefValueListForValueId(fc.pastQuarterValue)}}
 	</span>
 </div>

@@ -32,12 +32,12 @@
 		
 		function getValueFromRefValueListForValueId(id){
 			if(id){
-				var foundRefValue = ($filter('filter')(fc.refValueList, {'id':id}, true)[0]);
-				fc.foundRefValue = foundRefValue;
+				var foundRefValue = $filter('filter')(fc.refValueList, {'id':id}, true);
 				if(foundRefValue){
-					return foundRefValue.value;
+					return foundRefValue[0].value;
 				}
 			}
+			return "None";
 		}
 	}
 })();
