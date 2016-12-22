@@ -27,6 +27,10 @@
 				} else {
 					fc.pastQuarterValue = foundDataCenter[fc.sectionPropName][fc.fieldPropName];
 				}
+				
+				if(fc.fieldFilter){
+					fc.pastQuarterValue = $filter(fc.fieldFilter)(fc.pastQuarterValue);
+				}
 			}
 		}
 		

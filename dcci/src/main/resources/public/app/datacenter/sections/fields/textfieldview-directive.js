@@ -14,7 +14,8 @@
 				sectionPropName: '@',
 				fieldPropName: '@',
 				newQuarterValue: '=',
-				viewAddon: '@'
+				fieldFilter: '@',
+				viewAddon: '@',
 			},
 			controller: 'FieldController',
 			controllerAs: 'fc',
