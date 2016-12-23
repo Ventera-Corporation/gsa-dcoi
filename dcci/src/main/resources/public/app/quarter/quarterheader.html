@@ -11,6 +11,8 @@
 		<span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag || qc.quarterData.fiscalQuarterReport.quarterDueDate">
 	    	<h4>Due Date:</h4>
 	    </span>
+    </span>
+    <span class="inline">
 		<input class="form-control" type="text" id="duedate" name="duedate" style="max-width: 150px;" 
 				data-ng-model="qc.quarterData.fiscalQuarterReport.quarterDueDate" title="Quarter Due Date"
         		data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag">
