@@ -226,8 +226,8 @@
             margin-top: 10px;
         }
         
-        .panel-category .form-group > span {
-        	font-size: 1.25em;
+        .panel-category strong {
+        	margin-top: 10px;
         }
 
     /* CATEGORY PANEL: END
@@ -291,7 +291,7 @@
             font-style: italic;
         }
 
-    /* VALIDATE BUTTON: END
+    /* STATUS INDICATORS: END
 	***************************************************************************************************************/
     /*
 	********
@@ -310,10 +310,10 @@
             padding-top: 130px;
         }
 
-        #wrapper.toggled {
-            padding-left: 250px;
+        #wrapper\.toggled {
+            padding-top: 130px !important;
         }
-
+        
         #sidebar-wrapper {
             z-index: 1000;
             position: fixed;
@@ -338,11 +338,6 @@
             width: 100%;
             position: absolute;
             padding: 15px;
-        }
-
-        #wrapper.toggled #page-content-wrapper {
-            position: absolute;
-            margin-right: -250px;
         }
 
     /* WRAPPER + SIDEBAR: END

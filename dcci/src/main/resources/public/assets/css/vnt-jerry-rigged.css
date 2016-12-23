@@ -150,11 +150,18 @@
             border: 1px #48a463 solid;
         }
 
-        .has-warning select, .has-warning div {
-            border: 1px #fcb71c solid;
-            box-shadow: 0 0 0 2px #fcb71c;
+        .has-warning select, 
+        .has-warning input,
+        .has-warning input[type=text],
+        .has-warning input[type=number],
+        .has-warning div {
+            background: #fff1d2;
         }
-
+        
+        .has-warning .text-danger {
+        	background: transparent !important;
+        }
+        
         .has-error .form-control {
             border: 1px #cd2026 solid;
         }
@@ -269,6 +276,16 @@
 		
 		table.dataTable.no-footer {
 			border-bottom: 0;
+		}
+		
+		table.dataTable a,
+		table.dataTable a:visited {
+			text-decoration: none !important;
+			color: #0071bc !important;
+		}
+		
+		table.dataTable a:hover {
+			text-decoration: underline !important;
 		}
 
     /* ANGULAR DATATABLES: END
