@@ -1,5 +1,10 @@
 <!-- PAGE HEADER -->
 <div class="page-header" data-ng-include="'app/quarter/quarterheader.html'"></div>
+<div id="wrapper.toggled"
+	data-ng-if="qc.tempData.successData || qc.tempData.errorData"
+	data-messages
+	data-success-data="qc.tempData.successData"
+	data-error-data="qc.tempData.errorData"></div>
 
 <!-- OUTER WRAPPER -->
 <div id="wrapper{{qc.tempData.editMode ? '.toggled' : ''}}">

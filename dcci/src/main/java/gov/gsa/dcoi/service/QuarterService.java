@@ -146,8 +146,7 @@ public class QuarterService {
 	 * @return
 	 */
 	@Transactional
-	public Map<String, Object> createQuarter(String dueDate) {
-		Map<String, Object> returnMap = new HashMap<>();
+	public void createQuarter(String dueDate) {
 		try {
 			QuarterReport quarterReport = quarterReportRepository.findByQuarterInProgressFlag(1);
 
@@ -155,15 +154,11 @@ public class QuarterService {
 			quarterReport.setQuarterActiveFlag(1);
 			quarterReport.setQuarterInProgressFlag(0);
 			quarterReportRepository.save(quarterReport);
-			returnMap.put("successData",
-					new DcoiRestMessage(messageSource.getMessage("createQuarterSuccess", null, null)));
-			return returnMap;
 		} catch (DataAccessException dae) {
 			LOGGER.error(dae.getMessage());
 			throw DcoiExceptionHandler.throwDcoiException(
 					"Exception creating quarter with updated active flag" + "and due date: " + dae.getMessage());
 		}
-
 	}
 
 	/**

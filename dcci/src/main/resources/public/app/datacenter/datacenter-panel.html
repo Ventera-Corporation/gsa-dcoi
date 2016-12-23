@@ -6,6 +6,10 @@
 	<div class="panel-heading" data-ng-include="'app/datacenter/datacenter-panelheader.html'"
 			data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].expanded">
 	</div>
+	<!-- Data Center Messages -->
+	<div data-messages
+		data-success-data="dcc.tempData.successData"
+		data-error-data="dcc.tempData.errorData"></div>
 
 	<!-- Data Center Body -->
 	<div id="dataCentr{{dataCenter.dataCenterId}}-body" class="panel-collapse collapse in" >

@@ -103,7 +103,6 @@
 		}
 		
 		function editQuarter(){
-			qc.tempData.errorData = {};
 			qc.tempData.editMode = true;
 			//need to keep track of which panels were visited where we started in editMode
 			qc.tempData.wasInEditMode.dataCenterNames.push(qc.tempData.selected.dataCenterName);
@@ -115,15 +114,32 @@
 		}
 		
 		function createQuarter(){
-			QuarterService.createQuarter(qc.quarterData.dueDate).then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
-					$location.path('/dashboard');
-				}
+			var modalInstance = $uibModal.open({
+			    animation : true,
+			    templateUrl : 'app/common/confirm.html',
+			    backdrop : 'static',
+			    controller : 'CommonController',
+			    controllerAs : 'cc',
+			    resolve : {
+			    	message: function () {
+			    		return 	"Once created, you will no longer be able to change the Due Date or add a New Data Center. "
+			    				+ "Are you sure you want to create this Quarter?";
+			        }
+			    }
+			});
+	     	modalInstance.result.then(function () {
+				QuarterService.createQuarter(qc.quarterData.fiscalQuarterReport.quarterDueDate).then(function (data){
+					if(data.error){
+						//show errors
+						qc.tempData.errorData = data;
+					} else {
+						//hide errors
+						qc.tempData.errorData = null;
+						//show success message
+						qc.tempData.successData = data.successData;
+						$location.path('/dashboard');
+					}
+				});
 			});
 		}
 		
@@ -133,8 +149,10 @@
 					//show errors
 					qc.tempData.errorData = data;
 				} else {
+					//hide errors
+					qc.tempData.errorData = null;
 					//show success message
-					qc.tempData.successData = data;
+					qc.tempData.successData = data.successData;
 					//reset all of the edited panels
 					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
 					qc.tempData.editMode = false;
@@ -211,6 +229,8 @@
 					//show errors
 					qc.tempData.errorData = data;
 				} else {
+					//hide errors
+					qc.tempData.errorData = null;
 					//show success message
 					qc.tempData.successData = data.successData;
 					var newdataCenterData = data.dataCenterData;
@@ -233,14 +253,31 @@
 		}
 		
 		function completeQuarter(){
-			QuarterService.completeQuarter().then(function (data){
-				if(data.error){
-					//show errors
-					qc.tempData.errorData = data;
-				} else {
-					//show success message
-					qc.tempData.successData = data.successData;
-				}
+			var modalInstance = $uibModal.open({
+			    animation : true,
+			    templateUrl : 'app/common/confirm.html',
+			    backdrop : 'static',
+			    controller : 'CommonController',
+			    controllerAs : 'cc',
+			    resolve : {
+			    	message: function () {
+			    		return 	"Once completed, you will no longer be able to change any Quarter information. "
+			    				+ "Are you sure you want to complete this Quarter?";
+			        }
+			    }
+			});
+	     	modalInstance.result.then(function () {
+				QuarterService.completeQuarter().then(function (data){
+					if(data.error){
+						//show errors
+						qc.tempData.errorData = data;
+					} else {
+						//hide errors
+						qc.tempData.errorData = null;
+						//show success message
+						qc.tempData.successData = data.successData;
+					}
+				});
 			});
 		}
 		
@@ -250,6 +287,8 @@
 					//show errors
 					qc.tempData.errorData = data;
 				} else {
+					//hide errors
+					qc.tempData.errorData = null;
 					var blob = new Blob([data], {type: 'application/xls'});
 					window.navigator.msSaveOrOpenBlob(blob, 
 							"Quarter" + qc.quarterData.fiscalQuarterReport.fiscalQuarter 

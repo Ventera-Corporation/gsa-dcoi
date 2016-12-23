@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import gov.gsa.dcoi.DcoiRestErrorResponse;
-import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
@@ -62,6 +61,13 @@ public class QuarterController {
 
 	@Autowired
 	MessageSource messageSource;
+
+	private static final String SUCCESS_DATA = "successData";
+	private static final String MESSAGE_LIST = "messageList";
+	private static final String SAVE_SUCCESS = "saveSuccess";
+	private static final String CREATE_QUARTER_SUCCESS = "createQuarterSuccess";
+	private static final String COMPLETE_QUARTER_SUCCESS = "completeQuarterSuccess";
+	private static final String DATE_NOT_IN_PAST = "dateNotInPast";
 
 	/**
 	 * Initialize adding a new Quarter
@@ -139,21 +145,22 @@ public class QuarterController {
 			if (null != inputDate) {
 				if (inputDate.before(new Date())) {
 					DcoiRestErrorResponse response = new DcoiRestErrorResponse();
-					String newMessage = messageSource.getMessage("dateNotInPast", null, null);
+					String newMessage = messageSource.getMessage(DATE_NOT_IN_PAST, null, null);
 
-					response.getMessages().put("dateNotInPast", newMessage);
-					returnMap.put("dateNotInPast", newMessage);
+					response.getMessages().put(DATE_NOT_IN_PAST, newMessage);
+					returnMap.put(DATE_NOT_IN_PAST, newMessage);
 					return returnMap;
 				}
 			}
 		} catch (ParseException pe) {
 			LOGGER.error(pe.getMessage());
-			String newMessage = messageSource.getMessage("dateNotInPast", null, null);
-			returnMap.put("dateNotInPast", newMessage);
+			String newMessage = messageSource.getMessage(DATE_NOT_IN_PAST, null, null);
+			returnMap.put(DATE_NOT_IN_PAST, newMessage);
 			return returnMap;
 		}
 		// Should only do validation on the due date
-		returnMap = quarterService.createQuarter(dueDate);
+		quarterService.createQuarter(dueDate);
+		addSuccessData(returnMap, CREATE_QUARTER_SUCCESS);
 		return returnMap;
 
 	}
@@ -172,7 +179,7 @@ public class QuarterController {
 		// Add Admin Check
 		returnMap.put("dataCenterIdTotalsPairs", quarterService.costCalculation(dataCenterDtos.getList()));
 		dataCenterService.saveDataCenters(dataCenterDtos.getList());
-		returnMap.put("successData", "This page is successfully saved.");
+		addSuccessData(returnMap, SAVE_SUCCESS);
 		return returnMap;
 
 	}
@@ -191,8 +198,7 @@ public class QuarterController {
 		if (returnMap.get("errorMessage") != null) {
 			return returnMap;
 		}
-		returnMap.put("successsMessage",
-				new DcoiRestMessage(messageSource.getMessage("completeQuarterSuccess", null, null)));
+		addSuccessData(returnMap, COMPLETE_QUARTER_SUCCESS);
 		return returnMap;
 
 	}
@@ -307,5 +313,11 @@ public class QuarterController {
 				"FISCAL YEAR", "FISCAL QUARTER", "ISS POSITION NAME", "ISS PROVIDER" };
 		searchResultsMap.put(exportColumnNames, dataCenterViewSearchResults);
 		return searchResultsMap;
+	}
+	
+	private void addSuccessData(Map<String, Object> returnMap, String messageName){
+		Map<String, String[]> successData = new HashMap<>();
+		successData.put(MESSAGE_LIST, new String[]{messageSource.getMessage(messageName, null, null)});
+		returnMap.put(SUCCESS_DATA, successData);
 	}
 }
