@@ -2,8 +2,8 @@
 	<strong>{{fc.fieldName}}</strong>
 	<div>{{fc.newQuarterValue || "None"}}
 		<small data-ng-if="fc.viewAddon && fc.newQuarterValue">&nbsp;{{fc.viewAddon}}</small>
-	</div><pre>{{fc.newQuarterValue|json}}</pre>
+	</div>
 	<span class="warning-text" data-ng-if="fc.pastQuarterValue != fc.newQuarterValue">
 		Past Value: {{fc.pastQuarterValue || "None"}}
-	</span><pre>{{fc.pastQuarterValue|json}}</pre>
+	</span>
 </div>
