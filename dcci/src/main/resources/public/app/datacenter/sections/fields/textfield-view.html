@@ -1,9 +1,9 @@
-<div class="vnt-margin-top" data-ng-class="fc.pastQuarterValue !== fc.newQuarterValue ? 'has-warning' : ''">
+<div class="vnt-margin-top" data-ng-class="fc.pastQuarterValue != fc.newQuarterValue ? 'has-warning' : ''">
 	<strong>{{fc.fieldName}}</strong>
 	<div>{{fc.newQuarterValue || "None"}}
 		<small data-ng-if="fc.viewAddon && fc.newQuarterValue">&nbsp;{{fc.viewAddon}}</small>
-	</div>
-	<span class="warning-text" data-ng-if="fc.pastQuarterValue !== fc.newQuarterValue">
+	</div><pre>{{fc.newQuarterValue|json}}</pre>
+	<span class="warning-text" data-ng-if="fc.pastQuarterValue != fc.newQuarterValue">
 		Past Value: {{fc.pastQuarterValue || "None"}}
-	</span>
+	</span><pre>{{fc.pastQuarterValue|json}}</pre>
 </div>

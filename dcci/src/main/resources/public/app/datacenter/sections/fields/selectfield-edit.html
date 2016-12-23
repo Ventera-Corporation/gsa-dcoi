@@ -1,4 +1,4 @@
-<div data-ng-class="fc.pastQuarterValue !== fc.newQuarterValue ? 'form-group has-warning' : 'form-group'">
+<div data-ng-class="fc.pastQuarterValue != fc.newQuarterValue ? 'form-group has-warning' : 'form-group'">
 	<label for="dataCenter{{fc.dataCenter.dataCenterId}}{{fc.totalsName}}{{fc.fieldOffice.fieldOfficeName}}{{fc.sectionPropName}}{{fc.fieldPropName}}">
 		{{fc.fieldName}}
 		<span class="vnt-red-text" data-ng-if="fc.fieldRequired === 'true'">*</span>
@@ -9,7 +9,7 @@
 		<option value="">Select One</option>
 	</select>
 	<div class="text-danger" data-ng-if="fc.errorMessage">{{fc.errorMessage}}</div>
-	<span class="warning-text" data-ng-if="fc.pastQuarterValue !== fc.newQuarterValue">
+	<span class="warning-text" data-ng-if="fc.pastQuarterValue != fc.newQuarterValue">
 		<span>Past Value: {{fc.getValueFromRefValueListForValueId(fc.pastQuarterValue)}}</span>
 	</span>
 </div>

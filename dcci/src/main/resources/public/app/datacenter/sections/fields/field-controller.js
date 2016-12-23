@@ -13,24 +13,28 @@
 		fc.findPastValueForDataCenter();
 
 		function findPastValueForDataCenter(){
-			fc.pastQuarterValue = null;
 			var foundDataCenter = $filter('filter')(fc.pastDataCenters, 
-					{'dataCenterId':fc.dataCenter.dataCenterId}, true)[0];
-			if(foundDataCenter){
-				if(fc.fieldOffice){
-					var foundFieldOffice = $filter('filter')(foundDataCenter.fieldOffices,
-							{'fieldOfficeName':fc.fieldOffice.fieldOfficeName}, true)[0];
-					if(foundFieldOffice){
-						fc.pastQuarterValue = foundFieldOffice[fc.sectionPropName][fc.fieldPropName];
+					{'dataCenterId':fc.dataCenter.dataCenterId}, true);
+			if(foundDataCenter.length){
+				//try to retrieve the past data center if it can't just say the value is null
+				try {
+					if(fc.fieldOffice){
+						var foundFieldOffice = $filter('filter')(foundDataCenter.fieldOffices,
+								{'fieldOfficeName':fc.fieldOffice.fieldOfficeName}, true);
+						if(foundFieldOffice.length){
+							fc.pastQuarterValue = foundFieldOffice[0][fc.sectionPropName][fc.fieldPropName];
+						}
+					} else if(fc.totalsName){
+						fc.pastQuarterValue = foundDataCenter[0][fc.totalsName][fc.sectionPropName][fc.fieldPropName];
+					} else {
+						fc.pastQuarterValue = foundDataCenter[0][fc.sectionPropName][fc.fieldPropName];
 					}
-				} else if(fc.totalsName){
-					fc.pastQuarterValue = foundDataCenter[fc.totalsName][fc.sectionPropName][fc.fieldPropName];
-				} else {
-					fc.pastQuarterValue = foundDataCenter[fc.sectionPropName][fc.fieldPropName];
-				}
-				
-				if(fc.fieldFilter){
-					fc.pastQuarterValue = $filter(fc.fieldFilter)(fc.pastQuarterValue);
+					
+					if(fc.fieldFilter){
+						fc.pastQuarterValue = $filter(fc.fieldFilter)(fc.pastQuarterValue);
+					}
+				} catch(err){
+					fc.pastQuarterValue = undefined;
 				}
 			}
 		}
@@ -38,7 +42,7 @@
 		function getValueFromRefValueListForValueId(id){
 			if(id){
 				var foundRefValue = $filter('filter')(fc.refValueList, {'id':id}, true);
-				if(foundRefValue){
+				if(foundRefValue.length){
 					return foundRefValue[0].value;
 				}
 			}
