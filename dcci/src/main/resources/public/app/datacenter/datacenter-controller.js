@@ -3,9 +3,9 @@
 	
 	angular.module('dcoiApp').controller('DataCenterController', DataCenterController);
 	
-	DataCenterController.$inject = ['DataCenterService'];
+	DataCenterController.$inject = ['DataCenterService', '$uibModal'];
 	
-	function DataCenterController(DataCenterService){
+	function DataCenterController(DataCenterService, $uibModal){
 		var dcc = this;
 		dcc.submitDataCenter = submitDataCenter;
 		dcc.rejectDataCenter = rejectDataCenter;
