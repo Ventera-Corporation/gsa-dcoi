@@ -289,10 +289,20 @@
 				} else {
 					//hide errors
 					qc.tempData.errorData = null;
-					var blob = new Blob([data], {type: 'application/xls'});
-					window.navigator.msSaveOrOpenBlob(blob, 
-							"Quarter" + qc.quarterData.fiscalQuarterReport.fiscalQuarter 
-							+ qc.quarterData.fiscalQuarterReport.fiscalYear + ".xls");
+					var file = new Blob([data], {type: 'application/xls'});
+					var fileName = "Quarter" + qc.quarterData.fiscalQuarterReport.fiscalQuarter 
+							+ qc.quarterData.fiscalQuarterReport.fiscalYear + ".xls";
+					try {
+						window.navigator.msSaveOrOpenBlob(file, fileName);
+					} catch(err) {
+						var fileURL = URL.createObjectURL(file);
+					    var a         = document.createElement('a');
+					    a.href        = fileURL; 
+					    a.target      = '_blank';
+					    a.download    = fileName;
+					    document.body.appendChild(a);
+					    a.click();
+					}
 				}
 			});
 		}
