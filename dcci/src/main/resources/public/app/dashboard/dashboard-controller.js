@@ -7,6 +7,12 @@
 	
 	function DashboardController(DashboardService, $location, $filter, dashboardData){
 		var dc = this;
+		dc.tempData = {};
+		if($location.search().successData){
+			dc.tempData.successData = JSON.parse(decodeURIComponent($location.search().successData));
+		} else if($location.search().errorData){
+			dc.tempData.errorData = JSON.parse(decodeURIComponent($location.search().errorData));
+		}
 		dc.dashboardData = dashboardData;
 		dc.initDashboardData = initDashboardData;
 		dc.isAlreadyInProgressQuarter = isAlreadyInProgressQuarter;
