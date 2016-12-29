@@ -66,7 +66,25 @@
 			templateUrl : 'app/admin/admin.html',
 			controller : 'AdminController',
 			controllerAs : 'admin',
-			resolve : {}
+			resolve : {
+				usersOrMetrics : function(AdminService) {
+					return AdminService.initAdmin().then(function(data) {
+						return data;
+					});
+				}
+			}
+		})
+		.when('/metrics', {
+			templateUrl : 'app/admin/omb-metrics.html',
+			controller : 'AdminController',
+			controllerAs : 'admin',
+			resolve : {
+				usersOrMetrics : function(AdminService) {
+					return AdminService.metrics().then(function(data) {
+						return data;
+					});
+				}
+			}
 		});
 	}
 })();

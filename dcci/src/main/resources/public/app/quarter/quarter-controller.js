@@ -3,9 +3,9 @@
 	
 	angular.module('dcoiApp').controller('QuarterController', QuarterController);
 	
-	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', '$routeParams', 'initData', '$location'];
+	QuarterController.$inject = ['QuarterService', '$uibModal', '$filter', '$routeParams', '$location', 'initData'];
 	
-	function QuarterController(QuarterService, $uibModal, $filter, $routeParams, initData){
+	function QuarterController(QuarterService, $uibModal, $filter, $routeParams, $location, initData){
 		var qc = this;
 		qc.tempData = {};
 		qc.tempData.editMode = false;
@@ -137,7 +137,8 @@
 						qc.tempData.errorData = null;
 						//show success message
 						qc.tempData.successData = data.successData;
-						$location.path('/dashboard');
+						//navigate the admin back to the dashboard with a showing success message
+						$location.path('/dashboard').search('successData', encodeURIComponent(JSON.stringify(qc.tempData.successData)));
 					}
 				});
 			});

@@ -10,8 +10,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import gov.gsa.dcoi.dto.DataCenterDto;
-import gov.gsa.dcoi.service.DataCenterService;
 import gov.gsa.dcoi.repository.DataCenterViewRepository;
 
 /**
@@ -20,21 +18,22 @@ import gov.gsa.dcoi.repository.DataCenterViewRepository;
 @RestController
 @RequestMapping("/search")
 public class SearchController {
-	
+
 	@Autowired
 	DataCenterViewRepository viewRepository;
-	
+
 	/**
 	 * Search
+	 * 
+	 * @return
 	 */
 	@RequestMapping(value = "/results", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	@ResponseBody
 	public Map<String, Object> search() {
-		Map<String, Object> returnData = new HashMap<String, Object>();
+		Map<String, Object> returnData = new HashMap<>();
 		returnData.put("searchResults", viewRepository.findAllDataCenterRecords());
 		return returnData;
 	}
-	
-}
 
+}

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import gov.gsa.dcoi.DcoiRestErrorResponse;
+import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
@@ -63,11 +63,14 @@ public class QuarterController {
 	MessageSource messageSource;
 
 	private static final String SUCCESS_DATA = "successData";
+	private static final String ERROR_DATA = "errorData";
+	public static final String ERROR_ALERT = "error.alert";
 	private static final String MESSAGE_LIST = "messageList";
 	private static final String SAVE_SUCCESS = "saveSuccess";
 	private static final String CREATE_QUARTER_SUCCESS = "createQuarterSuccess";
 	private static final String COMPLETE_QUARTER_SUCCESS = "completeQuarterSuccess";
 	private static final String DATE_NOT_IN_PAST = "dateNotInPast";
+	private static final String QUARTER_DUE_DATE = "quarterDueDate";
 
 	/**
 	 * Initialize adding a new Quarter
@@ -137,25 +140,29 @@ public class QuarterController {
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-	public Map<String, Object> createQuarter(@Pattern(regexp = "([0-9]{2})/([0-9]{2})/([0-9]{4})") String dueDate) {
+	public Map<String, Object> createQuarter(
+			@RequestBody @Pattern(regexp = "([0-9]{2})/([0-9]{2})/([0-9]{4})") String dueDate) {
 		Map<String, Object> returnMap = new HashMap<>();
 		DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		try {
 			Date inputDate = format.parse(dueDate);
 			if (null != inputDate) {
 				if (inputDate.before(new Date())) {
-					DcoiRestErrorResponse response = new DcoiRestErrorResponse();
-					String newMessage = messageSource.getMessage(DATE_NOT_IN_PAST, null, null);
+					Map<String, DcoiRestMessage> errorData = new HashMap<>();
+					errorData.put(MESSAGE_LIST,
+							new DcoiRestMessage(ERROR_ALERT, messageSource.getMessage(ERROR_ALERT, null, null)));
+					errorData.put("messages", new DcoiRestMessage(QUARTER_DUE_DATE,
+							messageSource.getMessage(DATE_NOT_IN_PAST, null, null)));
 
-					response.getMessages().put(DATE_NOT_IN_PAST, newMessage);
-					returnMap.put(DATE_NOT_IN_PAST, newMessage);
+					returnMap.put(ERROR_DATA, errorData);
+
+					addErrorData(returnMap, DATE_NOT_IN_PAST);
 					return returnMap;
 				}
 			}
 		} catch (ParseException pe) {
 			LOGGER.error(pe.getMessage());
-			String newMessage = messageSource.getMessage(DATE_NOT_IN_PAST, null, null);
-			returnMap.put(DATE_NOT_IN_PAST, newMessage);
+			addErrorData(returnMap, DATE_NOT_IN_PAST);
 			return returnMap;
 		}
 		// Should only do validation on the due date
@@ -314,10 +321,30 @@ public class QuarterController {
 		searchResultsMap.put(exportColumnNames, dataCenterViewSearchResults);
 		return searchResultsMap;
 	}
-	
-	private void addSuccessData(Map<String, Object> returnMap, String messageName){
+
+	/**
+	 * Method to add a message to the success data being sent to the front end
+	 * 
+	 * @param returnMap
+	 * @param messageName
+	 */
+	private void addSuccessData(Map<String, Object> returnMap, String messageName) {
 		Map<String, String[]> successData = new HashMap<>();
-		successData.put(MESSAGE_LIST, new String[]{messageSource.getMessage(messageName, null, null)});
+		successData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(messageName, null, null) });
 		returnMap.put(SUCCESS_DATA, successData);
+	}
+
+	/**
+	 * Method to add a message to the error data to be sent to the front end
+	 * 
+	 * @param returnMap
+	 * @param messageName
+	 * @return
+	 * 
+	 */
+	private void addErrorData(Map<String, Object> returnMap, String messageName) {
+		Map<String, String[]> errorData = new HashMap<>();
+		errorData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(messageName, null, null) });
+		returnMap.put(ERROR_DATA, errorData);
 	}
 }

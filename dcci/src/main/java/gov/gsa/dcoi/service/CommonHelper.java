@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.MessageSource;
 
 import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
 import gov.gsa.dcoi.repository.ReferenceValueListRepository;
@@ -17,6 +19,9 @@ import gov.gsa.dcoi.repository.ReferenceValueListRepository;
  *
  */
 public class CommonHelper {
+
+	@Autowired
+	MessageSource messageSource;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReferenceValueListRepository.class);
 

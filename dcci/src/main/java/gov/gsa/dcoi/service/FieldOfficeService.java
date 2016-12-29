@@ -17,6 +17,7 @@ import gov.gsa.dcoi.entity.CostCalculation;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.FieldOffice;
 import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
+import gov.gsa.dcoi.refValueEntity.ReferenceValueConstants;
 import gov.gsa.dcoi.repository.CostCalculationRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
 
@@ -96,12 +97,12 @@ public class FieldOfficeService {
 	@Transactional(readOnly = true)
 	public FieldOfficeDto createTotalsTab(DataCenterQuarter dataCenterQuarter) {
 		FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
-		//server info totals
+		// server info totals
 		ServerInformationDto serverInformationDto = new ServerInformationDto();
 		BeanUtils.copyProperties(dataCenterQuarter, serverInformationDto);
 		fieldOfficeDto.setServerInfo(serverInformationDto);
-		
-		//cost calc
+
+		// cost calc
 		List<CostCalculation> costCalcList = costCalcRepository
 				.findByDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
 		if (costCalcList != null && !costCalcList.isEmpty()) {
@@ -112,19 +113,14 @@ public class FieldOfficeService {
 		} else {
 			fieldOfficeDto.setCostCalc(new CostCalculationDto());
 		}
-		
-		//other calc - TODO put in other calc repository
-		List<CostCalculation> otherCalcList = new ArrayList<>();
-//				costCalcRepository
-//				.findByDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
-		if (otherCalcList != null && !otherCalcList.isEmpty()) {
-			CostCalculation otherCalc = otherCalcList.get(otherCalcList.size() - 1);
-			OtherCalculationDto otherCalcDto = new OtherCalculationDto();
-			BeanUtils.copyProperties(otherCalc, otherCalcDto);
-			fieldOfficeDto.setOtherCalc(otherCalcDto);
-		} else {
-			fieldOfficeDto.setOtherCalc(new OtherCalculationDto());
-		}
+
+		// other calc
+		OtherCalculationDto otherCalcDto = new OtherCalculationDto();
+		BeanUtils.copyProperties(dataCenterQuarter, otherCalcDto);
+		fieldOfficeDto.setOtherCalc(otherCalcDto);
+
+		fieldOfficeDto.setOtherCalc(otherCalcDto);
+
 		fieldOfficeDto.setFieldOfficeName("Totals");
 
 		return fieldOfficeDto;
@@ -149,28 +145,22 @@ public class FieldOfficeService {
 	 */
 	private List<FieldOfficeDto> populateInformationAboutFieldOffices(List<FieldOffice> fieldOffices) {
 		List<FieldOfficeDto> fieldOfficeDtos = new ArrayList<>();
-		List<GenericReferenceValueObject> componentRefValueList = ReferenceValueListService.refValueLists.get("componentRefValueList");
-		//if there are no field offices create a default OCIO one
-		if(CollectionUtils.isNotEmpty(fieldOffices)){
-			for(FieldOffice fieldOffice : fieldOffices){
-				for (GenericReferenceValueObject valueObject : componentRefValueList) {
-					if(fieldOffice.getComponentId() == valueObject.getId()){
-						FieldOfficeDto fieldOfficeDto = copyEntityToDto(fieldOffice);
-						fieldOfficeDto.setComponentId(valueObject.getId());
-						fieldOfficeDto.setFieldOfficeName(valueObject.getValue());
-						fieldOfficeDtos.add(fieldOfficeDto);
-					}
-				}
+		List<GenericReferenceValueObject> componentRefValueList = ReferenceValueListService.refValueLists
+				.get("componentRefValueList");
+		// if there are no field offices create a default OCIO one
+		if (CollectionUtils.isNotEmpty(fieldOffices)) {
+			for (FieldOffice fieldOffice : fieldOffices) {
+				FieldOfficeDto fieldOfficeDto = copyEntityToDto(fieldOffice);
+				fieldOfficeDto.setComponentId(fieldOffice.getComponentId());
+				fieldOfficeDto
+						.setFieldOfficeName(componentRefValueList.get(fieldOffice.getComponentId() - 1).getValue());
+				fieldOfficeDtos.add(fieldOfficeDto);
 			}
 		} else {
-			for (GenericReferenceValueObject valueObject : componentRefValueList) {
-				if("OCIO".equals(valueObject.getValue())){
-					FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
-					fieldOfficeDto.setComponentId(valueObject.getId());
-					fieldOfficeDto.setFieldOfficeName(valueObject.getValue());
-					fieldOfficeDtos.add(fieldOfficeDto);
-				}
-			}
+			FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
+			fieldOfficeDto.setComponentId(ReferenceValueConstants.OCIO_ID);
+			fieldOfficeDto.setFieldOfficeName("OCIO");
+			fieldOfficeDtos.add(fieldOfficeDto);
 		}
 		return fieldOfficeDtos;
 	}
