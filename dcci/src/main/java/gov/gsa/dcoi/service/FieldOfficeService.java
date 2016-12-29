@@ -114,7 +114,7 @@ public class FieldOfficeService {
 		}
 		
 		//other calc - TODO put in other calc repository
-		List<CostCalculation> otherCalcList = new ArrayList<>();
+		List<CostCalculation> otherCalcList = new ArrayList<CostCalculation>();
 //				costCalcRepository
 //				.findByDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
 		if (otherCalcList != null && !otherCalcList.isEmpty()) {
@@ -148,7 +148,7 @@ public class FieldOfficeService {
 	 * @return
 	 */
 	private List<FieldOfficeDto> populateInformationAboutFieldOffices(List<FieldOffice> fieldOffices) {
-		List<FieldOfficeDto> fieldOfficeDtos = new ArrayList<>();
+		List<FieldOfficeDto> fieldOfficeDtos = new ArrayList<FieldOfficeDto>();
 		List<GenericReferenceValueObject> componentRefValueList = ReferenceValueListService.refValueLists.get("componentRefValueList");
 		//if there are no field offices create a default OCIO one
 		if(CollectionUtils.isNotEmpty(fieldOffices)){

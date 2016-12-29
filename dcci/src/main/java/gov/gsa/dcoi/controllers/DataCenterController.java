@@ -58,7 +58,7 @@ public class DataCenterController {
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> initNewDataCenter() {
-		Map<String, Object> returnData = new HashMap<>();
+		Map<String, Object> returnData = new HashMap<String, Object>();
 		returnData.put("dataCenterData", new DataCenterDto());
 		returnData.put("fieldOfficeData", new FieldOfficeDto());
 		returnData.put("regionRefValueList", ReferenceValueListService.refValueLists.get("regionRefValueList"));
@@ -76,7 +76,7 @@ public class DataCenterController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> addNewDataCenter(@Valid @RequestBody DataCenterDto dataCenterDto) {
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		returnMap.put("dataCenterData", dataCenterService.addAndReturnNewDataCenter(dataCenterDto));
 		addSuccessData(returnMap, ADD_DATA_CENTER_SUCCESS);
 		return returnMap;
@@ -140,7 +140,7 @@ public class DataCenterController {
 	}
 	
 	private void addSuccessData(Map<String, Object> returnMap, String messageName){
-		Map<String, String[]> successData = new HashMap<>();
+		Map<String, String[]> successData = new HashMap<String, String[]>();
 		successData.put(MESSAGE_LIST, new String[]{messageSource.getMessage(messageName, null, null)});
 		returnMap.put(SUCCESS_DATA, successData);
 	}

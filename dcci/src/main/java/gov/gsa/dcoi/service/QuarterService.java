@@ -76,7 +76,7 @@ public class QuarterService {
 	public Map<String, Object> initQuarter() {
 
 		quarterRepository.initQuarter();
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterInProgressFlag(1);
 		returnMap.put("quarterReport", quarterReport);
@@ -92,7 +92,7 @@ public class QuarterService {
 	 */
 	@Transactional
 	public Map<String, Object> completeQuarter() {
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
 		if (quarterReport == null) {
 			returnMap.put("errorMessage",
@@ -222,7 +222,7 @@ public class QuarterService {
 	 */
 	@Transactional
 	public List<Map<String, Object>> costCalculation(List<DataCenterDto> dataCenterDtos) {
-		List<Map<String, Object>> dataCenterIdTotalsPairs = new ArrayList<>();
+		List<Map<String, Object>> dataCenterIdTotalsPairs = new ArrayList<Map<String, Object>>();
 		for (DataCenterDto dataCenter : dataCenterDtos) {
 			CostCalculation costCalcEntity;
 			List<CostCalculation> costCalcList = costCalcRepository
@@ -234,7 +234,7 @@ public class QuarterService {
 			}
 			Double serverCostTotal = findServerDifferenceAndCost(dataCenter);
 			if (serverCostTotal == null) {
-				Map<String, Object> costCalcMap = new HashMap<>();
+				Map<String, Object> costCalcMap = new HashMap<String, Object>();
 				costCalcMap.put("dataCenterId", dataCenter.getDataCenterId());
 				costCalcMap.put("totals", 0);
 				return dataCenterIdTotalsPairs;
@@ -247,7 +247,7 @@ public class QuarterService {
 			costCalcEntity = costCalcRepository.save(costCalcEntity);
 
 			BeanUtils.copyProperties(costCalcEntity, dataCenter.getTotals().getCostCalc());
-			Map<String, Object> costCalcMap = new HashMap<>();
+			Map<String, Object> costCalcMap =new HashMap<String, Object>();
 			costCalcMap.put("dataCenterId", dataCenter.getDataCenterId());
 			costCalcMap.put("totals", dataCenter.getTotals());
 			dataCenterIdTotalsPairs.add(costCalcMap);
@@ -397,7 +397,7 @@ public class QuarterService {
 	 * @return
 	 */
 	private List<RegionDto> populateInformationAboutRegions() {
-		List<RegionDto> regionDtos = new ArrayList<>();
+		List<RegionDto> regionDtos = new ArrayList<RegionDto>();
 		for (GenericReferenceValueObject valueObject : ReferenceValueListService.refValueLists
 				.get("regionRefValueList")) {
 			RegionDto regionDto = new RegionDto();

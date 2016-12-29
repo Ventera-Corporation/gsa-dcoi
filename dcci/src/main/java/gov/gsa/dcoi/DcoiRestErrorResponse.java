@@ -17,7 +17,7 @@ public class DcoiRestErrorResponse {
 	/**
 	 *
 	 */
-	private List<DcoiRestMessage> messageList = new ArrayList<>();
+	private List<DcoiRestMessage> messageList = new ArrayList<DcoiRestMessage>();
 	/**
 	 *
 	 */

@@ -56,7 +56,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_RECORD_VALIDITY_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -90,7 +90,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_RECORD_STATUS_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -123,7 +123,7 @@ public class ReferenceValueListRepository {
 		try {
 			return jdbcTemplate.query(GET_STATE_REF_LIST, new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 				public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-					List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+					List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 					while (rs.next()) {
 						GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -155,7 +155,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_FISCAL_YEAR_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -187,7 +187,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_FISCAL_QUARTER_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -219,7 +219,7 @@ public class ReferenceValueListRepository {
 		try {
 			return jdbcTemplate.query(GET_REGION_REF_LIST, new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 				public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-					List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+					List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 					while (rs.next()) {
 						GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -256,7 +256,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_OWNERSHIP_TYPE_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -290,7 +290,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_ISS_POSITION_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -323,7 +323,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_DATA_CENTER_TIER_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -357,7 +357,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_COUNTRY_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -389,7 +389,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_CORE_CLASSIFICATION_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -422,7 +422,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_CLOSING_STAGE_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
@@ -455,7 +455,7 @@ public class ReferenceValueListRepository {
 			return jdbcTemplate.query(GET_COMPONENT_REF_LIST,
 					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
 						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
-							List<GenericReferenceValueObject> refValueObjects = new ArrayList<>();
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
 
 							while (rs.next()) {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();

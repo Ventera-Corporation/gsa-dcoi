@@ -80,7 +80,7 @@ public class QuarterController {
 		// call DB stored procedure to create new quarter
 		// return back fiscalQuarterInformation like quarter and fiscal year
 		// as well as return regions/data centers/categories
-		Map<String, Object> returnData = new HashMap<>();
+		Map<String, Object> returnData = new HashMap<String, Object>();
 		if (quarterService.findQuarterByActiveFlag()) {
 			returnData.put("warningMessage", "This action will make the currently active quarter inactive");
 		} else {
@@ -108,25 +108,14 @@ public class QuarterController {
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> viewQuarter(Long quarterId) {
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		QuarterDto quarterDto = quarterService.viewQuarter(quarterId);
-		QuarterDto pastQuarterDto = quarterService.viewQuarter(findPastQuarter(quarterId));
+		QuarterDto pastQuarterDto = quarterService.viewQuarter(quarterService.findPastQuarter(quarterId).getQuarterId());
 		returnMap.put("quarterData", quarterDto);
 		returnMap.put("referenceValueLists", ReferenceValueListService.refValueLists);
 		returnMap.put("pastQuarterData", pastQuarterDto);
 		return returnMap;
 
-	}
-
-	/**
-	 * Find the quarter report id for the previous quarter
-	 * 
-	 * @param quarterId
-	 * @return
-	 */
-	private Long findPastQuarter(Long quarterId) {
-		QuarterReport quarterReport = quarterService.findPastQuarter(quarterId);
-		return quarterReport.getQuarterId();
 	}
 
 	/**
@@ -136,9 +125,9 @@ public class QuarterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public Map<String, Object> createQuarter(@Pattern(regexp = "([0-9]{2})/([0-9]{2})/([0-9]{4})") String dueDate) {
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		try {
 			Date inputDate = format.parse(dueDate);
@@ -175,7 +164,7 @@ public class QuarterController {
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos) {
 
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		// Add Admin Check
 		returnMap.put("dataCenterIdTotalsPairs", quarterService.costCalculation(dataCenterDtos.getList()));
 		dataCenterService.saveDataCenters(dataCenterDtos.getList());
@@ -228,18 +217,7 @@ public class QuarterController {
 
 		String[] sheetTitles = { "Quarter Report" };
 		return excelService.exportReportResults(sheetTitles,
-				buildResultsForExport(findViewResultsByQuarterId(quarterId)));
-	}
-
-	/**
-	 * Get the data center view results that are necessary for the final quarter
-	 * report
-	 * 
-	 * @param quarterId
-	 * @return
-	 */
-	private List<DataCenterView> findViewResultsByQuarterId(Long quarterId) {
-		return quarterService.findViewResultsByQuarterId(quarterId);
+				buildResultsForExport(quarterService.findViewResultsByQuarterId(quarterId)));
 	}
 
 	/**
@@ -250,10 +228,10 @@ public class QuarterController {
 	 * @return
 	 */
 	private Map<String[], List<List<String>>> buildResultsForExport(List<DataCenterView> searchResults) {
-		Map<String[], List<List<String>>> searchResultsMap = new LinkedHashMap<>();
-		List<List<String>> dataCenterViewSearchResults = new LinkedList<>();
+		Map<String[], List<List<String>>> searchResultsMap = new LinkedHashMap<String[], List<List<String>>>();
+		List<List<String>> dataCenterViewSearchResults = new LinkedList<List<String>>();
 		for (DataCenterView searchResultVO : searchResults) {
-			List<String> dataCenterViewSearchResult = new LinkedList<>();
+			List<String> dataCenterViewSearchResult = new LinkedList<String>();
 			dataCenterViewSearchResult.add(searchResultVO.getDataCenterName());
 			dataCenterViewSearchResult.add(searchResultVO.getDcoiDataCenterId());
 			dataCenterViewSearchResult.add(searchResultVO.getStreetAddress());
@@ -316,7 +294,7 @@ public class QuarterController {
 	}
 	
 	private void addSuccessData(Map<String, Object> returnMap, String messageName){
-		Map<String, String[]> successData = new HashMap<>();
+		Map<String, String[]> successData = new HashMap<String, String[]>();
 		successData.put(MESSAGE_LIST, new String[]{messageSource.getMessage(messageName, null, null)});
 		returnMap.put(SUCCESS_DATA, successData);
 	}

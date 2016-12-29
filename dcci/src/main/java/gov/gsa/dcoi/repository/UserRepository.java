@@ -122,7 +122,7 @@ public class UserRepository {
 			return jdbcTemplate.query(GET_USER_ROLES_SQL, new Integer[] { userId },
 					new ResultSetExtractor<List<UserRole>>() {
 						public List<UserRole> extractData(ResultSet rs) throws SQLException, DataAccessException {
-							List<UserRole> roles = new ArrayList<>();
+							List<UserRole> roles = new ArrayList<UserRole>();
 							while (rs.next()) {
 								UserRole ur = new UserRole();
 								ur.setRoleName(rs.getString("role_name"));

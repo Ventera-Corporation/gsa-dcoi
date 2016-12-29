@@ -95,7 +95,7 @@ public class DataCenterService {
 	 */
 	@Transactional(readOnly = true)
 	public List<DataCenterDto> populateDataCenterDtosList(Integer regionId, Long quarterReportId) {
-		List<DataCenterDto> dataCenterDtos = new ArrayList<>();
+		List<DataCenterDto> dataCenterDtos = new ArrayList<DataCenterDto>();
 		List<DataCenter> dataCenterStaticInfo = dataCenterRepository.findByRegionId(regionId);
 		for (DataCenter dataCenter : dataCenterStaticInfo) {
 			DataCenterDto dataCenterDto = new DataCenterDto();
@@ -257,7 +257,7 @@ public class DataCenterService {
 	 */
 	@Transactional
 	public Map<String, Object> setSSOCompleteFlag(Integer dataCenterId) {
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
 		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository
 				.findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
@@ -280,7 +280,7 @@ public class DataCenterService {
 	 */
 	@Transactional
 	public Map<String, Object> setAdminCompleteFlag(Integer dataCenterId) {
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
 		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository
 				.findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
@@ -302,7 +302,7 @@ public class DataCenterService {
 	 */
 	@Transactional
 	public Map<String, Object> rejectDataCenter(Integer dataCenterId) {
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterActiveFlag(1);
 		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository
 				.findByQuarterReportIdAndDataCenterId(quarterReport.getQuarterId(), dataCenterId);
@@ -337,7 +337,7 @@ public class DataCenterService {
 	 */
 	@Transactional(readOnly = true)
 	public List<Integer> findDCCountsForQuarter(Long quarterReportId) {
-		List<Integer> totalsList = new ArrayList<>();
+		List<Integer> totalsList = new ArrayList<Integer>();
 		Iterator<DataCenterQuarter> dataCenterQuarterList = dataCenterQuarterRepository
 				.findByQuarterReportId(quarterReportId).iterator();
 		Integer totalCount = 0;

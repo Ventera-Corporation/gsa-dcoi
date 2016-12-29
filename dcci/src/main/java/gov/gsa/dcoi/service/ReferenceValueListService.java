@@ -26,8 +26,8 @@ public class ReferenceValueListService {
 	@Autowired
 	ReferenceValueListRepository refValueListRepository;
 
-	public static Map<String, List<GenericReferenceValueObject>> refValueLists = Collections
-			.synchronizedMap(new HashMap<>());
+	public static Map<String, List<GenericReferenceValueObject>> refValueLists = 
+			Collections.synchronizedMap(new HashMap<String, List<GenericReferenceValueObject>>());
 
 	/**
 	 * Initialize all reference value lists into caches

@@ -48,7 +48,7 @@ public class DashboardController {
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> initDashboard() {
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		DashboardDto dashboardData = new DashboardDto();
 		List<FiscalQuarterReportDto> quarterReportDtos;
 
@@ -79,7 +79,7 @@ public class DashboardController {
 	 * @return
 	 */
 	private List<Integer> findYearsRepresentedOnDashboard(List<FiscalQuarterReportDto> quarterReportDtos) {
-		List<Integer> yearsList = new ArrayList<>();
+		List<Integer> yearsList = new ArrayList<Integer>();
 		for (FiscalQuarterReportDto quarterReportDto : quarterReportDtos) {
 			Integer year = Integer.valueOf(quarterReportDto.getFiscalYear());
 			if (!yearsList.contains(year)) {
@@ -110,7 +110,7 @@ public class DashboardController {
 	 * @return
 	 */
 	private List<FiscalQuarterReportDto> bulkConvertEntityToDto(List<QuarterReport> quarterReportEntities) {
-		List<FiscalQuarterReportDto> quarterReportDtos = new ArrayList<>();
+		List<FiscalQuarterReportDto> quarterReportDtos = new ArrayList<FiscalQuarterReportDto>();
 		for (QuarterReport quarterReportEntity : quarterReportEntities) {
 			quarterReportDtos.add(convertEntityToDto(quarterReportEntity));
 		}

@@ -5,7 +5,9 @@
 	angular.module('dcoiApp').constant('USER_ROLES', {
 	    all: '*',
 	    admin: 'ADMIN',
-	    user: 'USER'
+	    user: 'USER',
+	    facility: 'FACILITY',
+	    server: 'SERVER'
 	});
 	
 	
