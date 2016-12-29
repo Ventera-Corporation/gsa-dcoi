@@ -298,12 +298,6 @@ public class QuarterController {
 		searchResultsMap.put(exportColumnNames, dataCenterViewSearchResults);
 		return searchResultsMap;
 	}
-<<<<<<< HEAD
-	
-	private void addSuccessData(Map<String, Object> returnMap, String messageName){
-		Map<String, String[]> successData = new HashMap<String, String[]>();
-		successData.put(MESSAGE_LIST, new String[]{messageSource.getMessage(messageName, null, null)});
-=======
 
 	/**
 	 * Method to add a message to the success data being sent to the front end
@@ -314,7 +308,6 @@ public class QuarterController {
 	private void addSuccessData(Map<String, Object> returnMap, String messageName) {
 		Map<String, String[]> successData = new HashMap<>();
 		successData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(messageName, null, null) });
->>>>>>> branch 'working' of https://github.com/Ventera-Corporation/gsa-dcoi.git
 		returnMap.put(SUCCESS_DATA, successData);
 	}
 
