@@ -1,6 +1,5 @@
 package gov.gsa.dcoi.repository;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,7 +30,8 @@ public class DataCenterViewRepository {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataCenterViewRepository.class);
 
 	private static final String GET_ALL_DATA_CENTERS_FOR_QUARTER = "SELECT * FROM vw_DCOI_DataCenters vddc";
-	private static final String GET_DATA_CENTERS_FOR_QUARTER = GET_ALL_DATA_CENTERS_FOR_QUARTER + " WHERE vddc.quarter_report_id = ?";
+	private static final String GET_DATA_CENTERS_FOR_QUARTER = GET_ALL_DATA_CENTERS_FOR_QUARTER
+			+ " WHERE vddc.quarter_report_id = ?";
 
 	@Autowired(required = true)
 	private JdbcTemplate jdbcTemplate;
@@ -43,34 +43,36 @@ public class DataCenterViewRepository {
 	 * @param quarterId
 	 * @return
 	 */
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public List<DataCenterView> findViewResultsByQuarterId(Long quarterId) {
 		try {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("Getting Data Center View Data for: " + quarterId);
 			}
-			return jdbcTemplate.query(GET_DATA_CENTERS_FOR_QUARTER, new String[] {quarterId.toString()}, new ResultSetExtractor<List<DataCenterView>>() {
-				@Override
-				public List<DataCenterView> extractData(ResultSet rs) throws SQLException {
-					return processResults(rs);
-				}
-			});
+			return jdbcTemplate.query(GET_DATA_CENTERS_FOR_QUARTER, new String[] { quarterId.toString() },
+					new ResultSetExtractor<List<DataCenterView>>() {
+						@Override
+						public List<DataCenterView> extractData(ResultSet rs) throws SQLException {
+							return processResults(rs);
+						}
+					});
 		} catch (DataAccessException e) {
 			LOGGER.error(e.getMessage());
-			throw DcoiExceptionHandler.throwDcoiException("Exception Finding User: " + e.getMessage());
+			throw DcoiExceptionHandler
+					.throwDcoiException("Exception Data Center View by Quarter ID: " + e.getMessage());
 		}
 
 	}
-	
+
 	/**
 	 * Return all Data Center Records (All Quarters)
 	 * 
 	 * @return
 	 */
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public List<DataCenterView> findAllDataCenterRecords() {
 		try {
-			
+
 			return jdbcTemplate.query(GET_ALL_DATA_CENTERS_FOR_QUARTER, new ResultSetExtractor<List<DataCenterView>>() {
 				@Override
 				public List<DataCenterView> extractData(ResultSet rs) throws SQLException {
@@ -79,19 +81,20 @@ public class DataCenterViewRepository {
 			});
 		} catch (DataAccessException e) {
 			LOGGER.error(e.getMessage());
-			throw DcoiExceptionHandler.throwDcoiException("Exception Finding User: " + e.getMessage());
+			throw DcoiExceptionHandler
+					.throwDcoiException("Exception Finding all data center view records: " + e.getMessage());
 		}
 
 	}
-	
+
 	/**
-	 * Process View Results 
+	 * Process View Results
 	 *
 	 * @param rs
 	 * @return
 	 */
-	private List<DataCenterView> processResults(ResultSet rs) throws SQLException{
-		List<DataCenterView> dataCenterViews = new ArrayList<DataCenterView>();
+	private List<DataCenterView> processResults(ResultSet rs) throws SQLException {
+		List<DataCenterView> dataCenterViews = new ArrayList<>();
 		while (rs.next()) {
 			DataCenterView dataCenterView = new DataCenterView();
 			dataCenterView.setQuarterReportId(rs.getInt("quarter_report_id"));

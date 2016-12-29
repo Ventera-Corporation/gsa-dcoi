@@ -96,12 +96,12 @@ public class FieldOfficeService {
 	@Transactional(readOnly = true)
 	public FieldOfficeDto createTotalsTab(DataCenterQuarter dataCenterQuarter) {
 		FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
-		//server info totals
+		// server info totals
 		ServerInformationDto serverInformationDto = new ServerInformationDto();
 		BeanUtils.copyProperties(dataCenterQuarter, serverInformationDto);
 		fieldOfficeDto.setServerInfo(serverInformationDto);
-		
-		//cost calc
+
+		// cost calc
 		List<CostCalculation> costCalcList = costCalcRepository
 				.findByDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
 		if (costCalcList != null && !costCalcList.isEmpty()) {
@@ -113,18 +113,13 @@ public class FieldOfficeService {
 			fieldOfficeDto.setCostCalc(new CostCalculationDto());
 		}
 		
-		//other calc - TODO put in other calc repository
-		List<CostCalculation> otherCalcList = new ArrayList<CostCalculation>();
-//				costCalcRepository
-//				.findByDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
-		if (otherCalcList != null && !otherCalcList.isEmpty()) {
-			CostCalculation otherCalc = otherCalcList.get(otherCalcList.size() - 1);
-			OtherCalculationDto otherCalcDto = new OtherCalculationDto();
-			BeanUtils.copyProperties(otherCalc, otherCalcDto);
-			fieldOfficeDto.setOtherCalc(otherCalcDto);
-		} else {
-			fieldOfficeDto.setOtherCalc(new OtherCalculationDto());
-		}
+		// other calc
+		OtherCalculationDto otherCalcDto = new OtherCalculationDto();
+		BeanUtils.copyProperties(dataCenterQuarter, otherCalcDto);
+		fieldOfficeDto.setOtherCalc(otherCalcDto);
+
+		fieldOfficeDto.setOtherCalc(otherCalcDto);
+
 		fieldOfficeDto.setFieldOfficeName("Totals");
 
 		return fieldOfficeDto;

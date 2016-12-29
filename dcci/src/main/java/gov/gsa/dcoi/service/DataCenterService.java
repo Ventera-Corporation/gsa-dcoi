@@ -24,6 +24,7 @@ import gov.gsa.dcoi.entity.DataCenter;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.FieldOffice;
 import gov.gsa.dcoi.entity.QuarterReport;
+import gov.gsa.dcoi.refValueEntity.ReferenceValueConstants;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 import gov.gsa.dcoi.repository.DataCenterRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
@@ -130,10 +131,151 @@ public class DataCenterService {
 			dataCenterRepository.save(dataCenterEntity);
 
 			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
-				dataCenterQuarterRepository.save(copyDtoToEntity(dataCenterDto, fieldOfficeDto));
+
+				dataCenterQuarterRepository.save(otherCalculations(copyDtoToEntity(dataCenterDto, fieldOfficeDto)));
 				fieldOfficeRepository.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
 			}
 		}
+	}
+
+	/**
+	 * Helper method to compute the other OMB calculations
+	 * 
+	 * @param dataCenterQuarter
+	 * @return
+	 */
+	private DataCenterQuarter otherCalculations(DataCenterQuarter dataCenterQuarter) {
+		otherCalcFromStatusInfo(dataCenterQuarter);
+		otherCalcFromFacilityInfo(dataCenterQuarter);
+		otherCalcFromServerInfo(dataCenterQuarter);
+		return dataCenterQuarter;
+	}
+
+	/**
+	 * Helper method to compute the additional calculated fields corresponding
+	 * to the statusDTO
+	 * 
+	 * @param dataCenterQuarter
+	 */
+	private void otherCalcFromStatusInfo(DataCenterQuarter dataCenterQuarter) {
+		Integer dataCenterTierId = dataCenterQuarter.getDataCenterTierId();
+
+		if ((dataCenterQuarter.getOwnershipTypeId() != null
+				&& dataCenterQuarter.getOwnershipTypeId().equals(ReferenceValueConstants.CLOUD_PROVIDER_OWNERSHIP_TYPE))
+				|| (dataCenterQuarter.getRecordValidityId() != null
+						&& dataCenterQuarter.getRecordValidityId().equals(ReferenceValueConstants.INVALID_FACILITY))) {
+			dataCenterQuarter.setTierClassification("Using Cloud Provider");
+		} else if (dataCenterTierId != null && (dataCenterTierId.equals(ReferenceValueConstants.TIER_1)
+				|| dataCenterTierId.equals(ReferenceValueConstants.TIER_2)
+				|| dataCenterTierId.equals(ReferenceValueConstants.TIER_3)
+				|| dataCenterTierId.equals(ReferenceValueConstants.TIER_4))) {
+			dataCenterQuarter.setTierClassification("Tiered");
+		} else {
+			dataCenterQuarter.setTierClassification("Non-Tiered");
+		}
+		if (dataCenterQuarter.getClosingFiscalQuarterId() != null
+				&& dataCenterQuarter.getClosingFiscalYearId() != null) {
+			dataCenterQuarter.setClosingTargetDate(
+					CommonHelper.parseFiscalQuarterId(dataCenterQuarter.getClosingFiscalQuarterId()) + "/"
+							+ CommonHelper.parseFiscalYearId(dataCenterQuarter.getClosingFiscalYearId()));
+		}
+	}
+
+	/**
+	 * Helper method to compute the additional calculated fields from the
+	 * facilityDTO
+	 * 
+	 * @param dataCenterQuarter
+	 */
+	private void otherCalcFromFacilityInfo(DataCenterQuarter dataCenterQuarter) {
+		Integer grossFloorArea = dataCenterQuarter.getGrossFloorArea();
+
+		if (grossFloorArea != null) {
+			// Floor Area Classification
+			if (grossFloorArea < Integer.valueOf(100)) {
+				dataCenterQuarter.setFloorAreaClassification("< 100 sq. ft.");
+			} else if (grossFloorArea < Integer.valueOf(250)) {
+				dataCenterQuarter.setFloorAreaClassification("< 250 sq. ft.");
+			} else if (grossFloorArea < Integer.valueOf(500)) {
+				dataCenterQuarter.setFloorAreaClassification("< 500 sq. ft.");
+			} else if (grossFloorArea < Integer.valueOf(5000)) {
+				dataCenterQuarter.setFloorAreaClassification("< 5000 sq. ft.");
+			} else {
+				dataCenterQuarter.setFloorAreaClassification(">= 5000 sq. ft.");
+			}
+
+			// Watts Per Sq Ft
+			if (dataCenterQuarter.getTotalITPowerCapacity() != null) {
+				dataCenterQuarter.setWattsSqFt(
+						(dataCenterQuarter.getTotalITPowerCapacity() * Double.valueOf(1000)) / grossFloorArea);
+			}
+		}
+
+		if (dataCenterQuarter.getAvgITElectricityUsage() != null && dataCenterQuarter.getAvgITElectricityUsage() != 0
+				&& dataCenterQuarter.getAvgElectricityUsage() != null) {
+			dataCenterQuarter
+					.setPue(dataCenterQuarter.getAvgElectricityUsage() / dataCenterQuarter.getAvgITElectricityUsage());
+		}
+	}
+
+	/**
+	 * Helper method to compute the additional calculated fields corresponding
+	 * to the serverInfoDto
+	 * 
+	 * @param dataCenterQuarter
+	 */
+	private void otherCalcFromServerInfo(DataCenterQuarter dataCenterQuarter) {
+
+		dataCenterQuarter.setPhysicalServerCount(addPhysicalServerCounts(dataCenterQuarter));
+
+		dataCenterQuarter.setOsCount(addOSServerCounts(dataCenterQuarter));
+
+		if (dataCenterQuarter.getUsedStorage() != null && (dataCenterQuarter.getTotalStorage() != null
+				&& dataCenterQuarter.getTotalStorage().equals(Double.valueOf(0)))) {
+			dataCenterQuarter.setStorageUtilization(
+					(dataCenterQuarter.getUsedStorage() / dataCenterQuarter.getTotalStorage()) * Double.valueOf(100));
+		}
+
+	}
+
+	/**
+	 * Temp helper method to add physical server counts together
+	 * 
+	 * @param dataCenterQuarter
+	 * @return Integer
+	 */
+	private Integer addPhysicalServerCounts(DataCenterQuarter dataCenterQuarter) {
+		Integer serverCount = 0;
+		if (dataCenterQuarter.getTotalWindowsServers() != null) {
+			serverCount += dataCenterQuarter.getTotalWindowsServers();
+		}
+		if (dataCenterQuarter.getTotalMainframes() != null) {
+			serverCount += dataCenterQuarter.getTotalMainframes();
+		}
+		if (dataCenterQuarter.getTotalOtherServers() != null) {
+			serverCount += dataCenterQuarter.getTotalOtherServers();
+		}
+		return serverCount;
+	}
+
+	/**
+	 * Temp helper method to add os server counts together
+	 * 
+	 * @param dataCenterQuarter
+	 * @return Integer
+	 */
+	private Integer addOSServerCounts(DataCenterQuarter dataCenterQuarter) {
+		Integer serverCount = 0;
+		if (dataCenterQuarter.getPhysicalServerCount() != null) {
+			serverCount += dataCenterQuarter.getPhysicalServerCount();
+		}
+		if (dataCenterQuarter.getTotalHPCClusterNodes() != null) {
+			serverCount += dataCenterQuarter.getTotalHPCClusterNodes();
+		}
+		if (dataCenterQuarter.getTotalVirtualHosts() != null) {
+			serverCount += dataCenterQuarter.getTotalVirtualHosts();
+		}
+		return serverCount;
 	}
 
 	/**
@@ -161,7 +303,7 @@ public class DataCenterService {
 		dataCenterQuarter.setSsoCompleteFlag(0);
 		dataCenterQuarter = save(dataCenterQuarter);
 		// save new field offices
-		for(FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()){
+		for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
 			fieldOfficeDto.setDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
 			fieldOfficeService.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
 		}
@@ -185,23 +327,24 @@ public class DataCenterService {
 		GeneralInformationDto generalInformationDto = new GeneralInformationDto();
 		BeanUtils.copyProperties(dataCenterEntity, generalInformationDto);
 		generalInformationDto.setPublishedName(dataCenterQuarterEntity.getPublishedName());
-		if(StringUtils.isEmpty(generalInformationDto.getAgencyAbbreviation())){
+		if (StringUtils.isEmpty(generalInformationDto.getAgencyAbbreviation())) {
 			generalInformationDto.setAgencyAbbreviation("GSA");
 		}
-		
+
 		// set the field offices and the component field in general info
-		List<FieldOfficeDto> fieldOfficeDtos = 
-				fieldOfficeService.populateFieldOfficeDtosList(dataCenterQuarterEntity.getDataCenterQuarterId());
+		List<FieldOfficeDto> fieldOfficeDtos = fieldOfficeService
+				.populateFieldOfficeDtosList(dataCenterQuarterEntity.getDataCenterQuarterId());
 		dataCenterDto.setFieldOffices(fieldOfficeDtos);
-		if(StringUtils.isEmpty(generalInformationDto.getComponent())){
-			//if there is an OCIO field office set that as the component
-			for(FieldOfficeDto fieldOfficeDto : fieldOfficeDtos){
-				if("OCIO".equals(fieldOfficeDto.getFieldOfficeName())){
+		if (StringUtils.isEmpty(generalInformationDto.getComponent())) {
+			// if there is an OCIO field office set that as the component
+			for (FieldOfficeDto fieldOfficeDto : fieldOfficeDtos) {
+				if ("OCIO".equals(fieldOfficeDto.getFieldOfficeName())) {
 					generalInformationDto.setComponent(fieldOfficeDto.getFieldOfficeName());
 				}
 			}
-			//if there is no OCIO field office, set the first one as the component
-			if(StringUtils.isEmpty(generalInformationDto.getComponent())){
+			// if there is no OCIO field office, set the first one as the
+			// component
+			if (StringUtils.isEmpty(generalInformationDto.getComponent())) {
 				generalInformationDto.setComponent(fieldOfficeDtos.get(0).getFieldOfficeName());
 			}
 		}
@@ -219,7 +362,7 @@ public class DataCenterService {
 
 		// Set the totals tab
 		dataCenterDto.setTotals(fieldOfficeService.createTotalsTab(dataCenterQuarterEntity));
-		
+
 		BeanUtils.copyProperties(dataCenterQuarterEntity, dataCenterDto);
 		return dataCenterDto;
 	}
