@@ -19,6 +19,7 @@ import gov.gsa.dcoi.repository.DataCenterViewRepository;
  */
 @RestController
 @RequestMapping("/search")
+@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 public class SearchController {
 	
 	@Autowired
@@ -28,7 +29,6 @@ public class SearchController {
 	 * Search
 	 */
 	@RequestMapping(value = "/results", method = RequestMethod.GET)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	@ResponseBody
 	public Map<String, Object> search() {
 		Map<String, Object> returnData = new HashMap<String, Object>();

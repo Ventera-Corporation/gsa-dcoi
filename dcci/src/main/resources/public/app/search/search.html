@@ -43,62 +43,58 @@
 		</thead>
 		<tbody>
 			<tr data-ng-repeat="result in sc.searchResults">
-				<td><a href="#/viewQuarter/{{result.quarterReportId}}">{{result.fiscalQuarter}} {{result.fiscalYear}}</a></td>
-				<td><a href="#/viewQuarter/{{result.quarterReportId}}/{{result.dataCenterId}}">{{result.dcoiDataCenterId}}</a></td>
-				<td><a href="#/viewQuarter/{{result.quarterReportId}}/{{result.dataCenterId}}">{{result.dataCenterName}}</a></td>
-				<td>{{result.closingStageName}}</td>
-				<td>{{result.agencyDataCenterName}}</td>
+				<td><a href="#/viewQuarter/{{::result.quarterReportId}}">{{::result.fiscalQuarter}} {{::result.fiscalYear}}</a></td>
+				<td><a href="#/viewQuarter/{{::result.quarterReportId}}/{{::result.dataCenterId}}">{{::result.dcoiDataCenterId}}</a></td>
+				<td><a href="#/viewQuarter/{{::result.quarterReportId}}/{{::result.dataCenterId}}">{{::result.dataCenterName}}</a></td>
+				<td>{{::result.closingStageName}}</td>
+				<td>{{::result.agencyDataCenterName}}</td>
 				<td>GSA</td>
-				<td>{{result.recordStatusName}}</td>
-				<td>{{result.recordValidityName}}</td>
-				<td>{{result.publishedName}}</td>
-				<td>{{result.ownershipTypeName;}}</td>
-				<td>{{result.issPositionName}}</td>
-				<td>{{result.issProvider}}</td>
-				<td>{{result.dataCenterTierName}}</td>
-				<td>{{result.countryName}}</td>
-				<td>{{result.grossFloorArea}}</td>
-				<td>{{result.totalCustomerFloorArea}}</td>
-				<td>{{result.electricityIsMetered}}</td>
-				<td>{{result.avgElectricityUsage}}</td>
-				<td>{{result.avgITElectricityUsage}}</td>
-				<td>{{result.automatedMonitoring}}</td>
-				<td>{{result.serverUtilization}}</td>
-				<td>{{result.fte}}</td>
-				<td>{{result.rackCount}}</td>
-				<td>{{result.totalMainframes}}</td>
-				<td>{{result.totalWindowsServers}}</td>
-				<td>{{result.totalHPCClusterNodes}}</td>
-				<td>{{result.totalOtherServers}}</td>
-				<td>{{result.totalVirtualHosts}}</td>
-				<td>{{result.totalVirtualOS}}</td>
-				<td>{{result.totalStorage}}</td>
-				<td>{{result.usedStorage}}</td>
+				<td>{{::result.recordStatusName}}</td>
+				<td>{{::result.recordValidityName}}</td>
+				<td>{{::result.publishedName}}</td>
+				<td>{{::result.ownershipTypeName;}}</td>
+				<td>{{::result.issPositionName}}</td>
+				<td>{{::result.issProvider}}</td>
+				<td>{{::result.dataCenterTierName}}</td>
+				<td>{{::result.countryName}}</td>
+				<td>{{::result.grossFloorArea}}</td>
+				<td>{{::result.totalCustomerFloorArea}}</td>
+				<td>{{::result.electricityIsMetered}}</td>
+				<td>{{::result.avgElectricityUsage}}</td>
+				<td>{{::result.avgITElectricityUsage}}</td>
+				<td>{{::result.automatedMonitoring}}</td>
+				<td>{{::result.serverUtilization}}</td>
+				<td>{{::result.fte}}</td>
+				<td>{{::result.rackCount}}</td>
+				<td>{{::result.totalMainframes}}</td>
+				<td>{{::result.totalWindowsServers}}</td>
+				<td>{{::result.totalHPCClusterNodes}}</td>
+				<td>{{::result.totalOtherServers}}</td>
+				<td>{{::result.totalVirtualHosts}}</td>
+				<td>{{::result.totalVirtualOS}}</td>
+				<td>{{::result.totalStorage}}</td>
+				<td>{{::result.usedStorage}}</td>
 			</tr>
 		</tbody>
 	</table>
+	
+	<!-- SCROLL TO TOP BUTTON -->
+	<button class="scroll-to-top" type="button" id="return-to-top" title="Back to Top">
+		<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+	</button>
+	
+	<script>
+		$(window).scroll(function() {
+		    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+		        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+		        $('#return-to-top').show();
+		    } else {
+		        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+		        $('#return-to-top').hide();
+		    }
+		});
+		$('#return-to-top').click(function() {      // When arrow is clicked
+		    $('body,html').animate({scrollTop : 0}, 500);
+		});
+	</script>
 </div><!-- /.container-fluid -->
-
-
-<!-- TEMP : Scroll to top -->
-<!-- SCROLL TO TOP BUTTON -->
-<button class="scroll-to-top" type="button" id="return-to-top" title="Back to Top">
-	<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-</button>
-
-<script>
-	$(window).scroll(function() {
-	    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
-	        $('#return-to-top').fadeIn(200);    // Fade in the arrow
-	        $('#return-to-top').show();
-	    } else {
-	        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
-	        $('#return-to-top').hide();
-	    }
-	});
-	$('#return-to-top').click(function() {      // When arrow is clicked
-	    $('body,html').animate({
-	        scrollTop : 0                       // Scroll to top of body
-	    }, 500);
-	});
-</script>
