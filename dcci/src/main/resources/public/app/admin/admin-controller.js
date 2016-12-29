@@ -3,11 +3,13 @@
 	
 	angular.module('dcoiApp').controller('AdminController', AdminController);
 	
-	AdminController.$inject = ['AdminService'];
+	AdminController.$inject = ['AdminService', 'usersOrMetrics'];
 	
-	function AdminController(AdminService){
+	function AdminController(AdminService, usersOrMetrics){
 		var admin = this;
 		admin.initAdminData = initAdminData;
+		admin.metrics = usersOrMetrics;
+		admin.allUsers = usersOrMetrics;
 		admin.itemArray = [
 		        {id: 1, name: 'first'},
 		        {id: 2, name: 'second'},
@@ -16,7 +18,7 @@
 		        {id: 5, name: 'fifth'},
 		    ];
 		admin.selected = { value: admin.itemArray[0] };
-		initAdminData();
+		
 		function initAdminData() {
 			AdminService.initAdmin().then(function (data){
 				admin.allUsers = data;

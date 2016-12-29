@@ -1,7 +1,5 @@
 package gov.gsa.dcoi.controllers;
 
-
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,13 +22,13 @@ import gov.gsa.dcoi.security.User;
 @RestController
 @RequestMapping("/security")
 public class SecurityController {
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	SecurityUtils securityUtils;
-	
+
 	/**
 	 * Get the current logged in user account
 	 */
@@ -42,7 +40,7 @@ public class SecurityController {
 		user.setPassword(null);
 		return user;
 	}
-	
+
 	/**
 	 * Show the Admin/Settings page
 	 */
@@ -50,12 +48,12 @@ public class SecurityController {
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@ResponseBody
 	public List<User> getAllUsers() {
-		List<User> users = userRepository.findAllUsers();
-		return users;
+		return userRepository.findAllUsers();
 	}
-	
+
 	/**
-	 * Method to logout user. 
+	 * Method to logout user.
+	 * 
 	 * @param request
 	 * @param response
 	 */

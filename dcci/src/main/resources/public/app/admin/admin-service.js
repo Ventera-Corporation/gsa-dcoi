@@ -12,6 +12,12 @@
 					url: '/security/admin',
 					method: 'GET',
 				}).then(returnData);
+			},
+			metrics : function(){
+				return $http({
+					url : '/admin/metrics',
+					method : 'GET',
+				}).then(returnData);
 			}
 	    };
 	    
