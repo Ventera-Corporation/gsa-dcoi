@@ -290,9 +290,9 @@
 				} else {
 					//hide errors
 					qc.tempData.errorData = null;
-					var file = new Blob([data], {type: 'application/xls'});
+					var file = new Blob([data], {type: 'text/csv;charset=utf-8'});
 					var fileName = "Quarter" + qc.quarterData.fiscalQuarterReport.fiscalQuarter 
-							+ qc.quarterData.fiscalQuarterReport.fiscalYear + ".xls";
+							+ qc.quarterData.fiscalQuarterReport.fiscalYear + ".csv";
 					try {
 						window.navigator.msSaveOrOpenBlob(file, fileName);
 					} catch(err) {

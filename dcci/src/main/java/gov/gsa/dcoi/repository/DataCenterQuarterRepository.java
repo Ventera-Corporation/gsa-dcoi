@@ -31,6 +31,7 @@ public interface DataCenterQuarterRepository extends PagingAndSortingRepository<
 	 * id AND the data center id
 	 * 
 	 * @param quarterReportId
+	 * @param dataCenterId
 	 *            EXPECT ONE
 	 * @return
 	 */
@@ -46,4 +47,12 @@ public interface DataCenterQuarterRepository extends PagingAndSortingRepository<
 	 */
 	public List<DataCenterQuarter> findByRegionIdAndQuarterReportId(@Param("region_id") Integer regionId,
 			@Param("quarter_report_id") Long quarterReportId);
+
+	/**
+	 * Find the list of data center quarter entries for a given data center
+	 * 
+	 * @param dataCenterId
+	 * @return
+	 */
+	public List<DataCenterQuarter> findByDataCenterId(@Param("data_center_id") Integer dataCenterId);
 }

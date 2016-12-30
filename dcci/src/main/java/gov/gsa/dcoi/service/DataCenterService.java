@@ -40,6 +40,9 @@ import gov.gsa.dcoi.security.SecurityUtils;
 @Component
 public class DataCenterService {
 
+	private static final String MESSAGE_LIST = "messageList";
+	public static final String ERROR_ALERT = "error.alert";
+
 	@Autowired
 	DataCenterQuarterRepository dataCenterQuarterRepository;
 
@@ -231,7 +234,7 @@ public class DataCenterService {
 		dataCenterQuarter.setOsCount(addOSServerCounts(dataCenterQuarter));
 
 		if (dataCenterQuarter.getUsedStorage() != null && (dataCenterQuarter.getTotalStorage() != null
-				&& dataCenterQuarter.getTotalStorage().equals(Double.valueOf(0)))) {
+				&& dataCenterQuarter.getTotalStorage() == Double.valueOf(0.0))) {
 			dataCenterQuarter.setStorageUtilization(
 					(dataCenterQuarter.getUsedStorage() / dataCenterQuarter.getTotalStorage()) * Double.valueOf(100));
 		}
@@ -506,6 +509,180 @@ public class DataCenterService {
 		totalsList.add(1, completedCount);
 		totalsList.add(2, inProgress);
 		return totalsList;
+	}
+
+	/**
+	 * Private helper method to add validation messages for the closing
+	 * information
+	 * 
+	 * @param dataCenterDto
+	 * @param messages
+	 */
+	private void validateClosingInformation(DataCenterDto dataCenterDto, Map<String, String> messages) {
+		if (!(dataCenterDto.getStatus().getClosingStageId() == ReferenceValueConstants.NOT_CLOSING
+				|| dataCenterDto.getStatus().getClosingStageId() == ReferenceValueConstants.CONSIDERING)) {
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalYearId(), "closingFiscalYearRequired",
+					messages);
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalQuarterId(),
+					"closingFiscalQuarterRequired", messages);
+			if (dataCenterDto.getStatus().getClosingFiscalYearId() != null) {
+				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalQuarterId(),
+						"closingFiscalQuarterRequired2", messages);
+			}
+			if (dataCenterDto.getStatus().getClosingFiscalQuarterId() != null) {
+				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalYearId(),
+						"closingFiscalYearRequired2", messages);
+			}
+
+		}
+	}
+
+	/**
+	 * Private helper method to add validation messages for the server fields
+	 * 
+	 * @param dataCenterDto
+	 * @param messages
+	 */
+	private void validateServerInformation(DataCenterDto dataCenterDto, Map<String, String> messages) {
+		if (dataCenterDto.getFieldOffices() != null) {
+			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
+				if (fieldOfficeDto.getServerInfo() != null) {
+					fillMessagesIfFieldIsNull(fieldOfficeDto.getServerInfo().getTotalMainframes(),
+							"totalMainframesRequired", messages);
+					fillMessagesIfFieldIsNull(fieldOfficeDto.getServerInfo().getTotalWindowsServers(),
+							"totalWindowsServersRequired", messages);
+					fillMessagesIfFieldIsNull(fieldOfficeDto.getServerInfo().getTotalHPCClusterNodes(),
+							"totalHPCClusterNodesRequired", messages);
+					fillMessagesIfFieldIsNull(fieldOfficeDto.getServerInfo().getTotalOtherServers(),
+							"totalOtherServersRequired", messages);
+					fillMessagesIfFieldIsNull(fieldOfficeDto.getServerInfo().getTotalVirtualHosts(),
+							"totalVirtualHostsRequired", messages);
+					fillMessagesIfFieldIsNull(fieldOfficeDto.getServerInfo().getTotalVirtualOS(),
+							"totalVirtualOSRequired", messages);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Private helper method to add validation messages for record validity
+	 * 
+	 * @param dataCenterDto
+	 * @param messages
+	 */
+	private void validateRecordValidity(DataCenterDto dataCenterDto, Map<String, String> messages) {
+		List<DataCenterQuarter> pastQuarterDataCenterList = dataCenterQuarterRepository
+				.findByDataCenterId(dataCenterDto.getDataCenterId());
+
+		if (pastQuarterDataCenterList.size() > 1) {
+			DataCenterQuarter pastQuarterDataCenter = pastQuarterDataCenterList
+					.get(pastQuarterDataCenterList.size() - 2);
+			if (pastQuarterDataCenter.getRecordValidityId() == ReferenceValueConstants.INVALID_FACILITY
+					&& dataCenterDto.getStatus().getRecordValidityId() == ReferenceValueConstants.VALID_FACILITY) {
+				messages.put("recordValidityCannotChange",
+						messageSource.getMessage("recordValidityCannotChange", null, null));
+			}
+		}
+		if (dataCenterDto.getStatus().getClosingStageId() == ReferenceValueConstants.CLOSED
+				&& dataCenterDto.getStatus().getRecordValidityId() == ReferenceValueConstants.INVALID_FACILITY) {
+			messages.put("recordValidityIncorrect", messageSource.getMessage("recordValidityIncorrect", null, null));
+		}
+
+	}
+
+	/**
+	 * Add validations for the business logic rules
+	 * 
+	 * @param dataCenterDtos
+	 * @return
+	 */
+	public Map<String, Object> validateDataCenters(List<DataCenterDto> dataCenterDtos) {
+
+		Map<String, String> messages = new HashMap<>();
+		Map<String, Object> errorData = new HashMap<>();
+		for (DataCenterDto dataCenterDto : dataCenterDtos) {
+			Boolean isNotInvalid = dataCenterDto.getStatus()
+					.getRecordValidityId() != ReferenceValueConstants.INVALID_FACILITY;
+			Boolean isAgencyOwned = dataCenterDto.getStatus()
+					.getOwnershipTypeId() == ReferenceValueConstants.AGENCY_OWNED;
+			Boolean isElectricityMeteredAndTiered = dataCenterDto.getStatus()
+					.getElectricityIsMetered() == ReferenceValueConstants.YES && dataCenterIsTiered(dataCenterDto);
+
+			validateClosingInformation(dataCenterDto, messages);
+			validateRecordValidity(dataCenterDto, messages);
+
+			if (dataCenterDto.getStatus().getRecordStatusId().equals(ReferenceValueConstants.EXISTING_FACILITY)
+					&& (dataCenterDto.getGeneralInfo().getDcoiDataCenterId() == null
+							|| dataCenterDto.getGeneralInfo().getDcoiDataCenterId().isEmpty())) {
+				messages.put("dataCenterIdRequired", messageSource.getMessage("dataCenterIdRequired", null, null));
+			}
+			if (dataCenterDto.getStatus().getAutomatedMonitoring() == ReferenceValueConstants.YES
+					&& dataCenterDto.getFieldOffices() != null) {
+				for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
+					if (fieldOfficeDto.getServerInfo() != null
+							&& (fieldOfficeDto.getServerInfo().getServerUtilization() == null
+									|| fieldOfficeDto.getServerInfo().getServerUtilization().isEmpty())) {
+						messages.put("serverUtilizationRequired",
+								messageSource.getMessage("serverUtilizationRequired", null, null));
+					}
+				}
+
+			}
+			if (isNotInvalid) {
+				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getOwnershipTypeId(), "ownershipTypeRequired",
+						messages);
+				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getDataCenterTierId(), "dataCenterTierRequired",
+						messages);
+			} else if (isNotInvalid && isAgencyOwned) {
+				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getGrossFloorArea(), "grossFloorAreaRequired",
+						messages);
+				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getElectricityIsMetered(),
+						"electricityMeteredRequired", messages);
+				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getAutomatedMonitoring(),
+						"automatedMonitoringRequired", messages);
+				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getFte(), "fteRequired", messages);
+				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getRackCount(), "rackCountRequired",
+						messages);
+				validateServerInformation(dataCenterDto, messages);
+
+			} else if (isNotInvalid && isAgencyOwned && isElectricityMeteredAndTiered) {
+				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getAvgElectricityUsage(),
+						"avgElectrictyUsageRequired", messages);
+				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getAvgITElectricityUsage(),
+						"avgITElectrictyUsageRequired", messages);
+
+			}
+		}
+		errorData.put("messages", messages);
+		if (!messages.isEmpty()) {
+			errorData.put(MESSAGE_LIST,
+					new DcoiRestMessage(ERROR_ALERT, messageSource.getMessage(ERROR_ALERT, null, null)));
+			errorData.put("error", Boolean.valueOf("true"));
+		}
+		return errorData;
+	}
+
+	private void fillMessagesIfFieldIsNull(Object fieldValue, String fieldName, Map<String, String> messages) {
+
+		if (fieldValue == null || fieldValue.toString().isEmpty()) {
+			messages.put(fieldName, messageSource.getMessage(fieldName, null, null));
+		}
+
+	}
+
+	/**
+	 * Private helper method to determine if a data center is tiered or not
+	 */
+	private Boolean dataCenterIsTiered(DataCenterDto dataCenterDto) {
+		Integer dataCenterTierId = dataCenterDto.getStatus().getDataCenterTierId();
+		if (dataCenterTierId != null && (dataCenterTierId == ReferenceValueConstants.TIER_1
+				|| dataCenterTierId == ReferenceValueConstants.TIER_2
+				|| dataCenterTierId == ReferenceValueConstants.TIER_3
+				|| dataCenterTierId == ReferenceValueConstants.TIER_4)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

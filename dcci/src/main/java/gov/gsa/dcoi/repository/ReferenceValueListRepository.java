@@ -161,6 +161,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("fiscal_year_id"));
 								refValueObject.setValue(rs.getString("fiscal_year"));
+								refValueObject.setActiveFlag(1);
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {
@@ -193,6 +194,7 @@ public class ReferenceValueListRepository {
 								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
 								refValueObject.setId(rs.getInt("fiscal_quarter_id"));
 								refValueObject.setValue(rs.getString("fiscal_quarter"));
+								refValueObject.setActiveFlag(1);
 								refValueObjects.add(refValueObject);
 							}
 							if (LOGGER.isDebugEnabled()) {

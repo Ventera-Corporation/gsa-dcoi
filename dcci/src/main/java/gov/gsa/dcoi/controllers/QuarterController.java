@@ -32,10 +32,9 @@ import gov.gsa.dcoi.dto.QuarterDto;
 import gov.gsa.dcoi.dto.ValidList;
 import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.QuarterReport;
-import gov.gsa.dcoi.refValueEntity.ReferenceValueConstants;
 import gov.gsa.dcoi.service.CommonHelper;
 import gov.gsa.dcoi.service.DataCenterService;
-import gov.gsa.dcoi.service.CSVWriter;
+import gov.gsa.dcoi.service.DcoiCSVWriter;
 import gov.gsa.dcoi.service.FieldOfficeService;
 import gov.gsa.dcoi.service.QuarterService;
 import gov.gsa.dcoi.service.ReferenceValueListService;
@@ -60,7 +59,7 @@ public class QuarterController {
 	DataCenterService dataCenterService;
 
 	@Autowired
-	CSVWriter excelService;
+	DcoiCSVWriter csvService;
 
 	@Autowired
 	MessageSource messageSource;
@@ -175,7 +174,7 @@ public class QuarterController {
 	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos) {
 
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		returnMap = validateDataCenters(dataCenterDtos.getList());
+		returnMap = dataCenterService.validateDataCenters(dataCenterDtos.getList());
 		if (returnMap.containsKey("messageList")) {
 			return returnMap;
 		}
@@ -185,26 +184,6 @@ public class QuarterController {
 		addSuccessData(returnMap, SAVE_SUCCESS);
 		return returnMap;
 
-	}
-
-	private Map<String, Object> validateDataCenters(List<DataCenterDto> dataCenterDtos) {
-
-		Map<String, String> messages = new HashMap<>();
-		Map<String, Object> errorData = new HashMap<>();
-		for (DataCenterDto dataCenterDto : dataCenterDtos) {
-			if (dataCenterDto.getStatus().getRecordStatusId().equals(ReferenceValueConstants.EXISTING_FACILITY)
-					&& (dataCenterDto.getGeneralInfo().getDcoiDataCenterId() == null
-							|| dataCenterDto.getGeneralInfo().getDcoiDataCenterId().isEmpty())) {
-				messages.put("dataCenterIdRequired", messageSource.getMessage("dataCenterIdRequired", null, null));
-			}
-		}
-		errorData.put("messages", messages);
-		if (!messages.isEmpty()) {
-			errorData.put(MESSAGE_LIST,
-					new DcoiRestMessage(ERROR_ALERT, messageSource.getMessage(ERROR_ALERT, null, null)));
-			errorData.put("error", Boolean.valueOf("true"));
-		}
-		return errorData;
 	}
 
 	/**
@@ -249,9 +228,8 @@ public class QuarterController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public byte[] exportSearchResults(@RequestBody Long quarterId) {
 
-		String[] sheetTitles = { "Quarter Report" };
-		return excelService.exportReportResults(sheetTitles,
-				buildResultsForExport(quarterService.findViewResultsByQuarterId(quarterId)));
+		return csvService
+				.exportReportResults(buildResultsForExport(quarterService.findViewResultsByQuarterId(quarterId)));
 	}
 
 	/**
@@ -262,8 +240,8 @@ public class QuarterController {
 	 * @return
 	 */
 	private Map<String[], List<List<String>>> buildResultsForExport(List<DataCenterView> searchResults) {
+		List<List<String>> valuesForCSV = new LinkedList<List<String>>();
 		Map<String[], List<List<String>>> searchResultsMap = new LinkedHashMap<String[], List<List<String>>>();
-		List<List<String>> dataCenterViewSearchResults = new LinkedList<List<String>>();
 		for (DataCenterView searchResultVO : searchResults) {
 			List<String> dataCenterViewSearchResult = new LinkedList<String>();
 			dataCenterViewSearchResult.add(searchResultVO.getDataCenterName());
@@ -310,7 +288,7 @@ public class QuarterController {
 			dataCenterViewSearchResult.add(searchResultVO.getFiscalQuarter());
 			dataCenterViewSearchResult.add(searchResultVO.getIssPositionName());
 			dataCenterViewSearchResult.add(searchResultVO.getIssProvider());
-			dataCenterViewSearchResults.add(dataCenterViewSearchResult);
+			valuesForCSV.add(dataCenterViewSearchResult);
 		}
 
 		String[] exportColumnNames = { "DATA CENTER NAME", "DATA CENTER ID", "STREET ADDRESS", "STREET ADDRESS 2",
@@ -323,7 +301,7 @@ public class QuarterController {
 				"TOTAL WINDOWS SERVERS", "TOTAL HPC CLUSTER NODES", "TOTAL OTHER SERVERS", "TOTAL VIRTUAL HOSTS",
 				"TOTAL VIRTUAL OS", "TOTAL STORAGE", "USED STORAGE", "CORE CLASSIFICATION NAME", "CLOSING STAGE NAME",
 				"FISCAL YEAR", "FISCAL QUARTER", "ISS POSITION NAME", "ISS PROVIDER" };
-		searchResultsMap.put(exportColumnNames, dataCenterViewSearchResults);
+		searchResultsMap.put(exportColumnNames, valuesForCSV);
 		return searchResultsMap;
 	}
 

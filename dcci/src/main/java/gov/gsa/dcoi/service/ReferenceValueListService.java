@@ -1,5 +1,6 @@
 package gov.gsa.dcoi.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -26,14 +27,14 @@ public class ReferenceValueListService {
 	@Autowired
 	ReferenceValueListRepository refValueListRepository;
 
-	public static Map<String, List<GenericReferenceValueObject>> refValueLists = 
-			Collections.synchronizedMap(new HashMap<String, List<GenericReferenceValueObject>>());
+	public static Map<String, List<GenericReferenceValueObject>> refValueLists = Collections
+			.synchronizedMap(new HashMap<String, List<GenericReferenceValueObject>>());
 
 	/**
 	 * Initialize all reference value lists into caches
 	 */
 	public void initRefValueLists() {
-
+		initYesNoList();
 		initStateRefValues();
 		initRecordValidity();
 		initRecordStatus();
@@ -48,6 +49,16 @@ public class ReferenceValueListService {
 		initClosingStage();
 		initComponents();
 
+	}
+
+	/**
+	 * Initialize the yes no ref value map
+	 */
+	private void initYesNoList() {
+		List<GenericReferenceValueObject> yesNo = new ArrayList<>();
+		yesNo.add(new GenericReferenceValueObject(0, "No"));
+		yesNo.add(new GenericReferenceValueObject(1, "Yes"));
+		refValueLists.put("yesNoRefValueList", yesNo);
 	}
 
 	/**
