@@ -15,7 +15,7 @@
     	    	ec.message = "Page not found."
     			break;
     	    default:
-    			code = 500;
+    			ec.code = 500;
     	    	ec.message = "Oops! unexpected error. Please contact System Administrator"
         }
 
@@ -31,6 +31,12 @@
     	lcc.loginPasswordType = "password";
     	lcc.logout = logout;
     	lcc.isAdmin = isAdmin;
+    	lcc.isUser = isUser;
+    	lcc.isFacilityUser = isFacilityUser;
+    	lcc.isServerUser = isServerUser;
+    	lcc.isFacilityAndServerUser = isFacilityAndServerUser;
+    	lcc.hasFacilityInfoAccess = hasFacilityInfoAccess;
+    	lcc.hasServerInfoAccess = hasServerInfoAccess;
 
     	function hideShowPassword() {
     		lcc.loginPasswordType = lcc.loginPasswordType === "password" ? "text" : "password";
@@ -67,7 +73,31 @@
 		}
 
     	function isAdmin() {
-        	return _.includes(Session.userRoles, USER_ROLES.admin)
+        	return _.includes(Session.userRoles, USER_ROLES.admin);
+        }
+
+    	function isUser() {
+        	return _.includes(Session.userRoles, USER_ROLES.user);
+        }
+
+    	function isFacilityUser() {
+        	return _.includes(Session.userRoles, USER_ROLES.facility);
+        }
+
+    	function isServerUser() {
+        	return _.includes(Session.userRoles, USER_ROLES.server);
+        }
+
+    	function isFacilityAndServerUser() {
+        	return lcc.isFacilityUser() && lcc.isServerUser();
+        }
+
+    	function hasFacilityInfoAccess() {
+        	return lcc.isAdmin() || lcc.isFacilityUser() || lcc.isFacilityAndServerUser();
+        }
+
+    	function hasServerInfoAccess() {
+        	return lcc.isAdmin() || lcc.isServerUser() || lcc.isFacilityAndServerUser();
         }
     }
 })();

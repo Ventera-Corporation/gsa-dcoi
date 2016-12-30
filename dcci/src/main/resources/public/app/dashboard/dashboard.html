@@ -31,9 +31,8 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-6 col-xs-12" 
                         		data-ng-repeat="quarter in dc.dashboardData.quarters | filter:{fiscalYear:year} | orderBy: 'fiscalQuarter'">
-                            <div class="vnt-calendar-chip" 
-                            		data-ng-click="dc.viewQuarter(quarter.quarterId)"
-                            		data-ng-if="quarter.quarterInProgressFlag || quarter.quarterActiveFlag || quarter.quarterCompleteFlag">
+                            <div class="vnt-calendar-chip" data-ng-click="dc.viewQuarter(quarter.quarterId)"
+                            		data-ng-if="lc.isAdmin() && quarter.quarterInProgressFlag">
 
                                 <div class="vnt-calendar-chip__niche"></div>
 
@@ -47,6 +46,17 @@
 	                                    In progress
 	                                </small>
                                 </div>
+                            </div>
+                            <div class="vnt-calendar-chip" data-ng-click="dc.viewQuarter(quarter.quarterId)"
+                            		data-ng-if="quarter.quarterActiveFlag || quarter.quarterCompleteFlag">
+
+                                <div class="vnt-calendar-chip__niche"></div>
+
+                                <h4 class="vnt-alt-heading-2">{{quarter.fiscalQuarter}} {{quarter.fiscalYear}}</h4>
+                                <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q1'">January 1 &ndash; March 31</small>
+                                <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q2'">April 1 &ndash; June 30</small>
+                                <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q3'">July 1 &ndash; Sept. 30</small>
+                                <small class="text-muted" data-ng-if="quarter.fiscalQuarter === 'Q4'">Oct. 1 &ndash; Dec. 31</small>
                                 <div data-ng-if="quarter.quarterActiveFlag">
 	                                <small style="margin-top:0; color:green;">
 	                                    Active
