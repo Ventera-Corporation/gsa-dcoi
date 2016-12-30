@@ -25,9 +25,9 @@ import gov.gsa.dcoi.DcoiExceptionHandler;
  *
  */
 @Component
-public class ExcelWriter {
+public class CSVWriter {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ExcelWriter.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CSVWriter.class);
 
 	/**
 	 * Export search/final report results, as well as cost model reports

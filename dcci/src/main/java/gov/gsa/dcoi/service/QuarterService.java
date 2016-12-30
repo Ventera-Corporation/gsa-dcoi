@@ -30,6 +30,7 @@ import gov.gsa.dcoi.repository.CostCalculationRepository;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 import gov.gsa.dcoi.repository.DataCenterViewRepository;
 import gov.gsa.dcoi.repository.QuarterStoredProcedure;
+import gov.gsa.dcoi.security.SecurityUtils;
 import gov.gsa.dcoi.repository.QuarterReportRepository;
 
 /**
@@ -63,6 +64,9 @@ public class QuarterService {
 
 	@Autowired
 	CostCalculationRepository costCalcRepository;
+
+	@Autowired
+	SecurityUtils securityUtils;
 
 	/**
 	 * This call creates the new quarter report and, will then populate all the
@@ -100,6 +104,7 @@ public class QuarterService {
 		}
 		quarterReport.setQuarterActiveFlag(0);
 		quarterReport.setQuarterSubmittedFlag(1);
+		securityUtils.setUserIdForAudit();
 		quarterReportRepository.save(quarterReport);
 		return returnMap;
 
@@ -152,6 +157,7 @@ public class QuarterService {
 			quarterReport.setQuarterDueDate(dueDate);
 			quarterReport.setQuarterActiveFlag(1);
 			quarterReport.setQuarterInProgressFlag(0);
+			securityUtils.setUserIdForAudit();
 			quarterReportRepository.save(quarterReport);
 		} catch (DataAccessException dae) {
 			LOGGER.error(dae.getMessage());
@@ -243,6 +249,7 @@ public class QuarterService {
 			costCalcEntity.setServerCost(serverCostTotal);
 			Double totalCost = serverCostTotal + setTotalCost(dataCenter);
 			costCalcEntity.setTotal(totalCost);
+			securityUtils.setUserIdForAudit();
 			costCalcEntity = costCalcRepository.save(costCalcEntity);
 
 			CommonHelper.modelMapper.map(costCalcEntity, dataCenter.getTotals().getCostCalc());
