@@ -9,7 +9,7 @@
 	    return {
 			initAdmin : function() {
 				return $http({
-					url: '/security/admin',
+					url: '/admin/settings',
 					method: 'GET',
 				}).then(returnData);
 			},

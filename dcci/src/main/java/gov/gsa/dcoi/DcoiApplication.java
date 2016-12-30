@@ -1,5 +1,6 @@
 package gov.gsa.dcoi;
 
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
+import gov.gsa.dcoi.service.CommonHelper;
 import gov.gsa.dcoi.service.ReferenceValueListService;
 
 /**
@@ -28,6 +30,9 @@ public class DcoiApplication {
 		ReferenceValueListService refListService = (ReferenceValueListService) context
 				.getBean(ReferenceValueListService.class);
 		refListService.initRefValueLists();
+
+		CommonHelper.modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
 	}
 
 	/**

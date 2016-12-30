@@ -1,8 +1,9 @@
 package gov.gsa.dcoi.dto;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Dto that holds information regarding the general information of the data
@@ -15,11 +16,11 @@ public class GeneralInformationDto {
 
 	private Integer dataCenterInventoryId;
 	private Integer dataCenterId;
-	@Pattern(regexp = "(DCOI-DC-([0-9]{5})|DCOI-DC-([0-9]{6}))")
+	@Pattern(regexp = "(DCOI-DC-([0-9]{5})|DCOI-DC-([0-9]{6})|^$)")
 	private String dcoiDataCenterId;
 	private Integer parentDataCenterInventoryId;
 	private String agencyDataCenterId;
-	@NotNull
+	@NotEmpty
 	@Size(min = 1)
 	private String agencyAbbreviation;
 	@Size(max = 255)
@@ -31,12 +32,14 @@ public class GeneralInformationDto {
 	@Size(max = 100)
 	private String city;
 	private Integer stateId;
-	private Integer zipCode;
+	@Size(min = 0, max = 10)
+	@Pattern(regexp = "([0-9]{5}|[0-9]{5}-[0-9]{4})|^$")
+	private String zipCode;
 	private Integer countryId;
 	@Size(min = 1, max = 255)
-	@NotNull
+	@NotEmpty
 	private String dataCenterName;
-	@NotNull
+	@NotEmpty
 	@Size(min = 1)
 	private String component;
 
@@ -136,11 +139,11 @@ public class GeneralInformationDto {
 		this.dcoiDataCenterId = dcoiDataCenterId;
 	}
 
-	public void setZipCode(Integer zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 
-	public Integer getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Iterator;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.MessageSource;
@@ -82,8 +81,8 @@ public class DataCenterService {
 		while (allQuarters.hasNext()) {
 			DataCenterDto dataCenterDto = new DataCenterDto();
 			DataCenterQuarter quarter = allQuarters.next();
-			List<DataCenter> dataCenters = dataCenterRepository.findByDataCenterId(quarter.getDataCenterId());
-			returnDataCenters.add(copyEntityToDto(quarter, dataCenters.get(0), dataCenterDto));
+			DataCenter dataCenter = dataCenterRepository.findByDataCenterId(quarter.getDataCenterId());
+			returnDataCenters.add(copyEntityToDto(quarter, dataCenter, dataCenterDto));
 		}
 		return returnDataCenters;
 	}
@@ -97,18 +96,12 @@ public class DataCenterService {
 	@Transactional(readOnly = true)
 	public List<DataCenterDto> populateDataCenterDtosList(Integer regionId, Long quarterReportId) {
 		List<DataCenterDto> dataCenterDtos = new ArrayList<DataCenterDto>();
-		List<DataCenter> dataCenterStaticInfo = dataCenterRepository.findByRegionId(regionId);
-		for (DataCenter dataCenter : dataCenterStaticInfo) {
+		List<DataCenterQuarter> dataCenterStaticInfo = dataCenterQuarterRepository
+				.findByRegionIdAndQuarterReportId(regionId, quarterReportId);
+		for (DataCenterQuarter dataCenterQuarter : dataCenterStaticInfo) {
+			DataCenter dataCenter = dataCenterRepository.findByDataCenterId(dataCenterQuarter.getDataCenterId());
 			DataCenterDto dataCenterDto = new DataCenterDto();
-			BeanUtils.copyProperties(dataCenter, dataCenterDto);
-			DataCenterQuarter dataCenterForQuarter = dataCenterQuarterRepository
-					.findByQuarterReportIdAndDataCenterId(quarterReportId, dataCenter.getDataCenterId());
-			if (dataCenterForQuarter == null) {
-				// This data center has historical information, but no
-				// information for the current quarter
-				continue;
-			}
-			dataCenterDtos.add(copyEntityToDto(dataCenterForQuarter, dataCenter, dataCenterDto));
+			dataCenterDtos.add(copyEntityToDto(dataCenterQuarter, dataCenter, dataCenterDto));
 		}
 		return dataCenterDtos;
 	}
@@ -124,10 +117,10 @@ public class DataCenterService {
 	public void saveDataCenters(List<DataCenterDto> dataCenterDtos) {
 		for (DataCenterDto dataCenterDto : dataCenterDtos) {
 			DataCenter dataCenterEntity = new DataCenter();
-			BeanUtils.copyProperties(dataCenterDto, dataCenterEntity);
-			BeanUtils.copyProperties(dataCenterDto.getGeneralInfo(), dataCenterEntity);
-			BeanUtils.copyProperties(dataCenterDto.getStatus(), dataCenterEntity);
-			BeanUtils.copyProperties(dataCenterDto.getFacilityInfo(), dataCenterEntity);
+			CommonHelper.modelMapper.map(dataCenterDto, dataCenterEntity);
+			CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterEntity);
+			CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterEntity);
+			CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterEntity);
 			dataCenterRepository.save(dataCenterEntity);
 
 			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
@@ -289,14 +282,14 @@ public class DataCenterService {
 	public DataCenterDto addAndReturnNewDataCenter(DataCenterDto dataCenterDto) {
 		// Save data center object
 		DataCenter dataCenter = new DataCenter();
-		BeanUtils.copyProperties(dataCenterDto, dataCenter);
+		CommonHelper.modelMapper.map(dataCenterDto, dataCenter);
 		dataCenter = dataCenterRepository.save(dataCenter);
 		// then copy data center object back for any updates
-		BeanUtils.copyProperties(dataCenter, dataCenterDto);
+		CommonHelper.modelMapper.map(dataCenter, dataCenterDto);
 
 		// Save Data Center Quarter object
 		DataCenterQuarter dataCenterQuarter = new DataCenterQuarter();
-		BeanUtils.copyProperties(dataCenter, dataCenterQuarter);
+		CommonHelper.modelMapper.map(dataCenter, dataCenterQuarter);
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterInProgressFlag(1);
 		dataCenterQuarter.setQuarterReportId(quarterReport.getQuarterId());
 		dataCenterQuarter.setAdminCompleteFlag(0);
@@ -323,9 +316,10 @@ public class DataCenterService {
 			DataCenterDto dataCenterDto) {
 
 		// General Information
-		BeanUtils.copyProperties(dataCenterEntity, dataCenterDto);
+		CommonHelper.modelMapper.map(dataCenterEntity, dataCenterDto);
 		GeneralInformationDto generalInformationDto = new GeneralInformationDto();
-		BeanUtils.copyProperties(dataCenterEntity, generalInformationDto);
+		CommonHelper.modelMapper.map(dataCenterEntity, generalInformationDto);
+		CommonHelper.modelMapper.map(dataCenterQuarterEntity, generalInformationDto);
 		generalInformationDto.setPublishedName(dataCenterQuarterEntity.getPublishedName());
 		if (StringUtils.isEmpty(generalInformationDto.getAgencyAbbreviation())) {
 			generalInformationDto.setAgencyAbbreviation("GSA");
@@ -352,18 +346,17 @@ public class DataCenterService {
 
 		// Status
 		StatusDto statusDto = new StatusDto();
-		BeanUtils.copyProperties(dataCenterQuarterEntity, statusDto);
+		CommonHelper.modelMapper.map(dataCenterQuarterEntity, statusDto);
 		dataCenterDto.setStatus(statusDto);
 
 		// Facility Info
 		FacilityInformationDto facilityInfoDto = new FacilityInformationDto();
-		BeanUtils.copyProperties(dataCenterQuarterEntity, facilityInfoDto);
+		CommonHelper.modelMapper.map(dataCenterQuarterEntity, facilityInfoDto);
 		dataCenterDto.setFacilityInfo(facilityInfoDto);
 
 		// Set the totals tab
 		dataCenterDto.setTotals(fieldOfficeService.createTotalsTab(dataCenterQuarterEntity));
-
-		BeanUtils.copyProperties(dataCenterQuarterEntity, dataCenterDto);
+		CommonHelper.modelMapper.map(dataCenterQuarterEntity, dataCenterDto);
 		return dataCenterDto;
 	}
 
@@ -376,16 +369,16 @@ public class DataCenterService {
 	private DataCenterQuarter copyDtoToEntity(DataCenterDto dataCenterDto, FieldOfficeDto fieldOfficeDto) {
 		// Set dataCenterDto
 		DataCenterQuarter dataCenterQuarter = new DataCenterQuarter();
-		BeanUtils.copyProperties(dataCenterDto, dataCenterQuarter);
-		BeanUtils.copyProperties(dataCenterDto.getGeneralInfo(), dataCenterQuarter);
-		BeanUtils.copyProperties(dataCenterDto.getStatus(), dataCenterQuarter);
-		BeanUtils.copyProperties(dataCenterDto.getFacilityInfo(), dataCenterQuarter);
+		CommonHelper.modelMapper.map(dataCenterDto, dataCenterQuarter);
+		CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterQuarter);
+		CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterQuarter);
+		CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterQuarter);
 
 		// Set Field Office Info
 		if (fieldOfficeDto != null) {
-			BeanUtils.copyProperties(fieldOfficeDto, dataCenterQuarter);
+			CommonHelper.modelMapper.map(fieldOfficeDto, dataCenterQuarter);
 			if (fieldOfficeDto.getServerInfo() != null) {
-				BeanUtils.copyProperties(fieldOfficeDto.getServerInfo(), dataCenterQuarter);
+				CommonHelper.modelMapper.map(fieldOfficeDto.getServerInfo(), dataCenterQuarter);
 			}
 		}
 

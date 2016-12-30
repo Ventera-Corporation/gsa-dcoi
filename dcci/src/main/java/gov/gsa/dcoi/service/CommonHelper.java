@@ -3,6 +3,7 @@ package gov.gsa.dcoi.service;
 import java.util.List;
 import java.util.Map;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class CommonHelper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReferenceValueListRepository.class);
 
 	private static Map<String, List<GenericReferenceValueObject>> refValueLists = ReferenceValueListService.refValueLists;
+
+	public static ModelMapper modelMapper = new ModelMapper();
 
 	private CommonHelper() {
 	};

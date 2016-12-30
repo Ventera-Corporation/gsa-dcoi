@@ -86,6 +86,18 @@ public class DataCenterQuarter {
 	private Integer adminCompleteFlag;
 	private Integer ssoCompleteFlag;
 
+	// Originally in dataCenter
+	private String dataCenterName;
+	@Column(name = "address")
+	private String streetAddress;
+	@Column(name = "address2")
+	private String streetAddress2;
+	private String city;
+	private Integer zipCode;
+	private Integer stateId;
+	private Integer regionId;
+	private Integer countryId;
+
 	public Long getDataCenterQuarterId() {
 		return dataCenterQuarterId;
 	}
@@ -484,6 +496,70 @@ public class DataCenterQuarter {
 
 	public void setCostPerkWh(Integer costPerkWh) {
 		this.costPerkWh = costPerkWh;
+	}
+
+	public String getDataCenterName() {
+		return dataCenterName;
+	}
+
+	public void setDataCenterName(String dataCenterName) {
+		this.dataCenterName = dataCenterName;
+	}
+
+	public String getStreetAddress() {
+		return streetAddress;
+	}
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+	public String getStreetAddress2() {
+		return streetAddress2;
+	}
+
+	public void setStreetAddress2(String streetAddress2) {
+		this.streetAddress2 = streetAddress2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Integer getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(Integer zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public Integer getStateId() {
+		return stateId;
+	}
+
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
+
+	public Integer getRegionId() {
+		return regionId;
+	}
+
+	public void setRegionId(Integer regionId) {
+		this.regionId = regionId;
+	}
+
+	public Integer getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
 	}
 
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gov.gsa.dcoi.entity.OMBMetrics;
 import gov.gsa.dcoi.repository.OMBMetricsRepository;
+import gov.gsa.dcoi.repository.UserRepository;
+import gov.gsa.dcoi.security.User;
 
 /**
  * Admin controller to handle functionality for the admin module
@@ -25,6 +27,9 @@ public class AdminController {
 	@Autowired
 	OMBMetricsRepository metricsService;
 
+	@Autowired
+	private UserRepository userRepository;
+
 	/**
 	 * Method to get the OMB metrics for all quarters
 	 * 
@@ -35,6 +40,16 @@ public class AdminController {
 	@ResponseBody
 	public List<OMBMetrics> getMetrics() {
 		return metricsService.findAllOMBMetrics();
+	}
+
+	/**
+	 * Show the Admin users settings page
+	 */
+	@RequestMapping(value = "/settings", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	@ResponseBody
+	public List<User> getAllUsers() {
+		return userRepository.findAllUsers();
 	}
 
 }

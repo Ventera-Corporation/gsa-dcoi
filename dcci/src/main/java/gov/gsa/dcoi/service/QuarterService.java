@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DataAccessException;
@@ -133,7 +132,7 @@ public class QuarterService {
 	 */
 	private FiscalQuarterReportDto populateFiscalQuarterReportDto(QuarterReport quarterReport) {
 		FiscalQuarterReportDto quarterReportDto = new FiscalQuarterReportDto();
-		BeanUtils.copyProperties(quarterReport, quarterReportDto);
+		CommonHelper.modelMapper.map(quarterReport, quarterReportDto);
 		return quarterReportDto;
 	}
 
@@ -239,15 +238,15 @@ public class QuarterService {
 				costCalcMap.put("totals", 0);
 				return dataCenterIdTotalsPairs;
 			}
-			BeanUtils.copyProperties(dataCenter.getTotals().getCostCalc(), costCalcEntity);
+			CommonHelper.modelMapper.map(dataCenter.getTotals().getCostCalc(), costCalcEntity);
 			costCalcEntity.setDataCenterQuarterId(dataCenter.getDataCenterQuarterId());
 			costCalcEntity.setServerCost(serverCostTotal);
 			Double totalCost = serverCostTotal + setTotalCost(dataCenter);
 			costCalcEntity.setTotal(totalCost);
 			costCalcEntity = costCalcRepository.save(costCalcEntity);
 
-			BeanUtils.copyProperties(costCalcEntity, dataCenter.getTotals().getCostCalc());
-			Map<String, Object> costCalcMap =new HashMap<String, Object>();
+			CommonHelper.modelMapper.map(costCalcEntity, dataCenter.getTotals().getCostCalc());
+			Map<String, Object> costCalcMap = new HashMap<String, Object>();
 			costCalcMap.put("dataCenterId", dataCenter.getDataCenterId());
 			costCalcMap.put("totals", dataCenter.getTotals());
 			dataCenterIdTotalsPairs.add(costCalcMap);
@@ -362,16 +361,16 @@ public class QuarterService {
 	private Double addServerCounts(ServerInformationDto serverInfo) {
 		Double serverCount = 0d;
 		if (serverInfo.getTotalWindowsServers() != null) {
-			serverCount += serverInfo.getTotalWindowsServers();
+			serverCount += Integer.valueOf(serverInfo.getTotalWindowsServers());
 		}
 		if (serverInfo.getTotalMainframes() != null) {
-			serverCount += serverInfo.getTotalMainframes();
+			serverCount += Integer.valueOf(serverInfo.getTotalMainframes());
 		}
 		if (serverInfo.getTotalHPCClusterNodes() != null) {
-			serverCount += serverInfo.getTotalHPCClusterNodes();
+			serverCount += Integer.valueOf(serverInfo.getTotalHPCClusterNodes());
 		}
 		if (serverInfo.getTotalOtherServers() != null) {
-			serverCount += serverInfo.getTotalOtherServers();
+			serverCount += Integer.valueOf(serverInfo.getTotalOtherServers());
 		}
 		return serverCount;
 	}
