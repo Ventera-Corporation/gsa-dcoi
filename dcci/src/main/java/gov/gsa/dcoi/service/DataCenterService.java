@@ -28,6 +28,7 @@ import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
 import gov.gsa.dcoi.repository.DataCenterRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
 import gov.gsa.dcoi.repository.QuarterReportRepository;
+import gov.gsa.dcoi.security.SecurityUtils;
 
 /**
  * Service class to handle database connection and information collection for
@@ -60,6 +61,9 @@ public class DataCenterService {
 	@Autowired
 	QuarterReportRepository quarterReportRepository;
 
+	@Autowired
+	SecurityUtils securityUtils;
+
 	/**
 	 * Find data center quarter information by the quarter report ID
 	 * 
@@ -90,6 +94,7 @@ public class DataCenterService {
 	/**
 	 * Populate the dataCenterDto Lists to display back for a quarter
 	 * 
+	 * @param regionId
 	 * @param quarterReportId
 	 * @return
 	 */
@@ -121,11 +126,13 @@ public class DataCenterService {
 			CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterEntity);
 			CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterEntity);
 			CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterEntity);
+			securityUtils.setUserIdForAudit();
 			dataCenterRepository.save(dataCenterEntity);
 
 			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
-
+				securityUtils.setUserIdForAudit();
 				dataCenterQuarterRepository.save(otherCalculations(copyDtoToEntity(dataCenterDto, fieldOfficeDto)));
+				securityUtils.setUserIdForAudit();
 				fieldOfficeRepository.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
 			}
 		}
@@ -283,6 +290,7 @@ public class DataCenterService {
 		// Save data center object
 		DataCenter dataCenter = new DataCenter();
 		CommonHelper.modelMapper.map(dataCenterDto, dataCenter);
+		securityUtils.setUserIdForAudit();
 		dataCenter = dataCenterRepository.save(dataCenter);
 		// then copy data center object back for any updates
 		CommonHelper.modelMapper.map(dataCenter, dataCenterDto);
@@ -294,10 +302,12 @@ public class DataCenterService {
 		dataCenterQuarter.setQuarterReportId(quarterReport.getQuarterId());
 		dataCenterQuarter.setAdminCompleteFlag(0);
 		dataCenterQuarter.setSsoCompleteFlag(0);
+		securityUtils.setUserIdForAudit();
 		dataCenterQuarter = save(dataCenterQuarter);
 		// save new field offices
 		for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
 			fieldOfficeDto.setDataCenterQuarterId(dataCenterQuarter.getDataCenterQuarterId());
+			securityUtils.setUserIdForAudit();
 			fieldOfficeService.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
 		}
 		return copyEntityToDto(dataCenterQuarter, dataCenter, dataCenterDto);
@@ -404,6 +414,7 @@ public class DataCenterService {
 		}
 		dataCenterQuarter.setSsoCompleteFlag(1);
 		dataCenterQuarter.setAdminCompleteFlag(0);
+		securityUtils.setUserIdForAudit();
 		dataCenterQuarterRepository.save(dataCenterQuarter);
 		return returnMap;
 	}
@@ -426,6 +437,7 @@ public class DataCenterService {
 			return returnMap;
 		}
 		dataCenterQuarter.setAdminCompleteFlag(1);
+		securityUtils.setUserIdForAudit();
 		dataCenterQuarterRepository.save(dataCenterQuarter);
 		return returnMap;
 	}
@@ -449,6 +461,7 @@ public class DataCenterService {
 		}
 		dataCenterQuarter.setSsoCompleteFlag(0);
 		dataCenterQuarter.setAdminCompleteFlag(1);
+		securityUtils.setUserIdForAudit();
 		dataCenterQuarterRepository.save(dataCenterQuarter);
 		return returnMap;
 	}
@@ -461,6 +474,7 @@ public class DataCenterService {
 	 */
 	@Transactional
 	public DataCenterQuarter save(DataCenterQuarter dataCenterQuarter) {
+		securityUtils.setUserIdForAudit();
 		return dataCenterQuarterRepository.save(dataCenterQuarter);
 	}
 

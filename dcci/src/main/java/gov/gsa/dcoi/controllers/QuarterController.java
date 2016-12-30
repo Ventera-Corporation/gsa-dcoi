@@ -35,7 +35,7 @@ import gov.gsa.dcoi.entity.QuarterReport;
 import gov.gsa.dcoi.refValueEntity.ReferenceValueConstants;
 import gov.gsa.dcoi.service.CommonHelper;
 import gov.gsa.dcoi.service.DataCenterService;
-import gov.gsa.dcoi.service.ExcelWriter;
+import gov.gsa.dcoi.service.CSVWriter;
 import gov.gsa.dcoi.service.FieldOfficeService;
 import gov.gsa.dcoi.service.QuarterService;
 import gov.gsa.dcoi.service.ReferenceValueListService;
@@ -60,7 +60,7 @@ public class QuarterController {
 	DataCenterService dataCenterService;
 
 	@Autowired
-	ExcelWriter excelService;
+	CSVWriter excelService;
 
 	@Autowired
 	MessageSource messageSource;

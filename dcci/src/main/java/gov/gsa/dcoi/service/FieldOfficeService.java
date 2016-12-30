@@ -18,6 +18,7 @@ import gov.gsa.dcoi.entity.FieldOffice;
 import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
 import gov.gsa.dcoi.repository.CostCalculationRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
+import gov.gsa.dcoi.security.SecurityUtils;
 
 /**
  * Contains methods that implement functionality for specific field offices
@@ -35,6 +36,9 @@ public class FieldOfficeService {
 
 	@Autowired
 	CostCalculationRepository costCalcRepository;
+	
+	@Autowired
+	SecurityUtils securityUtils;
 
 	/**
 	 * Save field office value object into database
@@ -44,6 +48,7 @@ public class FieldOfficeService {
 	 */
 	@Transactional
 	public FieldOffice save(FieldOffice fieldOffice) {
+		securityUtils.setUserIdForAudit();
 		return fieldOfficeRepository.save(fieldOffice);
 	}
 
