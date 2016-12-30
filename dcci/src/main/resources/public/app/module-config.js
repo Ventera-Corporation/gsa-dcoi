@@ -63,16 +63,28 @@
 			resolve : {}
 		})
 		.when('/settings', {
-			templateUrl : 'app/admin/admin.html',
-			controller : 'AdminController',
-			controllerAs : 'admin',
-			resolve : {}
+			templateUrl : 'app/admin/admin-settings.html',
+			controller : 'AdminSettingsController',
+			controllerAs : 'asc',
+			resolve : {
+				initData : function(AdminService){
+					return AdminService.initAdmin().then(function(data) {
+						return data;
+					});
+				}
+			}
 		})
 		.when('/metrics', {
-			templateUrl : 'app/admin/omb-metrics.html',
-			controller : 'AdminController',
-			controllerAs : 'admin',
-			resolve : {}
+			templateUrl : 'app/admin/admin-metrics.html',
+			controller : 'AdminMetricsController',
+			controllerAs : 'amc',
+			resolve : {
+				initData : function(AdminService){
+					return AdminService.getMetrics().then(function(data) {
+						return data;
+					});
+				}
+			}
 		});
 	}
 })();

@@ -15,11 +15,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ng-repeat="result in admin.metrics">
-				<td>{{result.fiscalQuarter}} - {{result.fiscalYear}}</td>
-				<td>{{result.energyMetering}}</td>
-				<td>{{result.automatedMonitoring}}</td>
-				<td>{{result.facilityUtilization}}</td>
+			<tr data-ng-repeat="result in amc.metrics">
+				<td>{{::result.fiscalQuarter}} - {{::result.fiscalYear}}</td>
+				<td>{{::result.energyMetering}}</td>
+				<td>{{::result.automatedMonitoring}}</td>
+				<td>{{::result.facilityUtilization}}</td>
 			</tr>
 		</tbody>
 	</table>

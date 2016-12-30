@@ -13,7 +13,7 @@
 					method: 'GET',
 				}).then(returnData);
 			},
-			metrics : function(){
+			getMetrics : function(){
 				return $http({
 					url : '/admin/metrics',
 					method : 'GET',

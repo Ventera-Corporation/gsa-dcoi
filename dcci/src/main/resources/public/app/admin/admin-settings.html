@@ -8,10 +8,11 @@
 				<th>Email Address</th>
 				<th>Roles</th>
 				<th>Components</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ng-repeat="user in admin.allUsers">
+			<tr data-ng-repeat="user in asc.allUsers">
 				<td>{{user.firstName}}</td>
 				<td>{{user.lastName}}</td>
 				<td>{{user.emailAddress}}</td>
@@ -19,6 +20,7 @@
 					<span data-ng-repeat="role in user.roles">{{role.roleName}},&nbsp;</span>
 				</td>
 				<td>{{user.userFieldOffices}}</td>
+				<td><a href="javascript:;" data-ng-click="asc.editUser(user)">Edit</a>
 			</tr>
 		</tbody>
 	</table>
