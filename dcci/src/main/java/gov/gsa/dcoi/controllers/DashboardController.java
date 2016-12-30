@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import gov.gsa.dcoi.dto.DashboardDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.entity.QuarterReport;
+import gov.gsa.dcoi.service.CommonHelper;
 import gov.gsa.dcoi.service.DashboardService;
 import gov.gsa.dcoi.service.DataCenterService;
 import gov.gsa.dcoi.service.QuarterService;
@@ -98,7 +98,7 @@ public class DashboardController {
 	 */
 	private FiscalQuarterReportDto convertEntityToDto(QuarterReport quarterReportEntity) {
 		FiscalQuarterReportDto quarterReportDto = new FiscalQuarterReportDto();
-		BeanUtils.copyProperties(quarterReportEntity, quarterReportDto);
+		CommonHelper.modelMapper.map(quarterReportEntity, quarterReportDto);
 		return quarterReportDto;
 	}
 

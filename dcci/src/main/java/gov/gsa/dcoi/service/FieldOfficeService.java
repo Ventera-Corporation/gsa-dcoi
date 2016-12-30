@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,9 +56,9 @@ public class FieldOfficeService {
 	 */
 	public FieldOffice copyDtoToVO(FieldOfficeDto fieldOfficeDto, FieldOffice fieldOfficeVO) {
 		if (fieldOfficeDto.getServerInfo() != null) {
-			BeanUtils.copyProperties(fieldOfficeDto.getServerInfo(), fieldOfficeVO);
+			CommonHelper.modelMapper.map(fieldOfficeDto.getServerInfo(), fieldOfficeVO);
 		}
-		BeanUtils.copyProperties(fieldOfficeDto, fieldOfficeVO);
+		CommonHelper.modelMapper.map(fieldOfficeDto, fieldOfficeVO);
 		return fieldOfficeVO;
 	}
 
@@ -74,11 +73,11 @@ public class FieldOfficeService {
 	public FieldOfficeDto copyEntityToDto(FieldOffice fieldOfficeEntity) {
 		// Set name, id, etc
 		FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
-		BeanUtils.copyProperties(fieldOfficeEntity, fieldOfficeDto);
+		CommonHelper.modelMapper.map(fieldOfficeEntity, fieldOfficeDto);
 
 		// Set server info
 		ServerInformationDto serverInformationDto = new ServerInformationDto();
-		BeanUtils.copyProperties(fieldOfficeEntity, serverInformationDto);
+		CommonHelper.modelMapper.map(fieldOfficeEntity, serverInformationDto);
 
 		fieldOfficeDto.setServerInfo(serverInformationDto);
 		fieldOfficeDto.setFieldOfficeName(CommonHelper.parseComponentId(fieldOfficeEntity.getComponentId()));
@@ -98,7 +97,7 @@ public class FieldOfficeService {
 		FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
 		// server info totals
 		ServerInformationDto serverInformationDto = new ServerInformationDto();
-		BeanUtils.copyProperties(dataCenterQuarter, serverInformationDto);
+		CommonHelper.modelMapper.map(dataCenterQuarter, serverInformationDto);
 		fieldOfficeDto.setServerInfo(serverInformationDto);
 
 		// cost calc
@@ -107,15 +106,15 @@ public class FieldOfficeService {
 		if (costCalcList != null && !costCalcList.isEmpty()) {
 			CostCalculation costCalc = costCalcList.get(costCalcList.size() - 1);
 			CostCalculationDto costCalcDto = new CostCalculationDto();
-			BeanUtils.copyProperties(costCalc, costCalcDto);
+			CommonHelper.modelMapper.map(costCalc, costCalcDto);
 			fieldOfficeDto.setCostCalc(costCalcDto);
 		} else {
 			fieldOfficeDto.setCostCalc(new CostCalculationDto());
 		}
-		
+
 		// other calc
 		OtherCalculationDto otherCalcDto = new OtherCalculationDto();
-		BeanUtils.copyProperties(dataCenterQuarter, otherCalcDto);
+		CommonHelper.modelMapper.map(dataCenterQuarter, otherCalcDto);
 		fieldOfficeDto.setOtherCalc(otherCalcDto);
 
 		fieldOfficeDto.setOtherCalc(otherCalcDto);
@@ -128,7 +127,7 @@ public class FieldOfficeService {
 	/**
 	 * Populate the fieldOfficeDto Lists to display back for a quarter
 	 * 
-	 * @param quarterReportId
+	 * @param dataCenterQuarterId
 	 * @return
 	 */
 	@Transactional(readOnly = true)
@@ -144,12 +143,13 @@ public class FieldOfficeService {
 	 */
 	private List<FieldOfficeDto> populateInformationAboutFieldOffices(List<FieldOffice> fieldOffices) {
 		List<FieldOfficeDto> fieldOfficeDtos = new ArrayList<FieldOfficeDto>();
-		List<GenericReferenceValueObject> componentRefValueList = ReferenceValueListService.refValueLists.get("componentRefValueList");
-		//if there are no field offices create a default OCIO one
-		if(CollectionUtils.isNotEmpty(fieldOffices)){
-			for(FieldOffice fieldOffice : fieldOffices){
+		List<GenericReferenceValueObject> componentRefValueList = ReferenceValueListService.refValueLists
+				.get("componentRefValueList");
+		// if there are no field offices create a default OCIO one
+		if (CollectionUtils.isNotEmpty(fieldOffices)) {
+			for (FieldOffice fieldOffice : fieldOffices) {
 				for (GenericReferenceValueObject valueObject : componentRefValueList) {
-					if(fieldOffice.getComponentId() == valueObject.getId()){
+					if (fieldOffice.getComponentId() == valueObject.getId()) {
 						FieldOfficeDto fieldOfficeDto = copyEntityToDto(fieldOffice);
 						fieldOfficeDto.setComponentId(valueObject.getId());
 						fieldOfficeDto.setFieldOfficeName(valueObject.getValue());
@@ -159,7 +159,7 @@ public class FieldOfficeService {
 			}
 		} else {
 			for (GenericReferenceValueObject valueObject : componentRefValueList) {
-				if("OCIO".equals(valueObject.getValue())){
+				if ("OCIO".equals(valueObject.getValue())) {
 					FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
 					fieldOfficeDto.setComponentId(valueObject.getId());
 					fieldOfficeDto.setFieldOfficeName(valueObject.getValue());

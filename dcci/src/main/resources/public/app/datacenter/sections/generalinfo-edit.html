@@ -60,6 +60,9 @@
 							data-new-quarter-value="dataCenter['generalInfo']['dcoiDataCenterId']"
 							data-placeholder-text="DCOI-DC-#####"
 							data-error-message="qc.tempData.errorData.messages['dcoiDataCenterId']"></div>
+				<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['dataCenterIdRequired']}}</span>
                 </div>
             </div>
             <div class="row">

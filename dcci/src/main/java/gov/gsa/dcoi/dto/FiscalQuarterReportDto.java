@@ -1,7 +1,12 @@
 package gov.gsa.dcoi.dto;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import gov.gsa.dcoi.DcoiExceptionHandler;
 import gov.gsa.dcoi.service.CommonHelper;
 
 /**
@@ -15,10 +20,12 @@ import gov.gsa.dcoi.service.CommonHelper;
  */
 public class FiscalQuarterReportDto {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(FiscalQuarterReportDto.class);
+
 	private Long quarterId;
 	private Integer fiscalYearId;
 	private Integer fiscalQuarterId;
-	private Date quarterDueDate;
+	private String quarterDueDate;
 	private Integer quarterActiveFlag;
 	private Integer quarterInProgressFlag;
 	private Integer quarterCompleteFlag;
@@ -84,12 +91,25 @@ public class FiscalQuarterReportDto {
 		this.fiscalQuarterId = fiscalQuarterId;
 	}
 
-	public Date getQuarterDueDate() {
+	public String getQuarterDueDate() {
 		return quarterDueDate;
 	}
 
-	public void setQuarterDueDate(Date quarterDueDate) {
-		this.quarterDueDate = quarterDueDate;
+	public void setQuarterDueDate(String quarterDueDate) {
+		if (quarterDueDate != null && quarterDueDate.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}.*")) {
+			SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat outputFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+			try {
+				this.quarterDueDate = outputFormat.format(inputFormat.parse(quarterDueDate));
+			} catch (ParseException e) {
+				LOGGER.error(e.getMessage());
+				throw DcoiExceptionHandler.throwDcoiException("Exception parsing due date from DB: " + e.getMessage());
+			}
+
+		} else {
+			this.quarterDueDate = quarterDueDate;
+		}
 	}
 
 	public int getQuarterActiveFlag() {

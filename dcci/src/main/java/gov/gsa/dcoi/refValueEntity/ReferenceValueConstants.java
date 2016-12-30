@@ -18,6 +18,7 @@ public interface ReferenceValueConstants {
 	public static final Integer CLOUD_PROVIDER_OWNERSHIP_TYPE = TEN;
 
 	public static final Integer INVALID_FACILITY = ONE;
+	public static final Integer EXISTING_FACILITY = ONE;
 
 	public static final Integer OTHER_ROOM_TIER = ONE;
 	public static final Integer SERVER_ROOM_TIER = TWO;

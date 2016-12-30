@@ -16,10 +16,10 @@ import javax.validation.constraints.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +32,8 @@ import gov.gsa.dcoi.dto.QuarterDto;
 import gov.gsa.dcoi.dto.ValidList;
 import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.QuarterReport;
+import gov.gsa.dcoi.refValueEntity.ReferenceValueConstants;
+import gov.gsa.dcoi.service.CommonHelper;
 import gov.gsa.dcoi.service.DataCenterService;
 import gov.gsa.dcoi.service.ExcelWriter;
 import gov.gsa.dcoi.service.FieldOfficeService;
@@ -41,6 +43,7 @@ import gov.gsa.dcoi.service.ReferenceValueListService;
 /**
  * Controller for managing Quarter Information.
  */
+@Controller
 @RestController
 @RequestMapping("/quarter")
 public class QuarterController {
@@ -113,7 +116,8 @@ public class QuarterController {
 	public Map<String, Object> viewQuarter(Long quarterId) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		QuarterDto quarterDto = quarterService.viewQuarter(quarterId);
-		QuarterDto pastQuarterDto = quarterService.viewQuarter(quarterService.findPastQuarter(quarterId).getQuarterId());
+		QuarterDto pastQuarterDto = quarterService
+				.viewQuarter(quarterService.findPastQuarter(quarterId).getQuarterId());
 		returnMap.put("quarterData", quarterDto);
 		returnMap.put("referenceValueLists", ReferenceValueListService.refValueLists);
 		returnMap.put("pastQuarterData", pastQuarterDto);
@@ -171,12 +175,36 @@ public class QuarterController {
 	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos) {
 
 		Map<String, Object> returnMap = new HashMap<String, Object>();
+		returnMap = validateDataCenters(dataCenterDtos.getList());
+		if (returnMap.containsKey("messageList")) {
+			return returnMap;
+		}
 		// Add Admin Check
 		returnMap.put("dataCenterIdTotalsPairs", quarterService.costCalculation(dataCenterDtos.getList()));
 		dataCenterService.saveDataCenters(dataCenterDtos.getList());
 		addSuccessData(returnMap, SAVE_SUCCESS);
 		return returnMap;
 
+	}
+
+	private Map<String, Object> validateDataCenters(List<DataCenterDto> dataCenterDtos) {
+
+		Map<String, String> messages = new HashMap<>();
+		Map<String, Object> errorData = new HashMap<>();
+		for (DataCenterDto dataCenterDto : dataCenterDtos) {
+			if (dataCenterDto.getStatus().getRecordStatusId().equals(ReferenceValueConstants.EXISTING_FACILITY)
+					&& (dataCenterDto.getGeneralInfo().getDcoiDataCenterId() == null
+							|| dataCenterDto.getGeneralInfo().getDcoiDataCenterId().isEmpty())) {
+				messages.put("dataCenterIdRequired", messageSource.getMessage("dataCenterIdRequired", null, null));
+			}
+		}
+		errorData.put("messages", messages);
+		if (!messages.isEmpty()) {
+			errorData.put(MESSAGE_LIST,
+					new DcoiRestMessage(ERROR_ALERT, messageSource.getMessage(ERROR_ALERT, null, null)));
+			errorData.put("error", Boolean.valueOf("true"));
+		}
+		return errorData;
 	}
 
 	/**
@@ -207,7 +235,7 @@ public class QuarterController {
 	 */
 	private FiscalQuarterReportDto populateFiscalQuarterReportDto(QuarterReport quarterReport) {
 		FiscalQuarterReportDto quarterReportDto = new FiscalQuarterReportDto();
-		BeanUtils.copyProperties(quarterReport, quarterReportDto);
+		CommonHelper.modelMapper.map(quarterReport, quarterReportDto);
 		return quarterReportDto;
 	}
 

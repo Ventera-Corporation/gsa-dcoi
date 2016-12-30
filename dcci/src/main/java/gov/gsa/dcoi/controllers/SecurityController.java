@@ -1,6 +1,5 @@
 package gov.gsa.dcoi.controllers;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,16 +38,6 @@ public class SecurityController {
 		User user = userRepository.findByEmailAddress(securityUtils.getCurrentLogin());
 		user.setPassword(null);
 		return user;
-	}
-
-	/**
-	 * Show the Admin/Settings page
-	 */
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	@PreAuthorize("hasAnyRole('ADMIN')")
-	@ResponseBody
-	public List<User> getAllUsers() {
-		return userRepository.findAllUsers();
 	}
 
 	/**
