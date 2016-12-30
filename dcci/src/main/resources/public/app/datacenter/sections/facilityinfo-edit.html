@@ -26,6 +26,9 @@
 							data-new-quarter-value="dataCenter['facilityInfo']['grossFloorArea']"
 							data-input-addon-back="Sq. Ft."
 							data-error-message="qc.tempData.errorData.messages['grossFloorArea']"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['grossFloorAreaRequired']}}</span>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
@@ -71,6 +74,9 @@
 							data-new-quarter-value="dataCenter['facilityInfo']['avgElectricityUsage']"
 							data-input-addon-back="kW/hr"
 							data-error-message="qc.tempData.errorData.messages['avgElectricityUsage']"></div>
+               <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['avgElectricityUsageRequired']}}</span>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
@@ -82,6 +88,9 @@
 							data-new-quarter-value="dataCenter['facilityInfo']['avgITElectricityUsage']"
 							data-input-addon-back="kW/hr"
 							data-error-message="qc.tempData.errorData.messages['avgITElectricityUsage']"></div>
+                <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['avgITElectricityUsageRequired']}}</span>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
@@ -116,6 +125,9 @@
 							data-field-prop-name="fte"
 							data-new-quarter-value="dataCenter['facilityInfo']['fte']"
 							data-error-message="qc.tempData.errorData.messages['fte']"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['fteRequired']}}</span>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
@@ -137,6 +149,9 @@
 							data-field-prop-name="rackCount"
 							data-new-quarter-value="dataCenter['facilityInfo']['rackCount']"
 							data-error-message="qc.tempData.errorData.messages['rackCount']"></div>
+               <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['rackCountRequired']}}</span>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 

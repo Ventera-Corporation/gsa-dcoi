@@ -12,7 +12,21 @@ public class GenericReferenceValueObject {
 	private String value;
 	private String code;
 	private Integer activeFlag;
-	
+
+	/**
+	 * Default constructor for generic reference value object
+	 * 
+	 * @param id
+	 * @param value
+	 */
+	public GenericReferenceValueObject(Integer id, String value) {
+		this.id = id;
+		this.value = value;
+		this.activeFlag = 1;
+	}
+
+	public GenericReferenceValueObject() {
+	};
 
 	public Integer getId() {
 		return id;

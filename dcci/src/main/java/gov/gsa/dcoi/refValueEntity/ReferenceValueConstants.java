@@ -5,6 +5,7 @@ package gov.gsa.dcoi.refValueEntity;
  */
 public interface ReferenceValueConstants {
 
+	public static final Integer ZERO = Integer.valueOf(0);
 	public static final Integer ONE = Integer.valueOf(1);
 	public static final Integer TWO = Integer.valueOf(2);
 	public static final Integer THREE = Integer.valueOf(3);
@@ -12,13 +13,31 @@ public interface ReferenceValueConstants {
 	public static final Integer FIVE = Integer.valueOf(5);
 	public static final Integer SIX = Integer.valueOf(6);
 	public static final Integer SEVEN = Integer.valueOf(7);
+	public static final Integer EIGHT = Integer.valueOf(8);
 	public static final Integer TEN = Integer.valueOf(10);
+
+	public static final Integer YES = ONE;
+	public static final Integer NO = TWO;
 
 	public static final Integer OCIO_ID = SEVEN;
 	public static final Integer CLOUD_PROVIDER_OWNERSHIP_TYPE = TEN;
 
+	// Record Validity
 	public static final Integer INVALID_FACILITY = ONE;
+	public static final Integer VALID_FACILITY = TWO;
+	// public static final Integer ADDED_FACILITY = THREE;
+
+	// Record Status
 	public static final Integer EXISTING_FACILITY = ONE;
+	public static final Integer NEW_FACILITY = TWO;
+
+	// Closing stage
+	public static final Integer CLOSED = TWO;
+	public static final Integer CONSIDERING = THREE;
+	public static final Integer NOT_CLOSING = EIGHT;
+
+	// Ownership Type
+	public static final Integer AGENCY_OWNED = ONE;
 
 	public static final Integer OTHER_ROOM_TIER = ONE;
 	public static final Integer SERVER_ROOM_TIER = TWO;

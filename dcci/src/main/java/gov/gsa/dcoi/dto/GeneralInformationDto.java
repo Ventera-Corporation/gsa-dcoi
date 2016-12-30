@@ -32,7 +32,6 @@ public class GeneralInformationDto {
 	@Size(max = 100)
 	private String city;
 	private Integer stateId;
-	@Size(min = 0, max = 10)
 	@Pattern(regexp = "([0-9]{5}|[0-9]{5}-[0-9]{4})|^$")
 	private String zipCode;
 	private Integer countryId;

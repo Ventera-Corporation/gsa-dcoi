@@ -22,7 +22,6 @@ public class DataCenterDto {
 
 	@Size(max = 255)
 	private String dataCenterName;
-	@Pattern(regexp = "(DCOI-DC-([0-9]{5})|DCOI-DC-([0-9]{6}))")
 	private String dcoiDataCenterId;
 	private Long dataCenterQuarterId;
 	private Long quarterReportId;
