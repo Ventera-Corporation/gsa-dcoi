@@ -96,8 +96,8 @@ public class UserRepository {
 						user.setEmailAddress(rs.getString("email_address"));
 						user.setPassword(rs.getString("password"));
 						user.setActiveFlag(rs.getBoolean("active_flag"));
-						List<UserRole> roles = findRolesByUserId(user.getDcoiUserId());
-						user.setRoles(roles);
+						user.setRoles(findRolesByUserId(user.getDcoiUserId()));
+						user.setUserFieldOffices(findUserFieldOffices(user.getDcoiUserId()));
 					}
 					if (LOGGER.isDebugEnabled()) {
 						LOGGER.debug("User with id: " + user.getDcoiUserId() + " found for: " + emailAddress);

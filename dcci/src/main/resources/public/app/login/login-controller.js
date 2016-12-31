@@ -34,9 +34,11 @@
     	lcc.isUser = isUser;
     	lcc.isFacilityUser = isFacilityUser;
     	lcc.isServerUser = isServerUser;
+    	lcc.isFieldOfficeUser = isFieldOfficeUser;
     	lcc.isFacilityAndServerUser = isFacilityAndServerUser;
     	lcc.hasFacilityInfoAccess = hasFacilityInfoAccess;
     	lcc.hasServerInfoAccess = hasServerInfoAccess;
+    	lcc.hasFieldOfficeServerInfoAccess = hasFieldOfficeServerInfoAccess;
 
     	function hideShowPassword() {
     		lcc.loginPasswordType = lcc.loginPasswordType === "password" ? "text" : "password";
@@ -87,6 +89,10 @@
     	function isServerUser() {
         	return _.includes(Session.userRoles, USER_ROLES.server);
         }
+    	
+    	function isFieldOfficeUser(fieldOfficeName){
+    		return _.includes(Session.userFieldOffices, fieldOfficeName);
+    	}
 
     	function isFacilityAndServerUser() {
         	return lcc.isFacilityUser() && lcc.isServerUser();
@@ -98,6 +104,11 @@
 
     	function hasServerInfoAccess() {
         	return lcc.isAdmin() || lcc.isServerUser() || lcc.isFacilityAndServerUser();
+        }
+
+    	function hasFieldOfficeServerInfoAccess(fieldOfficeName) {
+        	return lcc.isAdmin() || 
+        			((lcc.isServerUser() || lcc.isFacilityAndServerUser()) && lcc.isFieldOfficeUser(fieldOfficeName));
         }
     }
 })();

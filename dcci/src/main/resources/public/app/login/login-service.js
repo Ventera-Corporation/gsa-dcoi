@@ -65,6 +65,10 @@ angular.module('dcoiApp').service('Session', function() {
 		angular.forEach(data.roles, function(value) {
 			this.push(value.roleName);
 		}, this.userRoles);
+		this.userFieldOffices = [];
+		angular.forEach(data.userFieldOffices, function(value) {
+			this.push(value);
+		}, this.userFieldOffices);
 	};
 	this.invalidate = function() {
 		this.id = null;
