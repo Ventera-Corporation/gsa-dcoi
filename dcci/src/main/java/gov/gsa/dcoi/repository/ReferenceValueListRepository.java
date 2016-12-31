@@ -42,6 +42,7 @@ public class ReferenceValueListRepository {
 	private static final String GET_CORE_CLASSIFICATION_REF_LIST = " SELECT core_classification_id, core_classification_name, active_flag FROM ref_core_classification";
 	private static final String GET_CLOSING_STAGE_REF_LIST = " SELECT closing_stage_id, closing_stage_name, active_flag FROM ref_closing_stage";
 	private static final String GET_COMPONENT_REF_LIST = " SELECT field_office_id, field_office_name, active_flag FROM field_office";
+	private static final String GET_ROLE_REF_LIST = " SELECT dcoi_role_id, role_name, active_flag FROM dcoi_role";
 
 	@Autowired(required = true)
 	private JdbcTemplate jdbcTemplate;
@@ -479,4 +480,36 @@ public class ReferenceValueListRepository {
 		}
 	}
 
+	/**
+	 * Get the role ref value list
+	 * 
+	 * @return
+	 * @throws DcoiException
+	 */
+	public List<GenericReferenceValueObject> findAllRoles() throws DcoiException {
+		try {
+			return jdbcTemplate.query(GET_ROLE_REF_LIST,
+					new ResultSetExtractor<List<GenericReferenceValueObject>>() {
+						public List<GenericReferenceValueObject> extractData(ResultSet rs) throws SQLException {
+							List<GenericReferenceValueObject> refValueObjects = new ArrayList<GenericReferenceValueObject>();
+
+							while (rs.next()) {
+								GenericReferenceValueObject refValueObject = new GenericReferenceValueObject();
+								refValueObject.setId(rs.getInt("dcoi_role_id"));
+								refValueObject.setValue(rs.getString("role_name"));
+								refValueObject.setActiveFlag(rs.getInt("active_flag"));
+								refValueObjects.add(refValueObject);
+							}
+							if (LOGGER.isDebugEnabled()) {
+								LOGGER.debug("Issue with gathering role information for reference value list");
+							}
+							return refValueObjects;
+						}
+					});
+		} catch (DataAccessException e) {
+			LOGGER.error(e.getMessage());
+			throw DcoiExceptionHandler
+					.throwDcoiException("Exception Finding role information: " + e.getMessage());
+		}
+	}
 }

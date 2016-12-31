@@ -31,7 +31,7 @@ public class UserRepository {
 	private static final String GET_ALL_USERS_SQL = "SELECT dcoi_user_id, first_name, last_name, email_address FROM dcoi_user";
 	private static final String GET_USER_BY_EMAIL_SQL = "SELECT dcoi_user_id, first_name, last_name, email_address, password, active_flag FROM dcoi_user "
 			+ "du WHERE du.email_address = ? ";
-	private static final String GET_USER_ROLES_SQL = "SELECT role_name FROM dcoi_user_role dur "
+	private static final String GET_USER_ROLES_SQL = "SELECT dur.dcoi_role_id, role_name FROM dcoi_user_role dur "
 			+ "INNER JOIN dcoi_role dr ON dr.dcoi_role_id = dur.dcoi_role_id" + " WHERE dur.dcoi_user_id = ? ";
 	private static final String GET_USER_FIELD_OFFICES_SQL = "SELECT field_office_id FROM dcoi_user_field_office duf "
 			+ "WHERE duf.dcoi_user_id = ? and duf.active_flag = 1";
@@ -125,6 +125,7 @@ public class UserRepository {
 							List<UserRole> roles = new ArrayList<UserRole>();
 							while (rs.next()) {
 								UserRole ur = new UserRole();
+								ur.setDcoiRoleId(rs.getInt("dcoi_role_id"));
 								ur.setRoleName(rs.getString("role_name"));
 								roles.add(ur);
 							}

@@ -10,13 +10,20 @@
 			initAdmin : function() {
 				return $http({
 					url: '/admin/settings',
-					method: 'GET',
+					method: 'GET'
 				}).then(returnData);
 			},
 			getMetrics : function(){
 				return $http({
 					url : '/admin/metrics',
-					method : 'GET',
+					method : 'GET'
+				}).then(returnData);
+			},
+			saveUserInfo : function(userData){
+				return $http({
+					url : '/admin/saveUserInfo',
+					method : 'POST',
+					data: userData
 				}).then(returnData);
 			}
 	    };

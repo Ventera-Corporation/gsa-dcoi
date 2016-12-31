@@ -48,7 +48,7 @@ public class ReferenceValueListService {
 		initCoreClassification();
 		initClosingStage();
 		initComponents();
-
+		initRoles();
 	}
 
 	/**
@@ -155,4 +155,10 @@ public class ReferenceValueListService {
 		refValueLists.put("componentRefValueList", refValueListRepository.findAllComponents());
 	}
 
+	/**
+	 * Initialize role ref value list
+	 */
+	private void initRoles() {
+		refValueLists.put("roleRefValueList", refValueListRepository.findAllRoles());
+	}
 }

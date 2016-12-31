@@ -1,5 +1,9 @@
 <!-- MAIN CONTAINER -->
 <div class="container-fluid"  style="padding-top:40px;">
+	<div data-ng-if="asc.tempData.successData || asc.tempData.errorData"
+		data-messages
+		data-success-data="asc.tempData.successData"
+		data-error-data="asc.tempData.errorData"></div>
 	<table data-datatable="ng" class="row-border hover">
 		<thead>
 			<tr>
@@ -16,16 +20,19 @@
 				<td>{{user.firstName}}</td>
 				<td>{{user.lastName}}</td>
 				<td>{{user.emailAddress}}</td>
-				<td>
-					<span data-ng-repeat="role in user.roles">{{role.roleName}},&nbsp;</span>
+				<td data-ng-if="user.roles.length">
+					<span data-ng-repeat="role in user.roles">{{role.roleName}}<span data-ng-if="!$last">,&nbsp;</span></span>
 				</td>
-				<td>{{user.userFieldOffices}}</td>
-				<td><a href="javascript:;" data-ng-click="asc.editUser(user)">Edit</a>
+				<td data-ng-if="!user.roles.length">None</td>
+				<td data-ng-if="user.userFieldOffices.length">
+					<span data-ng-repeat="userFieldOffice in user.userFieldOffices">{{userFieldOffice}}<span data-ng-if="!$last">,&nbsp;</span></span>
+				</td>
+				<td data-ng-if="!user.userFieldOffices.length">None</td>
+				<td><a href="javascript:;" data-ng-click="asc.editUserInfo(user)">Edit</a></td>
 			</tr>
 		</tbody>
 	</table>
 	<br/><br/>
-	
 </div>
 <!--
 <div>

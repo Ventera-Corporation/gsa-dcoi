@@ -209,7 +209,7 @@
 			var dataCenterData = {};//fixes browser console error that dataCenterData is not defined
 			modalInstance.result.then(function(dataCenterData){
 				if(dataCenterData !== 'cancel'){
-					addNewDataCenterFromModal(dataCenterData);
+					qc.addNewDataCenterFromModal(dataCenterData);
 				}
 			});
 		}
