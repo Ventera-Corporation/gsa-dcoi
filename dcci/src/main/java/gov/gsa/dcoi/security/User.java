@@ -1,6 +1,10 @@
 package gov.gsa.dcoi.security;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
+import gov.gsa.dcoi.service.ReferenceValueListService;
 
 /**
  * Class to hold the User details.
@@ -63,7 +67,7 @@ public class User {
 	public void setActiveFlag(boolean activeFlag) {
 		this.activeFlag = activeFlag;
 	}
-	
+
 	public List<UserRole> getRoles() {
 		return roles;
 	}
@@ -71,7 +75,35 @@ public class User {
 	public void setRoles(List<UserRole> roles) {
 		this.roles = roles;
 	}
-	
+
+	/**
+	 * Get the user role ids based on the name of the user roles
+	 */
+	public List<Integer> getRoleIds() {
+		List<Integer> roleIds = new ArrayList<>();
+		for (UserRole role : this.roles) {
+			roleIds.add(role.getDcoiRoleId());
+		}
+		return roleIds;
+	}
+
+	/**
+	 * Get the field office ids based on the field office names
+	 */
+	public List<Integer> getFieldOfficeIds() {
+		List<Integer> fieldOfficeIds = new ArrayList<>();
+		List<GenericReferenceValueObject> refFieldOffices = ReferenceValueListService.refValueLists
+				.get("componentRefValueList");
+		for (String fieldOffice : this.userFieldOffices) {
+			for (GenericReferenceValueObject refFieldOffice : refFieldOffices) {
+				if (fieldOffice.equalsIgnoreCase(refFieldOffice.getValue())) {
+					fieldOfficeIds.add(refFieldOffice.getId());
+				}
+			}
+		}
+		return fieldOfficeIds;
+	}
+
 	public List<String> getUserFieldOffices() {
 		return userFieldOffices;
 	}

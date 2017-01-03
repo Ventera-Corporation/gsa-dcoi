@@ -17,6 +17,7 @@ import gov.gsa.dcoi.entity.OMBMetrics;
 import gov.gsa.dcoi.repository.OMBMetricsRepository;
 import gov.gsa.dcoi.repository.UserRepository;
 import gov.gsa.dcoi.security.User;
+import gov.gsa.dcoi.service.AdminService;
 import gov.gsa.dcoi.service.ReferenceValueListService;
 
 /**
@@ -33,14 +34,19 @@ public class AdminController {
 	OMBMetricsRepository metricsService;
 
 	@Autowired
-	private UserRepository userRepository;
+	UserRepository userRepository;
+
+	@Autowired
+	AdminService adminService;
 
 	@Autowired
 	MessageSource messageSource;
 
 	private static final String SUCCESS_DATA = "successData";
+	private static final String ERROR_DATA = "errorData";
 	private static final String MESSAGE_LIST = "messageList";
 	private static final String SAVE_USER_INFO_SUCCESS = "saveUserInfoSuccess";
+	private static final String SAVE_USER_INFO_ERROR = "saveUserInfoError";
 
 	/**
 	 * Method to get the OMB metrics for all quarters
@@ -69,21 +75,47 @@ public class AdminController {
 
 	/**
 	 * Save the edited users info
+	 * 
+	 * @param user
+	 * @return
 	 */
 	@RequestMapping(value = "/saveUserInfo", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	public Map<String, Object> saveUserInfo(@RequestBody User user) {
 		Map<String, Object> returnMap = new HashMap<>();
-		
-		//TODO - save user info - must parse userFieldOffices of names to save
-		
-		addSuccessData(returnMap, SAVE_USER_INFO_SUCCESS);
+
+		if (adminService.updateUserInformation(user)) {
+			addSuccessData(returnMap, SAVE_USER_INFO_SUCCESS);
+		} else {
+			addErrorData(returnMap, SAVE_USER_INFO_ERROR);
+		}
+
 		return returnMap;
 	}
-	
-	private void addSuccessData(Map<String, Object> returnMap, String messageName){
+
+	/**
+	 * Method to add a message to the success data to be sent to the front end
+	 * 
+	 * @param returnMap
+	 * @param messageName
+	 */
+	private void addSuccessData(Map<String, Object> returnMap, String messageName) {
 		Map<String, String[]> successData = new HashMap<>();
-		successData.put(MESSAGE_LIST, new String[]{messageSource.getMessage(messageName, null, null)});
+		successData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(messageName, null, null) });
 		returnMap.put(SUCCESS_DATA, successData);
+	}
+
+	/**
+	 * Method to add a message to the error data to be sent to the front end
+	 * 
+	 * @param returnMap
+	 * @param messageName
+	 * @return
+	 * 
+	 */
+	private void addErrorData(Map<String, Object> returnMap, String messageName) {
+		Map<String, String[]> errorData = new HashMap<>();
+		errorData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(messageName, null, null) });
+		returnMap.put(ERROR_DATA, errorData);
 	}
 }

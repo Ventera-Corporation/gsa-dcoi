@@ -249,6 +249,7 @@ public class QuarterService {
 			costCalcEntity.setServerCost(serverCostTotal);
 			Double totalCost = serverCostTotal + setTotalCost(dataCenter);
 			costCalcEntity.setTotal(totalCost);
+			setAvoidances(costCalcEntity, dataCenter.getQuarterReportId());
 			securityUtils.setUserIdForAudit();
 			costCalcEntity = costCalcRepository.save(costCalcEntity);
 
@@ -277,6 +278,28 @@ public class QuarterService {
 			costTotals += costCalcDto.getStorageCost();
 		}
 		return costTotals;
+	}
+
+	/**
+	 * Set the avoidance amounts for the three years after the current year
+	 * 
+	 * @param costCalcEntity
+	 * @param quarterReportId
+	 */
+	private void setAvoidances(CostCalculation costCalcEntity, Long quarterReportId) {
+
+		QuarterReport quarterReport = quarterReportRepository.findOne(quarterReportId);
+		String curFiscalYear = CommonHelper.parseFiscalYearId(quarterReport.getFiscalYearId());
+		Double costTotal = costCalcEntity.getTotal();
+		costCalcEntity.setSavingsAmount(costTotal);
+
+		costCalcEntity.setAvoidanceYear1(Integer.valueOf(curFiscalYear) + 1);
+		costCalcEntity.setAvoidanceYear2(Integer.valueOf(curFiscalYear) + 2);
+		costCalcEntity.setAvoidanceYear3(Integer.valueOf(curFiscalYear) + 3);
+		costCalcEntity.setAvoidanceAmountYear1(costTotal * .98);
+		costCalcEntity.setAvoidanceAmountYear2(costTotal * .98);
+		costCalcEntity.setAvoidanceAmountYear3(costTotal * .98);
+
 	}
 
 	/**
