@@ -47,4 +47,10 @@ public interface ReferenceValueConstants {
 	public static final Integer TIER_4 = SIX;
 	public static final Integer UNKNOWN_TIER = SEVEN;
 
+	// User roles
+	public static final Integer ADMIN_ROLE = ONE;
+	public static final Integer USER_ROLE = TWO;
+	public static final Integer FACILITY_ROLE = THREE;
+	public static final Integer SERVER_ROLE = FOUR;
+
 }

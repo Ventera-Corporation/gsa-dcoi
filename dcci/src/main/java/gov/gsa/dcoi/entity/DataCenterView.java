@@ -8,8 +8,8 @@ package gov.gsa.dcoi.entity;
  *
  */
 public class DataCenterView {
-	private Integer quarterReportId;
-	private Integer dataCenterId;
+	private String quarterReportId;
+	private String dataCenterId;
 	private String dataCenterName;
 	private String dcoiDataCenterId;
 	private String streetAddress;
@@ -24,59 +24,70 @@ public class DataCenterView {
 	private String recordValidityName;
 	private String ownershipTypeName;
 	private String dataCenterTierName;
-	private Integer grossFloorArea;
-	private Integer totalCustomerFloorArea;
-	private Double annualCostPerSqFt;
+	private String grossFloorArea;
+	private String totalCustomerFloorArea;
+	private String annualCostPerSqFt;
 	private String otherAgenciesServiced;
-	private Integer electricityIncludedInCost;
-	private Integer electricityIsMetered;
-	private Double totalPowerCapacity;
-	private Double totalITPowerCapacity;
-	private Double avgElectricityUsage;
-	private Double avgITElectricityUsage;
-	private Double costPerkWh;
-	private Integer automatedMonitoring;
-	private Double serverUtilization;
-	private Double fte;
-	private Integer fteCost;
-	private Integer rackCount;
-	private Integer totalMainframes;
-	private Integer totalWindowsServers;
-	private Integer totalHPCClusterNodes;
-	private Integer totalOtherServers;
-	private Integer totalVirtualHosts;
-	private Integer totalVirtualOS;
-	private Double totalStorage;
-	private Double usedStorage;
+	private String electricityIncludedInCost;
+	private String electricityIsMetered;
+	private String totalPowerCapacity;
+	private String totalITPowerCapacity;
+	private String avgElectricityUsage;
+	private String avgITElectricityUsage;
+	private String costPerkWh;
+	private String automatedMonitoring;
+	private String serverUtilization;
+	private String fte;
+	private String fteCost;
+	private String rackCount;
+	private String totalMainframes;
+	private String totalWindowsServers;
+	private String totalHPCClusterNodes;
+	private String totalOtherServers;
+	private String totalVirtualHosts;
+	private String totalVirtualOS;
+	private String totalStorage;
+	private String usedStorage;
 	private String coreClassificationName;
 	private String closingStageName;
-	private Integer fiscalYear;
+	private String fiscalYear;
 	private String fiscalQuarter;
 	private String issPositionName;
 	private String issProvider;
-	
-	private static final String DISPLAY_TYPE_STRING = "String";
-	private static final String DISPLAY_TYPE_INTEGER = "Integer";
-	private static final String DISPLAY_TYPE_DOUBLE = "Double";
 
-	public Integer getQuarterReportId() {
+	// Cost model
+	private String serverAmount;
+	private String storageAmount;
+	private String otherAmount;
+	private String totalAmount;
+	private String savingsAmount;
+	private String avoidanceYear1;
+	private String avoidanceAmountYear1;
+	private String avoidanceYear2;
+	private String avoidanceAmountYear2;
+	private String avoidanceYear3;
+	private String avoidanceAmountYear3;
+
+	private static final String DISPLAY_TYPE_STRING = "String";
+
+	public String getQuarterReportId() {
 		return quarterReportId;
 	}
 
-	public void setQuarterReportId(Integer quarterReportId) {
+	public void setQuarterReportId(String quarterReportId) {
 		this.quarterReportId = quarterReportId;
 	}
-	
-	public Integer getDataCenterId() {
+
+	public String getDataCenterId() {
 		return dataCenterId;
 	}
 
-	public void setDataCenterId(Integer dataCenterId) {
+	public void setDataCenterId(String dataCenterId) {
 		this.dataCenterId = dataCenterId;
 	}
 
 	public String getDataCenterName() {
-		return (String)getDisplayValue(this.dataCenterName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.dataCenterName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setDataCenterName(String dataCenterName) {
@@ -84,7 +95,7 @@ public class DataCenterView {
 	}
 
 	public String getDcoiDataCenterId() {
-		return (String)getDisplayValue(this.dcoiDataCenterId,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.dcoiDataCenterId, DISPLAY_TYPE_STRING);
 	}
 
 	public void setDcoiDataCenterId(String dcoiDataCenterId) {
@@ -92,7 +103,7 @@ public class DataCenterView {
 	}
 
 	public String getStreetAddress() {
-		return (String)getDisplayValue(this.streetAddress,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.streetAddress, DISPLAY_TYPE_STRING);
 	}
 
 	public void setStreetAddress(String streetAddress) {
@@ -100,7 +111,7 @@ public class DataCenterView {
 	}
 
 	public String getStreetAddress2() {
-		return (String)getDisplayValue(this.streetAddress2,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.streetAddress2, DISPLAY_TYPE_STRING);
 	}
 
 	public void setStreetAddress2(String streetAddress2) {
@@ -108,7 +119,7 @@ public class DataCenterView {
 	}
 
 	public String getCity() {
-		return (String)getDisplayValue(this.city,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.city, DISPLAY_TYPE_STRING);
 	}
 
 	public void setCity(String city) {
@@ -116,7 +127,7 @@ public class DataCenterView {
 	}
 
 	public String getZipCode() {
-		return (String)getDisplayValue(this.zipCode,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.zipCode, DISPLAY_TYPE_STRING);
 	}
 
 	public void setZipCode(String zipCode) {
@@ -124,7 +135,7 @@ public class DataCenterView {
 	}
 
 	public String getStateName() {
-		return (String)getDisplayValue(this.stateName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.stateName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setStateName(String stateName) {
@@ -132,7 +143,7 @@ public class DataCenterView {
 	}
 
 	public String getCountryName() {
-		return (String)getDisplayValue(this.countryName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.countryName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setCountryName(String countryName) {
@@ -140,15 +151,15 @@ public class DataCenterView {
 	}
 
 	public String getAgencyDataCenterName() {
-		return (String)getDisplayValue(this.agencyDataCenterName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.agencyDataCenterName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setAgencyDataCenterName(String agencyDataCenterName) {
 		this.agencyDataCenterName = agencyDataCenterName;
 	}
-	
+
 	public String getPublishedName() {
-		return (String)getDisplayValue(this.publishedName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.publishedName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setPublishedName(String publishedName) {
@@ -156,7 +167,7 @@ public class DataCenterView {
 	}
 
 	public String getRecordStatusName() {
-		return (String)getDisplayValue(this.recordStatusName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.recordStatusName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setRecordStatusName(String recordStatusName) {
@@ -164,7 +175,7 @@ public class DataCenterView {
 	}
 
 	public String getRecordValidityName() {
-		return (String)getDisplayValue(this.recordValidityName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.recordValidityName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setRecordValidityName(String recordValidityName) {
@@ -172,7 +183,7 @@ public class DataCenterView {
 	}
 
 	public String getOwnershipTypeName() {
-		return (String)getDisplayValue(this.ownershipTypeName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.ownershipTypeName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setOwnershipTypeName(String ownershipTypeName) {
@@ -180,231 +191,231 @@ public class DataCenterView {
 	}
 
 	public String getDataCenterTierName() {
-		return (String)getDisplayValue(this.dataCenterTierName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.dataCenterTierName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setDataCenterTierName(String dataCenterTierName) {
 		this.dataCenterTierName = dataCenterTierName;
 	}
 
-	public Integer getGrossFloorArea() {
-		return (Integer)getDisplayValue(this.grossFloorArea,DISPLAY_TYPE_INTEGER);
+	public String getGrossFloorArea() {
+		return (String) getDisplayValue(this.grossFloorArea, DISPLAY_TYPE_STRING);
 	}
 
-	public void setGrossFloorArea(Integer grossFloorArea) {
+	public void setGrossFloorArea(String grossFloorArea) {
 		this.grossFloorArea = grossFloorArea;
 	}
 
-	public Integer getTotalCustomerFloorArea() {
-		return (Integer)getDisplayValue(this.totalCustomerFloorArea,DISPLAY_TYPE_INTEGER);
+	public String getTotalCustomerFloorArea() {
+		return (String) getDisplayValue(this.totalCustomerFloorArea, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalCustomerFloorArea(Integer totalCustomerFloorArea) {
+	public void setTotalCustomerFloorArea(String totalCustomerFloorArea) {
 		this.totalCustomerFloorArea = totalCustomerFloorArea;
 	}
 
-	public Double getAnnualCostPerSqFt() {
-		return (Double)getDisplayValue(this.annualCostPerSqFt,DISPLAY_TYPE_DOUBLE);
+	public String getAnnualCostPerSqFt() {
+		return (String) getDisplayValue(this.annualCostPerSqFt, DISPLAY_TYPE_STRING);
 	}
 
-	public void setAnnualCostPerSqFt(Double annualCostPerSqFt) {
+	public void setAnnualCostPerSqFt(String annualCostPerSqFt) {
 		this.annualCostPerSqFt = annualCostPerSqFt;
 	}
 
 	public String getOtherAgenciesServiced() {
-		return (String)getDisplayValue(this.otherAgenciesServiced,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.otherAgenciesServiced, DISPLAY_TYPE_STRING);
 	}
 
 	public void setOtherAgenciesServiced(String otherAgenciesServiced) {
 		this.otherAgenciesServiced = otherAgenciesServiced;
 	}
 
-	public Integer getElectricityIncludedInCost() {
-		return (Integer)getDisplayValue(this.electricityIncludedInCost,DISPLAY_TYPE_INTEGER);
+	public String getElectricityIncludedInCost() {
+		return (String) getDisplayValue(this.electricityIncludedInCost, DISPLAY_TYPE_STRING);
 	}
 
-	public void setElectricityIncludedInCost(Integer electricityIncludedInCost) {
+	public void setElectricityIncludedInCost(String electricityIncludedInCost) {
 		this.electricityIncludedInCost = electricityIncludedInCost;
 	}
 
-	public Integer getElectricityIsMetered() {
-		return (Integer)getDisplayValue(this.electricityIsMetered,DISPLAY_TYPE_INTEGER);
+	public String getElectricityIsMetered() {
+		return (String) getDisplayValue(this.electricityIsMetered, DISPLAY_TYPE_STRING);
 	}
 
-	public void setElectricityIsMetered(Integer electricityIsMetered) {
+	public void setElectricityIsMetered(String electricityIsMetered) {
 		this.electricityIsMetered = electricityIsMetered;
 	}
 
-	public Double getTotalPowerCapacity() {
-		return (Double)getDisplayValue(this.totalPowerCapacity,DISPLAY_TYPE_DOUBLE);
+	public String getTotalPowerCapacity() {
+		return (String) getDisplayValue(this.totalPowerCapacity, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalPowerCapacity(Double totalPowerCapacity) {
+	public void setTotalPowerCapacity(String totalPowerCapacity) {
 		this.totalPowerCapacity = totalPowerCapacity;
 	}
 
-	public Double getTotalITPowerCapacity() {
-		return (Double)getDisplayValue(this.totalITPowerCapacity,DISPLAY_TYPE_DOUBLE);
+	public String getTotalITPowerCapacity() {
+		return (String) getDisplayValue(this.totalITPowerCapacity, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalITPowerCapacity(Double totalITPowerCapacity) {
+	public void setTotalITPowerCapacity(String totalITPowerCapacity) {
 		this.totalITPowerCapacity = totalITPowerCapacity;
 	}
 
-	public Double getAvgElectricityUsage() {
-		return (Double)getDisplayValue(this.avgElectricityUsage,DISPLAY_TYPE_DOUBLE);
+	public String getAvgElectricityUsage() {
+		return (String) getDisplayValue(this.avgElectricityUsage, DISPLAY_TYPE_STRING);
 	}
 
-	public void setAvgElectricityUsage(Double avgElectricityUsage) {
+	public void setAvgElectricityUsage(String avgElectricityUsage) {
 		this.avgElectricityUsage = avgElectricityUsage;
 	}
 
-	public Double getAvgITElectricityUsage() {
-		return (Double)getDisplayValue(this.avgITElectricityUsage,DISPLAY_TYPE_DOUBLE);
+	public String getAvgITElectricityUsage() {
+		return (String) getDisplayValue(this.avgITElectricityUsage, DISPLAY_TYPE_STRING);
 	}
 
-	public void setAvgITElectricityUsage(Double avgITElectricityUsage) {
+	public void setAvgITElectricityUsage(String avgITElectricityUsage) {
 		this.avgITElectricityUsage = avgITElectricityUsage;
 	}
 
-	public Double getCostPerkWh() {
-		return (Double)getDisplayValue(this.costPerkWh,DISPLAY_TYPE_DOUBLE);
+	public String getCostPerkWh() {
+		return (String) getDisplayValue(this.costPerkWh, DISPLAY_TYPE_STRING);
 	}
 
-	public void setCostPerkWh(Double costPerkWh) {
+	public void setCostPerkWh(String costPerkWh) {
 		this.costPerkWh = costPerkWh;
 	}
 
-	public Integer getAutomatedMonitoring() {
-		return (Integer)getDisplayValue(this.automatedMonitoring,DISPLAY_TYPE_INTEGER);
+	public String getAutomatedMonitoring() {
+		return (String) getDisplayValue(this.automatedMonitoring, DISPLAY_TYPE_STRING);
 	}
 
-	public void setAutomatedMonitoring(Integer automatedMonitoring) {
+	public void setAutomatedMonitoring(String automatedMonitoring) {
 		this.automatedMonitoring = automatedMonitoring;
 	}
 
-	public Double getServerUtilization() {
-		return (Double)getDisplayValue(this.serverUtilization,DISPLAY_TYPE_DOUBLE);
+	public String getServerUtilization() {
+		return (String) getDisplayValue(this.serverUtilization, DISPLAY_TYPE_STRING);
 	}
 
-	public void setServerUtilization(Double serverUtilization) {
+	public void setServerUtilization(String serverUtilization) {
 		this.serverUtilization = serverUtilization;
 	}
 
-	public Double getFte() {
-		return (Double)getDisplayValue(this.fte,DISPLAY_TYPE_DOUBLE);
+	public String getFte() {
+		return (String) getDisplayValue(this.fte, DISPLAY_TYPE_STRING);
 	}
 
-	public void setFte(Double fte) {
+	public void setFte(String fte) {
 		this.fte = fte;
 	}
 
-	public Integer getFteCost() {
-		return (Integer)getDisplayValue(this.fteCost,DISPLAY_TYPE_INTEGER);
+	public String getFteCost() {
+		return (String) getDisplayValue(this.fteCost, DISPLAY_TYPE_STRING);
 	}
 
-	public void setFteCost(Integer fteCost) {
+	public void setFteCost(String fteCost) {
 		this.fteCost = fteCost;
 	}
 
-	public Integer getRackCount() {
-		return (Integer)getDisplayValue(this.rackCount,DISPLAY_TYPE_INTEGER);
+	public String getRackCount() {
+		return (String) getDisplayValue(this.rackCount, DISPLAY_TYPE_STRING);
 	}
 
-	public void setRackCount(Integer rackCount) {
+	public void setRackCount(String rackCount) {
 		this.rackCount = rackCount;
 	}
 
-	public Integer getTotalMainframes() {
-		return (Integer)getDisplayValue(this.totalMainframes,DISPLAY_TYPE_INTEGER);
+	public String getTotalMainframes() {
+		return (String) getDisplayValue(this.totalMainframes, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalMainframes(Integer totalMainframes) {
+	public void setTotalMainframes(String totalMainframes) {
 		this.totalMainframes = totalMainframes;
 	}
 
-	public Integer getTotalWindowsServers() {
-		return (Integer)getDisplayValue(this.totalWindowsServers,DISPLAY_TYPE_INTEGER);
+	public String getTotalWindowsServers() {
+		return (String) getDisplayValue(this.totalWindowsServers, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalWindowsServers(Integer totalWindowsServers) {
+	public void setTotalWindowsServers(String totalWindowsServers) {
 		this.totalWindowsServers = totalWindowsServers;
 	}
 
-	public Integer getTotalHPCClusterNodes() {
-		return (Integer)getDisplayValue(this.totalHPCClusterNodes,DISPLAY_TYPE_INTEGER);
+	public String getTotalHPCClusterNodes() {
+		return (String) getDisplayValue(this.totalHPCClusterNodes, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalHPCClusterNodes(Integer totalHPCClusterNodes) {
+	public void setTotalHPCClusterNodes(String totalHPCClusterNodes) {
 		this.totalHPCClusterNodes = totalHPCClusterNodes;
 	}
 
-	public Integer getTotalOtherServers() {
-		return (Integer)getDisplayValue(this.totalOtherServers,DISPLAY_TYPE_INTEGER);
+	public String getTotalOtherServers() {
+		return (String) getDisplayValue(this.totalOtherServers, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalOtherServers(Integer totalOtherServers) {
+	public void setTotalOtherServers(String totalOtherServers) {
 		this.totalOtherServers = totalOtherServers;
 	}
 
-	public Integer getTotalVirtualHosts() {
-		return (Integer)getDisplayValue(this.totalVirtualHosts,DISPLAY_TYPE_INTEGER);
+	public String getTotalVirtualHosts() {
+		return (String) getDisplayValue(this.totalVirtualHosts, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalVirtualHosts(Integer totalVirtualHosts) {
+	public void setTotalVirtualHosts(String totalVirtualHosts) {
 		this.totalVirtualHosts = totalVirtualHosts;
 	}
 
-	public Integer getTotalVirtualOS() {
-		return (Integer)getDisplayValue(this.totalVirtualOS,DISPLAY_TYPE_INTEGER);
+	public String getTotalVirtualOS() {
+		return (String) getDisplayValue(this.totalVirtualOS, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalVirtualOS(Integer totalVirtualOS) {
+	public void setTotalVirtualOS(String totalVirtualOS) {
 		this.totalVirtualOS = totalVirtualOS;
 	}
 
-	public Double getTotalStorage() {
-		return (Double)getDisplayValue(this.totalStorage,DISPLAY_TYPE_DOUBLE);
+	public String getTotalStorage() {
+		return (String) getDisplayValue(this.totalStorage, DISPLAY_TYPE_STRING);
 	}
 
-	public void setTotalStorage(Double totalStorage) {
+	public void setTotalStorage(String totalStorage) {
 		this.totalStorage = totalStorage;
 	}
 
-	public Double getUsedStorage() {
-		return (Double)getDisplayValue(this.usedStorage,DISPLAY_TYPE_DOUBLE);
+	public String getUsedStorage() {
+		return (String) getDisplayValue(this.usedStorage, DISPLAY_TYPE_STRING);
 	}
 
-	public void setUsedStorage(Double usedStorage) {
+	public void setUsedStorage(String usedStorage) {
 		this.usedStorage = usedStorage;
 	}
 
 	public String getCoreClassificationName() {
-		return (String)getDisplayValue(this.coreClassificationName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.coreClassificationName, DISPLAY_TYPE_STRING);
 	}
-	
+
 	public void setCoreClassificationName(String coreClassificationName) {
 		this.coreClassificationName = coreClassificationName;
 	}
 
 	public String getClosingStageName() {
-		return (String)getDisplayValue(this.closingStageName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.closingStageName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setClosingStageName(String closingStageName) {
 		this.closingStageName = closingStageName;
 	}
 
-	public Integer getFiscalYear() {
+	public String getFiscalYear() {
 		return fiscalYear;
 	}
 
-	public void setFiscalYear(Integer fiscalYear) {
+	public void setFiscalYear(String fiscalYear) {
 		this.fiscalYear = fiscalYear;
 	}
 
 	public String getFiscalQuarter() {
-		return (String)getDisplayValue(this.fiscalQuarter,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.fiscalQuarter, DISPLAY_TYPE_STRING);
 	}
 
 	public void setFiscalQuarter(String fiscalQuarter) {
@@ -412,7 +423,7 @@ public class DataCenterView {
 	}
 
 	public String getIssPositionName() {
-		return (String)getDisplayValue(this.issPositionName,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.issPositionName, DISPLAY_TYPE_STRING);
 	}
 
 	public void setIssPositionName(String issPositionName) {
@@ -420,30 +431,108 @@ public class DataCenterView {
 	}
 
 	public String getIssProvider() {
-		return (String)getDisplayValue(this.issProvider,DISPLAY_TYPE_STRING);
+		return (String) getDisplayValue(this.issProvider, DISPLAY_TYPE_STRING);
 	}
 
 	public void setIssProvider(String issProvider) {
 		this.issProvider = issProvider;
 	}
-	
-	private Object getDisplayValue(Object object,String type){
-		if(type.equals(DISPLAY_TYPE_STRING)){
-			if(object==null || object.toString()==""){
+
+	private Object getDisplayValue(Object object, String type) {
+		if (type.equals(DISPLAY_TYPE_STRING)) {
+			if (object == null || object.toString() == "") {
 				return "None";
 			}
 		}
-		else if(type.equals(DISPLAY_TYPE_INTEGER)){
-			if(object==null){
-				return Integer.valueOf(0);
-			}
-		}
-		else if(type.equals(DISPLAY_TYPE_DOUBLE)){
-			if(object==null){
-				return Double.valueOf(0);
-			}
-		}
 		return object;
+	}
+
+	public String getServerAmount() {
+		return serverAmount;
+	}
+
+	public void setServerAmount(String serverAmount) {
+		this.serverAmount = serverAmount;
+	}
+
+	public String getStorageAmount() {
+		return storageAmount;
+	}
+
+	public void setStorageAmount(String storageAmount) {
+		this.storageAmount = storageAmount;
+	}
+
+	public String getOtherAmount() {
+		return otherAmount;
+	}
+
+	public void setOtherAmount(String otherAmount) {
+		this.otherAmount = otherAmount;
+	}
+
+	public String getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(String totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public String getSavingsAmount() {
+		return savingsAmount;
+	}
+
+	public void setSavingsAmount(String savingsAmount) {
+		this.savingsAmount = savingsAmount;
+	}
+
+	public String getAvoidanceYear1() {
+		return avoidanceYear1;
+	}
+
+	public void setAvoidanceYear1(String avoidanceYear1) {
+		this.avoidanceYear1 = avoidanceYear1;
+	}
+
+	public String getAvoidanceAmountYear1() {
+		return avoidanceAmountYear1;
+	}
+
+	public void setAvoidanceAmountYear1(String avoidanceAmountYear1) {
+		this.avoidanceAmountYear1 = avoidanceAmountYear1;
+	}
+
+	public String getAvoidanceYear2() {
+		return avoidanceYear2;
+	}
+
+	public void setAvoidanceYear2(String avoidanceYear2) {
+		this.avoidanceYear2 = avoidanceYear2;
+	}
+
+	public String getAvoidanceAmountYear2() {
+		return avoidanceAmountYear2;
+	}
+
+	public void setAvoidanceAmountYear2(String avoidanceAmountYear2) {
+		this.avoidanceAmountYear2 = avoidanceAmountYear2;
+	}
+
+	public String getAvoidanceYear3() {
+		return avoidanceYear3;
+	}
+
+	public void setAvoidanceYear3(String avoidanceYear3) {
+		this.avoidanceYear3 = avoidanceYear3;
+	}
+
+	public String getAvoidanceAmountYear3() {
+		return avoidanceAmountYear3;
+	}
+
+	public void setAvoidanceAmountYear3(String avoidanceAmountYear3) {
+		this.avoidanceAmountYear3 = avoidanceAmountYear3;
 	}
 
 }

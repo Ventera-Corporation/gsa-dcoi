@@ -32,7 +32,6 @@ import gov.gsa.dcoi.dto.QuarterDto;
 import gov.gsa.dcoi.dto.ValidList;
 import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.QuarterReport;
-import gov.gsa.dcoi.security.User;
 import gov.gsa.dcoi.service.CommonHelper;
 import gov.gsa.dcoi.service.DataCenterService;
 import gov.gsa.dcoi.service.DcoiCSVWriter;
@@ -118,7 +117,6 @@ public class QuarterController {
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> viewQuarter(Long quarterId) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		User user = securityController.getUserAccount();
 		QuarterDto quarterDto = quarterService.viewQuarter(quarterId);
 
 		QuarterDto pastQuarterDto = quarterService
@@ -179,14 +177,14 @@ public class QuarterController {
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos) {
 
-		Map<String, Object> returnMap = new HashMap<String, Object>();
+		Map<String, Object> returnMap;
 		returnMap = dataCenterService.validateDataCenters(dataCenterDtos.getList());
 		if (returnMap.containsKey("messageList")) {
 			return returnMap;
 		}
 		// Add Admin Check
 		returnMap.put("dataCenterIdTotalsPairs", quarterService.costCalculation(dataCenterDtos.getList()));
-		dataCenterService.saveDataCenters(dataCenterDtos.getList());
+		dataCenterService.saveDataCenters(dataCenterDtos.getList(), securityController.getUserAccount());
 		addSuccessData(returnMap, SAVE_SUCCESS);
 		return returnMap;
 
@@ -264,33 +262,33 @@ public class QuarterController {
 			dataCenterViewSearchResult.add(searchResultVO.getRecordValidityName());
 			dataCenterViewSearchResult.add(searchResultVO.getOwnershipTypeName());
 			dataCenterViewSearchResult.add(searchResultVO.getDataCenterTierName());
-			dataCenterViewSearchResult.add(searchResultVO.getGrossFloorArea().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalCustomerFloorArea().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getAnnualCostPerSqFt().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getGrossFloorArea());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalCustomerFloorArea());
+			dataCenterViewSearchResult.add(searchResultVO.getAnnualCostPerSqFt());
 			dataCenterViewSearchResult.add(searchResultVO.getOtherAgenciesServiced());
-			dataCenterViewSearchResult.add(searchResultVO.getElectricityIncludedInCost().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getElectricityIsMetered().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalPowerCapacity().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalITPowerCapacity().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getAvgElectricityUsage().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getAvgITElectricityUsage().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getCostPerkWh().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getAutomatedMonitoring().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getServerUtilization().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getFte().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getFteCost().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getRackCount().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalMainframes().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalWindowsServers().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalHPCClusterNodes().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalOtherServers().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalVirtualHosts().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalVirtualOS().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getTotalStorage().toString());
-			dataCenterViewSearchResult.add(searchResultVO.getUsedStorage().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getElectricityIncludedInCost());
+			dataCenterViewSearchResult.add(searchResultVO.getElectricityIsMetered());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalPowerCapacity());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalITPowerCapacity());
+			dataCenterViewSearchResult.add(searchResultVO.getAvgElectricityUsage());
+			dataCenterViewSearchResult.add(searchResultVO.getAvgITElectricityUsage());
+			dataCenterViewSearchResult.add(searchResultVO.getCostPerkWh());
+			dataCenterViewSearchResult.add(searchResultVO.getAutomatedMonitoring());
+			dataCenterViewSearchResult.add(searchResultVO.getServerUtilization());
+			dataCenterViewSearchResult.add(searchResultVO.getFte());
+			dataCenterViewSearchResult.add(searchResultVO.getFteCost());
+			dataCenterViewSearchResult.add(searchResultVO.getRackCount());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalMainframes());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalWindowsServers());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalHPCClusterNodes());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalOtherServers());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalVirtualHosts());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalVirtualOS());
+			dataCenterViewSearchResult.add(searchResultVO.getTotalStorage());
+			dataCenterViewSearchResult.add(searchResultVO.getUsedStorage());
 			dataCenterViewSearchResult.add(searchResultVO.getCoreClassificationName());
 			dataCenterViewSearchResult.add(searchResultVO.getClosingStageName());
-			dataCenterViewSearchResult.add(searchResultVO.getFiscalYear().toString());
+			dataCenterViewSearchResult.add(searchResultVO.getFiscalYear());
 			dataCenterViewSearchResult.add(searchResultVO.getFiscalQuarter());
 			dataCenterViewSearchResult.add(searchResultVO.getIssPositionName());
 			dataCenterViewSearchResult.add(searchResultVO.getIssProvider());

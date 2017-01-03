@@ -29,6 +29,7 @@ import gov.gsa.dcoi.repository.DataCenterRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
 import gov.gsa.dcoi.repository.QuarterReportRepository;
 import gov.gsa.dcoi.security.SecurityUtils;
+import gov.gsa.dcoi.security.User;
 
 /**
  * Service class to handle database connection and information collection for
@@ -119,24 +120,34 @@ public class DataCenterService {
 	 * after a "save changes" call from the application
 	 * 
 	 * @param dataCenterDtos
+	 * @param user
 	 * @return
 	 */
 	@Transactional
-	public void saveDataCenters(List<DataCenterDto> dataCenterDtos) {
+	public void saveDataCenters(List<DataCenterDto> dataCenterDtos, User user) {
 		for (DataCenterDto dataCenterDto : dataCenterDtos) {
 			DataCenter dataCenterEntity = new DataCenter();
 			CommonHelper.modelMapper.map(dataCenterDto, dataCenterEntity);
-			CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterEntity);
-			CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterEntity);
-			CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterEntity);
+			if (user.getRoleIds().contains(ReferenceValueConstants.ADMIN_ROLE)) {
+				CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterEntity);
+				CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterEntity);
+				CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterEntity);
+			}
+			if (user.getRoleIds().contains(ReferenceValueConstants.FACILITY_ROLE)) {
+				CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterEntity);
+			}
 			securityUtils.setUserIdForAudit();
 			dataCenterRepository.save(dataCenterEntity);
 
 			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
 				securityUtils.setUserIdForAudit();
 				dataCenterQuarterRepository.save(otherCalculations(copyDtoToEntity(dataCenterDto, fieldOfficeDto)));
-				securityUtils.setUserIdForAudit();
-				fieldOfficeRepository.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
+				if (user.getFieldOfficeIds().contains(fieldOfficeDto.getDataCenterInventoryId().intValue())
+						&& (user.getRoleIds().contains(ReferenceValueConstants.SERVER_ROLE)
+								|| user.getRoleIds().contains(ReferenceValueConstants.ADMIN_ROLE))) {
+					securityUtils.setUserIdForAudit();
+					fieldOfficeRepository.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
+				}
 			}
 		}
 	}
@@ -655,8 +666,7 @@ public class DataCenterService {
 		}
 		errorData.put("messages", messages);
 		if (!messages.isEmpty()) {
-			errorData.put(MESSAGE_LIST,
-					new DcoiRestMessage(ERROR_ALERT, messageSource.getMessage(ERROR_ALERT, null, null)));
+			errorData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(ERROR_ALERT, null, null) });
 			errorData.put("error", Boolean.valueOf("true"));
 		}
 		return errorData;
