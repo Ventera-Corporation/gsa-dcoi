@@ -21,8 +21,8 @@ public class StatusDto {
 	private Integer ownershipTypeId;
 	private Integer dataCenterTierId;
 	private Integer electricityIncludedInCost;
-	private Integer electricityIsMetered;
-	private Integer automatedMonitoring;
+	private Integer electricityIsMeteredId;
+	private Integer automatedMonitoringId;
 	private Integer issPositionId;
 	private Integer coreClassificationId;
 	@NotNull
@@ -128,20 +128,20 @@ public class StatusDto {
 		this.dataCenterTierId = dataCenterTierId;
 	}
 
-	public Integer getElectricityIsMetered() {
-		return electricityIsMetered;
+	public Integer getElectricityIsMeteredId() {
+		return electricityIsMeteredId;
 	}
 
-	public void setElectricityMetered(Integer electricityIsMetered) {
-		this.electricityIsMetered = electricityIsMetered;
+	public void setElectricityIsMeteredId(Integer electricityIsMeteredId) {
+		this.electricityIsMeteredId = electricityIsMeteredId;
 	}
 
-	public Integer getAutomatedMonitoring() {
-		return automatedMonitoring;
+	public Integer getAutomatedMonitoringId() {
+		return automatedMonitoringId;
 	}
 
-	public void setAutomatedMonitoring(Integer automatedMonitoring) {
-		this.automatedMonitoring = automatedMonitoring;
+	public void setAutomatedMonitoringId(Integer automatedMonitoringId) {
+		this.automatedMonitoringId = automatedMonitoringId;
 	}
 
 	public Integer getCoreClassificationId() {
@@ -198,10 +198,6 @@ public class StatusDto {
 
 	public void setElectricityIncludedInCost(Integer electricityIncludedInCost) {
 		this.electricityIncludedInCost = electricityIncludedInCost;
-	}
-
-	public void setElectricityIsMetered(Integer electricityIsMetered) {
-		this.electricityIsMetered = electricityIsMetered;
 	}
 
 }

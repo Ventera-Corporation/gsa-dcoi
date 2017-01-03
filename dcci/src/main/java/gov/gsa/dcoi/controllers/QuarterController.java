@@ -32,6 +32,7 @@ import gov.gsa.dcoi.dto.QuarterDto;
 import gov.gsa.dcoi.dto.ValidList;
 import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.QuarterReport;
+import gov.gsa.dcoi.security.User;
 import gov.gsa.dcoi.service.CommonHelper;
 import gov.gsa.dcoi.service.DataCenterService;
 import gov.gsa.dcoi.service.DcoiCSVWriter;
@@ -60,6 +61,9 @@ public class QuarterController {
 
 	@Autowired
 	DcoiCSVWriter csvService;
+
+	@Autowired
+	SecurityController securityController;
 
 	@Autowired
 	MessageSource messageSource;
@@ -114,7 +118,9 @@ public class QuarterController {
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public Map<String, Object> viewQuarter(Long quarterId) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
+		User user = securityController.getUserAccount();
 		QuarterDto quarterDto = quarterService.viewQuarter(quarterId);
+
 		QuarterDto pastQuarterDto = quarterService
 				.viewQuarter(quarterService.findPastQuarter(quarterId).getQuarterId());
 		returnMap.put("quarterData", quarterDto);

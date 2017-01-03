@@ -67,6 +67,7 @@ public class OMBMetricsRepository {
 			metrics.setFiscalYear(resultSet.getInt("year"));
 			metrics.setFiscalQuarter(resultSet.getString("quarter"));
 			metrics.setEnergyMetering(resultSet.getInt("energy_metering"));
+			metrics.setVirtualization(resultSet.getInt("virtualization"));
 			metrics.setAutomatedMonitoring(resultSet.getInt("server_utilization_automated_monitor"));
 			metrics.setFacilityUtilization(resultSet.getInt("facility_utilization"));
 			metricList.add(metrics);
