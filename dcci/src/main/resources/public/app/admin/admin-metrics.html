@@ -10,6 +10,7 @@
 			<tr>
 				<th style="white-space: nowrap">Quarter - Fiscal Year</th>
 				<th style="white-space: nowrap">Energy Metering</th>
+				<th style="white-space: nowrap">Virtualization</th>
 				<th style="white-space: nowrap">Server Utilization</th>
 				<th style="white-space: nowrap">Facility Utilization</th>
 			</tr>
@@ -18,6 +19,7 @@
 			<tr data-ng-repeat="result in amc.metrics">
 				<td>{{::result.fiscalQuarter}} - {{::result.fiscalYear}}</td>
 				<td>{{::result.energyMetering}}</td>
+				<td>{{::result.virtualization}}</td>
 				<td>{{::result.automatedMonitoring}}</td>
 				<td>{{::result.facilityUtilization}}</td>
 			</tr>
