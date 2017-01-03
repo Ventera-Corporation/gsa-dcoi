@@ -1,8 +1,10 @@
 package gov.gsa.dcoi.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +40,9 @@ public class DcoiCSVWriter {
 	public byte[] exportReportResults(Map<String[], List<List<String>>> exportResultsMap) {
 		CSVWriter writer = null;
 		ByteArrayOutputStream bos = null;
+		File tempFile = new File("tempCsv.csv");
 		try {
-			writer = new CSVWriter(new FileWriter("temp.csv"));
+			writer = new CSVWriter(new FileWriter(tempFile));
 			for (Map.Entry<String[], List<List<String>>> headersAndExportData : exportResultsMap.entrySet()) {
 				writer.writeNext(headersAndExportData.getKey());
 				for (List<String> resultRow : headersAndExportData.getValue()) {
@@ -47,25 +50,14 @@ public class DcoiCSVWriter {
 					writer.writeNext(row);
 				}
 			}
-			return writer.toString().getBytes();
-			// workbook.write(bos);
-			// writer.close();s
-			// "temp.csv".to
-			// writer.
-			// return bos.toByteArray();
+			return Files.readAllBytes(tempFile.toPath());
 		} catch (IOException ioex) {
 			LOGGER.error(ioex.getMessage());
 			throw DcoiExceptionHandler.throwDcoiException("Exception Creating CSV file: " + ioex.getMessage());
 		} finally {
 			IOUtils.closeQuietly(bos);
 			IOUtils.closeQuietly(writer);
-			// if (workbook != null) {
-			// try {
-			// workbook.close();
-			// } catch (IOException e) {
-			// ignore
-			// }
-			// }
+			tempFile.delete();
 		}
 	}
 

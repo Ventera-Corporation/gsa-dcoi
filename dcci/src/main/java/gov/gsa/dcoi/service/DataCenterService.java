@@ -606,7 +606,7 @@ public class DataCenterService {
 			Boolean isAgencyOwned = dataCenterDto.getStatus()
 					.getOwnershipTypeId() == ReferenceValueConstants.AGENCY_OWNED;
 			Boolean isElectricityMeteredAndTiered = dataCenterDto.getStatus()
-					.getElectricityIsMetered() == ReferenceValueConstants.YES && dataCenterIsTiered(dataCenterDto);
+					.getElectricityIsMeteredId() == ReferenceValueConstants.YES && dataCenterIsTiered(dataCenterDto);
 
 			validateClosingInformation(dataCenterDto, messages);
 			validateRecordValidity(dataCenterDto, messages);
@@ -616,7 +616,7 @@ public class DataCenterService {
 							|| dataCenterDto.getGeneralInfo().getDcoiDataCenterId().isEmpty())) {
 				messages.put("dataCenterIdRequired", messageSource.getMessage("dataCenterIdRequired", null, null));
 			}
-			if (dataCenterDto.getStatus().getAutomatedMonitoring() == ReferenceValueConstants.YES
+			if (dataCenterDto.getStatus().getAutomatedMonitoringId() == ReferenceValueConstants.YES
 					&& dataCenterDto.getFieldOffices() != null) {
 				for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
 					if (fieldOfficeDto.getServerInfo() != null
@@ -636,9 +636,9 @@ public class DataCenterService {
 			} else if (isNotInvalid && isAgencyOwned) {
 				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getGrossFloorArea(), "grossFloorAreaRequired",
 						messages);
-				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getElectricityIsMetered(),
+				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getElectricityIsMeteredId(),
 						"electricityMeteredRequired", messages);
-				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getAutomatedMonitoring(),
+				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getAutomatedMonitoringId(),
 						"automatedMonitoringRequired", messages);
 				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getFte(), "fteRequired", messages);
 				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getRackCount(), "rackCountRequired",

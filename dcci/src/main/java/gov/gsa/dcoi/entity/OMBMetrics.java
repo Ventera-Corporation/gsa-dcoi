@@ -11,6 +11,7 @@ public class OMBMetrics {
 	private String fiscalYear;
 	private String fiscalQuarter;
 	private String energyMetering;
+	private String virtualization;
 	private String automatedMonitoring;
 	private String facilityUtilization;
 
@@ -38,6 +39,14 @@ public class OMBMetrics {
 
 	public void setFacilityUtilization(Integer facilityUtilization) {
 		this.facilityUtilization = getStringValue(facilityUtilization) + PERCENTAGE;
+	}
+
+	public String getVirtualization() {
+		return this.virtualization;
+	}
+
+	public void setVirtualization(Integer virtualization) {
+		this.virtualization = getStringValue(virtualization) + PERCENTAGE;
 	}
 
 	public String getFiscalYear() {
