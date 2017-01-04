@@ -136,7 +136,7 @@ public class QuarterController {
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	public Map<String, Object> createQuarter(@Pattern(regexp = "([0-9]{2})/([0-9]{2})/([0-9]{4})") String dueDate) {
+	public Map<String, Object> createQuarter(@RequestBody @Pattern(regexp = "([0-9]{2})/([0-9]{2})/([0-9]{4})") String dueDate) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		try {
