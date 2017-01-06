@@ -85,6 +85,18 @@
 					});
 				}
 			}
+		})
+		.when('/cost', {
+			templateUrl : 'app/admin/admin-cost.html',
+			controller : 'AdminCostController',
+			controllerAs : 'acc',
+			resolve : {
+				initData : function(AdminService){
+					return AdminService.getCostCalculationInformation().then(function(data) {
+						return data;
+					});
+				}
+			}
 		});
 	}
 })();

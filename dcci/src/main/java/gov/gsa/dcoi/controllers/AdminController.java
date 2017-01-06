@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.OMBMetrics;
 import gov.gsa.dcoi.repository.OMBMetricsRepository;
 import gov.gsa.dcoi.repository.UserRepository;
@@ -58,6 +59,16 @@ public class AdminController {
 	@ResponseBody
 	public List<OMBMetrics> getMetrics() {
 		return metricsService.findAllOMBMetrics();
+	}
+
+	/**
+	 * Method to get cost calculation information
+	 */
+	@RequestMapping(value = "/cost", method = RequestMethod.GET)
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	@ResponseBody
+	public List<DataCenterView> getCostCalculation() {
+		return adminService.findAllCostCalculation();
 	}
 
 	/**

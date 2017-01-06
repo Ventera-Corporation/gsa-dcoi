@@ -36,7 +36,7 @@ public class DataCenterQuarter {
 	@Column(name = "electricity_included_in_cost_flag")
 	private Integer electricityIncludedInCost;
 	@Column(name = "electricity_metered_flag")
-	private Integer electricityIsMetered;
+	private Integer electricityIsMeteredId;
 	@Column(name = "power_capacity_total")
 	private Double totalPowerCapacity;
 	@Column(name = "it_power_capacity_total")
@@ -48,7 +48,7 @@ public class DataCenterQuarter {
 	@Column(name = "cost_per_kwh")
 	private Double costPerkWh;
 	@Column(name = "automated_monitoring_flag")
-	private Integer automatedMonitoring;
+	private Integer automatedMonitoringId;
 	private Double serverUtilization;
 	private Double fte;
 	private Integer fteCost;
@@ -210,20 +210,20 @@ public class DataCenterQuarter {
 		this.electricityIncludedInCost = electricityIncludedInCost;
 	}
 
-	public Integer getElectricityIsMetered() {
-		return electricityIsMetered;
+	public Integer getElectricityIsMeteredId() {
+		return electricityIsMeteredId;
 	}
 
-	public void setElectricityIsMetered(Integer electricityIsMetered) {
-		this.electricityIsMetered = electricityIsMetered;
+	public void setElectricityIsMeteredId(Integer electricityIsMetered) {
+		this.electricityIsMeteredId = electricityIsMetered;
 	}
 
-	public Integer getAutomatedMonitoring() {
-		return automatedMonitoring;
+	public Integer getAutomatedMonitoringId() {
+		return automatedMonitoringId;
 	}
 
-	public void setAutomatedMonitoring(Integer automatedMonitoring) {
-		this.automatedMonitoring = automatedMonitoring;
+	public void setAutomatedMonitoringId(Integer automatedMonitoring) {
+		this.automatedMonitoringId = automatedMonitoring;
 	}
 
 	public Double getServerUtilization() {

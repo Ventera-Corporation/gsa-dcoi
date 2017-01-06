@@ -56,8 +56,8 @@ public class ReferenceValueListService {
 	 */
 	private void initYesNoList() {
 		List<GenericReferenceValueObject> yesNo = new ArrayList<>();
-		yesNo.add(new GenericReferenceValueObject(0, "No"));
-		yesNo.add(new GenericReferenceValueObject(1, "Yes"));
+		yesNo.add(new GenericReferenceValueObject(Integer.valueOf(1), "No"));
+		yesNo.add(new GenericReferenceValueObject(Integer.valueOf(2), "Yes"));
 		refValueLists.put("yesNoRefValueList", yesNo);
 	}
 
