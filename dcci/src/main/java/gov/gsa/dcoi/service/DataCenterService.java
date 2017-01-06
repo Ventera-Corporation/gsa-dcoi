@@ -311,6 +311,7 @@ public class DataCenterService {
 
 		// Save Data Center Quarter object
 		DataCenterQuarter dataCenterQuarter = new DataCenterQuarter();
+		CommonHelper.modelMapper.map(dataCenterDto, dataCenterQuarter);
 		CommonHelper.modelMapper.map(dataCenter, dataCenterQuarter);
 		QuarterReport quarterReport = quarterReportRepository.findByQuarterInProgressFlag(1);
 		dataCenterQuarter.setQuarterReportId(quarterReport.getQuarterId());
