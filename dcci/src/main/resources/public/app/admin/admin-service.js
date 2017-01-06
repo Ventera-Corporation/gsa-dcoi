@@ -25,6 +25,12 @@
 					method : 'POST',
 					data: userData
 				}).then(returnData);
+			},
+			getCostCalculationInformation:  function(){
+				return $http({
+					url : '/admin/cost',
+					method : 'GET',
+				}).then(returnData);
 			}
 	    };
 	    

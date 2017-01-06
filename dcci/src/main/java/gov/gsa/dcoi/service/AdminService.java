@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import gov.gsa.dcoi.entity.DataCenterView;
 import gov.gsa.dcoi.entity.OMBMetrics;
+import gov.gsa.dcoi.repository.DataCenterViewRepository;
 import gov.gsa.dcoi.repository.OMBMetricsRepository;
 import gov.gsa.dcoi.repository.UserRepository;
 import gov.gsa.dcoi.security.User;
@@ -24,6 +26,9 @@ public class AdminService {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	DataCenterViewRepository viewRepository;
+
 	/**
 	 * Function to return the OMB Metrics from the omb repository
 	 * 
@@ -32,6 +37,16 @@ public class AdminService {
 	@Transactional(readOnly = true)
 	public List<OMBMetrics> findAllOMBMetrics() {
 		return metricsRepository.findAllOMBMetrics();
+	}
+
+	/**
+	 * Method to get cost calculation information
+	 * 
+	 * @return
+	 */
+	public List<DataCenterView> findAllCostCalculation() {
+		return viewRepository.findDataCenterRecordsForCostCalc();
+
 	}
 
 	/**

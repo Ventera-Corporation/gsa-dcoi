@@ -88,6 +88,30 @@ public class DataCenterViewRepository {
 	}
 
 	/**
+	 * Return all Data Center Records for all quarters specifically for the cost
+	 * calculation screen
+	 * 
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public List<DataCenterView> findDataCenterRecordsForCostCalc() {
+		try {
+
+			return jdbcTemplate.query(GET_ALL_DATA_CENTERS_FOR_QUARTER, new ResultSetExtractor<List<DataCenterView>>() {
+				@Override
+				public List<DataCenterView> extractData(ResultSet rs) throws SQLException {
+					return processResultsForCostCalc(rs);
+				}
+			});
+		} catch (DataAccessException e) {
+			LOGGER.error(e.getMessage());
+			throw DcoiExceptionHandler.throwDcoiException(
+					"Exception Finding all data center view records for cost calc: " + e.getMessage());
+		}
+
+	}
+
+	/**
 	 * Process View Results
 	 *
 	 * @param rs
@@ -143,6 +167,26 @@ public class DataCenterViewRepository {
 			dataCenterView.setFiscalQuarter(rs.getString("fiscal_quarter"));
 			dataCenterView.setIssPositionName(rs.getString("iss_position_name"));
 			dataCenterView.setIssProvider(rs.getString("iss_provider"));
+			dataCenterViews.add(dataCenterView);
+		}
+		return dataCenterViews;
+	}
+
+	/**
+	 * Process View Results
+	 *
+	 * @param rs
+	 * @return
+	 */
+	private List<DataCenterView> processResultsForCostCalc(ResultSet rs) throws SQLException {
+		List<DataCenterView> dataCenterViews = new ArrayList<>();
+		while (rs.next()) {
+			DataCenterView dataCenterView = new DataCenterView();
+			dataCenterView.setQuarterReportId(rs.getString("quarter_report_id"));
+			dataCenterView.setDataCenterId(rs.getString("data_center_id"));
+			dataCenterView.setDataCenterName(rs.getString("data_center_name"));
+			dataCenterView.setFiscalYear(rs.getString("fiscal_year"));
+			dataCenterView.setFiscalQuarter(rs.getString("fiscal_quarter"));
 
 			// Cost Model
 			dataCenterView.setServerAmount(rs.getString("server_amount"));
