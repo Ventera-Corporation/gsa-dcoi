@@ -24,4 +24,9 @@ public interface DataCenterRepository extends PagingAndSortingRepository<DataCen
 	 */
 	public DataCenter findByDataCenterId(@Param("data_center_id") Integer dataCenterId);
 
+	/**
+	 * Find the data center by the assigned dcoi data center id
+	 */
+	public DataCenter findByDcoiDataCenterId(@Param("dcoi_data_center_id") String dcoiDataCenterId);
+
 }

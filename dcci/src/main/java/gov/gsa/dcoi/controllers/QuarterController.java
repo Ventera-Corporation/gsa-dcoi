@@ -136,7 +136,8 @@ public class QuarterController {
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	public Map<String, Object> createQuarter(@RequestBody @Pattern(regexp = "([0-9]{2})/([0-9]{2})/([0-9]{4})") String dueDate) {
+	public Map<String, Object> createQuarter(
+			@RequestBody @Pattern(regexp = "([0-9]{2})/([0-9]{2})/([0-9]{4})") String dueDate) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		try {
@@ -232,8 +233,8 @@ public class QuarterController {
 	@RequestMapping(value = "export", method = RequestMethod.POST)
 	public byte[] exportSearchResults(@RequestBody Long quarterId) {
 
-		return csvService
-				.exportReportResults(buildResultsForExport(quarterService.findViewResultsByQuarterId(quarterId)));
+		return csvService.exportReportResults(
+				buildResultsForExport(quarterService.findViewResultsByQuarterId(quarterId), quarterId));
 	}
 
 	/**
@@ -243,11 +244,15 @@ public class QuarterController {
 	 * @param searchResults
 	 * @return
 	 */
-	private Map<String[], List<List<String>>> buildResultsForExport(List<DataCenterView> searchResults) {
+	private Map<String[], List<List<String>>> buildResultsForExport(List<DataCenterView> searchResults,
+			Long quarterId) {
 		List<List<String>> valuesForCSV = new LinkedList<List<String>>();
 		Map<String[], List<List<String>>> searchResultsMap = new LinkedHashMap<String[], List<List<String>>>();
 		for (DataCenterView searchResultVO : searchResults) {
 			List<String> dataCenterViewSearchResult = new LinkedList<String>();
+			dataCenterViewSearchResult.add("GSA");
+			dataCenterViewSearchResult.add(
+					dataCenterService.findComponentNameForOMBReport(searchResultVO.getDcoiDataCenterId(), quarterId));
 			dataCenterViewSearchResult.add(searchResultVO.getDataCenterName());
 			dataCenterViewSearchResult.add(searchResultVO.getDcoiDataCenterId());
 			dataCenterViewSearchResult.add(searchResultVO.getStreetAddress());
@@ -295,16 +300,17 @@ public class QuarterController {
 			valuesForCSV.add(dataCenterViewSearchResult);
 		}
 
-		String[] exportColumnNames = { "DATA CENTER NAME", "DATA CENTER ID", "STREET ADDRESS", "STREET ADDRESS 2",
-				"CITY", "ZIPCODE", "STATE NAME", "COUNTRY NAME", "AGENCY DATA CENTER NAME", "PUBLISHED NAME",
-				"RECORD STATUS NAME", "RECORD VALIDITY ID", "OWNERSHIP TYPE NAME", "DATA CENER TIER NAME",
-				"GROSS FLOOR AREA", "TOTAL CUSTOMER FLOOR AREA", "ANNUAL COST PER SQ FT", "OTHER AGENCIES SERVICED",
-				"ELECTRICTY INCLUDED IN COST", "ELECTRICTY IS METERED", "TOTAL POWER CAPACITY",
-				"TOTAL IT POWER CAPACITY", "AVG ELECTRICITY USAGE", "AVG IT ELECTRICITY USAGE", "COST PER KWH",
-				"AUTOMATED MONITORING", "SERVER UTILIZATION", "FTE", "FTE COST", "RACK COUNT", "TOTAL MAINFRAMES",
-				"TOTAL WINDOWS SERVERS", "TOTAL HPC CLUSTER NODES", "TOTAL OTHER SERVERS", "TOTAL VIRTUAL HOSTS",
-				"TOTAL VIRTUAL OS", "TOTAL STORAGE", "USED STORAGE", "CORE CLASSIFICATION NAME", "CLOSING STAGE NAME",
-				"FISCAL YEAR", "FISCAL QUARTER", "ISS POSITION NAME", "ISS PROVIDER" };
+		String[] exportColumnNames = { "AGENCY ABBREVIATION", "COMPONENT", "DATA CENTER NAME", "DATA CENTER ID",
+				"STREET ADDRESS", "STREET ADDRESS 2", "CITY", "ZIPCODE", "STATE NAME", "COUNTRY NAME",
+				"AGENCY DATA CENTER NAME", "PUBLISHED NAME", "RECORD STATUS NAME", "RECORD VALIDITY ID",
+				"OWNERSHIP TYPE NAME", "DATA CENER TIER NAME", "GROSS FLOOR AREA", "TOTAL CUSTOMER FLOOR AREA",
+				"ANNUAL COST PER SQ FT", "OTHER AGENCIES SERVICED", "ELECTRICTY INCLUDED IN COST",
+				"ELECTRICTY IS METERED", "TOTAL POWER CAPACITY", "TOTAL IT POWER CAPACITY", "AVG ELECTRICITY USAGE",
+				"AVG IT ELECTRICITY USAGE", "COST PER KWH", "AUTOMATED MONITORING", "SERVER UTILIZATION", "FTE",
+				"FTE COST", "RACK COUNT", "TOTAL MAINFRAMES", "TOTAL WINDOWS SERVERS", "TOTAL HPC CLUSTER NODES",
+				"TOTAL OTHER SERVERS", "TOTAL VIRTUAL HOSTS", "TOTAL VIRTUAL OS", "TOTAL STORAGE", "USED STORAGE",
+				"CORE CLASSIFICATION NAME", "CLOSING STAGE NAME", "FISCAL YEAR", "FISCAL QUARTER", "ISS POSITION NAME",
+				"ISS PROVIDER" };
 		searchResultsMap.put(exportColumnNames, valuesForCSV);
 		return searchResultsMap;
 	}
