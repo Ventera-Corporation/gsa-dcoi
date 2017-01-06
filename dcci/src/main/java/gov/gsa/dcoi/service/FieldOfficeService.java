@@ -16,6 +16,7 @@ import gov.gsa.dcoi.entity.CostCalculation;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.entity.FieldOffice;
 import gov.gsa.dcoi.refValueEntity.GenericReferenceValueObject;
+import gov.gsa.dcoi.refValueEntity.ReferenceValueConstants;
 import gov.gsa.dcoi.repository.CostCalculationRepository;
 import gov.gsa.dcoi.repository.FieldOfficeRepository;
 import gov.gsa.dcoi.security.SecurityUtils;
@@ -31,12 +32,14 @@ import gov.gsa.dcoi.security.SecurityUtils;
 @Component
 public class FieldOfficeService {
 
+	public static final String OCIO_VALUE = "OCIO";
+
 	@Autowired
 	FieldOfficeRepository fieldOfficeRepository;
 
 	@Autowired
 	CostCalculationRepository costCalcRepository;
-	
+
 	@Autowired
 	SecurityUtils securityUtils;
 
@@ -164,7 +167,7 @@ public class FieldOfficeService {
 			}
 		} else {
 			for (GenericReferenceValueObject valueObject : componentRefValueList) {
-				if ("OCIO".equals(valueObject.getValue())) {
+				if (OCIO_VALUE.equals(valueObject.getValue())) {
 					FieldOfficeDto fieldOfficeDto = new FieldOfficeDto();
 					fieldOfficeDto.setComponentId(valueObject.getId());
 					fieldOfficeDto.setFieldOfficeName(valueObject.getValue());
@@ -173,6 +176,34 @@ public class FieldOfficeService {
 			}
 		}
 		return fieldOfficeDtos;
+	}
+
+	/**
+	 * Walk through the field offices for each data center and select the
+	 * component name that will be put into the final OMB report
+	 * 
+	 * @param dataCenterQuarterId
+	 * @return
+	 */
+	public String parseFieldOfficesForOverallComponent(Long dataCenterQuarterId) {
+		List<FieldOffice> fieldOffices = fieldOfficeRepository.findByDataCenterQuarterId(dataCenterQuarterId);
+		List<GenericReferenceValueObject> componentRefValueList = ReferenceValueListService.refValueLists
+				.get("componentRefValueList");
+		String componentName = OCIO_VALUE;
+		if (CollectionUtils.isNotEmpty(fieldOffices)) {
+			for (FieldOffice fieldOffice : fieldOffices) {
+				for (GenericReferenceValueObject valueObject : componentRefValueList) {
+					if (fieldOffice.getComponentId() == ReferenceValueConstants.OCIO_ID) {
+						return OCIO_VALUE;
+					} else if (fieldOffice.getComponentId() == valueObject.getId()) {
+						componentName = valueObject.getValue();
+					}
+				}
+			}
+		} else {
+			return OCIO_VALUE;
+		}
+		return componentName;
 	}
 
 }

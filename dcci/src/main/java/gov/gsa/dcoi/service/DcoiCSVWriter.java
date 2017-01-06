@@ -1,10 +1,8 @@
 package gov.gsa.dcoi.service;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
+
 import java.util.List;
 import java.util.Map;
 
@@ -33,39 +31,33 @@ public class DcoiCSVWriter {
 	/**
 	 * Export search/final report results, as well as cost model reports
 	 * 
-	 * @param sheetTitles
-	 * @param searchResultsMap
+	 * @param exportResultsMap
 	 * @return
 	 */
 	public byte[] exportReportResults(Map<String[], List<List<String>>> exportResultsMap) {
-		CSVWriter writer = null;
-		ByteArrayOutputStream bos = null;
-		File tempFile = new File("tempCsv.csv");
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		try {
-			writer = new CSVWriter(new FileWriter(tempFile));
 			for (Map.Entry<String[], List<List<String>>> headersAndExportData : exportResultsMap.entrySet()) {
-				writer.writeNext(headersAndExportData.getKey());
+				for (int i = 0; i < headersAndExportData.getKey().length; i++) {
+					bos.write((headersAndExportData.getKey()[i] + ",").getBytes());
+				}
+				bos.write("\n".getBytes());
 				for (List<String> resultRow : headersAndExportData.getValue()) {
 					String[] row = resultRow.toArray(new String[resultRow.size()]);
-					writer.writeNext(row);
+					for (int i = 0; i < row.length; i++) {
+						bos.write((row[i] + ",").getBytes());
+					}
+					bos.write("\n".getBytes());
 				}
 			}
-			return Files.readAllBytes(tempFile.toPath());
+
+			return bos.toByteArray();
 		} catch (IOException ioex) {
 			LOGGER.error(ioex.getMessage());
 			throw DcoiExceptionHandler.throwDcoiException("Exception Creating CSV file: " + ioex.getMessage());
 		} finally {
 			IOUtils.closeQuietly(bos);
-			IOUtils.closeQuietly(writer);
-			tempFile.delete();
 		}
-	}
-
-	private String getNullSafeString(String value) {
-		if (value == null || value.isEmpty()) {
-			return "NONE";
-		}
-		return value;
 	}
 
 }

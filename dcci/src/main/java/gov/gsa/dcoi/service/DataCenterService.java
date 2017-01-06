@@ -698,4 +698,22 @@ public class DataCenterService {
 		}
 	}
 
+	/**
+	 * Find the component name to be displayed in the OMB report - default to
+	 * OCIO whenever possible, otherwise defaults to one of the other provided
+	 * components
+	 * 
+	 * @param dcoiDataCenterId
+	 * @param quarterId
+	 * @return
+	 */
+	public String findComponentNameForOMBReport(String dcoiDataCenterId, Long quarterId) {
+
+		DataCenter dataCenter = dataCenterRepository.findByDcoiDataCenterId(dcoiDataCenterId);
+		DataCenterQuarter dataCenterQuarter = dataCenterQuarterRepository
+				.findByQuarterReportIdAndDataCenterId(quarterId, dataCenter.getDataCenterId());
+		return fieldOfficeService.parseFieldOfficesForOverallComponent(dataCenterQuarter.getDataCenterQuarterId());
+
+	}
+
 }
