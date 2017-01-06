@@ -668,8 +668,11 @@ public class DataCenterService {
 		}
 		errorData.put("messages", messages);
 		if (!messages.isEmpty()) {
-			// List
-			errorData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(ERROR_ALERT, null, null) });
+			DcoiRestMessage message = new DcoiRestMessage(ERROR_ALERT,
+					messageSource.getMessage(ERROR_ALERT, null, null));
+			List<DcoiRestMessage> messageList = new ArrayList<>();
+			messageList.add(message);
+			errorData.put(MESSAGE_LIST, messageList);
 			errorData.put("error", Boolean.valueOf("true"));
 		}
 		return errorData;
