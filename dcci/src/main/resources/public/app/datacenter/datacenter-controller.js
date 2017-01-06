@@ -7,6 +7,7 @@
 	
 	function DataCenterController(DataCenterService, $uibModal){
 		var dcc = this;
+		dcc.tempData = {};
 		dcc.submitDataCenter = submitDataCenter;
 		dcc.rejectDataCenter = rejectDataCenter;
 		dcc.validateDataCenter = validateDataCenter;

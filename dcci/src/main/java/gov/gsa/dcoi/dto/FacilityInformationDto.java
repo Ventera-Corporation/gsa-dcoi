@@ -23,6 +23,7 @@ public class FacilityInformationDto {
 	private String totalCustomerFloorArea;
 	@DcoiDecimalMin(0.00)
 	@DcoiDecimalMax(800000.00)
+	@Pattern(regexp = "([0-9]*.[0-9]?[0-9]?|^$)")
 	private String annualCostPerSqFt;
 	@Size(max = 2048)
 	private String otherAgenciesServiced;
