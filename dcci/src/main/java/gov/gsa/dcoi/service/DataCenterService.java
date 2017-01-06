@@ -142,9 +142,9 @@ public class DataCenterService {
 			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
 				securityUtils.setUserIdForAudit();
 				dataCenterQuarterRepository.save(otherCalculations(copyDtoToEntity(dataCenterDto, fieldOfficeDto)));
-				if (user.getFieldOfficeIds().contains(fieldOfficeDto.getDataCenterInventoryId().intValue())
-						&& (user.getRoleIds().contains(ReferenceValueConstants.SERVER_ROLE)
-								|| user.getRoleIds().contains(ReferenceValueConstants.ADMIN_ROLE))) {
+				if (user.getRoleIds().contains(ReferenceValueConstants.ADMIN_ROLE)
+						|| (user.getFieldOfficeIds().contains(fieldOfficeDto.getComponentId())
+								&& user.getRoleIds().contains(ReferenceValueConstants.SERVER_ROLE))) {
 					securityUtils.setUserIdForAudit();
 					fieldOfficeRepository.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
 				}
@@ -536,16 +536,16 @@ public class DataCenterService {
 					messages);
 			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalQuarterId(),
 					"closingFiscalQuarterRequired", messages);
-			if (dataCenterDto.getStatus().getClosingFiscalYearId() != null) {
-				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalQuarterId(),
-						"closingFiscalQuarterRequired2", messages);
-			}
-			if (dataCenterDto.getStatus().getClosingFiscalQuarterId() != null) {
-				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalYearId(),
-						"closingFiscalYearRequired2", messages);
-			}
-
 		}
+		if (dataCenterDto.getStatus().getClosingFiscalYearId() != null) {
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalQuarterId(),
+					"closingFiscalQuarterRequired2", messages);
+		}
+		if (dataCenterDto.getStatus().getClosingFiscalQuarterId() != null) {
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalYearId(), "closingFiscalYearRequired2",
+					messages);
+		}
+
 	}
 
 	/**
@@ -644,7 +644,8 @@ public class DataCenterService {
 						messages);
 				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getDataCenterTierId(), "dataCenterTierRequired",
 						messages);
-			} else if (isNotInvalid && isAgencyOwned) {
+			}
+			if (isNotInvalid && isAgencyOwned) {
 				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getGrossFloorArea(), "grossFloorAreaRequired",
 						messages);
 				fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getElectricityIsMeteredId(),
@@ -656,7 +657,8 @@ public class DataCenterService {
 						messages);
 				validateServerInformation(dataCenterDto, messages);
 
-			} else if (isNotInvalid && isAgencyOwned && isElectricityMeteredAndTiered) {
+			}
+			if (isNotInvalid && isAgencyOwned && isElectricityMeteredAndTiered) {
 				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getAvgElectricityUsage(),
 						"avgElectrictyUsageRequired", messages);
 				fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getAvgITElectricityUsage(),
@@ -666,6 +668,7 @@ public class DataCenterService {
 		}
 		errorData.put("messages", messages);
 		if (!messages.isEmpty()) {
+			// List
 			errorData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(ERROR_ALERT, null, null) });
 			errorData.put("error", Boolean.valueOf("true"));
 		}

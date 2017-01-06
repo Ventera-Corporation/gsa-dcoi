@@ -17,26 +17,22 @@
             <!-- Form Fields -->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-textfield-edit 
+					<div data-textfield-view
 							data-field-name="Agency Abbreviation" 
-							data-field-required="true"
 							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
 							data-data-center="dataCenter"
 							data-section-prop-name="generalInfo"
 							data-field-prop-name="agencyAbbreviation"
-							data-new-quarter-value="dataCenter['generalInfo']['agencyAbbreviation']"
-							data-error-message="qc.tempData.errorData.messages['agencyAbbreviation']"></div>
+							data-new-quarter-value="dataCenter['generalInfo']['agencyAbbreviation']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-					<div data-textfield-edit 
+					<div data-textfield-view
 							data-field-name="Component" 
-							data-field-required="true"
 							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
 							data-data-center="dataCenter"
 							data-section-prop-name="generalInfo"
 							data-field-prop-name="component"
-							data-new-quarter-value="dataCenter['generalInfo']['component']"
-							data-error-message="qc.tempData.errorData.messages['component']"></div>
+							data-new-quarter-value="dataCenter['generalInfo']['component']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
@@ -52,7 +48,6 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
 							data-field-name="Data Center ID" 
-							data-field-required="true"
 							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
 							data-data-center="dataCenter"
 							data-section-prop-name="generalInfo"
@@ -134,7 +129,8 @@
 							data-data-center="dataCenter"
 							data-section-prop-name="generalInfo"
 							data-field-prop-name="zipCode"
-							data-new-quarter-value="dataCenter['generalInfo']['zipCode']"></div>
+							data-new-quarter-value="dataCenter['generalInfo']['zipCode']"
+							data-error-message="qc.tempData.errorData.messages['zipCode']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 

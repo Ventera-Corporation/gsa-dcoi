@@ -21,7 +21,6 @@ public class GeneralInformationDto {
 	private Integer parentDataCenterInventoryId;
 	private String agencyDataCenterId;
 	@NotEmpty
-	@Size(min = 1)
 	private String agencyAbbreviation;
 	@Size(max = 255)
 	private String publishedName;
@@ -32,14 +31,14 @@ public class GeneralInformationDto {
 	@Size(max = 100)
 	private String city;
 	private Integer stateId;
-	@Pattern(regexp = "([0-9]{5}|[0-9]{5}-[0-9]{4})|^$")
+	@Pattern(regexp = "([0-9]{5}|[0-9]{5}-[0-9]{4}|^$)")
 	private String zipCode;
 	private Integer countryId;
-	@Size(min = 1, max = 255)
+	@Size(max = 255)
 	@NotEmpty
 	private String dataCenterName;
 	@NotEmpty
-	@Size(min = 1)
+	@Size(max = 1024)
 	private String component;
 
 	public Integer getDataCenterInventoryId() {

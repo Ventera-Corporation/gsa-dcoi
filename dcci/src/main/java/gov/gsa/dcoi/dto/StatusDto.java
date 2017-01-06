@@ -1,6 +1,7 @@
 package gov.gsa.dcoi.dto;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import gov.gsa.dcoi.service.CommonHelper;
 
@@ -29,7 +30,7 @@ public class StatusDto {
 	private Integer closingStageId;
 	private Integer closingFiscalYearId;
 	private Integer closingFiscalQuarterId;
-	// @Pattern(regexp = "DCOI-DC-[0-9]{5}")
+	@Pattern(regexp = "(DCOI-DC-([0-9]{5})|DCOI-DC-([0-9]{6})|^$)")
 	private String issProvider;
 
 	public String getSharedServicesPosition() {

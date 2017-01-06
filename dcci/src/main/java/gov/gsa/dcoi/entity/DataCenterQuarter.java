@@ -46,7 +46,7 @@ public class DataCenterQuarter {
 	@Column(name = "it_electricity_usage_avg")
 	private Double avgITElectricityUsage;
 	@Column(name = "cost_per_kwh")
-	private Integer costPerkWh;
+	private Double costPerkWh;
 	@Column(name = "automated_monitoring_flag")
 	private Integer automatedMonitoring;
 	private Double serverUtilization;
@@ -490,11 +490,11 @@ public class DataCenterQuarter {
 		this.usedStorage = usedStorage;
 	}
 
-	public Integer getCostPerkWh() {
+	public Double getCostPerkWh() {
 		return costPerkWh;
 	}
 
-	public void setCostPerkWh(Integer costPerkWh) {
+	public void setCostPerkWh(Double costPerkWh) {
 		this.costPerkWh = costPerkWh;
 	}
 
