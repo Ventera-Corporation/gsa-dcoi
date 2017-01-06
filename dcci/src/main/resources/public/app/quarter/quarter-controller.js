@@ -149,6 +149,8 @@
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
+					//hide success
+					qc.tempData.successData = null;
 				} else {
 					//hide errors
 					qc.tempData.errorData = null;

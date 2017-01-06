@@ -1,8 +1,10 @@
 package gov.gsa.dcoi.dto;
 
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+
+import gov.gsa.dcoi.validator.DcoiDecimalMax;
+import gov.gsa.dcoi.validator.DcoiDecimalMin;
+import gov.gsa.dcoi.validator.DcoiMin;
 
 /**
  * Dto that holds information regarding the data center servers. This
@@ -14,24 +16,25 @@ import javax.validation.constraints.Min;
 public class ServerInformationDto {
 
 	private Integer dataCenterInventoryId;
-	@DecimalMin("0.00")
-	@DecimalMax("1.00")
+	@DcoiDecimalMin(0.00)
+	@DcoiDecimalMax(1.00)
+	@Pattern(regexp = "([0-9]?.[0-9][0-9]?|^$)")
 	private String serverUtilization;
-	@Min(0)
+	@DcoiMin(0)
 	private String totalMainframes;
-	@Min(0)
+	@DcoiMin(0)
 	private String totalWindowsServers;
-	@Min(0)
+	@DcoiMin(0)
 	private String totalHPCClusterNodes;
-	@Min(0)
+	@DcoiMin(0)
 	private String totalOtherServers;
-	@Min(0)
+	@DcoiMin(0)
 	private String totalVirtualHosts;
-	@Min(0)
+	@DcoiMin(0)
 	private String totalVirtualOS;
-	@DecimalMin("0.00")
+	@DcoiDecimalMin(0.00)
 	private String totalStorage;
-	@DecimalMin("0.00")
+	@DcoiDecimalMin(0.00)
 	private String usedStorage;
 
 	public Integer getDataCenterInventoryId() {

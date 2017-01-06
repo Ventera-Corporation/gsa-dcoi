@@ -441,7 +441,7 @@ public class DataCenterView {
 	private Object getDisplayValue(Object object, String type) {
 		if (type.equals(DISPLAY_TYPE_STRING)) {
 			if (object == null || object.toString() == "") {
-				return "None";
+				return "";
 			}
 		}
 		return object;

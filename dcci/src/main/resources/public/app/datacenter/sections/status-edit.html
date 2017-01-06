@@ -133,7 +133,9 @@
 							data-data-center="dataCenter"
 							data-section-prop-name="status"
 							data-field-prop-name="issProvider"
-							data-new-quarter-value="dataCenter['status']['issProvider']"></div>
+							data-placeholder-text="DCOI-DC-#####"
+							data-new-quarter-value="dataCenter['status']['issProvider']"
+							data-error-message="qc.tempData.errorData.messages['issProvider']"></div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 
@@ -157,8 +159,8 @@
 							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
 							data-data-center="dataCenter"
 							data-section-prop-name="status"
-							data-field-prop-name="closingQuarterId"
-							data-new-quarter-value="dataCenter['status']['closingQuarterId']"
+							data-field-prop-name="closingFiscalQuarterId"
+							data-new-quarter-value="dataCenter['status']['closingFiscalQuarterId']"
 							data-ref-value-list="qc.referenceValueLists.fiscalQuartersRefValueList"></div>
 							<span class="text-danger" 
 				data-ng-if="qc.tempData.errorData">
