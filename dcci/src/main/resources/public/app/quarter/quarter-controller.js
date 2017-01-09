@@ -65,6 +65,9 @@
 		function selectDataCenterName(regionIdx, dataCenterName){
 			qc.tempData.selected.regionIdx = regionIdx;
 			qc.tempData.selected.dataCenterName = dataCenterName;
+			//remove errors and success message
+			qc.tempData.errorData = null;
+			qc.tempData.successData = null;
 		}
 		
 		function initDefaultPanelExpanded(dataCenter){
@@ -102,7 +105,10 @@
 			}
 		}
 		
-		function editQuarter(){
+		function editQuarter(errorData, successData){
+			//update errors and success message
+			qc.tempData.errorData = errorData;
+			qc.tempData.successData = successData;
 			qc.tempData.editMode = true;
 			//need to keep track of which panels were visited where we started in editMode
 			qc.tempData.wasInEditMode.dataCenterNames.push(qc.tempData.selected.dataCenterName);
@@ -132,6 +138,8 @@
 					if(data.error){
 						//show errors
 						qc.tempData.errorData = data;
+						//hide success message
+						qc.tempData.successData = null;
 					} else {
 						//hide errors
 						qc.tempData.errorData = null;
@@ -149,7 +157,7 @@
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
-					//hide success
+					//hide success message
 					qc.tempData.successData = null;
 				} else {
 					//hide errors
@@ -231,15 +239,14 @@
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
+					//hide success message
+					qc.tempData.successData = null;
 				} else {
-					//hide errors
-					qc.tempData.errorData = null;
-					//show success message
-					qc.tempData.successData = data.successData;
 					var newdataCenterData = data.dataCenterData;
 					var regionIdx = addDataCenterToRegion(newdataCenterData);
 					selectDataCenterName(regionIdx, newdataCenterData.dataCenterName);
-					qc.editQuarter();
+					//hide errors and show success message
+					qc.editQuarter(null, data.successData);
 				}
 			});
 		}
@@ -274,6 +281,8 @@
 					if(data.error){
 						//show errors
 						qc.tempData.errorData = data;
+						//hide success message
+						qc.tempData.successData = null;
 					} else {
 						//hide errors
 						qc.tempData.errorData = null;
@@ -289,6 +298,8 @@
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
+					//hide success message
+					qc.tempData.successData = null;
 				} else {
 					//hide errors
 					qc.tempData.errorData = null;

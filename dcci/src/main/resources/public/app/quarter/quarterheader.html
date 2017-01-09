@@ -25,7 +25,7 @@
 	</span>
 	<button class="usa-button usa-button-outline" type="button" 
 			data-ng-if="!qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"
-			data-ng-click="qc.editQuarter()">Edit</button>
+			data-ng-click="qc.editQuarter(null, null)">Edit</button>
 	<button class="usa-button usa-button-primary" type="button" 
 			data-ng-if="qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"
 			data-ng-click="qc.saveQuarter(lc.isAdmin())">Save Changes</button>

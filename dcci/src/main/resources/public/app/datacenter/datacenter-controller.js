@@ -32,6 +32,8 @@
 					if(data.error){
 						//show errors
 						dcc.tempData.errorData = data;
+						//hide success message
+						dcc.tempData.successData = null;
 					} else {
 						//hide errors
 						dcc.tempData.errorData = null;
@@ -62,6 +64,8 @@
 					if(data.error){
 						//show errors
 						dcc.tempData.errorData = data;
+						//hide success message
+						dcc.tempData.successData = null;
 					} else {
 						//hide errors
 						dcc.tempData.errorData = null;
@@ -94,6 +98,8 @@
 					if(data.error){
 						//show errors
 						dcc.tempData.errorData = data;
+						//hide success message
+						dcc.tempData.successData = null;
 					} else {
 						//hide errors
 						dcc.tempData.errorData = null;
