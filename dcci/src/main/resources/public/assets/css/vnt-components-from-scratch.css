@@ -112,6 +112,7 @@
         .panel-dc {
             max-width: 1050px;
             margin: 0 auto;
+            margin-bottom: 20px !important;
             -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
                -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
                     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
