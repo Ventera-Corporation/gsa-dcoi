@@ -84,10 +84,10 @@
 	                        <a uib-dropdown-toggle role="button" aria-haspopup="true" aria-expanded="false">
 	                        	<span style="text-transform:capitalize">{{account.firstName}}&nbsp;{{account.lastName}}</span> <span class="caret"></span></a>
 	                        <ul uib-dropdown-menu>
-	                            <li><a href="#/settings">Settings</a></li>
-	                            <li><a href="#/metrics">Metrics</a></li>
-	                            <li><a href="#/cost">Cost Calculation</a>
-	                            <li><a href="" data-ng-click="lc.logout()">Logout</a></li>
+	                            <li data-ng-if="lc.isAdmin()"><a href="#/settings">Settings</a></li>
+	                            <li data-ng-if="lc.isAdmin()"><a href="#/metrics">Metrics</a></li>
+	                            <li data-ng-if="lc.isAdmin()"><a href="#/cost">Cost Calculation</a>
+	                            <li><a href="javascript:;" data-ng-click="lc.logout()">Logout</a></li>
 	                        </ul>
 	                    </li>
 	                </ul>
