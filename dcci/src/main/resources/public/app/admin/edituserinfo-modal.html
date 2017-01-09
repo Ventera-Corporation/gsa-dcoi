@@ -28,7 +28,7 @@
 	</div><!-- /.row -->
 	<hr/>
 	<div class="row">
-		<div class="col-md-12 col-sm-12 col-xs-12"><strong>Active Roles</strong> <span class="vnt-red-text">*</span></div>
+		<div class="col-md-12 col-sm-12 col-xs-12"><strong>Active Roles</strong></div>
 	</div><!-- /.row -->
 	<div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12" data-ng-repeat="role in euimc.roleRefValueList | filter:{'activeFlag':1}"
@@ -44,7 +44,7 @@
 		</div> 
 	</div><!-- /.row -->
 	<div class="row">
-		<div class="col-md-12 col-sm-12 col-xs-12"><strong>Active Field Offices</strong></div>
+		<div class="col-md-12 col-sm-12 col-xs-12"><strong>Active Field Offices (only applicable to Server role)</strong></div>
 	</div><!-- /.row -->
 	<div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12" data-ng-repeat="fieldOffice in euimc.componentRefValueList | filter:{'activeFlag':1}"
@@ -63,7 +63,7 @@
 
 <div class="modal-footer">
     <button type="button" class="usa-button usa-button-primary" 
-    		data-ng-disabled="!(euimc.user.firstName && euimc.user.lastName && euimc.user.emailAddress && euimc.removeNullRoleValues(euimc.tempRoles).length)" 
+    		data-ng-disabled="!(euimc.user.firstName && euimc.user.lastName && euimc.user.emailAddress)" 
     		data-ng-click="euimc.save()">Save</button>
     <button type="button" class="usa-button usa-button-outline" data-ng-click="euimc.cancel()">Cancel</button>
 </div><!-- /.modal-footer -->

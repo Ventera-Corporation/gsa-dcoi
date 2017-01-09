@@ -56,7 +56,7 @@
 	</div><!-- /.row -->
 	<div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12" data-ng-repeat="fieldOffice in andcc.componentRefValueList | filter:{'activeFlag':1}">
-            <div class="form-group" data-ng-if="fieldOffice.id !== andcc.ALL_FIELD_OFFICE_COMPONENT_ID">
+            <div class="form-group">
 				<input type="checkbox" id="fieldOffice{{fieldOffice.value}}"
 						data-ng-false-value="null" 
 						data-ng-true-value="{{fieldOffice.id}}" 

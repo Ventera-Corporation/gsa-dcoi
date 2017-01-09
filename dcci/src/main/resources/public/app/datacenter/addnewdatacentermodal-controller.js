@@ -8,7 +8,6 @@
 	function AddNewDataCenterModalController(DataCenterService, $uibModalInstance, initData){
 		var andcc = this;
 		andcc.CLOUD_REGION_ID = 12;
-		andcc.ALL_FIELD_OFFICE_COMPONENT_ID = 11;
 		andcc.dataCenter = initData.dataCenterData;
 		andcc.fieldOffice = initData.fieldOfficeData;
 		andcc.tempFieldOffices = [];

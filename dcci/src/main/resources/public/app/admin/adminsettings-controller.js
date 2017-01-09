@@ -50,6 +50,8 @@
 				if(data.error){
 					//show errors
 					asc.tempData.errorData = data;
+					//hide success message
+					asc.tempData.successData = null;
 				} else {
 					//hide errors
 					asc.tempData.errorData = null;
