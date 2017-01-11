@@ -1,6 +1,5 @@
 package gov.gsa.dcoi.dto;
 
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -31,7 +30,7 @@ public class FacilityInformationDto {
 	private String totalPowerCapacity;
 	@DcoiDecimalMin(0.01)
 	private String avgElectricityUsage;
-	@DcoiDecimalMin(0.00)
+	@DcoiDecimalMin(0.01)
 	private String totalITPowerCapacity;
 	@DcoiDecimalMin(0.01)
 	private String avgITElectricityUsage;

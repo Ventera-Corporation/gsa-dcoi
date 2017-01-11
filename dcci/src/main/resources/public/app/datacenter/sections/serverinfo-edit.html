@@ -139,6 +139,10 @@
 							data-field-prop-name="usedStorage"
 							data-new-quarter-value="fieldOffice['serverInfo']['usedStorage']"
 							data-error-message="qc.tempData.errorData.messages['usedStorage']"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['usedStorageIncorrect']}}</span>
+							
                 </div>
             </div><!-- /.row -->
         </div><!-- /.panel-body -->
