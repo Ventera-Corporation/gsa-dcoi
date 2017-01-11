@@ -13,7 +13,7 @@
 </span>
 <span data-ng-if="lc.isAdmin() && !qc.tempData.editMode && qc.quarterData.fiscalQuarterReport.quarterActiveFlag">
 	<span data-ng-if="!dataCenter.ssoCompleteFlag">
-		<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;Please contact the assigned SSO.</span>
+		<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;&nbsp;This form has not been submitted. Please contact the assigned SSO.</span>
 	<button class="usa-button usa-button-secondary" type="button" data-ng-if="!dataCenter.ssoCompleteFlag && dataCenter.adminCompleteFlag"
 			disabled><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Rejected</button>
 	<button class="usa-button usa-button-validate" type="button" data-ng-if="dataCenter.ssoCompleteFlag && dataCenter.adminCompleteFlag"
