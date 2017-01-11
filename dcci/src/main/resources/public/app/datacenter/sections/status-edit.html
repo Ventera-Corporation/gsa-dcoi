@@ -70,6 +70,9 @@
 							<span class="text-danger" 
 				data-ng-if="qc.tempData.errorData">
 					{{qc.tempData.errorData.messages['ownershipTypeRequired']}}</span>
+					<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['ownershipTypeMustBeCloud']}}</span>
                 </div>
             </div><!-- /.row -->
 
@@ -86,6 +89,9 @@
                 <span class="text-danger" 
 				data-ng-if="qc.tempData.errorData">
 					{{qc.tempData.errorData.messages['dataCenterTierRequired']}}</span>
+						<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['dataCenterTierMustBeCloud']}}</span>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-selectfield-edit 

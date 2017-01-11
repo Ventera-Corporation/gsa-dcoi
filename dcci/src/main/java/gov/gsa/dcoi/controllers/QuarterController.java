@@ -38,6 +38,7 @@ import gov.gsa.dcoi.service.DcoiCSVWriter;
 import gov.gsa.dcoi.service.FieldOfficeService;
 import gov.gsa.dcoi.service.QuarterService;
 import gov.gsa.dcoi.service.ReferenceValueListService;
+import gov.gsa.dcoi.service.ValidateDcoiData;
 
 /**
  * Controller for managing Quarter Information.
@@ -66,6 +67,9 @@ public class QuarterController {
 
 	@Autowired
 	MessageSource messageSource;
+
+	@Autowired
+	ValidateDcoiData validationService;
 
 	private static final String SUCCESS_DATA = "successData";
 	private static final String ERROR_DATA = "errorData";
@@ -179,7 +183,7 @@ public class QuarterController {
 	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos) {
 
 		Map<String, Object> returnMap;
-		returnMap = dataCenterService.validateDataCenters(dataCenterDtos.getList());
+		returnMap = validationService.validateDataCenters(dataCenterDtos.getList());
 		if (returnMap.containsKey("messageList")) {
 			return returnMap;
 		}

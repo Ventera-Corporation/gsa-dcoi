@@ -29,6 +29,10 @@
 							<span class="text-danger" 
 				data-ng-if="qc.tempData.errorData">
 					{{qc.tempData.errorData.messages['grossFloorAreaRequired']}}</span>
+					<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['grossFloorAreaMustNotBeZero']}}</span>
+					
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
@@ -91,6 +95,9 @@
                 <span class="text-danger" 
 				data-ng-if="qc.tempData.errorData">
 					{{qc.tempData.errorData.messages['avgITElectricityUsageRequired']}}</span>
+					 <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['avgItElectricityIncorrect']}}</span>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
 					<div data-textfield-edit 
@@ -113,6 +120,9 @@
 							data-new-quarter-value="dataCenter['facilityInfo']['totalITPowerCapacity']"
 							data-input-addon-back="kW"
 							data-error-message="qc.tempData.errorData.messages['totalITPowerCapacity']"></div>
+							 <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['totalItPowerCapacityIncorrect']}}</span>
                 </div>
             </div><!-- /.row -->
             <div class="row">

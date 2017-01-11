@@ -20,7 +20,6 @@ public interface ReferenceValueConstants {
 	public static final Integer NO = TWO;
 
 	public static final Integer OCIO_ID = SEVEN;
-	public static final Integer CLOUD_PROVIDER_OWNERSHIP_TYPE = TEN;
 
 	// Record Validity
 	public static final Integer INVALID_FACILITY = ONE;
@@ -38,7 +37,9 @@ public interface ReferenceValueConstants {
 
 	// Ownership Type
 	public static final Integer AGENCY_OWNED = ONE;
+	public static final Integer CLOUD_PROVIDER_OWNERSHIP_TYPE = TEN;
 
+	// Data Center Tier
 	public static final Integer OTHER_ROOM_TIER = ONE;
 	public static final Integer SERVER_ROOM_TIER = TWO;
 	public static final Integer TIER_1 = THREE;
@@ -46,6 +47,7 @@ public interface ReferenceValueConstants {
 	public static final Integer TIER_3 = FIVE;
 	public static final Integer TIER_4 = SIX;
 	public static final Integer UNKNOWN_TIER = SEVEN;
+	public static final Integer DC_TIER_CLOUD_PROVIDER = EIGHT;
 
 	// User roles
 	public static final Integer ADMIN_ROLE = ONE;
