@@ -134,13 +134,7 @@ public class StatusDto {
 	}
 
 	public void setElectricityIsMeteredId(Integer electricityIsMeteredId) {
-		if (electricityIsMeteredId == Integer.valueOf(1)) {
-			this.electricityIsMeteredId = Integer.valueOf(0);
-		} else if (electricityIsMeteredId == Integer.valueOf(2)) {
-			this.electricityIsMeteredId = Integer.valueOf(1);
-		} else {
-			this.electricityIsMeteredId = electricityIsMeteredId;
-		}
+		this.electricityIsMeteredId = electricityIsMeteredId;
 	}
 
 	public Integer getAutomatedMonitoringId() {
