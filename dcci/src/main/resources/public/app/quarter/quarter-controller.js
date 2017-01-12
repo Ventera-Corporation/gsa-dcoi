@@ -19,8 +19,11 @@
 			qc.tempData.selected.expandCollapseRegions[regionRefValue.code] = false;
 		});
 		qc.tempData.wasInEditMode = {
-			dataCenterNames:[],
-			dataCenterIds:[]
+			//names and ids will each have properties that indicate saved for edit symbol
+			// ex. {'1R-MA0153':false, '3R-EU9996':true}
+			dataCenterNames:{},
+			// ex. {168:false, 133:true}
+			dataCenterIds:{}
 		};
 		qc.pastQuarterData = initData.pastQuarterData;
 		qc.quarterData = initData.quarterData;
@@ -33,6 +36,7 @@
 		qc.createQuarter = createQuarter;
 		qc.saveQuarter = saveQuarter;
 		qc.getEditedDataCenters = getEditedDataCenters;
+		qc.updateEditedDataCentersWithSaveFlag = updateEditedDataCentersWithSaveFlag;
 		qc.updateDataCenterIdTotalsTabs = updateDataCenterIdTotalsTabs;
 		qc.addNewDataCenterModal = addNewDataCenterModal;
 		qc.addNewDataCenterFromModal = addNewDataCenterFromModal;
@@ -94,15 +98,6 @@
 				});
 				qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId] = panel;
 			}
-			//keep track of which panels were visited in editMode so we can save later but don't repeat
-			if(qc.tempData.editMode){
-				if(qc.tempData.wasInEditMode.dataCenterNames.indexOf(dataCenter.dataCenterName) === -1){
-					qc.tempData.wasInEditMode.dataCenterNames.push(dataCenter.dataCenterName);
-				}
-				if(qc.tempData.wasInEditMode.dataCenterIds.indexOf(dataCenter.dataCenterId) === -1){
-					qc.tempData.wasInEditMode.dataCenterIds.push(dataCenter.dataCenterId);
-				}
-			}
 		}
 		
 		function editQuarter(errorData, successData){
@@ -110,12 +105,12 @@
 			qc.tempData.errorData = errorData;
 			qc.tempData.successData = successData;
 			qc.tempData.editMode = true;
-			//need to keep track of which panels were visited where we started in editMode
-			qc.tempData.wasInEditMode.dataCenterNames.push(qc.tempData.selected.dataCenterName);
+			//need to keep track of which panels were edited so set the saved indicator to false
+			qc.tempData.wasInEditMode.dataCenterNames[qc.tempData.selected.dataCenterName] = false;
 			var currentlyDisplayedDataCenters = $filter('filter')(qc.quarterData.regions[qc.tempData.selected.regionIdx].dataCenters, 
 					{'dataCenterName':qc.tempData.selected.dataCenterName}, true);
 			angular.forEach(currentlyDisplayedDataCenters, function(dataCenter){
-				qc.tempData.wasInEditMode.dataCenterIds.push(dataCenter.dataCenterId);
+				qc.tempData.wasInEditMode.dataCenterIds[dataCenter.dataCenterId] = false;
 			});
 		}
 		
@@ -153,7 +148,8 @@
 		}
 		
 		function saveQuarter(isAdmin){
-			QuarterService.saveQuarter(qc.getEditedDataCenters(isAdmin)).then(function (data){
+			var editedDataCenters = qc.getEditedDataCenters(isAdmin);
+			QuarterService.saveQuarter(editedDataCenters).then(function (data){
 				if(data.error){
 					//show errors
 					qc.tempData.errorData = data;
@@ -164,7 +160,9 @@
 					qc.tempData.errorData = null;
 					//show success message
 					qc.tempData.successData = data.successData;
-					//reset all of the edited panels
+					//update save flag on the edited panels
+					qc.updateEditedDataCentersWithSaveFlag(editedDataCenters);
+					//update totals tab on the edited panels
 					qc.updateDataCenterIdTotalsTabs(qc.tempData.successData.dataCenterIdTotalsPairs);
 					qc.tempData.editMode = false;
 				}
@@ -173,20 +171,43 @@
 		
 		function getEditedDataCenters(isAdmin){
 			var editedDataCenters = [];
-			angular.forEach(qc.tempData.wasInEditMode.dataCenterIds, function(dataCenterIdInEditMode){
+			var editedDataCentersIds = [];
+			//first need to get dataCenterIds that have been edited and have false indicating not saved
+			for(var dataCenterId in qc.tempData.wasInEditMode.dataCenterIds){
+				if(qc.tempData.wasInEditMode.dataCenterIds[dataCenterId] === false){
+					editedDataCentersIds.push(parseInt(dataCenterId));
+				}
+			}
+			angular.forEach(editedDataCentersIds, function(dataCenterIdInEditMode){
 				angular.forEach(qc.quarterData.regions, function(region){
-					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode}, true)[0];
-					if(foundDataCenter){
+					var foundDataCenter = $filter('filter')(region.dataCenters, {'dataCenterId':dataCenterIdInEditMode}, true);
+					if(foundDataCenter.length){
 						if(isAdmin){
-							foundDataCenter.adminCompleteFlag = 0;
+							foundDataCenter[0].adminCompleteFlag = 0;
 						} else {
-							foundDataCenter.ssoCompleteFlag = 0;
+							foundDataCenter[0].ssoCompleteFlag = 0;
 						}
-						editedDataCenters.push(foundDataCenter);
+						editedDataCenters.push(foundDataCenter[0]);
 					}
 				});
 			});
 			return editedDataCenters;
+		}
+		
+		function updateEditedDataCentersWithSaveFlag(savedDataCenters){
+			angular.forEach(savedDataCenters, function(savedDataCenter){
+				for(var dataCenterName in qc.tempData.wasInEditMode.dataCenterNames){
+					if(dataCenterName === savedDataCenter.dataCenterName){
+						qc.tempData.wasInEditMode.dataCenterNames[dataCenterName] = true;
+					}
+				}
+				for(var dataCenterId in qc.tempData.wasInEditMode.dataCenterIds){
+					//need soft compare here for string on the left and integer on the right
+					if(dataCenterId == savedDataCenter.dataCenterId){
+						qc.tempData.wasInEditMode.dataCenterIds[dataCenterId] = true;
+					}
+				}
+			});
 		}
 		
 		function updateDataCenterIdTotalsTabs(dataCenterIdTotalsPairs){

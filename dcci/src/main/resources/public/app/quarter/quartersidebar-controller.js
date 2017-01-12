@@ -38,13 +38,13 @@
 					return 2;
 				}
 				//needsAttention
-				if(wasInEditModeDataCenterNames.indexOf(dataCenterName) === -1 
+				if(wasInEditModeDataCenterNames[dataCenterName] === undefined
 						&& qsbc.numDataCentersNeedAttentionForDataCenterName(region, dataCenterName)){
 					return 3;
 				}
 			}
 			//wasEdited
-			if(wasInEditModeDataCenterNames.indexOf(dataCenterName) !== -1){
+			if(wasInEditModeDataCenterNames[dataCenterName] !== undefined){
 				return 4;
 			}
 			return 0;
