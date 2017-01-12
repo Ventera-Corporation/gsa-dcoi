@@ -16,7 +16,7 @@
 <img src='https://www.versioneye.com/user/projects/583327d2e7cea00039353adc/badge.svg?style=flat-square' alt="Dependency Status for Working"/></a>
 
 ##Project Description
-DCOi supports the GSA IT’s data center inventory management and consolidation effort, as well as the reporting of related metrics to OMB and GAO. DCOi streamlines the quarterly data collection process and automates the complex calculations of data center metrics, cost savings and avoidances. DCOi enables GSA IT to spend more time performing analysis and making decisions. 
+DCOI supports the GSA IT’s data center inventory management and consolidation effort, as well as the reporting of related metrics to OMB and GAO. DCOI streamlines the quarterly data collection process and automates the complex calculations of data center metrics, cost savings and avoidances. DCOi enables GSA IT to spend more time performing analysis and making decisions. 
 
 The application is a centralized portal where all staff offices input their quarterly data and updates inventory. To ensure data accuracy and integrity, the tool has built-in safeguards and validations to prevent human errors. The tool also records and displays an audit trail for each quarter to enhance transparency in the collaborative process and provide users with instant auditing. All data are captured in relational tables within MySql where they can now be queried, rearranged, and viewed for analysis. The users and administrators of the application could also query data and export reports from an easy-to-use user interface. Ultimately, the DCOi Application is designed to be flexible to changing OMB guidance and new government agency realities.
 
