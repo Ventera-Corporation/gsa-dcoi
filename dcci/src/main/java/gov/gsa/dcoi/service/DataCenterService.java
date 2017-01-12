@@ -18,6 +18,7 @@ import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FacilityInformationDto;
 import gov.gsa.dcoi.dto.FieldOfficeDto;
 import gov.gsa.dcoi.dto.GeneralInformationDto;
+import gov.gsa.dcoi.dto.ServerInformationDto;
 import gov.gsa.dcoi.dto.StatusDto;
 import gov.gsa.dcoi.entity.DataCenter;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
@@ -125,28 +126,31 @@ public class DataCenterService {
 	public void saveDataCenters(List<DataCenterDto> dataCenterDtos, User user) {
 		for (DataCenterDto dataCenterDto : dataCenterDtos) {
 			DataCenter dataCenterEntity = new DataCenter();
+			DataCenterQuarter dataCenterQuarterEntity = new DataCenterQuarter();
 			CommonHelper.modelMapper.map(dataCenterDto, dataCenterEntity);
+			CommonHelper.modelMapper.map(dataCenterDto, dataCenterQuarterEntity);
 			if (user.getRoleIds().contains(ReferenceValueConstants.ADMIN_ROLE)) {
-				CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterEntity);
-				CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterEntity);
-				CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterEntity);
+				CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterQuarterEntity);
+				CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterQuarterEntity);
+				CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterQuarterEntity);
 			}
 			if (user.getRoleIds().contains(ReferenceValueConstants.FACILITY_ROLE)) {
-				CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterEntity);
+				CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterQuarterEntity);
 			}
 			securityUtils.setUserIdForAudit();
 			dataCenterRepository.save(dataCenterEntity);
 
 			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
-				securityUtils.setUserIdForAudit();
-				dataCenterQuarterRepository.save(otherCalculations(copyDtoToEntity(dataCenterDto, fieldOfficeDto)));
 				if (user.getRoleIds().contains(ReferenceValueConstants.ADMIN_ROLE)
 						|| (user.getFieldOfficeIds().contains(fieldOfficeDto.getComponentId())
 								&& user.getRoleIds().contains(ReferenceValueConstants.SERVER_ROLE))) {
 					securityUtils.setUserIdForAudit();
+					dataCenterQuarterRepository.save(copyDtoToEntity(fieldOfficeDto, dataCenterQuarterEntity));
+					securityUtils.setUserIdForAudit();
 					fieldOfficeRepository.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
 				}
 			}
+			dataCenterQuarterRepository.save(otherCalculations(dataCenterQuarterEntity));
 		}
 	}
 
@@ -389,19 +393,13 @@ public class DataCenterService {
 	 * @param dataCenterDto
 	 * @return
 	 */
-	private DataCenterQuarter copyDtoToEntity(DataCenterDto dataCenterDto, FieldOfficeDto fieldOfficeDto) {
-		// Set dataCenterDto
-		DataCenterQuarter dataCenterQuarter = new DataCenterQuarter();
-		CommonHelper.modelMapper.map(dataCenterDto, dataCenterQuarter);
-		CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterQuarter);
-		CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterQuarter);
-		CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterQuarter);
+	private DataCenterQuarter copyDtoToEntity(FieldOfficeDto fieldOfficeDto, DataCenterQuarter dataCenterQuarter) {
 
 		// Set Field Office Info
 		if (fieldOfficeDto != null) {
 			CommonHelper.modelMapper.map(fieldOfficeDto, dataCenterQuarter);
 			if (fieldOfficeDto.getServerInfo() != null) {
-				CommonHelper.modelMapper.map(fieldOfficeDto.getServerInfo(), dataCenterQuarter);
+				addFieldOfficeInfo(dataCenterQuarter, fieldOfficeDto.getServerInfo());
 			}
 		}
 
@@ -537,6 +535,88 @@ public class DataCenterService {
 				.findByQuarterReportIdAndDataCenterId(quarterId, dataCenter.getDataCenterId());
 		return fieldOfficeService.parseFieldOfficesForOverallComponent(dataCenterQuarter.getDataCenterQuarterId());
 
+	}
+
+	/**
+	 * Add together the server information for the data center quarter with any
+	 * other components in this data center
+	 * 
+	 * @param dataCenterQuarter
+	 * @param serverInfoDto
+	 */
+	private void addFieldOfficeInfo(DataCenterQuarter dataCenterQuarter, ServerInformationDto serverInfoDto) {
+		if (serverInfoDto.getServerUtilization() != null && !serverInfoDto.getServerUtilization().isEmpty()) {
+			if (dataCenterQuarter.getServerUtilization() != null) {
+				dataCenterQuarter.setServerUtilization(dataCenterQuarter.getServerUtilization()
+						+ Double.valueOf(serverInfoDto.getServerUtilization()));
+			} else {
+				dataCenterQuarter.setServerUtilization(Double.valueOf(serverInfoDto.getServerUtilization()));
+			}
+		}
+		if (serverInfoDto.getTotalMainframes() != null && !serverInfoDto.getTotalMainframes().isEmpty()) {
+			if (dataCenterQuarter.getTotalMainframes() != null) {
+				dataCenterQuarter.setTotalMainframes(
+						dataCenterQuarter.getTotalMainframes() + Integer.valueOf(serverInfoDto.getTotalMainframes()));
+			} else {
+				dataCenterQuarter.setTotalMainframes(Integer.valueOf(serverInfoDto.getTotalMainframes()));
+			}
+		}
+		if (serverInfoDto.getTotalWindowsServers() != null && !serverInfoDto.getTotalWindowsServers().isEmpty()) {
+			if (dataCenterQuarter.getTotalWindowsServers() != null) {
+				dataCenterQuarter.setTotalWindowsServers(dataCenterQuarter.getTotalWindowsServers()
+						+ Integer.valueOf(serverInfoDto.getTotalWindowsServers()));
+			} else {
+				dataCenterQuarter.setTotalWindowsServers(Integer.valueOf(serverInfoDto.getTotalWindowsServers()));
+			}
+		}
+		if (serverInfoDto.getTotalHPCClusterNodes() != null && !serverInfoDto.getTotalHPCClusterNodes().isEmpty()) {
+			if (dataCenterQuarter.getTotalHPCClusterNodes() != null) {
+				dataCenterQuarter.setTotalHPCClusterNodes(dataCenterQuarter.getTotalHPCClusterNodes()
+						+ Integer.valueOf(serverInfoDto.getTotalHPCClusterNodes()));
+			} else {
+				dataCenterQuarter.setTotalHPCClusterNodes(Integer.valueOf(serverInfoDto.getTotalHPCClusterNodes()));
+			}
+		}
+		if (serverInfoDto.getTotalOtherServers() != null && !serverInfoDto.getTotalOtherServers().isEmpty()) {
+			if (dataCenterQuarter.getTotalOtherServers() != null) {
+				dataCenterQuarter.setTotalOtherServers(dataCenterQuarter.getTotalOtherServers()
+						+ Integer.valueOf(serverInfoDto.getTotalOtherServers()));
+			} else {
+				dataCenterQuarter.setTotalOtherServers(Integer.valueOf(serverInfoDto.getTotalOtherServers()));
+			}
+		}
+		if (serverInfoDto.getTotalVirtualHosts() != null && !serverInfoDto.getTotalVirtualHosts().isEmpty()) {
+			if (dataCenterQuarter.getTotalVirtualHosts() != null) {
+				dataCenterQuarter.setTotalVirtualHosts(dataCenterQuarter.getTotalVirtualHosts()
+						+ Integer.valueOf(serverInfoDto.getTotalVirtualHosts()));
+			} else {
+				dataCenterQuarter.setTotalVirtualHosts(Integer.valueOf(serverInfoDto.getTotalVirtualHosts()));
+			}
+		}
+		if (serverInfoDto.getTotalVirtualOS() != null && !serverInfoDto.getTotalVirtualOS().isEmpty()) {
+			if (dataCenterQuarter.getTotalVirtualOS() != null) {
+				dataCenterQuarter.setTotalVirtualOS(
+						dataCenterQuarter.getTotalVirtualOS() + Integer.valueOf(serverInfoDto.getTotalVirtualOS()));
+			} else {
+				dataCenterQuarter.setTotalVirtualOS(Integer.valueOf(serverInfoDto.getTotalVirtualOS()));
+			}
+		}
+		if (serverInfoDto.getTotalStorage() != null && !serverInfoDto.getTotalStorage().isEmpty()) {
+			if (dataCenterQuarter.getTotalStorage() != null) {
+				dataCenterQuarter.setTotalStorage(
+						dataCenterQuarter.getTotalStorage() + Double.valueOf(serverInfoDto.getTotalStorage()));
+			} else {
+				dataCenterQuarter.setTotalStorage(Double.valueOf(serverInfoDto.getTotalStorage()));
+			}
+		}
+		if (serverInfoDto.getUsedStorage() != null && !serverInfoDto.getUsedStorage().isEmpty()) {
+			if (dataCenterQuarter.getUsedStorage() != null) {
+				dataCenterQuarter.setUsedStorage(
+						dataCenterQuarter.getTotalStorage() + Double.valueOf(serverInfoDto.getUsedStorage()));
+			} else {
+				dataCenterQuarter.setUsedStorage(Double.valueOf(serverInfoDto.getTotalStorage()));
+			}
+		}
 	}
 
 }
