@@ -46,7 +46,7 @@
 		function initFieldOffices(activeRefFieldOffices){
 			euimc.tempFieldOffices = [];
 			angular.forEach(activeRefFieldOffices, function(fieldOffice){
-				if(euimc.user.userFieldOffices.indexOf(fieldOffice.fieldOfficeName) > -1){
+				if(euimc.user.userFieldOffices.indexOf(fieldOffice.value) > -1){
 					euimc.tempFieldOffices.push({
 						componentId: fieldOffice.id, 
 						fieldOfficeName: fieldOffice.value
