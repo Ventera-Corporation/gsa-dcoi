@@ -40,7 +40,7 @@
 		}
 		
 		function getValueFromRefValueListForValueId(id){
-			if(id){
+			if(id > -1){
 				var foundRefValue = $filter('filter')(fc.refValueList, {'id':id}, true);
 				if(foundRefValue.length){
 					return foundRefValue[0].value;
