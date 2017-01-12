@@ -288,6 +288,8 @@
 						qc.tempData.errorData = null;
 						//show success message
 						qc.tempData.successData = data.successData;
+						//navigate the admin back to the dashboard with a showing success message
+						$location.path('/dashboard').search('successData', encodeURIComponent(JSON.stringify(qc.tempData.successData)));
 					}
 				});
 			});
