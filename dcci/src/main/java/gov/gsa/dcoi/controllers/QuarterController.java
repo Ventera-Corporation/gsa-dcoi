@@ -4,6 +4,7 @@ package gov.gsa.dcoi.controllers;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -12,10 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FiscalQuarterReportDto;
 import gov.gsa.dcoi.dto.QuarterDto;
@@ -47,8 +44,6 @@ import gov.gsa.dcoi.service.ValidateDcoiData;
 @RestController
 @RequestMapping("/quarter")
 public class QuarterController {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(QuarterController.class);
 
 	@Autowired
 	QuarterService quarterService;
@@ -80,6 +75,7 @@ public class QuarterController {
 	private static final String COMPLETE_QUARTER_SUCCESS = "completeQuarterSuccess";
 	private static final String DATE_NOT_IN_PAST = "dateNotInPast";
 	private static final String QUARTER_DUE_DATE = "quarterDueDate";
+	private static final String DATE_NOT_VALID = "dueDateNotValid";
 
 	/**
 	 * Initialize adding a new Quarter
@@ -140,36 +136,70 @@ public class QuarterController {
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	public Map<String, Object> createQuarter(
-			@RequestBody @Pattern(regexp = "([0-9]{2})/([0-9]{2})/([0-9]{4})") String dueDate) {
+
+	public Map<String, Object> createQuarter(@RequestBody String dueDate) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-		try {
-			Date inputDate = format.parse(dueDate);
-			if (null != inputDate) {
-				if (inputDate.before(new Date())) {
-					Map<String, DcoiRestMessage> errorData = new HashMap<>();
-					errorData.put(MESSAGE_LIST,
-							new DcoiRestMessage(ERROR_ALERT, messageSource.getMessage(ERROR_ALERT, null, null)));
-					errorData.put("messages", new DcoiRestMessage(QUARTER_DUE_DATE,
-							messageSource.getMessage(DATE_NOT_IN_PAST, null, null)));
-
-					returnMap.put(ERROR_DATA, errorData);
-
-					addErrorData(returnMap, DATE_NOT_IN_PAST);
-					return returnMap;
-				}
-			}
-		} catch (ParseException pe) {
-			LOGGER.error(pe.getMessage());
+		if (!isDueDateValid(dueDate)) {
+			addErrorData(returnMap, DATE_NOT_VALID);
+			return returnMap;
+		}
+		if (isDueDateInPast(dueDate)) {
 			addErrorData(returnMap, DATE_NOT_IN_PAST);
 			return returnMap;
 		}
-		// Should only do validation on the due date
 		quarterService.createQuarter(dueDate);
 		addSuccessData(returnMap, CREATE_QUARTER_SUCCESS);
 		return returnMap;
 
+	}
+
+	/**
+	 * Check if due date is a valid date (and in the correct format)
+	 * 
+	 * @param dueDate
+	 * @return
+	 */
+	private boolean isDueDateValid(String dueDate) {
+		if (dueDate.isEmpty())
+			return true;
+		if (dueDate.length() != 10)
+			return false;
+		try {
+
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+			df.setLenient(false);
+			Date date = df.parse(dueDate);
+			Calendar cal = Calendar.getInstance();
+			cal.setLenient(false);
+			cal.setTime(date);
+			cal.getTime();
+			return true;
+
+		} catch (ParseException e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Checjk if given due date is in the past (it should not be)
+	 * 
+	 * @param dueDate
+	 * @return
+	 */
+	private boolean isDueDateInPast(String dueDate) {
+		DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+
+		Date inputDate;
+		try {
+			inputDate = format.parse(dueDate);
+			if (inputDate.before(new Date())) {
+				return true;
+			}
+		} catch (ParseException e) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -340,8 +370,12 @@ public class QuarterController {
 	 * 
 	 */
 	private void addErrorData(Map<String, Object> returnMap, String messageName) {
-		Map<String, String[]> errorData = new HashMap<>();
-		errorData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(messageName, null, null) });
+		Map<String, Object> errorData = new HashMap<>();
+		Map<String, String> messages = new HashMap<>();
+		messages.put(messageName, messageSource.getMessage(messageName, null, null));
+		returnMap.put("messages", messages);
+		returnMap.put("error", Boolean.valueOf("true"));
 		returnMap.put(ERROR_DATA, errorData);
+
 	}
 }

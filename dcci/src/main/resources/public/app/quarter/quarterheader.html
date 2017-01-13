@@ -9,7 +9,11 @@
 <div class="pull-right">
 	<span class="inline">
 		<span data-ng-if="qc.quarterData.fiscalQuarterReport.quarterInProgressFlag || qc.quarterData.fiscalQuarterReport.quarterDueDate">
-	    	<h4>Due Date:</h4>
+	    	<h4>Due Date<span class="text-danger" 
+				data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && qc.tempData.errorData">
+				{{qc.tempData.errorData.messages['dueDateNotValid']}}</span><span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['dateNotInPast']}}</span>:</h4>
 	    </span>
     </span>
     <span class="inline">
@@ -19,9 +23,6 @@
 		<span id="duedate" name="duedate" 
 				data-ng-if="!(lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag)">
 				{{qc.quarterData.fiscalQuarterReport.quarterDueDate}}</span>
-		<span class="text-danger" 
-				data-ng-if="lc.isAdmin() && qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && qc.tempData.errorData">
-				{{qc.tempData.errorData.messages['quarterDueDate']}}</span>
 	</span>
 	<button class="usa-button usa-button-outline" type="button" 
 			data-ng-if="!qc.tempData.editMode && !qc.quarterData.fiscalQuarterReport.quarterCompleteFlag"
