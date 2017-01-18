@@ -19,7 +19,7 @@
 				//try to retrieve the past data center if it can't just say the value is null
 				try {
 					if(fc.fieldOffice){
-						var foundFieldOffice = $filter('filter')(foundDataCenter.fieldOffices,
+						var foundFieldOffice = $filter('filter')(foundDataCenter[0].fieldOffices,
 								{'fieldOfficeName':fc.fieldOffice.fieldOfficeName}, true);
 						if(foundFieldOffice.length){
 							fc.pastQuarterValue = foundFieldOffice[0][fc.sectionPropName][fc.fieldPropName];
