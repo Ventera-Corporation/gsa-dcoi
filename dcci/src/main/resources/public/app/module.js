@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'ui.select', 'http-auth-interceptor','datatables']);
+	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'ui.select', 'http-auth-interceptor','datatables', 'ngAria']);
 	
 	angular.module('dcoiApp').constant('USER_ROLES', {
 	    all: '*',
