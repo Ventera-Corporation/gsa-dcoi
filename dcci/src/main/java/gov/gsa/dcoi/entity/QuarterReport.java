@@ -26,7 +26,6 @@ public class QuarterReport {
 	@Column(name = "in_progress_flag")
 	private Integer quarterInProgressFlag;
 	private Integer quarterCompleteFlag;
-	private Integer quarterSubmittedFlag;
 
 	public Long getQuarterId() {
 		return quarterId;
@@ -83,13 +82,4 @@ public class QuarterReport {
 	public void setQuarterCompleteFlag(Integer quarterCompleteFlag) {
 		this.quarterCompleteFlag = quarterCompleteFlag;
 	}
-
-	public Integer getQuarterSubmittedFlag() {
-		return quarterSubmittedFlag;
-	}
-
-	public void setQuarterSubmittedFlag(Integer quarterSubmittedFlag) {
-		this.quarterSubmittedFlag = quarterSubmittedFlag;
-	}
-
 }

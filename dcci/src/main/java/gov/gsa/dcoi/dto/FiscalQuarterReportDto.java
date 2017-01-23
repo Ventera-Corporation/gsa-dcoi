@@ -29,7 +29,6 @@ public class FiscalQuarterReportDto {
 	private Integer quarterActiveFlag;
 	private Integer quarterInProgressFlag;
 	private Integer quarterCompleteFlag;
-	private Integer quarterSubmittedFlag;
 	private Integer totalNumDataCenters;
 	private Integer dataCentersInProgress;
 	private Integer dataCentersCompleted;
@@ -44,7 +43,6 @@ public class FiscalQuarterReportDto {
 		quarterActiveFlag = 0;
 		quarterInProgressFlag = 0;
 		quarterCompleteFlag = 0;
-		quarterSubmittedFlag = 0;
 		if (quarterReportDto.getFiscalQuarterId() == 4) {
 			fiscalYearId = quarterReportDto.getFiscalYearId() + 1;
 			fiscalQuarterId = 1;
@@ -134,14 +132,6 @@ public class FiscalQuarterReportDto {
 
 	public void setQuarterCompleteFlag(int quarterCompleteFlag) {
 		this.quarterCompleteFlag = quarterCompleteFlag;
-	}
-
-	public int getQuarterSubmittedFlag() {
-		return quarterSubmittedFlag;
-	}
-
-	public void setQuarterSubmittedFlag(int quarterSubmittedFlag) {
-		this.quarterSubmittedFlag = quarterSubmittedFlag;
 	}
 
 	public Integer getDataCentersInProgress() {

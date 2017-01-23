@@ -89,7 +89,7 @@ public class QuarterService {
 
 	/**
 	 * Complete quarter report - sets the quarterActiveFlag to 0 and the quarter
-	 * submitted flag to 1
+	 * complete flag to 1
 	 * 
 	 * @return
 	 */
@@ -103,7 +103,7 @@ public class QuarterService {
 			return returnMap;
 		}
 		quarterReport.setQuarterActiveFlag(0);
-		quarterReport.setQuarterSubmittedFlag(1);
+		quarterReport.setQuarterCompleteFlag(1);
 		securityUtils.setUserIdForAudit();
 		quarterReportRepository.save(quarterReport);
 		return returnMap;
