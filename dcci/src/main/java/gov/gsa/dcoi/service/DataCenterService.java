@@ -58,6 +58,7 @@ public class DataCenterService {
 
 	@Autowired
 	CacheManager cacheManager;
+
 	@Autowired
 	MessageSource messageSource;
 
@@ -127,29 +128,52 @@ public class DataCenterService {
 		for (DataCenterDto dataCenterDto : dataCenterDtos) {
 			DataCenter dataCenterEntity = new DataCenter();
 			DataCenterQuarter dataCenterQuarterEntity = new DataCenterQuarter();
-			CommonHelper.modelMapper.map(dataCenterDto, dataCenterEntity);
-			CommonHelper.modelMapper.map(dataCenterDto, dataCenterQuarterEntity);
+			DataCenterQuarter curDataCenterQuarterInfo = dataCenterQuarterRepository
+					.findByQuarterReportIdAndDataCenterId(dataCenterDto.getQuarterReportId(),
+							dataCenterDto.getDataCenterId());
+			dataCenterEntity.setDataCenterId(dataCenterDto.getDataCenterId());
+			if (dataCenterDto.getGeneralInfo().getDcoiDataCenterId() != null) {
+				dataCenterEntity.setDcoiDataCenterId(dataCenterDto.getGeneralInfo().getDcoiDataCenterId());
+			}
+
 			if (user.getRoleIds().contains(ReferenceValueConstants.ADMIN_ROLE)) {
 				CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterQuarterEntity);
 				CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterQuarterEntity);
 				CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterQuarterEntity);
+			} else if (user.getRoleIds().contains(ReferenceValueConstants.FACILITY_ROLE)
+					|| user.getRoleIds().contains(ReferenceValueConstants.SERVER_ROLE)) {
+				CommonHelper.modelMapper.map(curDataCenterQuarterInfo, dataCenterQuarterEntity);
+				if (user.getRoleIds().contains(ReferenceValueConstants.FACILITY_ROLE)) {
+					CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterQuarterEntity);
+				}
 			}
-			if (user.getRoleIds().contains(ReferenceValueConstants.FACILITY_ROLE)) {
-				CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterQuarterEntity);
-			}
+			CommonHelper.modelMapper.map(dataCenterDto, dataCenterQuarterEntity);
 			securityUtils.setUserIdForAudit();
 			dataCenterRepository.save(dataCenterEntity);
 
+			Double serverUtilizationTmp = 0.0;
+			Double numOfFO = 0.0;
+			Boolean firstFieldOffice = true;
 			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
 				if (user.getRoleIds().contains(ReferenceValueConstants.ADMIN_ROLE)
 						|| (user.getFieldOfficeIds().contains(fieldOfficeDto.getComponentId())
 								&& user.getRoleIds().contains(ReferenceValueConstants.SERVER_ROLE))) {
 					securityUtils.setUserIdForAudit();
-					dataCenterQuarterRepository.save(copyDtoToEntity(fieldOfficeDto, dataCenterQuarterEntity));
+					dataCenterQuarterRepository
+							.save(copyDtoToEntity(fieldOfficeDto, dataCenterQuarterEntity, firstFieldOffice));
+					if (fieldOfficeDto.getServerInfo() != null
+							&& (fieldOfficeDto.getServerInfo().getServerUtilization() != null
+									|| !fieldOfficeDto.getServerInfo().getServerUtilization().isEmpty()
+									|| Integer.valueOf(fieldOfficeDto.getServerInfo().getServerUtilization()) != 0)) {
+						serverUtilizationTmp += Double.valueOf(fieldOfficeDto.getServerInfo().getServerUtilization());
+						numOfFO += 1;
+					}
 					securityUtils.setUserIdForAudit();
 					fieldOfficeRepository.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
+					firstFieldOffice = false;
 				}
 			}
+			dataCenterQuarterEntity.setServerUtilization(serverUtilizationTmp / numOfFO);
 			dataCenterQuarterRepository.save(otherCalculations(dataCenterQuarterEntity));
 		}
 	}
@@ -393,13 +417,14 @@ public class DataCenterService {
 	 * @param dataCenterDto
 	 * @return
 	 */
-	private DataCenterQuarter copyDtoToEntity(FieldOfficeDto fieldOfficeDto, DataCenterQuarter dataCenterQuarter) {
+	private DataCenterQuarter copyDtoToEntity(FieldOfficeDto fieldOfficeDto, DataCenterQuarter dataCenterQuarter,
+			Boolean firstFieldOffice) {
 
 		// Set Field Office Info
 		if (fieldOfficeDto != null) {
 			CommonHelper.modelMapper.map(fieldOfficeDto, dataCenterQuarter);
 			if (fieldOfficeDto.getServerInfo() != null) {
-				addFieldOfficeInfo(dataCenterQuarter, fieldOfficeDto.getServerInfo());
+				addFieldOfficeInfo(dataCenterQuarter, fieldOfficeDto.getServerInfo(), firstFieldOffice);
 			}
 		}
 
@@ -544,15 +569,75 @@ public class DataCenterService {
 	 * @param dataCenterQuarter
 	 * @param serverInfoDto
 	 */
-	private void addFieldOfficeInfo(DataCenterQuarter dataCenterQuarter, ServerInformationDto serverInfoDto) {
-		if (serverInfoDto.getServerUtilization() != null && !serverInfoDto.getServerUtilization().isEmpty()) {
-			if (dataCenterQuarter.getServerUtilization() != null) {
-				dataCenterQuarter.setServerUtilization(dataCenterQuarter.getServerUtilization()
-						+ Double.valueOf(serverInfoDto.getServerUtilization()));
-			} else {
-				dataCenterQuarter.setServerUtilization(Double.valueOf(serverInfoDto.getServerUtilization()));
-			}
+	private void addFieldOfficeInfo(DataCenterQuarter dataCenterQuarter, ServerInformationDto serverInfoDto,
+			Boolean firstFieldOffice) {
+		if (firstFieldOffice) {
+			addFieldOfficeInfoFirst(dataCenterQuarter, serverInfoDto);
+		} else {
+			addFieldOfficeInfoMultiple(dataCenterQuarter, serverInfoDto);
 		}
+	}
+
+	/**
+	 * Helper method to add/set server information on the first field office
+	 * that is checked
+	 * 
+	 * @param dataCenterQuarter
+	 * @param serverInfoDto
+	 */
+	private void addFieldOfficeInfoFirst(DataCenterQuarter dataCenterQuarter, ServerInformationDto serverInfoDto) {
+		if (serverInfoDto.getTotalMainframes() == null || serverInfoDto.getTotalMainframes().isEmpty()) {
+			dataCenterQuarter.setTotalMainframes(null);
+		} else {
+			dataCenterQuarter.setTotalMainframes(Integer.valueOf(serverInfoDto.getTotalMainframes()));
+		}
+
+		if (serverInfoDto.getTotalWindowsServers() == null || serverInfoDto.getTotalWindowsServers().isEmpty()) {
+			dataCenterQuarter.setTotalWindowsServers(null);
+		} else {
+			dataCenterQuarter.setTotalWindowsServers(Integer.valueOf(serverInfoDto.getTotalWindowsServers()));
+		}
+
+		if (serverInfoDto.getTotalHPCClusterNodes() == null || serverInfoDto.getTotalHPCClusterNodes().isEmpty()) {
+			dataCenterQuarter.setTotalHPCClusterNodes(null);
+		} else {
+			dataCenterQuarter.setTotalHPCClusterNodes(Integer.valueOf(serverInfoDto.getTotalHPCClusterNodes()));
+		}
+		if (serverInfoDto.getTotalOtherServers() == null || serverInfoDto.getTotalOtherServers().isEmpty()) {
+			dataCenterQuarter.setTotalOtherServers(null);
+		} else {
+			dataCenterQuarter.setTotalOtherServers(Integer.valueOf(serverInfoDto.getTotalOtherServers()));
+		}
+		if (serverInfoDto.getTotalVirtualHosts() == null || serverInfoDto.getTotalVirtualHosts().isEmpty()) {
+			dataCenterQuarter.setTotalVirtualHosts(null);
+		} else {
+			dataCenterQuarter.setTotalVirtualHosts(Integer.valueOf(serverInfoDto.getTotalVirtualHosts()));
+		}
+		if (serverInfoDto.getTotalVirtualOS() == null || serverInfoDto.getTotalVirtualOS().isEmpty()) {
+			dataCenterQuarter.setTotalVirtualOS(null);
+		} else {
+			dataCenterQuarter.setTotalVirtualOS(Integer.valueOf(serverInfoDto.getTotalVirtualOS()));
+		}
+		if (serverInfoDto.getTotalStorage() == null || serverInfoDto.getTotalStorage().isEmpty()) {
+			dataCenterQuarter.setTotalStorage(null);
+		} else {
+			dataCenterQuarter.setTotalStorage(Double.valueOf(serverInfoDto.getTotalStorage()));
+		}
+		if (serverInfoDto.getUsedStorage() == null || serverInfoDto.getUsedStorage().isEmpty()) {
+			dataCenterQuarter.setUsedStorage(null);
+		} else {
+			dataCenterQuarter.setUsedStorage(Double.valueOf(serverInfoDto.getUsedStorage()));
+		}
+	}
+
+	/**
+	 * Helper method to add server information together on the 2nd, 3rd, etc
+	 * field office
+	 * 
+	 * @param dataCenterQuarter
+	 * @param serverInfoDto
+	 */
+	private void addFieldOfficeInfoMultiple(DataCenterQuarter dataCenterQuarter, ServerInformationDto serverInfoDto) {
 		if (serverInfoDto.getTotalMainframes() != null && !serverInfoDto.getTotalMainframes().isEmpty()) {
 			if (dataCenterQuarter.getTotalMainframes() != null) {
 				dataCenterQuarter.setTotalMainframes(
@@ -612,9 +697,9 @@ public class DataCenterService {
 		if (serverInfoDto.getUsedStorage() != null && !serverInfoDto.getUsedStorage().isEmpty()) {
 			if (dataCenterQuarter.getUsedStorage() != null) {
 				dataCenterQuarter.setUsedStorage(
-						dataCenterQuarter.getTotalStorage() + Double.valueOf(serverInfoDto.getUsedStorage()));
+						dataCenterQuarter.getUsedStorage() + Double.valueOf(serverInfoDto.getUsedStorage()));
 			} else {
-				dataCenterQuarter.setUsedStorage(Double.valueOf(serverInfoDto.getTotalStorage()));
+				dataCenterQuarter.setUsedStorage(Double.valueOf(serverInfoDto.getUsedStorage()));
 			}
 		}
 	}

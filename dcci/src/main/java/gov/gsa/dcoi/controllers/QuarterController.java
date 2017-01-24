@@ -218,8 +218,8 @@ public class QuarterController {
 			return returnMap;
 		}
 		// Add Admin Check
-		returnMap.put("dataCenterIdTotalsPairs", quarterService.costCalculation(dataCenterDtos.getList()));
 		dataCenterService.saveDataCenters(dataCenterDtos.getList(), securityController.getUserAccount());
+		returnMap.put("dataCenterIdTotalsPairs", quarterService.costCalculation(dataCenterDtos.getList()));
 		addSuccessData(returnMap, SAVE_SUCCESS);
 		return returnMap;
 
