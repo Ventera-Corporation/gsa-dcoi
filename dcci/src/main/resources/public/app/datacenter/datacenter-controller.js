@@ -94,7 +94,7 @@
 			    }
 			});
 	     	modalInstance.result.then(function () {
-				DataCenterService.validateDataCenter(dataCenter.dataCenterId).then(function (data){
+				DataCenterService.validateDataCenter(dataCenter).then(function (data){
 					if(data.error){
 						//show errors
 						dcc.tempData.errorData = data;
