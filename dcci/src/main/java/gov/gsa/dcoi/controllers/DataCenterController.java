@@ -1,5 +1,6 @@
 package gov.gsa.dcoi.controllers;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import gov.gsa.dcoi.service.DataCenterService;
 import gov.gsa.dcoi.service.FieldOfficeService;
 import gov.gsa.dcoi.service.QuarterService;
 import gov.gsa.dcoi.service.ReferenceValueListService;
+import gov.gsa.dcoi.service.ValidateDcoiData;
 
 /**
  * Controller for managing Data Centers.
@@ -42,6 +44,12 @@ public class DataCenterController {
 
 	@Autowired
 	FieldOfficeService fieldOfficeService;
+	
+	@Autowired
+	ValidateDcoiData validationService;
+	
+	@Autowired
+	SecurityController securityController;
 
 	private static final String SUCCESS_DATA = "successData";
 	private static final String MESSAGE_LIST = "messageList";
@@ -105,14 +113,18 @@ public class DataCenterController {
 	 * Validate a data center from an admin's perspective Just a sanity check to
 	 * set the adminComplete flag to 1
 	 * 
-	 * @param dataCenterId
+	 * @param dataCenterDto
 	 * @return
 	 */
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	public Map<String, Object> validate(@RequestBody Integer dataCenterId) {
+	public Map<String, Object> validate(@RequestBody DataCenterDto dataCenterDto) {
 		Map<String, Object> returnMap;
-		returnMap = dataCenterService.setAdminCompleteFlag(dataCenterId);
+		returnMap = validationService.validateDataCenters(Arrays.asList(dataCenterDto), securityController.getUserAccount());
+		if (returnMap.containsKey("messageList")) {
+			return returnMap;
+		}
+		returnMap = dataCenterService.setAdminCompleteFlag(dataCenterDto.getDataCenterId());
 		if (returnMap.get("errorMessage") != null) {
 			return returnMap;
 		}

@@ -74,7 +74,6 @@ public class QuarterController {
 	private static final String CREATE_QUARTER_SUCCESS = "createQuarterSuccess";
 	private static final String COMPLETE_QUARTER_SUCCESS = "completeQuarterSuccess";
 	private static final String DATE_NOT_IN_PAST = "dateNotInPast";
-	private static final String QUARTER_DUE_DATE = "quarterDueDate";
 	private static final String DATE_NOT_VALID = "dueDateNotValid";
 
 	/**

@@ -27,11 +27,11 @@
 					data:  dataCenterId
 				}).then(returnData);
 			},
-			validateDataCenter : function(dataCenterId) {
+			validateDataCenter : function(dataCenter) {
 				return $http({
 					url: '/datacenter/validate',
 					method: 'POST',
-					data: dataCenterId
+					data: dataCenter
 				}).then(returnData);
 			}
 	    };
