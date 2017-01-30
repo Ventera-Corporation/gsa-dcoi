@@ -17,6 +17,7 @@ import gov.gsa.dcoi.dto.StatusDto;
 import gov.gsa.dcoi.entity.DataCenterQuarter;
 import gov.gsa.dcoi.refValueEntity.ReferenceValueConstants;
 import gov.gsa.dcoi.repository.DataCenterQuarterRepository;
+import gov.gsa.dcoi.security.User;
 
 /**
  * Service class to perform the business logic validation rules on the data
@@ -39,15 +40,30 @@ public class ValidateDcoiData {
 	 * Add validations for the business logic rules
 	 * 
 	 * @param dataCenterDtos
+	 * @param user
 	 * @return
 	 */
-	public Map<String, Object> validateDataCenters(List<DataCenterDto> dataCenterDtos) {
+	public Map<String, Object> validateDataCenters(List<DataCenterDto> dataCenterDtos, User user) {
 
 		Map<String, String> messages = new HashMap<>();
 		Map<String, Object> errorData = new HashMap<>();
 		for (DataCenterDto dataCenterDto : dataCenterDtos) {
-			validateFieldComparisons(dataCenterDto, messages);
-			validateEmptyFields(dataCenterDto, messages);
+			if (user.getRoleIds().contains(ReferenceValueConstants.ADMIN_ROLE)) {
+				validateFacilityInformation(dataCenterDto, messages);
+				validateServerSection(dataCenterDto, messages);
+			} else {
+				if (user.getRoleIds().contains(ReferenceValueConstants.FACILITY_ROLE)) {
+					validateFacilityInformation(dataCenterDto, messages);
+				}
+				if (user.getRoleIds().contains(ReferenceValueConstants.SERVER_ROLE)) {
+					for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
+						if (user.getFieldOfficeIds().contains(fieldOfficeDto.getComponentId())) {
+							validateServerSection(dataCenterDto, messages);
+						}
+					}
+				}
+			}
+
 		}
 		errorData.put("messages", messages);
 		if (!messages.isEmpty()) {
@@ -63,55 +79,28 @@ public class ValidateDcoiData {
 	}
 
 	/**
-	 * Validate the logic that revolves around fields being less than or equal
-	 * to one another
+	 * Helper method to validate the information in the facility, general
+	 * information and status sections of the data form
 	 * 
 	 * @param dataCenterDto
 	 * @param messages
 	 */
-	private void validateFieldComparisons(DataCenterDto dataCenterDto, Map<String, String> messages) {
-
-		validateClosingInformation(dataCenterDto, messages);
-		validateRecordValidity(dataCenterDto, messages);
-		validateFacilityInfo(dataCenterDto, messages);
-		validateStatusInfo(dataCenterDto, messages);
-		validateStorageInfo(dataCenterDto, messages);
-
-	}
-
-	/**
-	 * Validate that given certain conditions certain fields are or are not
-	 * empty
-	 * 
-	 * @param dataCenterDto
-	 * @param messages
-	 */
-	private void validateEmptyFields(DataCenterDto dataCenterDto, Map<String, String> messages) {
-
+	private void validateFacilityInformation(DataCenterDto dataCenterDto, Map<String, String> messages) {
 		Boolean isNotInvalid = dataCenterDto.getStatus()
 				.getRecordValidityId() != ReferenceValueConstants.INVALID_FACILITY;
 		Boolean isAgencyOwned = dataCenterDto.getStatus().getOwnershipTypeId() == ReferenceValueConstants.AGENCY_OWNED;
 		Boolean isElectricityMeteredAndTiered = dataCenterDto.getStatus()
 				.getElectricityIsMeteredId() == ReferenceValueConstants.YES && dataCenterIsTiered(dataCenterDto);
 
-		if (isNotInvalid) {
-			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getOwnershipTypeId(), "ownershipTypeRequired",
-					messages);
-			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getDataCenterTierId(), "dataCenterTierRequired",
-					messages);
-		}
 		if (isNotInvalid && isAgencyOwned) {
 			fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getGrossFloorArea(), "grossFloorAreaRequired",
 					messages);
-			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getElectricityIsMeteredId(),
-					"electricityMeteredRequired", messages);
-			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getAutomatedMonitoringId(),
-					"automatedMonitoringRequired", messages);
+
 			fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getFte(), "fteRequired", messages);
 			fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getRackCount(), "rackCountRequired", messages);
-			validateServerInformation(dataCenterDto, messages);
 
 		}
+
 		if (isNotInvalid && isAgencyOwned && isElectricityMeteredAndTiered) {
 			fillMessagesIfFieldIsNull(dataCenterDto.getFacilityInfo().getAvgElectricityUsage(),
 					"avgElectrictyUsageRequired", messages);
@@ -119,42 +108,39 @@ public class ValidateDcoiData {
 					"avgITElectrictyUsageRequired", messages);
 
 		}
+
+		validateFacilitySection(dataCenterDto, messages);
+		validateGeneralInfoSection(dataCenterDto, messages);
+		validateStatusSection(dataCenterDto, messages);
 	}
 
 	/**
-	 * Private helper method to add validation messages for the closing
-	 * information
+	 * Helper method to validate the information in the server section of the
+	 * data form
 	 * 
 	 * @param dataCenterDto
 	 * @param messages
 	 */
-	private void validateClosingInformation(DataCenterDto dataCenterDto, Map<String, String> messages) {
-		if (!(dataCenterDto.getStatus().getClosingStageId() == ReferenceValueConstants.NOT_CLOSING
-				|| dataCenterDto.getStatus().getClosingStageId() == ReferenceValueConstants.CONSIDERING)) {
-			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalYearId(), "closingFiscalYearRequired",
-					messages);
-			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalQuarterId(),
-					"closingFiscalQuarterRequired", messages);
-		}
-		if (dataCenterDto.getStatus().getClosingFiscalYearId() != null) {
-			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalQuarterId(),
-					"closingFiscalQuarterRequired2", messages);
-		}
-		if (dataCenterDto.getStatus().getClosingFiscalQuarterId() != null) {
-			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalYearId(), "closingFiscalYearRequired2",
-					messages);
-		}
+	private void validateServerSection(DataCenterDto dataCenterDto, Map<String, String> messages) {
 
-	}
+		Boolean isNotInvalid = dataCenterDto.getStatus()
+				.getRecordValidityId() != ReferenceValueConstants.INVALID_FACILITY;
+		Boolean isAgencyOwned = dataCenterDto.getStatus().getOwnershipTypeId() == ReferenceValueConstants.AGENCY_OWNED;
+		validateStorageFields(dataCenterDto, messages);
 
-	/**
-	 * Private helper method to add validation messages for the server fields
-	 * 
-	 * @param dataCenterDto
-	 * @param messages
-	 */
-	private void validateServerInformation(DataCenterDto dataCenterDto, Map<String, String> messages) {
-		if (dataCenterDto.getFieldOffices() != null) {
+		if (dataCenterDto.getStatus().getAutomatedMonitoringId() == ReferenceValueConstants.YES
+				&& dataCenterDto.getFieldOffices() != null) {
+			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
+				if (fieldOfficeDto.getServerInfo() != null
+						&& (fieldOfficeDto.getServerInfo().getServerUtilization() == null
+								|| fieldOfficeDto.getServerInfo().getServerUtilization().isEmpty())) {
+					messages.put("serverUtilizationRequired",
+							messageSource.getMessage("serverUtilizationRequired", null, null));
+				}
+			}
+
+		}
+		if (isNotInvalid && isAgencyOwned && dataCenterDto.getFieldOffices() != null) {
 			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
 				if (fieldOfficeDto.getServerInfo() != null) {
 					fillMessagesIfFieldIsNull(fieldOfficeDto.getServerInfo().getTotalMainframes(),
@@ -172,31 +158,6 @@ public class ValidateDcoiData {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Private helper method to add validation messages for record validity
-	 * 
-	 * @param dataCenterDto
-	 * @param messages
-	 */
-	private void validateRecordValidity(DataCenterDto dataCenterDto, Map<String, String> messages) {
-		List<DataCenterQuarter> pastQuarterDataCenterList = dataCenterQuarterRepository
-				.findByDataCenterId(dataCenterDto.getDataCenterId());
-
-		if (pastQuarterDataCenterList.size() > 1) {
-			DataCenterQuarter pastQuarterDataCenter = pastQuarterDataCenterList
-					.get(pastQuarterDataCenterList.size() - 2);
-			if (pastQuarterDataCenter.getRecordValidityId() == ReferenceValueConstants.INVALID_FACILITY
-					&& dataCenterDto.getStatus().getRecordValidityId() == ReferenceValueConstants.VALID_FACILITY) {
-				messages.put("recordValidityCannotChange",
-						messageSource.getMessage("recordValidityCannotChange", null, null));
-			}
-		}
-		if (dataCenterDto.getStatus().getClosingStageId() == ReferenceValueConstants.CLOSED
-				&& dataCenterDto.getStatus().getRecordValidityId() == ReferenceValueConstants.INVALID_FACILITY) {
-			messages.put("recordValidityIncorrect", messageSource.getMessage("recordValidityIncorrect", null, null));
-		}
 
 	}
 
@@ -206,7 +167,7 @@ public class ValidateDcoiData {
 	 * @param dataCenterDto
 	 * @param messages
 	 */
-	public void validateFacilityInfo(DataCenterDto dataCenterDto, Map<String, String> messages) {
+	public void validateFacilitySection(DataCenterDto dataCenterDto, Map<String, String> messages) {
 		FacilityInformationDto facilityInfo = dataCenterDto.getFacilityInfo();
 		StatusDto statusDto = dataCenterDto.getStatus();
 		if (isFieldOneLTEFieldTwo(facilityInfo.getAvgElectricityUsage(), facilityInfo.getAvgITElectricityUsage())) {
@@ -230,24 +191,11 @@ public class ValidateDcoiData {
 		}
 	}
 
-	/**
-	 * Helper method to validate the storage information in the server info
-	 * section
-	 * 
-	 * @param dataCenterDto
-	 * @param messages
-	 */
-	public void validateStorageInfo(DataCenterDto dataCenterDto, Map<String, String> messages) {
-		if (dataCenterDto.getFieldOffices() != null) {
-			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
-				if (fieldOfficeDto.getServerInfo() != null) {
-					if (isFieldOneLTEFieldTwo(fieldOfficeDto.getServerInfo().getTotalStorage(),
-							fieldOfficeDto.getServerInfo().getUsedStorage())) {
-						messages.put("usedStorageIncorrect",
-								messageSource.getMessage("usedStorageIncorrect", null, null));
-					}
-				}
-			}
+	private void validateGeneralInfoSection(DataCenterDto dataCenterDto, Map<String, String> messages) {
+		if (dataCenterDto.getStatus().getRecordStatusId().equals(ReferenceValueConstants.EXISTING_FACILITY)
+				&& (dataCenterDto.getGeneralInfo().getDcoiDataCenterId() == null
+						|| dataCenterDto.getGeneralInfo().getDcoiDataCenterId().isEmpty())) {
+			messages.put("dataCenterIdRequired", messageSource.getMessage("dataCenterIdRequired", null, null));
 		}
 	}
 
@@ -258,25 +206,24 @@ public class ValidateDcoiData {
 	 * @param dataCenterDto
 	 * @param messages
 	 */
-	public void validateStatusInfo(DataCenterDto dataCenterDto, Map<String, String> messages) {
+	private void validateStatusSection(DataCenterDto dataCenterDto, Map<String, String> messages) {
 		StatusDto statusDto = dataCenterDto.getStatus();
-		if (statusDto.getRecordStatusId().equals(ReferenceValueConstants.EXISTING_FACILITY)
-				&& (dataCenterDto.getGeneralInfo().getDcoiDataCenterId() == null
-						|| dataCenterDto.getGeneralInfo().getDcoiDataCenterId().isEmpty())) {
-			messages.put("dataCenterIdRequired", messageSource.getMessage("dataCenterIdRequired", null, null));
+
+		Boolean isNotInvalid = dataCenterDto.getStatus()
+				.getRecordValidityId() != ReferenceValueConstants.INVALID_FACILITY;
+		Boolean isAgencyOwned = dataCenterDto.getStatus().getOwnershipTypeId() == ReferenceValueConstants.AGENCY_OWNED;
+
+		if (isNotInvalid) {
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getOwnershipTypeId(), "ownershipTypeRequired",
+					messages);
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getDataCenterTierId(), "dataCenterTierRequired",
+					messages);
 		}
-
-		if (statusDto.getAutomatedMonitoringId() == ReferenceValueConstants.YES
-				&& dataCenterDto.getFieldOffices() != null) {
-			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
-				if (fieldOfficeDto.getServerInfo() != null
-						&& (fieldOfficeDto.getServerInfo().getServerUtilization() == null
-								|| fieldOfficeDto.getServerInfo().getServerUtilization().isEmpty())) {
-					messages.put("serverUtilizationRequired",
-							messageSource.getMessage("serverUtilizationRequired", null, null));
-				}
-			}
-
+		if (isNotInvalid && isAgencyOwned) {
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getElectricityIsMeteredId(),
+					"electricityMeteredRequired", messages);
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getAutomatedMonitoringId(),
+					"automatedMonitoringRequired", messages);
 		}
 
 		if (statusDto.getDataCenterTierId().equals(ReferenceValueConstants.DC_TIER_CLOUD_PROVIDER)) {
@@ -292,6 +239,82 @@ public class ValidateDcoiData {
 						messageSource.getMessage("dataCenterTierMustBeCloud", null, null));
 			}
 		}
+
+		validateClosingFields(dataCenterDto, messages);
+		validateRecordValidityFields(dataCenterDto, messages);
+	}
+
+	/**
+	 * Helper method to validate the storage information in the server info
+	 * section
+	 * 
+	 * @param dataCenterDto
+	 * @param messages
+	 */
+	public void validateStorageFields(DataCenterDto dataCenterDto, Map<String, String> messages) {
+		if (dataCenterDto.getFieldOffices() != null) {
+			for (FieldOfficeDto fieldOfficeDto : dataCenterDto.getFieldOffices()) {
+				if (fieldOfficeDto.getServerInfo() != null) {
+					if (isFieldOneLTEFieldTwo(fieldOfficeDto.getServerInfo().getTotalStorage(),
+							fieldOfficeDto.getServerInfo().getUsedStorage())) {
+						messages.put("usedStorageIncorrect",
+								messageSource.getMessage("usedStorageIncorrect", null, null));
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Private helper method to add validation messages for the closing
+	 * information
+	 * 
+	 * @param dataCenterDto
+	 * @param messages
+	 */
+	private void validateClosingFields(DataCenterDto dataCenterDto, Map<String, String> messages) {
+		if (!(dataCenterDto.getStatus().getClosingStageId() == ReferenceValueConstants.NOT_CLOSING
+				|| dataCenterDto.getStatus().getClosingStageId() == ReferenceValueConstants.CONSIDERING)) {
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalYearId(), "closingFiscalYearRequired",
+					messages);
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalQuarterId(),
+					"closingFiscalQuarterRequired", messages);
+		}
+		if (dataCenterDto.getStatus().getClosingFiscalYearId() != null) {
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalQuarterId(),
+					"closingFiscalQuarterRequired2", messages);
+		}
+		if (dataCenterDto.getStatus().getClosingFiscalQuarterId() != null) {
+			fillMessagesIfFieldIsNull(dataCenterDto.getStatus().getClosingFiscalYearId(), "closingFiscalYearRequired2",
+					messages);
+		}
+
+	}
+
+	/**
+	 * Private helper method to add validation messages for record validity
+	 * 
+	 * @param dataCenterDto
+	 * @param messages
+	 */
+	private void validateRecordValidityFields(DataCenterDto dataCenterDto, Map<String, String> messages) {
+		List<DataCenterQuarter> pastQuarterDataCenterList = dataCenterQuarterRepository
+				.findByDataCenterId(dataCenterDto.getDataCenterId());
+
+		if (pastQuarterDataCenterList.size() > 1) {
+			DataCenterQuarter pastQuarterDataCenter = pastQuarterDataCenterList
+					.get(pastQuarterDataCenterList.size() - 2);
+			if (pastQuarterDataCenter.getRecordValidityId() == ReferenceValueConstants.INVALID_FACILITY
+					&& dataCenterDto.getStatus().getRecordValidityId() == ReferenceValueConstants.VALID_FACILITY) {
+				messages.put("recordValidityCannotChange",
+						messageSource.getMessage("recordValidityCannotChange", null, null));
+			}
+		}
+		if (dataCenterDto.getStatus().getClosingStageId() == ReferenceValueConstants.CLOSED
+				&& dataCenterDto.getStatus().getRecordValidityId() == ReferenceValueConstants.INVALID_FACILITY) {
+			messages.put("recordValidityIncorrect", messageSource.getMessage("recordValidityIncorrect", null, null));
+		}
+
 	}
 
 	/**
