@@ -213,7 +213,7 @@ public class QuarterController {
 	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos) {
 
 		Map<String, Object> returnMap;
-		returnMap = validationService.validateDataCenters(dataCenterDtos.getList());
+		returnMap = validationService.validateDataCenters(dataCenterDtos.getList(), securityController.getUserAccount());
 		if (returnMap.containsKey("messageList")) {
 			return returnMap;
 		}

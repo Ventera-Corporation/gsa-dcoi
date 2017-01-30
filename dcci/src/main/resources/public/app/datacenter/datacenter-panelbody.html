@@ -26,6 +26,6 @@
 <div data-ng-if="lc.hasFacilityInfoAccess() && !qc.tempData.editMode" data-ng-include="'app/datacenter/sections/facilityinfo.html'"></div>
 <div data-ng-if="lc.hasFacilityInfoAccess() && qc.tempData.editMode" data-ng-include="'app/datacenter/sections/facilityinfo-edit.html'"></div>
 <div data-ng-if="!qc.tempData.editMode" data-ng-include="'app/datacenter/sections/generalinfo.html'"></div>
-<div data-ng-if="lc.isAdmin() && qc.tempData.editMode" data-ng-include="'app/datacenter/sections/generalinfo-edit.html'"></div>
+<div data-ng-if="lc.hasFacilityInfoAccess() && qc.tempData.editMode" data-ng-include="'app/datacenter/sections/generalinfo-edit.html'"></div>
 <div data-ng-if="!qc.tempData.editMode" data-ng-include="'app/datacenter/sections/status.html'"></div>
-<div data-ng-if="lc.isAdmin() && qc.tempData.editMode" data-ng-include="'app/datacenter/sections/status-edit.html'"></div>
+<div data-ng-if="lc.hasFacilityInfoAccess() && qc.tempData.editMode" data-ng-include="'app/datacenter/sections/status-edit.html'"></div>

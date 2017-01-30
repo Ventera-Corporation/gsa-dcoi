@@ -145,6 +145,8 @@ public class DataCenterService {
 				CommonHelper.modelMapper.map(curDataCenterQuarterInfo, dataCenterQuarterEntity);
 				if (user.getRoleIds().contains(ReferenceValueConstants.FACILITY_ROLE)) {
 					CommonHelper.modelMapper.map(dataCenterDto.getFacilityInfo(), dataCenterQuarterEntity);
+					CommonHelper.modelMapper.map(dataCenterDto.getGeneralInfo(), dataCenterQuarterEntity);
+					CommonHelper.modelMapper.map(dataCenterDto.getStatus(), dataCenterQuarterEntity);
 				}
 			}
 			CommonHelper.modelMapper.map(dataCenterDto, dataCenterQuarterEntity);
@@ -171,9 +173,13 @@ public class DataCenterService {
 					securityUtils.setUserIdForAudit();
 					fieldOfficeRepository.save(fieldOfficeService.copyDtoToVO(fieldOfficeDto, new FieldOffice()));
 					firstFieldOffice = false;
+					if (numOfFO.equals(Double.valueOf(0.0))) {
+						dataCenterQuarterEntity.setServerUtilization(0.0);
+					} else {
+						dataCenterQuarterEntity.setServerUtilization(serverUtilizationTmp / numOfFO);
+					}
 				}
 			}
-			dataCenterQuarterEntity.setServerUtilization(serverUtilizationTmp / numOfFO);
 			dataCenterQuarterRepository.save(otherCalculations(dataCenterQuarterEntity));
 		}
 	}
