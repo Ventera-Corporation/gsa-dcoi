@@ -135,7 +135,6 @@ public class QuarterController {
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN')")
-
 	public Map<String, Object> createQuarter(@RequestBody String dueDate) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		if (!isDueDateValid(dueDate)) {

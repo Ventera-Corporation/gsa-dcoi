@@ -22,6 +22,7 @@ public class DcoiExceptionHandler {
 	MessageSource messageSource;
 
 	public static final String ERROR_ALERT = "error.alert";
+	public static final String VALIDATE_ALERT = "validate.alert";
 
 	/**
 	 * Create new DcoiException.
@@ -35,6 +36,7 @@ public class DcoiExceptionHandler {
 
 	/**
 	 * Handle validation exceptions
+	 * 
 	 * @param manve
 	 * @param request
 	 * @return
@@ -56,9 +58,13 @@ public class DcoiExceptionHandler {
 			}
 
 		}
-		DcoiRestMessage message = new DcoiRestMessage(ERROR_ALERT, messageSource.getMessage(ERROR_ALERT, null, null));
+		DcoiRestMessage message;
+		if ("/datacenter/validate".equals(request.getServletPath())) {
+			message = new DcoiRestMessage(VALIDATE_ALERT, messageSource.getMessage(VALIDATE_ALERT, null, null));
+		} else {
+			message = new DcoiRestMessage(ERROR_ALERT, messageSource.getMessage(ERROR_ALERT, null, null));
+		}
 		response.getMessageList().add(message);
-		// FrameworkExecutionContext.clearAllValues();
 		return new ResponseEntity<>(response, null, HttpStatus.OK);
 	}
 
