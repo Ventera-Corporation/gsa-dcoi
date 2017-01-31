@@ -178,10 +178,10 @@ public class ValidateDcoiData {
 			messages.put("totalItPowerCapacityIncorrect",
 					messageSource.getMessage("totalItPowerCapacityIncorrect", null, null));
 		}
-		if (!(statusDto.getOwnershipTypeId().equals(ReferenceValueConstants.CLOUD_PROVIDER_OWNERSHIP_TYPE)
-				|| statusDto.getRecordValidityId().equals(ReferenceValueConstants.INVALID_FACILITY))) {
+		if ((statusDto.getOwnershipTypeId() != null
+				&& statusDto.getOwnershipTypeId().equals(ReferenceValueConstants.CLOUD_PROVIDER_OWNERSHIP_TYPE))
+				|| statusDto.getRecordValidityId().equals(ReferenceValueConstants.INVALID_FACILITY)) {
 			if (facilityInfo.getGrossFloorArea() != null && !facilityInfo.getGrossFloorArea().isEmpty()) {
-
 				Integer tmpGFA = Integer.valueOf(facilityInfo.getGrossFloorArea());
 				if (tmpGFA == 0) {
 					messages.put("grossFloorAreaMustNotBeZero",
@@ -226,15 +226,19 @@ public class ValidateDcoiData {
 					"automatedMonitoringRequired", messages);
 		}
 
-		if (statusDto.getDataCenterTierId().equals(ReferenceValueConstants.DC_TIER_CLOUD_PROVIDER)) {
-			if (!statusDto.getOwnershipTypeId().equals(ReferenceValueConstants.CLOUD_PROVIDER_OWNERSHIP_TYPE)) {
+		if (statusDto.getDataCenterTierId() != null
+				&& statusDto.getDataCenterTierId().equals(ReferenceValueConstants.DC_TIER_CLOUD_PROVIDER)) {
+			if (statusDto.getOwnershipTypeId() != null
+					&& !statusDto.getOwnershipTypeId().equals(ReferenceValueConstants.CLOUD_PROVIDER_OWNERSHIP_TYPE)) {
 				messages.put("ownershipTypeMustBeCloud",
 						messageSource.getMessage("ownershipTypeMustBeCloud", null, null));
 			}
 		}
 
-		if (statusDto.getOwnershipTypeId().equals(ReferenceValueConstants.CLOUD_PROVIDER_OWNERSHIP_TYPE)) {
-			if (!statusDto.getDataCenterTierId().equals(ReferenceValueConstants.DC_TIER_CLOUD_PROVIDER)) {
+		if (statusDto.getOwnershipTypeId() != null
+				&& statusDto.getOwnershipTypeId().equals(ReferenceValueConstants.CLOUD_PROVIDER_OWNERSHIP_TYPE)) {
+			if (statusDto.getDataCenterTierId() != null
+					&& !statusDto.getDataCenterTierId().equals(ReferenceValueConstants.DC_TIER_CLOUD_PROVIDER)) {
 				messages.put("dataCenterTierMustBeCloud",
 						messageSource.getMessage("dataCenterTierMustBeCloud", null, null));
 			}

@@ -1,7 +1,9 @@
 package gov.gsa.dcoi.controllers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import gov.gsa.dcoi.DcoiRestMessage;
 import gov.gsa.dcoi.dto.DataCenterDto;
 import gov.gsa.dcoi.dto.FieldOfficeDto;
 import gov.gsa.dcoi.repository.DataCenterRepository;
@@ -44,10 +47,10 @@ public class DataCenterController {
 
 	@Autowired
 	FieldOfficeService fieldOfficeService;
-	
+
 	@Autowired
 	ValidateDcoiData validationService;
-	
+
 	@Autowired
 	SecurityController securityController;
 
@@ -57,7 +60,8 @@ public class DataCenterController {
 	private static final String SUBMIT_SUCCESS = "submitSuccess";
 	private static final String VALIDATE_SUCCESS = "validateSuccess";
 	private static final String REJECT_SUCCESS = "rejectSuccess";
-	
+	private static final String VALIDATE_ALERT = "validate.alert";
+
 	/**
 	 * Initialize adding new Data Center.
 	 * 
@@ -118,10 +122,16 @@ public class DataCenterController {
 	 */
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	public Map<String, Object> validate(@RequestBody DataCenterDto dataCenterDto) {
+	public Map<String, Object> validate(@Valid @RequestBody DataCenterDto dataCenterDto) {
 		Map<String, Object> returnMap;
-		returnMap = validationService.validateDataCenters(Arrays.asList(dataCenterDto), securityController.getUserAccount());
+		returnMap = validationService.validateDataCenters(Arrays.asList(dataCenterDto),
+				securityController.getUserAccount());
 		if (returnMap.containsKey("messageList")) {
+			DcoiRestMessage message = new DcoiRestMessage(VALIDATE_ALERT,
+					messageSource.getMessage(VALIDATE_ALERT, null, null));
+			List<DcoiRestMessage> messageList = new ArrayList<>();
+			messageList.add(message);
+			returnMap.put(MESSAGE_LIST, messageList);
 			return returnMap;
 		}
 		returnMap = dataCenterService.setAdminCompleteFlag(dataCenterDto.getDataCenterId());
@@ -150,10 +160,10 @@ public class DataCenterController {
 		addSuccessData(returnMap, REJECT_SUCCESS);
 		return returnMap;
 	}
-	
-	private void addSuccessData(Map<String, Object> returnMap, String messageName){
+
+	private void addSuccessData(Map<String, Object> returnMap, String messageName) {
 		Map<String, String[]> successData = new HashMap<String, String[]>();
-		successData.put(MESSAGE_LIST, new String[]{messageSource.getMessage(messageName, null, null)});
+		successData.put(MESSAGE_LIST, new String[] { messageSource.getMessage(messageName, null, null) });
 		returnMap.put(SUCCESS_DATA, successData);
 	}
 }
