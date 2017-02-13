@@ -164,8 +164,8 @@ public class DataCenterService {
 					dataCenterQuarterRepository
 							.save(copyDtoToEntity(fieldOfficeDto, dataCenterQuarterEntity, firstFieldOffice));
 					if (fieldOfficeDto.getServerInfo() != null
-							&& (fieldOfficeDto.getServerInfo().getServerUtilization() != null
-									|| !fieldOfficeDto.getServerInfo().getServerUtilization().isEmpty()
+							&& fieldOfficeDto.getServerInfo().getServerUtilization() != null &&
+									( !fieldOfficeDto.getServerInfo().getServerUtilization().isEmpty()
 									|| Integer.valueOf(fieldOfficeDto.getServerInfo().getServerUtilization()) != 0)) {
 						serverUtilizationTmp += Double.valueOf(fieldOfficeDto.getServerInfo().getServerUtilization());
 						numOfFO += 1;
