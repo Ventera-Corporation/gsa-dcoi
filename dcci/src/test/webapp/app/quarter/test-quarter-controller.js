@@ -35,183 +35,196 @@ describe('dcoiApp', function() {
 				    	fiscalQuarter: 'Q3',
 						fiscalYear: '2016',
 						quarterInProgressFlag: true,
-						quarterActiveFlag: false
+						quarterActiveFlag: false,
+						quarterCompleteFlag: false
 					},
 					regions: [
 						{
+							name: "Cloud",
+							code: 'cloud',
+							regionId: 0,
+							dataCenters: []
+						},
+						{
 							name: 'New England',
 							code: 'newEngland',
-							regionId: 0,
+							regionId: 1,
 							dataCenters: [
 								{
-									name: 'Data Center 1 Name',
-									id: 'Data Center 1 ID',
+									dataCenterName: 'Data Center 1 Name',
+									dataCenterId: 'Data Center 1 ID',
+									dcoiDataCenterId: 'Data Center 1 DCOI ID',
 									city: 'Data Center 1 City',
 									stateName: 'Data Center 1 State',
-									components: [
+									generalInfo: {},
+									status: {},
+									fieldOffices: [
 										{
-											name: 'PBS',
-											generalInfo: {},
-											status: {},
+											fieldOfficeName: 'PBS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'FAS',
-											generalInfo: {},
-											status: {},
+											fieldOfficeName: 'FAS',
 											facilityInfo: {},
 											serverInfo: {}
 										}
-									]
+									],
+									ssoCompleteFlag: false,
+									adminCompleteFlag: false
 								},
 								{
-									name: 'Data Center 2 Name',
-									id: 'Data Center 2 ID',
+									dataCenterName: 'Data Center 2 Name',
+									dataCenterId: 'Data Center 2 ID',
+									dcoiDataCenterId: 'Data Center 2 DCOI ID',
 									city: 'Data Center 2 City',
 									stateName: 'Data Center 2 State',
-									components: [
+									generalInfo: {},
+									status: {},
+									fieldOffices: [
 										{
-											name: 'PBS',
-											generalInfo: {},
-											status: {},
+											fieldOfficeName: 'PBS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'FAS',
-											generalInfo: {},
-											status: {},
+											fieldOfficeName: 'FAS',
 											facilityInfo: {},
 											serverInfo: {}
 										}
-									]
+									],
+									ssoCompleteFlag: false,
+									adminCompleteFlag: false
 								}
 							]
 						},
 						{
 							name: 'Northeast and Caribbean',
 							code: 'northeastAndCaribbean',
+							regionId: 2,
 							dataCenters: [
 								{
-									name: 'Data Center 3 Name',
-									id: 'Data Center 3 ID',
+									dataCenterName: 'Data Center 3 Name',
+									dataCenterId: 'Data Center 3 ID',
+									dcoiDataCenterId: 'Data Center 3 DCOI ID',
 									city: 'Data Center 3 City',
 									stateName: 'Data Center 3 State',
-									components: [
+									generalInfo: {},
+									status: {},
+									fieldOffices: [
 										{
-											name: 'PBS',
-											generalInfo: {},
-											status: {},
+											fieldOfficeName: 'PBS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'FAS',
-											generalInfo: {},
-											status: {},
+											fieldOfficeName: 'FAS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'OICO',
-											generalInfo: {},
-											status: {},
+											fieldOfficeName: 'OICO',
 											facilityInfo: {},
 											serverInfo: {}
 										}
-									]
+									],
+									ssoCompleteFlag: false,
+									adminCompleteFlag: false
 								},
 								{
-									name: 'Data Center 4 Name',
-									id: 'Data Center 4 ID',
+									dataCenterName: 'Data Center 4 Name',
+									dataCenterId: 'Data Center 4 ID',
+									dcoiDataCenterId: 'Data Center 4 DCOI ID',
 									city: 'Data Center 4 City',
 									stateName: 'Data Center 4 State',
-									components: [
+									generalInfo: {},
+									status: {},
+									fieldOffices: [
 										{
-											name: 'PBS',
-											generalInfo: {},
-											status: {},
+											fieldOfficeName: 'PBS',
 											facilityInfo: {},
 											serverInfo: {}
 										},
 										{
-											name: 'FAS',
-											generalInfo: {},
-											status: {},
+											fieldOfficeName: 'FAS',
 											facilityInfo: {},
 											serverInfo: {}
 										}
-									]
+									],
+									ssoCompleteFlag: false,
+									adminCompleteFlag: false
 								}
 							]
 						},
 						{
 							name: "Mid-Atlantic",
 							code: 'midAtlantic',
-							dataCenters: {}
+							regionId: 3,
+							dataCenters: [],
 						},
 						{
 							name: "Southeast Sunbelt",
 							code: 'southeastSunbelt',
-							dataCenters: {}
+							regionId: 4,
+							dataCenters: [],
 						},
 						{
 							name: "Great Lakes",
 							code: 'greatLakes',
-							dataCenters: {}
+							regionId: 5,
+							dataCenters: [],
 						},
 						{
 							name: "Heartland",
 							code: 'heartland',
-							dataCenters: {}
+							regionId: 6,
+							dataCenters: [],
 						},
 						{
 							name: "Greater Southwest",
 							code: 'greaterSouthwest',
-							dataCenters: {}
+							regionId: 7,
+							dataCenters: [],
 						},
 						{
 							name: "Rocky Mountain",
 							code: 'rockyMountain',
-							dataCenters: {}
+							regionId: 8,
+							dataCenters: [],
 						},
 						{
 							name: "Pacific Rim",
 							code: 'pacificRim',
-							dataCenters: {}
+							regionId: 9,
+							dataCenters: [],
 						},
 						{
 							name: "Northwest/Arctic",
 							code: 'northwestArctic',
-							dataCenters: {}
+							regionId: 10,
+							dataCenters: [],
 						},
 						{
 							name: "National Capital",
 							code: 'nationalCapital',
-							dataCenters: {}
-						},
-						{
-							name: "Cloud",
-							code: 'cloud',
-							dataCenters: {}
+							regionId: 11,
+							dataCenters: [],
 						}
 					]
 				}
 			});
-			httpBackend.when("POST", "/quarter/save?quarterDto=%7B%22fiscalQuarterReport%22:%7B%22fiscalQuarter%22:%22Q3%22,%22fiscalYear%22:%222016%22,%22quarterInProgressFlag%22:true,%22quarterActiveFlag%22:false%7D,%22regions%22:%5B%7B%22name%22:%22New+England%22,%22code%22:%22newEngland%22,%22regionId%22:0,%22dataCenters%22:%5B%7B%22name%22:%22Data+Center+1+Name%22,%22id%22:%22Data+Center+1+ID%22,%22city%22:%22Data+Center+1+City%22,%22stateName%22:%22Data+Center+1+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D,%7B%22name%22:%22Data+Center+2+Name%22,%22id%22:%22Data+Center+2+ID%22,%22city%22:%22Data+Center+2+City%22,%22stateName%22:%22Data+Center+2+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D%5D%7D,%7B%22name%22:%22Northeast+and+Caribbean%22,%22code%22:%22northeastAndCaribbean%22,%22dataCenters%22:%5B%7B%22name%22:%22Data+Center+3+Name%22,%22id%22:%22Data+Center+3+ID%22,%22city%22:%22Data+Center+3+City%22,%22stateName%22:%22Data+Center+3+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OICO%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D,%7B%22name%22:%22Data+Center+4+Name%22,%22id%22:%22Data+Center+4+ID%22,%22city%22:%22Data+Center+4+City%22,%22stateName%22:%22Data+Center+4+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D%5D%7D,%7B%22name%22:%22Mid-Atlantic%22,%22code%22:%22midAtlantic%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Southeast+Sunbelt%22,%22code%22:%22southeastSunbelt%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Great+Lakes%22,%22code%22:%22greatLakes%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Heartland%22,%22code%22:%22heartland%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Greater+Southwest%22,%22code%22:%22greaterSouthwest%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Rocky+Mountain%22,%22code%22:%22rockyMountain%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Pacific+Rim%22,%22code%22:%22pacificRim%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Northwest%2FArctic%22,%22code%22:%22northwestArctic%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22National+Capital%22,%22code%22:%22nationalCapital%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Cloud%22,%22code%22:%22cloud%22,%22dataCenters%22:%7B%7D%7D%5D%7D").respond({
-			    'fiscalQuarterReport': {
-			    	fiscalQuarter: 'Q3',
-					fiscalYear: '2016',
-					quarterInProgressFlag: true,
-					quarterActiveFlag: false
-				},
+			httpBackend.when("POST", "/quarter/save?dataCenterDtos=%7B%22dataCenterId%22:1234,%22dataCenterName%22:%22Test+Name1%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID1%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D").respond({
 				'successData': {
 					message: 'Saved'
 				}
 			});
-			httpBackend.when("POST", "/quarter/create?quarterDto=%7B%22fiscalQuarterReport%22:%7B%22fiscalQuarter%22:%22Q3%22,%22fiscalYear%22:%222016%22,%22quarterInProgressFlag%22:false,%22quarterActiveFlag%22:true%7D,%22regions%22:%5B%7B%22name%22:%22New+England%22,%22code%22:%22newEngland%22,%22regionId%22:0,%22dataCenters%22:%5B%7B%22name%22:%22Data+Center+1+Name%22,%22id%22:%22Data+Center+1+ID%22,%22city%22:%22Data+Center+1+City%22,%22stateName%22:%22Data+Center+1+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D,%7B%22name%22:%22Data+Center+2+Name%22,%22id%22:%22Data+Center+2+ID%22,%22city%22:%22Data+Center+2+City%22,%22stateName%22:%22Data+Center+2+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D%5D%7D,%7B%22name%22:%22Northeast+and+Caribbean%22,%22code%22:%22northeastAndCaribbean%22,%22dataCenters%22:%5B%7B%22name%22:%22Data+Center+3+Name%22,%22id%22:%22Data+Center+3+ID%22,%22city%22:%22Data+Center+3+City%22,%22stateName%22:%22Data+Center+3+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OICO%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D,%7B%22name%22:%22Data+Center+4+Name%22,%22id%22:%22Data+Center+4+ID%22,%22city%22:%22Data+Center+4+City%22,%22stateName%22:%22Data+Center+4+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D%5D%7D,%7B%22name%22:%22Mid-Atlantic%22,%22code%22:%22midAtlantic%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Southeast+Sunbelt%22,%22code%22:%22southeastSunbelt%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Great+Lakes%22,%22code%22:%22greatLakes%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Heartland%22,%22code%22:%22heartland%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Greater+Southwest%22,%22code%22:%22greaterSouthwest%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Rocky+Mountain%22,%22code%22:%22rockyMountain%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Pacific+Rim%22,%22code%22:%22pacificRim%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Northwest%2FArctic%22,%22code%22:%22northwestArctic%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22National+Capital%22,%22code%22:%22nationalCapital%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Cloud%22,%22code%22:%22cloud%22,%22dataCenters%22:%7B%7D%7D%5D%7D").respond({
-			    'fiscalQuarterReport': {
+			httpBackend.when("POST", "/quarter/save?dataCenterDtos=%7B%22dataCenterId%22:1234,%22dataCenterName%22:%22Test+Name1%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID1%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D&dataCenterDtos=%7B%22dataCenterId%22:1235,%22dataCenterName%22:%22Test+Name2%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID2%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D&dataCenterDtos=%7B%22dataCenterId%22:1236,%22dataCenterName%22:%22Test+Name3%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID3%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D").respond({
+				'successData': {
+					message: 'Saved'
+				}
+			});
+			httpBackend.when("POST", "/quarter/create?dueDate=08%2F08%2F2016").respond({
+				fiscalQuarterReport: {
 			    	fiscalQuarter: 'Q3',
 					fiscalYear: '2016',
 					quarterInProgressFlag: false,
@@ -221,11 +234,19 @@ describe('dcoiApp', function() {
 					message: 'Created'
 				}
 			});
-			httpBackend.when("POST", "/datacenter/add?dataCenterDto=%7B%22dataCenterId%22:%22%22,%22dataCenterName%22:%22Test%22,%22dcoiDataCenterId%22:%22%22,%22regionId%22:0,%22city%22:%22%22,%22stateName%22:%22%22,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D").respond({
-				'successData': {
-					message: 'Added'
-				}
-			});
+	    	var testDataCenterId = 1234;
+			for(var addedDataCenterIdx = 0; addedDataCenterIdx < 3; addedDataCenterIdx++){
+				var displayIdx = addedDataCenterIdx + 1;
+				var expectPostStr = "/datacenter/add?dataCenterDto=%7B%22dataCenterId%22:%22%22,%22dataCenterName%22:%22Test+Name" + displayIdx
+				+ "%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID" + displayIdx 
+				+ "%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D";
+				httpBackend.when("POST", expectPostStr).respond({
+					'successData': {
+						message: 'Added',
+						dataCenterId:  testDataCenterId + addedDataCenterIdx
+					}
+				});
+			}
 			
 	    	qc = $controller("QuarterController", {
 	    		quarterData: {}
@@ -237,68 +258,173 @@ describe('dcoiApp', function() {
 	    
 	    
 	    it('verify fiscal quarter report data for in progress quarter', function() {
-			expect(qc.quarterData.fiscalQuarterReport.fiscalQuarter).toBe('Q3');
-			expect(qc.quarterData.fiscalQuarterReport.fiscalYear).toBe('2016');
+			expect(qc.quarterData.fiscalQuarterReport.fiscalQuarter).toBeDefined();
+			expect(qc.quarterData.fiscalQuarterReport.fiscalYear).toBeDefined();
 			expect(qc.quarterData.fiscalQuarterReport.quarterInProgressFlag).toBe(true);
 	    });
 	    
 	    it('verify regions data', function() {
-			expect(Object.keys(qc.quarterData.regions).length).toBe(12);
+			expect(qc.quarterData.regions.length).toBeGreaterThan(0);
 	    });
 	    
-	    xit('verify save quarter', function() {
-			httpBackend.expectPOST('/quarter/save?quarterDto=%7B%22fiscalQuarterReport%22:%7B%22fiscalQuarter%22:%22Q3%22,%22fiscalYear%22:%222016%22,%22quarterInProgressFlag%22:true,%22quarterActiveFlag%22:false%7D,%22regions%22:%5B%7B%22name%22:%22New+England%22,%22code%22:%22newEngland%22,%22regionId%22:0,%22dataCenters%22:%5B%7B%22name%22:%22Data+Center+1+Name%22,%22id%22:%22Data+Center+1+ID%22,%22city%22:%22Data+Center+1+City%22,%22stateName%22:%22Data+Center+1+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D,%7B%22name%22:%22Data+Center+2+Name%22,%22id%22:%22Data+Center+2+ID%22,%22city%22:%22Data+Center+2+City%22,%22stateName%22:%22Data+Center+2+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D%5D%7D,%7B%22name%22:%22Northeast+and+Caribbean%22,%22code%22:%22northeastAndCaribbean%22,%22dataCenters%22:%5B%7B%22name%22:%22Data+Center+3+Name%22,%22id%22:%22Data+Center+3+ID%22,%22city%22:%22Data+Center+3+City%22,%22stateName%22:%22Data+Center+3+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OICO%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D,%7B%22name%22:%22Data+Center+4+Name%22,%22id%22:%22Data+Center+4+ID%22,%22city%22:%22Data+Center+4+City%22,%22stateName%22:%22Data+Center+4+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D%5D%7D,%7B%22name%22:%22Mid-Atlantic%22,%22code%22:%22midAtlantic%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Southeast+Sunbelt%22,%22code%22:%22southeastSunbelt%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Great+Lakes%22,%22code%22:%22greatLakes%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Heartland%22,%22code%22:%22heartland%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Greater+Southwest%22,%22code%22:%22greaterSouthwest%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Rocky+Mountain%22,%22code%22:%22rockyMountain%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Pacific+Rim%22,%22code%22:%22pacificRim%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Northwest%2FArctic%22,%22code%22:%22northwestArctic%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22National+Capital%22,%22code%22:%22nationalCapital%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Cloud%22,%22code%22:%22cloud%22,%22dataCenters%22:%7B%7D%7D%5D%7D');
+	    xit('verify add and save 1 new datacenter', function() {
+	    	var testRegionIdx = 1;
+	    	var baseTestDataCenterId = 1234;
+	    	
+	    	var baseNumOfDataCenters = qc.quarterData.regions[testRegionIdx].dataCenters.length;
+	    	var numOfAddedDataCenters = 1;
+	    	
+	    	for(var addedDataCenterIdx = 0; addedDataCenterIdx < numOfAddedDataCenters; addedDataCenterIdx++){
+	    		var displayIdx = addedDataCenterIdx + 1;
+	    		var testDataCenterId = baseTestDataCenterId + addedDataCenterIdx;
+		    	var newDataCenter = {
+						dataCenterId: '',
+						dataCenterName: 'Test Name' + displayIdx,
+						dcoiDataCenterId: 'DCOI-Test-ID' + displayIdx,
+						regionId: testRegionIdx,
+						city: '',
+						stateName: '',
+						generalInfo: {},
+						status: {},
+						fieldOffices: [
+							{
+								name: 'PBS',
+								facilityInfo: {},
+								serverInfo: {}
+							},
+							{
+								name: 'FAS',
+								facilityInfo: {},
+								serverInfo: {}
+							},
+							{
+								name: 'OCIO',
+								facilityInfo: {},
+								serverInfo: {}
+							}
+						]
+					};
+				httpBackend.expectPOST('/datacenter/add?dataCenterDto=%7B%22dataCenterId%22:%22%22,%22dataCenterName%22:%22Test+Name' + displayIdx
+						+ '%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID' + displayIdx
+						+ '%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D');
+				qc.addNewDataCenterFromModal(newDataCenter);
+		    	httpBackend.flush();
+
+	    		var numOfDataCenters = baseNumOfDataCenters + displayIdx;
+				expect(qc.quarterData.regions[testRegionIdx].dataCenters.length).toBe(numOfDataCenters);
+				expect(qc.tempData.successData.message).toBe('Added');
+				expect(qc.tempData.successData.dataCenterId).toBe(testDataCenterId);
+				
+				for(var i = 0; i < qc.quarterData.regions[testRegionIdx].dataCenters.length; i++){
+					if(qc.quarterData.regions[testRegionIdx].dataCenters[i].dataCenterName == newDataCenter.dataCenterName){
+						expect(qc.quarterData.regions[testRegionIdx].dataCenters[i].dataCenterId).toBe(testDataCenterId);
+					}
+				}
+	
+				expect(qc.tempData.selected.regionIdx).toBe(testRegionIdx);
+				expect(qc.tempData.selected.dataCenterName).toBe(newDataCenter.dataCenterName);
+		    	expect(qc.tempData.editMode).toBe(true);
+				
+		    	qc.initDefaultPanelExpanded(newDataCenter);
+		    	expect(qc.tempData.wasInEditMode.dataCenterIds.length).toEqual(numOfAddedDataCenters);
+		    	expect(qc.tempData.wasInEditMode.dataCenterIds.indexOf(newDataCenter.dataCenterId)).toBeGreaterThan(-1);
+		    }
+	    	
+	    	var editedDataCenters = qc.getEditedDataCenters();
+	    	expect(editedDataCenters.length).toEqual(numOfAddedDataCenters);
+	    	
+			httpBackend.expectPOST("/quarter/save?dataCenterDtos=%7B%22dataCenterId%22:1234,%22dataCenterName%22:%22Test+Name1%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID1%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D");
 			qc.saveQuarter();
 	    	httpBackend.flush();
+	    	
 			expect(qc.tempData.successData.message).toBe('Saved');
+	    	expect(qc.tempData.wasInEditMode.dataCenterIds.length).toEqual(0);
+	    	expect(qc.tempData.wasInEditMode.dataCenterIds.indexOf(newDataCenter.dataCenterId)).toEqual(-1);
+			expect(qc.tempData.editMode).toBe(false);
+	    });
+	    
+	    xit('verify add and save 3 new datacenters', function() {
+	    	var testRegionIdx = 1;
+	    	var baseTestDataCenterId = 1234;
+	    	
+	    	var baseNumOfDataCenters = qc.quarterData.regions[testRegionIdx].dataCenters.length;
+	    	var numOfAddedDataCenters = 3;
+	    	
+	    	for(var addedDataCenterIdx = 0; addedDataCenterIdx < numOfAddedDataCenters; addedDataCenterIdx++){
+	    		var displayIdx = addedDataCenterIdx + 1;
+	    		var testDataCenterId = baseTestDataCenterId + addedDataCenterIdx;
+		    	var newDataCenter = {
+						dataCenterId: '',
+						dataCenterName: 'Test Name' + displayIdx,
+						dcoiDataCenterId: 'DCOI-Test-ID' + displayIdx,
+						regionId: testRegionIdx,
+						city: '',
+						stateName: '',
+						generalInfo: {},
+						status: {},
+						fieldOffices: [
+							{
+								name: 'PBS',
+								facilityInfo: {},
+								serverInfo: {}
+							},
+							{
+								name: 'FAS',
+								facilityInfo: {},
+								serverInfo: {}
+							},
+							{
+								name: 'OCIO',
+								facilityInfo: {},
+								serverInfo: {}
+							}
+						]
+					};
+				httpBackend.expectPOST('/datacenter/add?dataCenterDto=%7B%22dataCenterId%22:%22%22,%22dataCenterName%22:%22Test+Name' + displayIdx
+						+ '%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID' + displayIdx
+						+ '%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D');
+				qc.addNewDataCenterFromModal(newDataCenter);
+		    	httpBackend.flush();
+
+	    		var numOfDataCenters = baseNumOfDataCenters + displayIdx;
+				expect(qc.quarterData.regions[testRegionIdx].dataCenters.length).toBe(numOfDataCenters);
+				expect(qc.tempData.successData.message).toBe('Added');
+				expect(qc.tempData.successData.dataCenterId).toBe(testDataCenterId);
+				
+				for(var i = 0; i < qc.quarterData.regions[testRegionIdx].dataCenters.length; i++){
+					if(qc.quarterData.regions[testRegionIdx].dataCenters[i].dataCenterName == newDataCenter.dataCenterName){
+						expect(qc.quarterData.regions[testRegionIdx].dataCenters[i].dataCenterId).toBe(testDataCenterId);
+					}
+				}
+	
+				expect(qc.tempData.selected.regionIdx).toBe(testRegionIdx);
+				expect(qc.tempData.selected.dataCenterName).toBe(newDataCenter.dataCenterName);
+		    	expect(qc.tempData.editMode).toBe(true);
+				
+		    	qc.initDefaultPanelExpanded(newDataCenter);
+		    	expect(qc.tempData.wasInEditMode.dataCenterIds.length).toEqual(displayIdx);
+		    	expect(qc.tempData.wasInEditMode.dataCenterIds.indexOf(newDataCenter.dataCenterId)).toBeGreaterThan(-1);
+		    }
+	    	
+	    	var editedDataCenters = qc.getEditedDataCenters();
+	    	expect(editedDataCenters.length).toEqual(numOfAddedDataCenters);
+
+			httpBackend.expectPOST("/quarter/save?dataCenterDtos=%7B%22dataCenterId%22:1234,%22dataCenterName%22:%22Test+Name1%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID1%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D&dataCenterDtos=%7B%22dataCenterId%22:1235,%22dataCenterName%22:%22Test+Name2%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID2%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D&dataCenterDtos=%7B%22dataCenterId%22:1236,%22dataCenterName%22:%22Test+Name3%22,%22dcoiDataCenterId%22:%22DCOI-Test-ID3%22,%22regionId%22:1,%22city%22:%22%22,%22stateName%22:%22%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D");
+			qc.saveQuarter();
+	    	httpBackend.flush();
+	    	
+			expect(qc.tempData.successData.message).toBe('Saved');
+	    	expect(qc.tempData.wasInEditMode.dataCenterIds.length).toEqual(0);
+	    	expect(qc.tempData.wasInEditMode.dataCenterIds.indexOf(newDataCenter.dataCenterId)).toEqual(-1);
+			expect(qc.tempData.editMode).toBe(false);
 	    });
 
 	    xit('verify create quarter', function() {
-			httpBackend.expectPOST('/quarter/create?quarterDto=%7B%22fiscalQuarterReport%22:%7B%22fiscalQuarter%22:%22Q3%22,%22fiscalYear%22:%222016%22,%22quarterInProgressFlag%22:false,%22quarterActiveFlag%22:true%7D,%22regions%22:%5B%7B%22name%22:%22New+England%22,%22code%22:%22newEngland%22,%22regionId%22:0,%22dataCenters%22:%5B%7B%22name%22:%22Data+Center+1+Name%22,%22id%22:%22Data+Center+1+ID%22,%22city%22:%22Data+Center+1+City%22,%22stateName%22:%22Data+Center+1+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D,%7B%22name%22:%22Data+Center+2+Name%22,%22id%22:%22Data+Center+2+ID%22,%22city%22:%22Data+Center+2+City%22,%22stateName%22:%22Data+Center+2+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D%5D%7D,%7B%22name%22:%22Northeast+and+Caribbean%22,%22code%22:%22northeastAndCaribbean%22,%22dataCenters%22:%5B%7B%22name%22:%22Data+Center+3+Name%22,%22id%22:%22Data+Center+3+ID%22,%22city%22:%22Data+Center+3+City%22,%22stateName%22:%22Data+Center+3+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OICO%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D,%7B%22name%22:%22Data+Center+4+Name%22,%22id%22:%22Data+Center+4+ID%22,%22city%22:%22Data+Center+4+City%22,%22stateName%22:%22Data+Center+4+State%22,%22components%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D%5D%7D,%7B%22name%22:%22Mid-Atlantic%22,%22code%22:%22midAtlantic%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Southeast+Sunbelt%22,%22code%22:%22southeastSunbelt%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Great+Lakes%22,%22code%22:%22greatLakes%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Heartland%22,%22code%22:%22heartland%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Greater+Southwest%22,%22code%22:%22greaterSouthwest%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Rocky+Mountain%22,%22code%22:%22rockyMountain%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Pacific+Rim%22,%22code%22:%22pacificRim%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Northwest%2FArctic%22,%22code%22:%22northwestArctic%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22National+Capital%22,%22code%22:%22nationalCapital%22,%22dataCenters%22:%7B%7D%7D,%7B%22name%22:%22Cloud%22,%22code%22:%22cloud%22,%22dataCenters%22:%7B%7D%7D%5D%7D');
+	    	qc.quarterData.dueDate = '08/08/2016';
+			httpBackend.expectPOST('/quarter/create?dueDate=08%2F08%2F2016');
 			qc.createQuarter();
 	    	httpBackend.flush();
 			expect(qc.tempData.successData.message).toBe('Created');
-	    });
-	    
-	    
-	    xit('verify add datacenter', function() {
-	    	var numOfDataCenters = qc.quarterData.regions[0].dataCenters.length;
-			httpBackend.expectPOST('/datacenter/add?dataCenterDto=%7B%22dataCenterId%22:%22%22,%22dataCenterName%22:%22Test%22,%22dcoiDataCenterId%22:%22%22,%22regionId%22:0,%22city%22:%22%22,%22stateName%22:%22%22,%22fieldOffices%22:%5B%7B%22name%22:%22PBS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22FAS%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D,%7B%22name%22:%22OCIO%22,%22generalInfo%22:%7B%7D,%22status%22:%7B%7D,%22facilityInfo%22:%7B%7D,%22serverInfo%22:%7B%7D%7D%5D%7D');
-			qc.addNewDataCenterFromModal({
-				dataCenterId: '',
-				dataCenterName: 'Test',
-				dcoiDataCenterId: '',
-				regionId: 0,
-				city: '',
-				stateName: '',
-				fieldOffices: [
-					{
-						name: 'PBS',
-						generalInfo: {},
-						status: {},
-						facilityInfo: {},
-						serverInfo: {}
-					},
-					{
-						name: 'FAS',
-						generalInfo: {},
-						status: {},
-						facilityInfo: {},
-						serverInfo: {}
-					},
-					{
-						name: 'OCIO',
-						generalInfo: {},
-						status: {},
-						facilityInfo: {},
-						serverInfo: {}
-					}
-				]
-			});
-	    	httpBackend.flush();
-
-			expect(qc.quarterData.regions[0].dataCenters.length).toBe(numOfDataCenters+1);
-			expect(qc.tempData.successData.message).toBe('Added');
 	    });
 	});
 });

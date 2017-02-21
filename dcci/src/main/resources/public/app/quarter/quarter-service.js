@@ -17,27 +17,42 @@
 				return $http({
 					url: '/quarter/create',
 					method: 'POST',
-					params: {dueDate: dueDate}
+					data: dueDate
 				}).then(returnData);
 			},
 			saveQuarter : function(editedDataCenters) {
 				return $http({
 					url: '/quarter/save',
 					method: 'POST',
-					params: {dataCenterDtos: editedDataCenters}
+					data: editedDataCenters
 				}).then(returnData);
 			},
-			initDataCenter : function() {
+			viewQuarter : function(quarterId) {
 				return $http({
-					url: '/datacenter/init',
-					method: 'GET'
+					url: '/quarter/view',
+					method: 'GET',
+					params: {quarterId: quarterId}
 				}).then(returnData);
 			},
 			addDataCenter : function(dataCenterData) {
 				return $http({
 					url: '/datacenter/add',
 					method: 'POST',
-					params: {dataCenterDto: dataCenterData}
+					data:  dataCenterData
+				}).then(returnData);
+			},
+			completeQuarter : function() {
+				return $http({
+					url: '/quarter/complete',
+					method: 'POST'
+				}).then(returnData);
+			},
+			exportQuarter : function(quarterId) {
+				return $http({
+					url: '/quarter/export',
+					method: 'POST',
+					data: quarterId,
+					responseType: "arraybuffer"
 				}).then(returnData);
 			}
 	    };

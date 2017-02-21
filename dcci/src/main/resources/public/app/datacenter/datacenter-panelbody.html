@@ -1,0 +1,31 @@
+<div class="pull-right" data-ng-include="'app/datacenter/datacenter-actionbuttons.html'"></div>
+<!-- Tabs -->
+<uib-tabset data-active="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx"
+		data-ng-if="lc.hasServerInfoAccess()">
+	<uib-tab data-ng-repeat="fieldOffice in dataCenter.fieldOffices" 
+			data-ng-if="lc.hasFieldOfficeServerInfoAccess(fieldOffice.fieldOfficeName)"
+			data-index="$index" data-style="cursor: pointer" 
+			data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx = $index">
+		<uib-tab-heading><H5>{{fieldOffice.fieldOfficeName}}</H5></uib-tab-heading>
+		<div data-ng-if="!qc.tempData.editMode" data-ng-include="'app/datacenter/sections/serverinfo.html'"></div>
+		<div data-ng-if="qc.tempData.editMode" data-ng-include="'app/datacenter/sections/serverinfo-edit.html'"></div>
+	</uib-tab>
+	<uib-tab data-ng-if="lc.isAdmin() && !qc.quarterData.fiscalQuarterReport.quarterInProgressFlag && dataCenter.ssoCompleteFlag"
+			data-index="dataCenter.fieldOffices.length + 1" data-style="cursor: pointer" 
+			data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].activeFieldOfficeTabIdx = dataCenter.fieldOffices.length + 1">
+		<uib-tab-heading><H5>Totals</H5></uib-tab-heading>
+		<div data-ng-if="!qc.tempData.editMode" data-ng-include="'app/datacenter/sections/costcalc.html'"></div>
+		<div data-ng-if="qc.tempData.editMode" data-ng-include="'app/datacenter/sections/costcalc-edit.html'"></div>
+		<div data-ng-include="'app/datacenter/sections/othercalc.html'"></div>
+		<div data-ng-include="'app/datacenter/sections/totalserverinfo.html'"></div>
+	</uib-tab>
+</uib-tabset>
+<!-- Give some space for facility user -->
+<div data-ng-if="!lc.hasServerInfoAccess()"><br/><br/></div>
+
+<div data-ng-if="lc.hasFacilityInfoAccess() && !qc.tempData.editMode" data-ng-include="'app/datacenter/sections/facilityinfo.html'"></div>
+<div data-ng-if="lc.hasFacilityInfoAccess() && qc.tempData.editMode" data-ng-include="'app/datacenter/sections/facilityinfo-edit.html'"></div>
+<div data-ng-if="!qc.tempData.editMode" data-ng-include="'app/datacenter/sections/generalinfo.html'"></div>
+<div data-ng-if="lc.hasFacilityInfoAccess() && qc.tempData.editMode" data-ng-include="'app/datacenter/sections/generalinfo-edit.html'"></div>
+<div data-ng-if="!qc.tempData.editMode" data-ng-include="'app/datacenter/sections/status.html'"></div>
+<div data-ng-if="lc.hasFacilityInfoAccess() && qc.tempData.editMode" data-ng-include="'app/datacenter/sections/status-edit.html'"></div>

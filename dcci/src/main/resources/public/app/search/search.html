@@ -1,26 +1,98 @@
 <!-- PAGE HEADER -->
-<div class="page-header">                  
-    <span class="inline" style="padding-top: 2px;">
-    	<span class="glyphicon glyphicon-search glyph-style" aria-hidden="true" style="font-size: .8em;"></span>
-    	<span data-ng-if="sc.advancedSearchMode">&nbsp; Query Data</span>
-    	<span data-ng-if="!sc.advancedSearchMode">&nbsp; Search Results:
-    			<span data-ng-if="sc.searchResults.length">Displaying {{sc.pageInfoStartNumber()}} - {{sc.pageInfoEndNumber()}} of {{sc.searchCriteria.resultsTotalNum}} records</span></h4>
-				<span data-ng-if="sc.searchResults.length">
-					<uib-pagination id="paginationElem" class="pagination-sm pull-right" style="cursor:pointer"
-							total-items="sc.searchCriteria.resultsTotalNum" items-per-page="sc.searchCriteria.resultsPerPage"
-							data-ng-model="sc.searchCriteria.currentPageNum" max-size="10" boundary-links="true" data-ng-change="search()"
-							previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
-					</uib-pagination>
-				</span>
-    	</span>
-    </span>
+<div class="page-header">
+	Query Data Centers
 </div>
 
 <!-- MAIN CONTAINER -->
-<div class="container-fluid" style="padding-top: 140px;">
-	<div style="width: 100%; overflow: auto;">
-		<div data-ng-if="sc.advancedSearchMode" data-ng-include="'app/search/searchcriteriapanel.html'"></div>
-		<div data-ng-if="sc.advancedSearchMode" data-ng-include="'app/search/searchresultspanel.html'"></div>
-		<div data-ng-if="!sc.advancedSearchMode" data-ng-include="'app/search/searchresultstable.html'"></div>
-	</div>
+<div class="container-fluid" style="padding-top: 100px;">
+	<table data-datatable="ng" class="row-border hover">
+		<thead>
+			<tr>
+				<th style="white-space: nowrap">Quarter - Fiscal Year</th>
+				<th style="white-space: nowrap">Data Center ID</th>
+				<th style="white-space: nowrap">Data Center Name</th>
+				<th style="white-space: nowrap">Closing Stage</th>
+				<th>Agency<br/>Data Center ID</th>
+				<th>Record<br/>Status</th>
+				<th>Record<br/>Validity</th>
+				<th>Published<br/>Name</th>
+				<th>Ownership<br/>Type</th>
+				<th>ISS<br/>Position</th>
+				<th>ISS<br/>Provider</th>
+				<th>Data Center<br/>Tier</th>
+				<th>Country</th>
+				<th>Gross Floor<br/>Area <span style="white-space: nowrap">(Sq. Ft.)</span></th>
+				<th>Total Customer<br/>Floor Area <span style="white-space: nowrap">(Sq. Ft.)</span></th>
+				<th>Electricity<br/>is Metered</th>
+				<th>Avg Electricity Usage (kWh)</th>
+				<th>Avg IT Electricity Usage (kWh)</th>
+				<th>Automated<br/>Monitoring</th>
+				<th>Server<br/>Utilization</th>
+				<th>FTE</th>
+				<th>Rack Count</th>
+				<th>Total<br/>Mainframes</th>
+				<th>Total<br/>Windows Servers</th>
+				<th>Total<br/>HPC Cluster Nodes</th>
+				<th>Total<br/>Other Servers</th>
+				<th>Total<br/>Virtual Hosts</th>
+				<th>Total<br/>Virtual OS</th>
+				<th>Total<br/>Storage</th>
+				<th>Used<br/>Storage</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="result in sc.searchResults">
+				<td><a href="#/viewQuarter/{{::result.quarterReportId}}">{{::result.fiscalQuarter}} {{::result.fiscalYear}}</a></td>
+				<td><a href="#/viewQuarter/{{::result.quarterReportId}}/{{::result.dataCenterId}}">{{::result.dcoiDataCenterId}}</a></td>
+				<td><a href="#/viewQuarter/{{::result.quarterReportId}}/{{::result.dataCenterId}}">{{::result.dataCenterName}}</a></td>
+				<td>{{::result.closingStageName}}</td>
+				<td>{{::result.agencyDataCenterName}}</td>
+				<td>{{::result.recordStatusName}}</td>
+				<td>{{::result.recordValidityName}}</td>
+				<td>{{::result.publishedName}}</td>
+				<td>{{::result.ownershipTypeName;}}</td>
+				<td>{{::result.issPositionName}}</td>
+				<td>{{::result.issProvider}}</td>
+				<td>{{::result.dataCenterTierName}}</td>
+				<td>{{::result.countryName}}</td>
+				<td>{{::result.grossFloorArea}}</td>
+				<td>{{::result.totalCustomerFloorArea}}</td>
+				<td>{{::result.electricityIsMetered}}</td>
+				<td>{{::result.avgElectricityUsage}}</td>
+				<td>{{::result.avgITElectricityUsage}}</td>
+				<td>{{::result.automatedMonitoring}}</td>
+				<td>{{::result.serverUtilization}}</td>
+				<td>{{::result.fte}}</td>
+				<td>{{::result.rackCount}}</td>
+				<td>{{::result.totalMainframes}}</td>
+				<td>{{::result.totalWindowsServers}}</td>
+				<td>{{::result.totalHPCClusterNodes}}</td>
+				<td>{{::result.totalOtherServers}}</td>
+				<td>{{::result.totalVirtualHosts}}</td>
+				<td>{{::result.totalVirtualOS}}</td>
+				<td>{{::result.totalStorage}}</td>
+				<td>{{::result.usedStorage}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<!-- SCROLL TO TOP BUTTON -->
+	<button class="scroll-to-top" type="button" id="return-to-top" title="Back to Top">
+		<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+	</button>
+	
+	<script>
+		$(window).scroll(function() {
+		    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+		        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+		        $('#return-to-top').show();
+		    } else {
+		        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+		        $('#return-to-top').hide();
+		    }
+		});
+		$('#return-to-top').click(function() {      // When arrow is clicked
+		    $('body,html').animate({scrollTop : 0}, 500);
+		});
+	</script>
 </div><!-- /.container-fluid -->

@@ -7,11 +7,10 @@
 	
 	function SearchService($http){
 	    return {
-			search : function(searchCriteria) {
+			search : function() {
 				return $http({
-					url: '/search',
+					url: '/search/results',
 					method: 'GET',
-					params: {searchDto: searchCriteria}
 				}).then(returnData);
 			}
 	    };

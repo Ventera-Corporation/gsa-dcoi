@@ -1,0 +1,150 @@
+<!-- CATEGORY : SERVER INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo"></span>
+            <span>&nbsp; Server Info</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}{{fieldOffice.name}}ServerInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].fieldOffices[$index].serverInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Server Utilization" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-field-office="fieldOffice"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="serverUtilization"
+							data-new-quarter-value="fieldOffice['serverInfo']['serverUtilization']"
+							data-error-message="qc.tempData.errorData.messages['serverUtilization']"></div>
+               <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['serverUtilizationRequired']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Total Mainframes" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-field-office="fieldOffice"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalMainframes"
+							data-new-quarter-value="fieldOffice['serverInfo']['totalMainframes']"
+							data-error-message="qc.tempData.errorData.messages['totalMainframes']"></div>
+                <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['totalMainframesRequired']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Total Windows Servers" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-field-office="fieldOffice"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalWindowsServers"
+							data-new-quarter-value="fieldOffice['serverInfo']['totalWindowsServers']"
+							data-error-message="qc.tempData.errorData.messages['totalWindowsServers']"></div>
+                 <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['totalWindowsServersRequired']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Total HPC Cluster Nodes" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-field-office="fieldOffice"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalHPCClusterNodes"
+							data-new-quarter-value="fieldOffice['serverInfo']['totalHPCClusterNodes']"
+							data-error-message="qc.tempData.errorData.messages['totalHPCClusterNodes']"></div>
+               <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['totalHPCClusterNodesRequired']}}</span>
+                </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Total Other Servers" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-field-office="fieldOffice"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalOtherServers"
+							data-new-quarter-value="fieldOffice['serverInfo']['totalOtherServers']"
+							data-error-message="qc.tempData.errorData.messages['totalOtherServers']"></div>
+               <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['totalOtherServersRequired']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Total Virtual Hosts" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-field-office="fieldOffice"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalVirtualHosts"
+							data-new-quarter-value="fieldOffice['serverInfo']['totalVirtualHosts']"
+							data-error-message="qc.tempData.errorData.messages['totalVirtualHosts']"></div>
+               <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['totalVirtualHostsRequired']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Total Virtual OS" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-field-office="fieldOffice"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalVirtualOS"
+							data-new-quarter-value="fieldOffice['serverInfo']['totalVirtualOS']"
+							data-error-message="qc.tempData.errorData.messages['totalVirtualOS']"></div>
+               <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['totalVirtualOSRequired']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Total Storage" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-field-office="fieldOffice"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="totalStorage"
+							data-new-quarter-value="fieldOffice['serverInfo']['totalStorage']"
+							data-error-message="qc.tempData.errorData.messages['totalStorage']"></div>
+                </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Used Storage" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-field-office="fieldOffice"
+							data-section-prop-name="serverInfo"
+							data-field-prop-name="usedStorage"
+							data-new-quarter-value="fieldOffice['serverInfo']['usedStorage']"
+							data-error-message="qc.tempData.errorData.messages['usedStorage']"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['usedStorageIncorrect']}}</span>
+							
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

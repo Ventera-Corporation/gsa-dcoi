@@ -1,0 +1,69 @@
+<div class="modal-header">
+    <button type="button" class="close pull-right" data-ng-click="euimc.cancel()"><i class="fa fa-times"></i></button>
+    <span class="pull-left"><h3 class="modal-title">Edit User Information</h3></span>
+</div><!-- /.modal-header -->
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="first-name">First Name <span class="vnt-red-text">*</span></label>
+                <input type="text" class="form-control" id="first-name" data-ng-model="euimc.user.firstName">
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="last-name">Last Name <span class="vnt-red-text">*</span></label>
+                <input type="text" class="form-control" id="last-name" data-ng-model="euimc.user.lastName">
+            </div>
+        </div>
+	</div><!-- /.row -->
+	<div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="email-address">Email Address <span class="vnt-red-text">*</span></label>
+                <input type="text" class="form-control" id="email-address" data-ng-model="euimc.user.emailAddress">
+            </div>
+        </div>
+	</div><!-- /.row -->
+	<hr/>
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12"><strong>Active Roles</strong></div>
+	</div><!-- /.row -->
+	<div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12" data-ng-repeat="role in euimc.roleRefValueList | filter:{'activeFlag':1}"
+        		data-ng-init="euimc.initRoles(euimc.roleRefValueList | filter:{'activeFlag':1})">
+            <div class="form-group">
+				<input type="checkbox" id="role{{role.value}}"
+						data-ng-false-value="null" 
+						data-ng-true-value="{{role.id}}" 
+						data-ng-change="euimc.checkUncheckRole($index, role.value)"
+						data-ng-model="euimc.tempRoles[$index]['dcoiRoleId']">
+                <label for="role{{role.value}}">{{role.value}}</label>
+            </div>
+		</div> 
+	</div><!-- /.row -->
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12"><strong>Active Field Offices (only applicable to Server role)</strong></div>
+	</div><!-- /.row -->
+	<div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12" data-ng-repeat="fieldOffice in euimc.componentRefValueList | filter:{'activeFlag':1}"
+        		data-ng-init="euimc.initFieldOffices(euimc.componentRefValueList | filter:{'activeFlag':1})">
+            <div class="form-group">
+				<input type="checkbox" id="fieldOffice{{fieldOffice.value}}"
+						data-ng-false-value="null" 
+						data-ng-true-value="{{fieldOffice.id}}" 
+						data-ng-change="euimc.checkUncheckFieldOffice($index, fieldOffice.value)"
+						data-ng-model="euimc.tempFieldOffices[$index]['componentId']">
+                <label for="fieldOffice{{fieldOffice.value}}">{{fieldOffice.value}}</label>
+            </div>
+		</div> 
+	</div><!-- /.row -->
+</div><!-- /.modal-body -->
+
+<div class="modal-footer">
+    <button type="button" class="usa-button usa-button-primary" 
+    		data-ng-disabled="!(euimc.user.firstName && euimc.user.lastName && euimc.user.emailAddress)" 
+    		data-ng-click="euimc.save()">Save</button>
+    <button type="button" class="usa-button usa-button-outline" data-ng-click="euimc.cancel()">Cancel</button>
+</div><!-- /.modal-footer -->

@@ -1,23 +1,41 @@
 package gov.gsa.dcoi.dto;
 
+import javax.validation.constraints.Pattern;
+
+import gov.gsa.dcoi.validator.DcoiDecimalMax;
+import gov.gsa.dcoi.validator.DcoiDecimalMin;
+import gov.gsa.dcoi.validator.DcoiMin;
+
 /**
- * Dto that holds information regarding the data center servers.
- * This information is held at the field office level
+ * Dto that holds information regarding the data center servers. This
+ * information is held at the field office level
+ * 
  * @author sgonthier
  *
  */
 public class ServerInformationDto {
 
 	private Integer dataCenterInventoryId;
-	private Double serverUtilization;
-	private Integer mainframeCount;
-	private Integer windowsServerCount;
-	private Integer hpcClusterCount;
-	private Integer otherServerCount;
-	private Integer virtualHostCount;
-	private Integer virtualOSCount;
-	private Double storageTotal;
-	private Double storageUsed;
+	@DcoiDecimalMin(0.00)
+	@DcoiDecimalMax(1.00)
+	@Pattern(regexp = "([0-9]?.[0-9][0-9]?|^$)")
+	private String serverUtilization;
+	@DcoiMin(0)
+	private String totalMainframes;
+	@DcoiMin(0)
+	private String totalWindowsServers;
+	@DcoiMin(0)
+	private String totalHPCClusterNodes;
+	@DcoiMin(0)
+	private String totalOtherServers;
+	@DcoiMin(0)
+	private String totalVirtualHosts;
+	@DcoiMin(0)
+	private String totalVirtualOS;
+	@DcoiDecimalMin(0.00)
+	private String totalStorage;
+	@DcoiDecimalMin(0.00)
+	private String usedStorage;
 
 	public Integer getDataCenterInventoryId() {
 		return dataCenterInventoryId;
@@ -27,76 +45,76 @@ public class ServerInformationDto {
 		this.dataCenterInventoryId = dataCenterInventoryId;
 	}
 
-	public Double getServerUtilization() {
+	public String getServerUtilization() {
 		return serverUtilization;
 	}
 
-	public void setServerUtilization(Double serverUtilization) {
+	public void setServerUtilization(String serverUtilization) {
 		this.serverUtilization = serverUtilization;
 	}
 
-	public Integer getMainframeCount() {
-		return mainframeCount;
+	public String getTotalMainframes() {
+		return totalMainframes;
 	}
 
-	public void setMainframeCount(Integer mainframeCount) {
-		this.mainframeCount = mainframeCount;
+	public void setTotalMainframes(String totalMainframes) {
+		this.totalMainframes = totalMainframes;
 	}
 
-	public Integer getWindowsServerCount() {
-		return windowsServerCount;
+	public String getTotalWindowsServers() {
+		return totalWindowsServers;
 	}
 
-	public void setWindowsServerCount(Integer windowsServerCount) {
-		this.windowsServerCount = windowsServerCount;
+	public void setTotalWindowsServers(String totalWindowsServers) {
+		this.totalWindowsServers = totalWindowsServers;
 	}
 
-	public Integer getHpcClusterCount() {
-		return hpcClusterCount;
+	public String getTotalHPCClusterNodes() {
+		return totalHPCClusterNodes;
 	}
 
-	public void setHpcClusterCount(Integer hpcClusterCount) {
-		this.hpcClusterCount = hpcClusterCount;
+	public void setTotalHPCClusterNodes(String totalHPCClusterNodes) {
+		this.totalHPCClusterNodes = totalHPCClusterNodes;
 	}
 
-	public Integer getOtherServerCount() {
-		return otherServerCount;
+	public String getTotalOtherServers() {
+		return totalOtherServers;
 	}
 
-	public void setOtherServerCount(Integer otherServerCount) {
-		this.otherServerCount = otherServerCount;
+	public void setTotalOtherServers(String totalOtherServers) {
+		this.totalOtherServers = totalOtherServers;
 	}
 
-	public Integer getVirtualHostCount() {
-		return virtualHostCount;
+	public String getTotalVirtualHosts() {
+		return totalVirtualHosts;
 	}
 
-	public void setVirtualHostCount(Integer virtualHostCount) {
-		this.virtualHostCount = virtualHostCount;
+	public void setTotalVirtualHosts(String totalVirtualHosts) {
+		this.totalVirtualHosts = totalVirtualHosts;
 	}
 
-	public Integer getVirtualOSCount() {
-		return virtualOSCount;
+	public String getTotalVirtualOS() {
+		return totalVirtualOS;
 	}
 
-	public void setVirtualOSCount(Integer virtualOSCount) {
-		this.virtualOSCount = virtualOSCount;
+	public void setTotalVirtualOS(String totalVirtualOS) {
+		this.totalVirtualOS = totalVirtualOS;
 	}
 
-	public Double getStorageTotal() {
-		return storageTotal;
+	public String getTotalStorage() {
+		return totalStorage;
 	}
 
-	public void setStorageTotal(Double storageTotal) {
-		this.storageTotal = storageTotal;
+	public void setTotalStorage(String totalStorage) {
+		this.totalStorage = totalStorage;
 	}
 
-	public Double getStorageUsed() {
-		return storageUsed;
+	public String getUsedStorage() {
+		return usedStorage;
 	}
 
-	public void setStorageUsed(Double storageUsed) {
-		this.storageUsed = storageUsed;
+	public void setUsedStorage(String usedStorage) {
+		this.usedStorage = usedStorage;
 	}
 
 }

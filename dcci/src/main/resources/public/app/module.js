@@ -1,15 +1,17 @@
 (function(){
 	'use strict';
-	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'http-auth-interceptor']);
+	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'ui.select', 'http-auth-interceptor','datatables', 'ngAria']);
 	
 	angular.module('dcoiApp').constant('USER_ROLES', {
 	    all: '*',
 	    admin: 'ADMIN',
-	    user: 'USER'
+	    user: 'USER',
+	    facility: 'FACILITY',
+	    server: 'SERVER'
 	});
 	
 	
-	angular.module('dcoiApp').run(function ($rootScope, $location, $http, AuthenticationService, Session, $q, $timeout) {
+	angular.module('dcoiApp').run(function ($rootScope, $location, $http, AuthenticationService, Session, $q, $timeout, DTDefaultOptions) {
 
 	    $rootScope.settingsCollapse = false;
 	    $rootScope.$on('$routeChangeStart', function (event, next) {
@@ -72,5 +74,30 @@
 
 	    // Get already authenticated user account
 	    AuthenticationService.getAccount();
+	    
+	    // Default DataTable Options
+	    DTDefaultOptions.setOption("deferRender", true);
+	    DTDefaultOptions.setOption("scrollX", true);
+	    // Pagination
+	    DTDefaultOptions.setOption("paging", true);
+	    DTDefaultOptions.setOption("paginationType", "full_numbers");
+	    DTDefaultOptions.setOption("displayLength", 10);
+	    DTDefaultOptions.setOption("order", [[ 0, "desc" ]]);
+	    // Labels
+	    var language = {
+            "sEmptyTable":     "No available data",
+            "sInfo":           "Showing _START_ to _END_ of _TOTAL_ records",
+            "sInfoEmpty":      "0 records",
+            "sInfoFiltered":   "(filtered from _MAX_ total records)",
+            "sInfoPostFix":    "",
+            "sInfoThousands":  ",",
+            "sLengthMenu":     "Records per page:_MENU_",
+            "sLoadingRecords": "Loading...",
+            "sProcessing":     "Processing...",
+            "sSearch":         "Query:",
+            "sZeroRecords":    "No records found",
+
+        }
+	    DTDefaultOptions.setOption("language", language);
 	});
 })();

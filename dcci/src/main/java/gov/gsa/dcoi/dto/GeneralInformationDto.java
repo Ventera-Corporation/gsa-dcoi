@@ -1,8 +1,14 @@
 package gov.gsa.dcoi.dto;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
- * Dto that holds information regarding the general information of the data center.
- * This information is held at the data center level
+ * Dto that holds information regarding the general information of the data
+ * center. This information is held at the data center level
+ * 
  * @author sgonthier
  *
  */
@@ -10,16 +16,30 @@ public class GeneralInformationDto {
 
 	private Integer dataCenterInventoryId;
 	private Integer dataCenterId;
-	private Integer quarterReportId;
-	private Integer parentDataCenterInventoryId;
+	@Pattern(regexp = "(DCOI-DC-([0-9]{5})|DCOI-DC-([0-9]{6})|^$)")
 	private String dcoiDataCenterId;
+	private Integer parentDataCenterInventoryId;
+	private String agencyDataCenterId;
+	@NotEmpty
+	private String agencyAbbreviation;
+	@Size(max = 255)
 	private String publishedName;
+	@Size(max = 1024)
 	private String streetAddress;
+	@Size(max = 1024)
 	private String streetAddress2;
+	@Size(max = 100)
 	private String city;
+	private Integer stateId;
+	@Pattern(regexp = "([0-9]{5}|[0-9]{5}-[0-9]{4}|^$)")
 	private String zipCode;
 	private Integer countryId;
+	@Size(max = 255)
+	@NotEmpty
 	private String dataCenterName;
+	@NotEmpty
+	@Size(max = 1024)
+	private String component;
 
 	public Integer getDataCenterInventoryId() {
 		return dataCenterInventoryId;
@@ -37,28 +57,12 @@ public class GeneralInformationDto {
 		this.dataCenterId = dataCenterId;
 	}
 
-	public Integer getQuarterReportId() {
-		return quarterReportId;
-	}
-
-	public void setQuarterReportId(Integer quarterReportId) {
-		this.quarterReportId = quarterReportId;
-	}
-
 	public Integer getParentDataCenterInventoryId() {
 		return parentDataCenterInventoryId;
 	}
 
 	public void setParentDataCenterInventoryId(Integer parentDataCenterInventoryId) {
 		this.parentDataCenterInventoryId = parentDataCenterInventoryId;
-	}
-
-	public String getDcoiDataCenterId() {
-		return dcoiDataCenterId;
-	}
-
-	public void setDcoiDataCenterId(String dcoiDataCenterId) {
-		this.dcoiDataCenterId = dcoiDataCenterId;
 	}
 
 	public String getPublishedName() {
@@ -93,12 +97,20 @@ public class GeneralInformationDto {
 		this.city = city;
 	}
 
-	public String getZipCode() {
-		return zipCode;
+	public String getDataCenterName() {
+		return dataCenterName;
 	}
 
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
+	public void setDataCenterName(String dataCenterName) {
+		this.dataCenterName = dataCenterName;
+	}
+
+	public Integer getStateId() {
+		return stateId;
+	}
+
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
 	public Integer getCountryId() {
@@ -109,12 +121,44 @@ public class GeneralInformationDto {
 		this.countryId = countryId;
 	}
 
-	public String getDataCenterName() {
-		return dataCenterName;
+	public String getAgencyAbbreviation() {
+		return agencyAbbreviation;
 	}
 
-	public void setDataCenterName(String dataCenterName) {
-		this.dataCenterName = dataCenterName;
+	public void setAgencyAbbreviation(String agencyAbbreviation) {
+		this.agencyAbbreviation = agencyAbbreviation;
+	}
+
+	public String getDcoiDataCenterId() {
+		return dcoiDataCenterId;
+	}
+
+	public void setDcoiDataCenterId(String dcoiDataCenterId) {
+		this.dcoiDataCenterId = dcoiDataCenterId;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setComponent(String component) {
+		this.component = component;
+	}
+
+	public String getAgencyDataCenterId() {
+		return agencyDataCenterId;
+	}
+
+	public void setAgencyDataCenterId(String agencyDataCenterId) {
+		this.agencyDataCenterId = agencyDataCenterId;
+	}
+
+	public String getComponent() {
+		return component;
 	}
 
 }

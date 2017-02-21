@@ -1,0 +1,16 @@
+<div data-ng-class="fc.pastQuarterValue != fc.newQuarterValue ? 'form-group has-warning' : 'form-group'">
+	<label for="dataCenter{{fc.dataCenter.dataCenterId}}{{fc.totalsName}}{{fc.fieldOffice.fieldOfficeName}}{{fc.sectionPropName}}{{fc.fieldPropName}}">{{fc.fieldName}}
+		<span class="vnt-red-text" data-ng-if="fc.fieldRequired === 'true'">*</span>
+	</label>
+    <div class="input-group">
+		<span data-ng-if="fc.inputAddonFront" class="input-group-addon">{{fc.inputAddonFront}}</span>
+		<input type="text" class="form-control" 
+				id="dataCenter{{fc.dataCenter.dataCenterId}}{{fc.totalsName}}{{fc.fieldOffice.fieldOfficeName}}{{fc.sectionPropName}}{{fc.fieldPropName}}" 
+				data-ng-model="fc.newQuarterValue" placeholder="{{fc.placeholderText}}">
+		<span data-ng-if="fc.inputAddonBack" class="input-group-addon">{{fc.inputAddonBack}}</span>
+	</div>
+	<div class="text-danger" data-ng-if="fc.errorMessage">{{fc.errorMessage}}</div>
+	<span class="warning-text" data-ng-if="fc.pastQuarterValue != fc.newQuarterValue">
+		<span>Past Value: {{fc.pastQuarterValue || "None"}}</span>
+	</span>
+</div>

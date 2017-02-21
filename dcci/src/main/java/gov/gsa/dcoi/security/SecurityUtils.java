@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import gov.gsa.dcoi.controllers.SecurityController;
+import gov.gsa.dcoi.repository.UserIdStoredProcedure;
+
 /**
  * Utility class for Spring Security.
  */
@@ -22,6 +26,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SecurityUtils {
 
 	private static final ObjectMapper mapper = new ObjectMapper();
+
+	@Autowired
+	UserIdStoredProcedure userIdStoredProcedure;
+
+	@Autowired
+	SecurityController securityController;
+
+	/**
+	 * Helper method to set the current user id into the database so that it is
+	 * tracked correctly during auditing
+	 */
+	public void setUserIdForAudit() {
+		userIdStoredProcedure.setUserId(securityController.getUserAccount().getDcoiUserId());
+	}
 
 	/**
 	 * Get the login of the current user.
@@ -42,28 +60,29 @@ public class SecurityUtils {
 
 		return userName;
 	}
-	
+
 	/**
 	 * Logout user from Security Context
+	 * 
 	 * @param request
 	 * @param response
 	 */
 	public void logout(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    if (auth != null){    
-	        new SecurityContextLogoutHandler().logout(request, response, auth);
-	    }
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
 	}
 
 	/**
 	 * Send Error
+	 * 
 	 * @param response
 	 * @param exception
 	 * @param status
 	 * @throws IOException
 	 */
-	public void sendError(HttpServletResponse response, Exception exception, int status)
-			throws IOException {
+	public void sendError(HttpServletResponse response, Exception exception, int status) throws IOException {
 		response.setContentType("application/json;charset=UTF-8");
 		response.setStatus(status);
 		PrintWriter writer = response.getWriter();
@@ -74,6 +93,7 @@ public class SecurityUtils {
 
 	/**
 	 * Send Response
+	 * 
 	 * @param response
 	 * @param status
 	 * @param object

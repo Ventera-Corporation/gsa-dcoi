@@ -1,0 +1,53 @@
+<!-- PAGE HEADER -->
+<div class="page-header">
+	OMB Metrics
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="container-fluid" style="padding-top: 100px;">
+	<table data-datatable="ng" class="row-border hover">
+		<thead>
+			<tr>
+				<th style="white-space: nowrap">Quarter - Fiscal Year</th>
+				<th style="white-space: nowrap">Energy Metering</th>
+				<th style="white-space: nowrap">Virtualization</th>
+				<th style="white-space: nowrap">Server Utilization</th>
+				<th style="white-space: nowrap">Facility Utilization</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="result in amc.metrics">
+				<td>{{::result.fiscalQuarter}} - {{::result.fiscalYear}}</td>
+				<td>{{::result.energyMetering}}</td>
+				<td>{{::result.virtualization}}</td>
+				<td>{{::result.automatedMonitoring}}</td>
+				<td>{{::result.facilityUtilization}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div><!-- /.container-fluid -->
+
+
+<!-- TEMP : Scroll to top -->
+<!-- SCROLL TO TOP BUTTON -->
+<button class="scroll-to-top" type="button" id="return-to-top" title="Back to Top">
+	<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+</button>
+
+<script>
+	$(window).scroll(function() {
+	    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+	        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+	        $('#return-to-top').show();
+	    } else {
+	        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+	        $('#return-to-top').hide();
+	    }
+	});
+	$('#return-to-top').click(function() {      // When arrow is clicked
+	    $('body,html').animate({
+	        scrollTop : 0                       // Scroll to top of body
+	    }, 500);
+	});
+</script>
+

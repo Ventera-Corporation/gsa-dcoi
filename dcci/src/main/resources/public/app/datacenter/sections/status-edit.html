@@ -1,0 +1,203 @@
+<!-- CATEGORY : STATUS -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status"></span>
+            <span>&nbsp; Status</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}Status" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].status">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Record Status" 
+							data-field-required="true"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="recordStatusId"
+							data-new-quarter-value="dataCenter['status']['recordStatusId']"
+							data-ref-value-list="qc.referenceValueLists.recordStatusRefValueList"
+							data-error-message="qc.tempData.errorData.messages['recordStatusId']"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Record Validity" 
+							data-field-required="true"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="recordValidityId"
+							data-new-quarter-value="dataCenter['status']['recordValidityId']"
+							data-ref-value-list="qc.referenceValueLists.recordValidityRefValueList"
+							data-error-message="qc.tempData.errorData.messages['recordValidityId']"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['recordValidityIncorrect']}}</span>
+					<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['recordValidityCannotChange']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Closing Stage" 
+							data-field-required="true"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="closingStageId"
+							data-new-quarter-value="dataCenter['status']['closingStageId']"
+							data-ref-value-list="qc.referenceValueLists.closingStageRefValueList"
+							data-error-message="qc.tempData.errorData.messages['closingStageId']"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Ownership Type"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="ownershipTypeId"
+							data-new-quarter-value="dataCenter['status']['ownershipTypeId']"
+							data-ref-value-list="qc.referenceValueLists.ownershipTypeRefValueList"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['ownershipTypeRequired']}}</span>
+					<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['ownershipTypeMustBeCloud']}}</span>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Data Center Tier" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="dataCenterTierId"
+							data-new-quarter-value="dataCenter['status']['dataCenterTierId']"
+							data-ref-value-list="qc.referenceValueLists.dataCenterTierRefValueList"></div>
+                <span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['dataCenterTierRequired']}}</span>
+						<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['dataCenterTierMustBeCloud']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Electricity is Metered" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="electricityIsMeteredId"
+							data-new-quarter-value="dataCenter['status']['electricityIsMeteredId']"
+							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['electricityMeteredRequired']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Automated Monitoring" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="automatedMonitoringId"
+							data-new-quarter-value="dataCenter['status']['automatedMonitoringId']"
+							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['automatedMonitoringRequired']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="ISS Position" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="issPositionId"
+							data-new-quarter-value="dataCenter['status']['issPositionId']"
+							data-ref-value-list="qc.referenceValueLists.issPositionRefValueList"></div>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="ISS Provider" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="issProvider"
+							data-placeholder-text="DCOI-DC-#####"
+							data-new-quarter-value="dataCenter['status']['issProvider']"
+							data-error-message="qc.tempData.errorData.messages['issProvider']"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Closing Fiscal Year" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="closingFiscalYearId"
+							data-new-quarter-value="dataCenter['status']['closingFiscalYearId']"
+							data-ref-value-list="qc.referenceValueLists.fiscalYearsRefValueList"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['closingFiscalYearRequired']}}</span>
+					<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['closingFiscalYearRequired2']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Closing Quarter" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="closingFiscalQuarterId"
+							data-new-quarter-value="dataCenter['status']['closingFiscalQuarterId']"
+							data-ref-value-list="qc.referenceValueLists.fiscalQuartersRefValueList"></div>
+							<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['closingFiscalQuarterRequired']}}</span>
+					<span class="text-danger" 
+				data-ng-if="qc.tempData.errorData">
+					{{qc.tempData.errorData.messages['closingFiscalQuarterRequired2']}}</span>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Electricity Included in Cost" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="electricityIncludedInCostId"
+							data-new-quarter-value="dataCenter['status']['electricityIncludedInCostId']"
+							data-ref-value-list="qc.referenceValueLists.yesNoRefValueList"></div>
+                </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-selectfield-edit 
+							data-field-name="Core Classification" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="status"
+							data-field-prop-name="coreClassificationId"
+							data-new-quarter-value="dataCenter['status']['coreClassificationId']"
+							data-ref-value-list="qc.referenceValueLists.coreClassificationRefValueList"></div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

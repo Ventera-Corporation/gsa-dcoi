@@ -1,0 +1,66 @@
+<!-- CATEGORY : COST CALCULATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc"></span>
+            <span>&nbsp; Cost Calculations</span>
+        </h4>
+    </div>
+
+    <div id="totalsCostCalc" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].totals.costCalc">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Server Cost" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="costCalc"
+							data-field-prop-name="serverCost"
+							data-new-quarter-value="dataCenter['totals']['costCalc']['serverCost']"
+							data-input-addon-front="$"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Storage Cost" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="costCalc"
+							data-field-prop-name="storageCost"
+							data-new-quarter-value="dataCenter['totals']['costCalc']['storageCost']"
+							data-input-addon-front="$"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-edit 
+							data-field-name="Miscellaneous" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="costCalc"
+							data-field-prop-name="miscellaneous"
+							data-new-quarter-value="dataCenter['totals']['costCalc']['miscellaneous']"
+							data-input-addon-front="$"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-field-view 
+							data-field-name="Total" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-totals-name="totals"
+							data-section-prop-name="costCalc"
+							data-field-prop-name="total"
+							data-new-quarter-value="dataCenter['totals']['costCalc']['total']"
+							data-input-addon-front="$"></div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->

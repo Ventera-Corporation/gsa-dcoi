@@ -1,0 +1,55 @@
+<!-- PAGE HEADER -->
+<div class="page-header">
+	Cost Calculation
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="container-fluid" style="padding-top: 100px;">
+	<table data-datatable="ng" class="row-border hover">
+		<thead>
+			<tr>
+				<th style="white-space: nowrap">Data Center Name</th>
+				<th style="white-space: nowrap">Fiscal Year</th>
+				<th style="white-space: nowrap">Fiscal Quarter</th>
+				<th style="white-space: nowrap">Year 1: Avoidance Amount</th>
+				<th style="white-space: nowrap">Year 2: Avoidance Amount</th>
+				<th style="white-space: nowrap">Year 3: Avoidance Amount</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="result in acc.costCalc">
+				<td><a href="#/viewQuarter/{{::result.quarterReportId}}/{{::result.dataCenterId}}">{{::result.dataCenterName}}</a></td>
+				<td>{{::result.fiscalYear}}</td>
+				<td>{{::result.fiscalQuarter}}</td>
+				<td>{{::result.avoidanceYear1}}:  {{::result.avoidanceAmountYear1 | currency}}</td>
+				<td>{{::result.avoidanceYear2}}:  {{::result.avoidanceAmountYear2 | currency}}</td>
+				<td>{{::result.avoidanceYear3}}:  {{::result.avoidanceAmountYear3 | currency}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div><!-- /.container-fluid -->
+
+
+<!-- TEMP : Scroll to top -->
+<!-- SCROLL TO TOP BUTTON -->
+<button class="scroll-to-top" type="button" id="return-to-top" title="Back to Top">
+	<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+</button>
+
+<script>
+	$(window).scroll(function() {
+	    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+	        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+	        $('#return-to-top').show();
+	    } else {
+	        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+	        $('#return-to-top').hide();
+	    }
+	});
+	$('#return-to-top').click(function() {      // When arrow is clicked
+	    $('body,html').animate({
+	        scrollTop : 0                       // Scroll to top of body
+	    }, 500);
+	});
+</script>
+

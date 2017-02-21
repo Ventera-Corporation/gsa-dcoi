@@ -1,12 +1,11 @@
-<br>
-<br>
 <!-- container: START -->
-<div class="container" style="height:100%;">
+<div class="container" style="height: 100%;">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-            <form class="usa-form" id="login-form-id" method="post">
+            <form class="usa-form" id="login-form-id" method="post" style="padding-top: 120px;">
                 <fieldset>
-                    <legend class="usa-drop_text">Sign in</legend>
+                    <legend class="usa-drop_text">DCOI Sign in</legend>
+                    <h4>Data Center Optimization Initiative</h4>
 
 					<div class="usa-alert usa-alert-error" role="alert" style="margin:0 !important;" data-ng-if="authenticationError">
                         <div class="usa-alert-body">
@@ -26,10 +25,10 @@
                         </div>
                     </div>
 
-                    <label for="username">Email Address</label>
+                    <label for="user-id">Email Address</label>
                     <input id="user-id" data-ng-model="lc.username" type="text" autocapitalize="off" autocorrect="off" autocomplete="off">
 
-                    <label for="password">Password</label>
+                    <label for="password-id">Password</label>
                     <input id="password-id" data-ng-model="lc.password" type="{{lc.loginPasswordType}}">
 
                     <p class="usa-form-note">
@@ -38,7 +37,7 @@
                         </a>
                     </p>
 
-                    <input type="submit" value="Sign in" id="login-button-id" data-ng-click="lc.submitLogin()">
+                    <input type="submit" value="Sign in" id="login-button-id" data-ng-click="lc.submitLogin()" class="usa-button">
                 </fieldset>
             </form>
         </div>

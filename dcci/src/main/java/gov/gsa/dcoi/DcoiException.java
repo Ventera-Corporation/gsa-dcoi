@@ -12,7 +12,7 @@ public class DcoiException extends RuntimeException {
 	
 	private String code;
 	private String status;
-	private List<String> errors = new ArrayList<>();
+	private List<String> errors = new ArrayList<String>();
 	private String exceptionMessage;
 
 	/**

@@ -2,32 +2,56 @@ package gov.gsa.dcoi.dto;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import gov.gsa.dcoi.service.CommonHelper;
+
 /**
- * Overall dataCenterDto that holds information common to one entire
- * dataCenter including generalInfo and statusInfo as well as dataCenter name 
- * and location.
+ * Overall dataCenterDto that holds information common to one entire dataCenter
+ * including generalInfo and statusInfo as well as dataCenter name and location.
  * 
- * Also includes a list of the field offices which are part of that specific data center
+ * Also includes a list of the field offices which are part of that specific
+ * data center
+ * 
  * @author sgonthier
  *
  */
 public class DataCenterDto {
 
-	// Possibly add this back in
-	// private int dataCenterId;
+	@Size(max = 255)
 	private String dataCenterName;
-	private Integer dcoiDataCenterId;
+	@Pattern(regexp = "(DCOI-DC-([0-9]{5})|DCOI-DC-([0-9]{6})|^$)")
+	private String dcoiDataCenterId;
+	private Long dataCenterQuarterId;
+	private Long quarterReportId;
 	private Integer dataCenterId;
-	private String address;
-	private String address2;
 	private String city;
-	private String zipCode;
 	private Integer stateId;
 	private Integer regionId;
-	private Integer countryId;
+	private Integer totalNumDataCenters;
+	private Integer adminCompleteFlag;
+	private Integer ssoCompleteFlag;
+	@Valid
+	private GeneralInformationDto generalInfo;
+	@Valid
+	private StatusDto status;
+	@Valid
+	private FacilityInformationDto facilityInfo;
+	@Valid
 	private List<FieldOfficeDto> fieldOffices;
+	private FieldOfficeDto totals;
+	private String stateName;
 
 	// ADD GETTER FOR STATENAME
+
+	public String getStateName() {
+		if (this.stateId == null) {
+			return stateName;
+		}
+		return CommonHelper.parseStateId(this.stateId);
+	}
 
 	public String getDataCenterName() {
 		return dataCenterName;
@@ -37,11 +61,11 @@ public class DataCenterDto {
 		this.dataCenterName = dataCenterName;
 	}
 
-	public Integer getDcoiDataCenterId() {
+	public String getDcoiDataCenterId() {
 		return dcoiDataCenterId;
 	}
 
-	public void setDcoiDataCenterId(Integer dcoiDataCenterId) {
+	public void setDcoiDataCenterId(String dcoiDataCenterId) {
 		this.dcoiDataCenterId = dcoiDataCenterId;
 	}
 
@@ -69,30 +93,6 @@ public class DataCenterDto {
 		this.fieldOffices = fieldOffices;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getAddress2() {
-		return address2;
-	}
-
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
 	public Integer getRegionId() {
 		return regionId;
 	}
@@ -101,20 +101,88 @@ public class DataCenterDto {
 		this.regionId = regionId;
 	}
 
-	public Integer getCountryId() {
-		return countryId;
-	}
-
-	public void setCountryId(Integer countryId) {
-		this.countryId = countryId;
-	}
-
 	public Integer getDataCenterId() {
 		return dataCenterId;
 	}
 
 	public void setDataCenterId(Integer dataCenterId) {
 		this.dataCenterId = dataCenterId;
+	}
+
+	public GeneralInformationDto getGeneralInfo() {
+		return generalInfo;
+	}
+
+	public void setGeneralInfo(GeneralInformationDto generalInfo) {
+		this.generalInfo = generalInfo;
+	}
+
+	public StatusDto getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusDto status) {
+		this.status = status;
+	}
+
+	public Integer getTotalNumDataCenters() {
+		return totalNumDataCenters;
+	}
+
+	public void setTotalNumDataCenters(Integer totalNumDataCenters) {
+		this.totalNumDataCenters = totalNumDataCenters;
+	}
+
+	public Integer getAdminCompleteFlag() {
+		return adminCompleteFlag;
+	}
+
+	public void setAdminCompleteFlag(Integer adminCompleteFlag) {
+		this.adminCompleteFlag = adminCompleteFlag;
+	}
+
+	public Integer getSsoCompleteFlag() {
+		return ssoCompleteFlag;
+	}
+
+	public void setSsoCompleteFlag(Integer ssoCompleteFlag) {
+		this.ssoCompleteFlag = ssoCompleteFlag;
+	}
+
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
+	}
+
+	public Long getDataCenterQuarterId() {
+		return dataCenterQuarterId;
+	}
+
+	public void setDataCenterQuarterId(Long dataCenterQuarterId) {
+		this.dataCenterQuarterId = dataCenterQuarterId;
+	}
+
+	public Long getQuarterReportId() {
+		return quarterReportId;
+	}
+
+	public void setQuarterReportId(Long quarterReportId) {
+		this.quarterReportId = quarterReportId;
+	}
+
+	public FieldOfficeDto getTotals() {
+		return totals;
+	}
+
+	public void setTotals(FieldOfficeDto totals) {
+		this.totals = totals;
+	}
+
+	public FacilityInformationDto getFacilityInfo() {
+		return facilityInfo;
+	}
+
+	public void setFacilityInfo(FacilityInformationDto facilityInfo) {
+		this.facilityInfo = facilityInfo;
 	}
 
 }

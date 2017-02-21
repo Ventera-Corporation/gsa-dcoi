@@ -37,25 +37,21 @@ describe('dcoiApp', function() {
 					regionId: '',
 					city: '',
 					stateName: '',
+					generalInfo: {},
+					status: {},
 					fieldOffices: [
 						{
 							name: 'PBS',
-							generalInfo: {},
-							status: {},
 							facilityInfo: {},
 							serverInfo: {}
 						},
 						{
 							name: 'FAS',
-							generalInfo: {},
-							status: {},
 							facilityInfo: {},
 							serverInfo: {}
 						},
 						{
 							name: 'OCIO',
-							generalInfo: {},
-							status: {},
 							facilityInfo: {},
 							serverInfo: {}
 						}
@@ -87,7 +83,9 @@ describe('dcoiApp', function() {
 			expect(dcc.dataCenter.regionId).toBe('');
 			expect(dcc.dataCenter.city).toBe('');
 			expect(dcc.dataCenter.stateName).toBe('');
-			expect(dcc.dataCenter.fieldOffices.length).toBe(3);
+			expect(dcc.dataCenter.generalInfo).toBeDefined();
+			expect(dcc.dataCenter.status).toBeDefined();
+			expect(dcc.dataCenter.fieldOffices.length).toBeGreaterThan(0);
 	    });
 
 	});

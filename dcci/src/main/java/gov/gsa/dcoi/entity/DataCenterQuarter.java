@@ -1,14 +1,24 @@
 package gov.gsa.dcoi.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * Entity class for the data Center quarter table - this is the MAIN class for a
+ * data center for a quarter
+ * 
+ * @author sgonthier
+ *
+ */
 @Entity
 public class DataCenterQuarter {
 
 	@Id
-	private Integer dataCenterQuarterId;
-	private Integer quarterReportId;
+	@GeneratedValue
+	private Long dataCenterQuarterId;
+	private Long quarterReportId;
 	private Integer dataCenterId;
 	private Integer parentDataCenterQuarterId;
 	private String agencyDataCenterId;
@@ -18,29 +28,47 @@ public class DataCenterQuarter {
 	private Integer ownershipTypeId;
 	private Integer dataCenterTierId;
 	private Integer grossFloorArea;
-	private Integer customerFloorAreaTotal;
-	private Double annualCostSqFt;
+	@Column(name = "customer_floor_area_total")
+	private Integer totalCustomerFloorArea;
+	@Column(name = "annual_cost_sq_ft")
+	private Double annualCostPerSqFt;
 	private String otherAgenciesServiced;
-	private Integer electricityIncludedInCostFlag;
-	private Integer electricityMeteredFlag;
-	private Double powerCapacityTotal;
-	private Double itPowerCapacityTotal;
-	private Double electricityUsageAvg;
-	private Double itElectricityUsageAvg;
-	private Double costPerKwh;
-	private Integer automatedMonitoringFlag;
+	@Column(name = "electricity_included_in_cost_flag")
+	private Integer electricityIncludedInCost;
+	@Column(name = "electricity_metered_flag")
+	private Integer electricityIsMeteredId;
+	@Column(name = "power_capacity_total")
+	private Double totalPowerCapacity;
+	@Column(name = "it_power_capacity_total")
+	private Double totalITPowerCapacity;
+	@Column(name = "electricity_usage_avg")
+	private Double avgElectricityUsage;
+	@Column(name = "it_electricity_usage_avg")
+	private Double avgITElectricityUsage;
+	@Column(name = "cost_per_kwh")
+	private Double costPerkWh;
+	@Column(name = "automated_monitoring_flag")
+	private Integer automatedMonitoringId;
 	private Double serverUtilization;
 	private Double fte;
 	private Integer fteCost;
 	private Integer rackCount;
-	private Integer mainframeCount;
-	private Integer windowsServerCount;
-	private Integer otherServerCount;
-	private Integer hpcClusterNodeCount;
-	private Integer virtualHostCount;
-	private Integer virtualOsCount;
-	private Double storageTotal;
-	private Double storageUsed;
+	@Column(name = "mainframe_count")
+	private Integer totalMainframes;
+	@Column(name = "windows_server_count")
+	private Integer totalWindowsServers;
+	@Column(name = "hpc_cluster_node_count")
+	private Integer totalHPCClusterNodes;
+	@Column(name = "other_server_count")
+	private Integer totalOtherServers;
+	@Column(name = "virtual_host_count")
+	private Integer totalVirtualHosts;
+	@Column(name = "virtual_os_count")
+	private Integer totalVirtualOS;
+	@Column(name = "storage_total")
+	private Double totalStorage;
+	@Column(name = "storage_used")
+	private Double usedStorage;
 	private Integer coreClassificationId;
 	private Integer closingStageId;
 	private Integer closingFiscalYearId;
@@ -55,22 +83,34 @@ public class DataCenterQuarter {
 	private Integer physicalServerCount;
 	private Integer osCount;
 	private Double storageUtilization;
-	private Integer completeFlag;
-	private Integer validateFlag;
+	private Integer adminCompleteFlag;
+	private Integer ssoCompleteFlag;
 
-	public Integer getDataCenterQuarterId() {
+	// Originally in dataCenter
+	private String dataCenterName;
+	@Column(name = "address")
+	private String streetAddress;
+	@Column(name = "address2")
+	private String streetAddress2;
+	private String city;
+	private Integer zipCode;
+	private Integer stateId;
+	private Integer regionId;
+	private Integer countryId;
+
+	public Long getDataCenterQuarterId() {
 		return dataCenterQuarterId;
 	}
 
-	public void setDataCenterQuarterId(Integer dataCenterQuarterId) {
+	public void setDataCenterQuarterId(Long dataCenterQuarterId) {
 		this.dataCenterQuarterId = dataCenterQuarterId;
 	}
 
-	public Integer getQuarterReportId() {
+	public Long getQuarterReportId() {
 		return quarterReportId;
 	}
 
-	public void setQuarterReportId(Integer quarterReportId) {
+	public void setQuarterReportId(Long quarterReportId) {
 		this.quarterReportId = quarterReportId;
 	}
 
@@ -146,20 +186,12 @@ public class DataCenterQuarter {
 		this.grossFloorArea = grossFloorArea;
 	}
 
-	public Integer getCustomerFloorAreaTotal() {
-		return customerFloorAreaTotal;
+	public Integer getTotalCustomerFloorArea() {
+		return totalCustomerFloorArea;
 	}
 
-	public void setCustomerFloorAreaTotal(Integer customerFloorAreaTotal) {
-		this.customerFloorAreaTotal = customerFloorAreaTotal;
-	}
-
-	public Double getAnnualCostSqFt() {
-		return annualCostSqFt;
-	}
-
-	public void setAnnualCostSqFt(Double annualCostSqFt) {
-		this.annualCostSqFt = annualCostSqFt;
+	public void setTotalCustomerFloorArea(Integer totalCustomerFloorArea) {
+		this.totalCustomerFloorArea = totalCustomerFloorArea;
 	}
 
 	public String getOtherAgenciesServiced() {
@@ -170,68 +202,28 @@ public class DataCenterQuarter {
 		this.otherAgenciesServiced = otherAgenciesServiced;
 	}
 
-	public Integer getElectricityIncludedInCostFlag() {
-		return electricityIncludedInCostFlag;
+	public Integer getElectricityIncludedInCost() {
+		return electricityIncludedInCost;
 	}
 
-	public void setElectricityIncludedInCostFlag(Integer electricityIncludedInCostFlag) {
-		this.electricityIncludedInCostFlag = electricityIncludedInCostFlag;
+	public void setElectricityIncludedInCost(Integer electricityIncludedInCost) {
+		this.electricityIncludedInCost = electricityIncludedInCost;
 	}
 
-	public Integer getElectricityMeteredFlag() {
-		return electricityMeteredFlag;
+	public Integer getElectricityIsMeteredId() {
+		return electricityIsMeteredId;
 	}
 
-	public void setElectricityMeteredFlag(Integer electricityMeteredFlag) {
-		this.electricityMeteredFlag = electricityMeteredFlag;
+	public void setElectricityIsMeteredId(Integer electricityIsMetered) {
+		this.electricityIsMeteredId = electricityIsMetered;
 	}
 
-	public Double getPowerCapacityTotal() {
-		return powerCapacityTotal;
+	public Integer getAutomatedMonitoringId() {
+		return automatedMonitoringId;
 	}
 
-	public void setPowerCapacityTotal(Double powerCapacityTotal) {
-		this.powerCapacityTotal = powerCapacityTotal;
-	}
-
-	public Double getItPowerCapacityTotal() {
-		return itPowerCapacityTotal;
-	}
-
-	public void setItPowerCapacityTotal(Double itPowerCapacityTotal) {
-		this.itPowerCapacityTotal = itPowerCapacityTotal;
-	}
-
-	public Double getElectricityUsageAvg() {
-		return electricityUsageAvg;
-	}
-
-	public void setElectricityUsageAvg(Double electricityUsageAvg) {
-		this.electricityUsageAvg = electricityUsageAvg;
-	}
-
-	public Double getItElectricityUsageAvg() {
-		return itElectricityUsageAvg;
-	}
-
-	public void setItElectricityUsageAvg(Double itElectricityUsageAvg) {
-		this.itElectricityUsageAvg = itElectricityUsageAvg;
-	}
-
-	public Double getCostPerKwh() {
-		return costPerKwh;
-	}
-
-	public void setCostPerKwh(Double costPerKwh) {
-		this.costPerKwh = costPerKwh;
-	}
-
-	public Integer getAutomatedMonitoringFlag() {
-		return automatedMonitoringFlag;
-	}
-
-	public void setAutomatedMonitoringFlag(Integer automatedMonitoringFlag) {
-		this.automatedMonitoringFlag = automatedMonitoringFlag;
+	public void setAutomatedMonitoringId(Integer automatedMonitoring) {
+		this.automatedMonitoringId = automatedMonitoring;
 	}
 
 	public Double getServerUtilization() {
@@ -264,70 +256,6 @@ public class DataCenterQuarter {
 
 	public void setRackCount(Integer rackCount) {
 		this.rackCount = rackCount;
-	}
-
-	public Integer getMainframeCount() {
-		return mainframeCount;
-	}
-
-	public void setMainframeCount(Integer mainframeCount) {
-		this.mainframeCount = mainframeCount;
-	}
-
-	public Integer getWindowsServerCount() {
-		return windowsServerCount;
-	}
-
-	public void setWindowsServerCount(Integer windowsServerCount) {
-		this.windowsServerCount = windowsServerCount;
-	}
-
-	public Integer getOtherServerCount() {
-		return otherServerCount;
-	}
-
-	public void setOtherServerCount(Integer otherServerCount) {
-		this.otherServerCount = otherServerCount;
-	}
-
-	public Integer getHpcClusterNodeCount() {
-		return hpcClusterNodeCount;
-	}
-
-	public void setHpcClusterNodeCount(Integer hpcClusterNodeCount) {
-		this.hpcClusterNodeCount = hpcClusterNodeCount;
-	}
-
-	public Integer getVirtualHostCount() {
-		return virtualHostCount;
-	}
-
-	public void setVirtualHostCount(Integer virtualHostCount) {
-		this.virtualHostCount = virtualHostCount;
-	}
-
-	public Integer getVirtualOsCount() {
-		return virtualOsCount;
-	}
-
-	public void setVirtualOsCount(Integer virtualOsCount) {
-		this.virtualOsCount = virtualOsCount;
-	}
-
-	public Double getStorageTotal() {
-		return storageTotal;
-	}
-
-	public void setStorageTotal(Double storageTotal) {
-		this.storageTotal = storageTotal;
-	}
-
-	public Double getStorageUsed() {
-		return storageUsed;
-	}
-
-	public void setStorageUsed(Double storageUsed) {
-		this.storageUsed = storageUsed;
 	}
 
 	public Integer getCoreClassificationId() {
@@ -442,20 +370,196 @@ public class DataCenterQuarter {
 		this.storageUtilization = storageUtilization;
 	}
 
-	public Integer getCompleteFlag() {
-		return completeFlag;
+	public Integer getAdminCompleteFlag() {
+		return adminCompleteFlag;
 	}
 
-	public void setCompleteFlag(Integer completeFlag) {
-		this.completeFlag = completeFlag;
+	public void setAdminCompleteFlag(Integer adminCompleteFlag) {
+		this.adminCompleteFlag = adminCompleteFlag;
 	}
 
-	public Integer getValidateFlag() {
-		return validateFlag;
+	public Integer getSsoCompleteFlag() {
+		return ssoCompleteFlag;
 	}
 
-	public void setValidateFlag(Integer validateFlag) {
-		this.validateFlag = validateFlag;
+	public void setSsoCompleteFlag(Integer ssoCompleteFlag) {
+		this.ssoCompleteFlag = ssoCompleteFlag;
+	}
+
+	public Double getAnnualCostPerSqFt() {
+		return annualCostPerSqFt;
+	}
+
+	public void setAnnualCostPerSqFt(Double annualCostPerSqFt) {
+		this.annualCostPerSqFt = annualCostPerSqFt;
+	}
+
+	public Double getAvgElectricityUsage() {
+		return avgElectricityUsage;
+	}
+
+	public void setAvgElectricityUsage(Double avgElectricityUsage) {
+		this.avgElectricityUsage = avgElectricityUsage;
+	}
+
+	public Double getAvgITElectricityUsage() {
+		return avgITElectricityUsage;
+	}
+
+	public void setAvgITElectricityUsage(Double avgITElectricityUsage) {
+		this.avgITElectricityUsage = avgITElectricityUsage;
+	}
+
+	public Double getTotalPowerCapacity() {
+		return totalPowerCapacity;
+	}
+
+	public void setTotalPowerCapacity(Double totalPowerCapacity) {
+		this.totalPowerCapacity = totalPowerCapacity;
+	}
+
+	public Double getTotalITPowerCapacity() {
+		return totalITPowerCapacity;
+	}
+
+	public void setTotalITPowerCapacity(Double totalITPowerCapacity) {
+		this.totalITPowerCapacity = totalITPowerCapacity;
+	}
+
+	public Integer getTotalMainframes() {
+		return totalMainframes;
+	}
+
+	public void setTotalMainframes(Integer totalMainframes) {
+		this.totalMainframes = totalMainframes;
+	}
+
+	public Integer getTotalWindowsServers() {
+		return totalWindowsServers;
+	}
+
+	public void setTotalWindowsServers(Integer totalWindowsServers) {
+		this.totalWindowsServers = totalWindowsServers;
+	}
+
+	public Integer getTotalHPCClusterNodes() {
+		return totalHPCClusterNodes;
+	}
+
+	public void setTotalHPCClusterNodes(Integer totalHPCClusterNodes) {
+		this.totalHPCClusterNodes = totalHPCClusterNodes;
+	}
+
+	public Integer getTotalOtherServers() {
+		return totalOtherServers;
+	}
+
+	public void setTotalOtherServers(Integer totalOtherServers) {
+		this.totalOtherServers = totalOtherServers;
+	}
+
+	public Integer getTotalVirtualHosts() {
+		return totalVirtualHosts;
+	}
+
+	public void setTotalVirtualHosts(Integer totalVirtualHosts) {
+		this.totalVirtualHosts = totalVirtualHosts;
+	}
+
+	public Integer getTotalVirtualOS() {
+		return totalVirtualOS;
+	}
+
+	public void setTotalVirtualOS(Integer totalVirtualOS) {
+		this.totalVirtualOS = totalVirtualOS;
+	}
+
+	public Double getTotalStorage() {
+		return totalStorage;
+	}
+
+	public void setTotalStorage(Double totalStorage) {
+		this.totalStorage = totalStorage;
+	}
+
+	public Double getUsedStorage() {
+		return usedStorage;
+	}
+
+	public void setUsedStorage(Double usedStorage) {
+		this.usedStorage = usedStorage;
+	}
+
+	public Double getCostPerkWh() {
+		return costPerkWh;
+	}
+
+	public void setCostPerkWh(Double costPerkWh) {
+		this.costPerkWh = costPerkWh;
+	}
+
+	public String getDataCenterName() {
+		return dataCenterName;
+	}
+
+	public void setDataCenterName(String dataCenterName) {
+		this.dataCenterName = dataCenterName;
+	}
+
+	public String getStreetAddress() {
+		return streetAddress;
+	}
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+	public String getStreetAddress2() {
+		return streetAddress2;
+	}
+
+	public void setStreetAddress2(String streetAddress2) {
+		this.streetAddress2 = streetAddress2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Integer getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(Integer zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public Integer getStateId() {
+		return stateId;
+	}
+
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
+
+	public Integer getRegionId() {
+		return regionId;
+	}
+
+	public void setRegionId(Integer regionId) {
+		this.regionId = regionId;
+	}
+
+	public Integer getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
 	}
 
 }

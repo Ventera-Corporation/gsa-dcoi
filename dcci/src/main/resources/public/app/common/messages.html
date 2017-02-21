@@ -1,0 +1,14 @@
+<div class="alert alert-danger" role="alert" data-ng-if="errorData.messageList.length">
+	<div class='text-danger' data-ng-repeat="message in errorData.messageList">
+		<span data-ng-if="message">{{message.message}}
+			<button type="button" class="close pull-right" data-ng-click="remove(errorData.messageList, $index)"><i class="fa fa-times vnt-dark-gray-text"></i></button>
+		</span>
+	</div>
+</div>
+<div class="alert alert-success" role="alert" data-ng-if="successData.messageList.length">
+	<div class='text-success' data-ng-repeat="message in successData.messageList">
+		<span data-ng-if="message">{{message}}
+			<button type="button" class="close pull-right" data-ng-click="remove(successData.messageList, $index)"><i class="fa fa-times vnt-dark-gray-text"></i></button>
+		</span>
+	</div>
+</div>

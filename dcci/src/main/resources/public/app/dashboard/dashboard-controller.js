@@ -3,17 +3,21 @@
 	
 	angular.module('dcoiApp').controller('DashboardController', DashboardController);
 	
-	DashboardController.$inject = ['DashboardService', '$scope', '$location', '$filter', '$uibModal', 'dashboardData'];
+	DashboardController.$inject = ['DashboardService', '$location', '$filter', 'dashboardData'];
 	
-	function DashboardController(DashboardService, $scope, $location, $filter, $uibModal, dashboardData){
+	function DashboardController(DashboardService, $location, $filter, dashboardData){
 		var dc = this;
+		dc.tempData = {};
+		if($location.search().successData){
+			dc.tempData.successData = JSON.parse(decodeURIComponent($location.search().successData));
+		} else if($location.search().errorData){
+			dc.tempData.errorData = JSON.parse(decodeURIComponent($location.search().errorData));
+		}
 		dc.dashboardData = dashboardData;
 		dc.initDashboardData = initDashboardData;
 		dc.isAlreadyInProgressQuarter = isAlreadyInProgressQuarter;
 		dc.addNewQuarter = addNewQuarter;
 		dc.viewQuarter = viewQuarter;
-		dc.cancel = cancel;
-		dc.loadMoreQuarters = loadMoreQuarters;
 		
 		function initDashboardData() {
 			DashboardService.initDashboard().then(function (data){
@@ -29,26 +33,8 @@
 			$location.path('/createQuarter');
 		}
 		
-		var modalInstance = null;
 		function viewQuarter(quarterId) {
-//			DashboardService.viewQuarter(quarterId).then(function (data){
-//				dc.quarterData = data.quarterData;
-//			});
-			modalInstance = $uibModal.open({
-			    animation: true,
-			    scope: $scope,
-			    templateUrl: 'app/dashboard/viewquarter.html',
-			    size: 'lg',
-			    backdrop: 'static'
-			});
-		}
-		
-	    function cancel() {
-	        modalInstance.dismiss('cancel');
-	    }
-		
-		function loadMoreQuarters() {
-			
+			$location.path('/viewQuarter/' + quarterId);
 		}
 	}
 })();

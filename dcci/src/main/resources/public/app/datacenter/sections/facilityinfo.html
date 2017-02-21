@@ -1,0 +1,145 @@
+<!-- CATEGORY : FACILITY INFORMATION -->
+<div class="panel panel-default panel-category">
+    <div class="panel-heading" data-toggle="collapse" 
+    		data-ng-click="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo=!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-minus" 
+            		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo"></span>
+            <span class="glyphicon glyphicon-plus" 
+            		data-ng-if="!qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo"></span>
+            <span>&nbsp; Facility Info</span>
+        </h4>
+    </div>
+
+    <div id="dataCenter{{dataCenter.dataCenterId}}FacilityInfo" class="panel-collapse panel-cat-collapse collapse in" 
+    		data-ng-if="qc.tempData.selected.expandCollapsePanels[dataCenter.dataCenterId].facilityInfo">
+        <div class="panel-body">
+            <!-- Form Fields -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Gross Floor Area" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="grossFloorArea"
+							data-new-quarter-value="dataCenter['facilityInfo']['grossFloorArea']"
+							data-view-addon="Sq. Ft."></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Total Customer Floor Area" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="totalCustomerFloorArea"
+							data-new-quarter-value="dataCenter['facilityInfo']['totalCustomerFloorArea']"
+							data-view-addon="Sq. Ft."></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Annual Cost per Sq. Ft." 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="totalCustomerFloorArea"
+							data-new-quarter-value="dataCenter['facilityInfo']['annualCostPerSqFt'] | currency"
+							data-field-filter="currency"
+							data-view-addon="/Sq. Ft."></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Other Agencies Serviced"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="otherAgenciesServiced"
+							data-new-quarter-value="dataCenter['facilityInfo']['otherAgenciesServiced']"></div>
+                </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Avg. Electricity Usage" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="avgElectricityUsage"
+							data-new-quarter-value="dataCenter['facilityInfo']['avgElectricityUsage']"
+							data-view-addon="kW/hr"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Avg. IT Electricity Usage" 
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="avgITElectricityUsage"
+							data-new-quarter-value="dataCenter['facilityInfo']['avgITElectricityUsage']"
+							data-view-addon="kW/hr"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Total Power Capacity"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="totalPowerCapacity"
+							data-new-quarter-value="dataCenter['facilityInfo']['totalPowerCapacity']"
+							data-view-addon="kW"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Total IT Power Capacity"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="totalITPowerCapacity"
+							data-new-quarter-value="dataCenter['facilityInfo']['totalITPowerCapacity']"
+							data-view-addon="kW"></div>
+                </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="FTE"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="fte"
+							data-new-quarter-value="dataCenter['facilityInfo']['fte']"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="FTE Cost"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="fteCost"
+							data-new-quarter-value="dataCenter['facilityInfo']['fteCost'] | currency"
+							data-field-filter="currency"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Rack Count"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="rackCount"
+							data-new-quarter-value="dataCenter['facilityInfo']['rackCount']"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+					<div data-textfield-view
+							data-field-name="Cost per kWh"
+							data-past-data-centers="qc.pastQuarterData.regions[qc.tempData.selected.regionIdx].dataCenters"
+							data-data-center="dataCenter"
+							data-section-prop-name="facilityInfo"
+							data-field-prop-name="costPerkWh"
+							data-new-quarter-value="dataCenter['facilityInfo']['costPerkWh'] | currency"
+							data-field-filter="currency"
+							data-view-addon="/kWh"></div>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.panel-body -->
+    </div>
+</div><!-- /.panel-category -->
