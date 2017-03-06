@@ -69,7 +69,7 @@
 			
 	     	modalInstance.result.then(function () {
 	     		AuthenticationService.logout();
-	     		var win=window.open("","_self"); 
+	     		var win = window.open(" ", "_self", '');
 	     		win.close();
 	     		$rootScope.logoutSuccess = true;
 			});
