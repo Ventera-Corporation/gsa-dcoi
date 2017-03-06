@@ -31,7 +31,6 @@
     	lcc.loginPasswordType = "password";
     	lcc.logout = logout;
     	lcc.isAdmin = isAdmin;
-    	lcc.isUser = isUser;
     	lcc.isFacilityUser = isFacilityUser;
     	lcc.isServerUser = isServerUser;
     	lcc.isFieldOfficeUser = isFieldOfficeUser;
@@ -80,9 +79,6 @@
         	return _.includes(Session.userRoles, USER_ROLES.admin);
         }
 
-    	function isUser() {
-        	return _.includes(Session.userRoles, USER_ROLES.user);
-        }
 
     	function isFacilityUser() {
         	return _.includes(Session.userRoles, USER_ROLES.facility);

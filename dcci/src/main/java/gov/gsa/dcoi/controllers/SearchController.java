@@ -17,7 +17,7 @@ import gov.gsa.dcoi.repository.DataCenterViewRepository;
  */
 @RestController
 @RequestMapping("/search")
-@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+@PreAuthorize("hasAnyRole('ADMIN', 'SERVER', 'FACILITY')")
 public class SearchController {
 
 	@Autowired

@@ -68,7 +68,7 @@ public class DataCenterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SERVER', 'FACILITY')")
 	public Map<String, Object> initNewDataCenter() {
 		Map<String, Object> returnData = new HashMap<String, Object>();
 		returnData.put("dataCenterData", new DataCenterDto());
@@ -86,7 +86,7 @@ public class DataCenterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SERVER', 'FACILITY')")
 	public Map<String, Object> addNewDataCenter(@Valid @RequestBody DataCenterDto dataCenterDto) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		returnMap.put("dataCenterData", dataCenterService.addAndReturnNewDataCenter(dataCenterDto));
@@ -102,7 +102,7 @@ public class DataCenterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SERVER', 'FACILITY')")
 	public Map<String, Object> submit(@RequestBody Integer dataCenterId) {
 		Map<String, Object> returnMap;
 		returnMap = dataCenterService.setSSOCompleteFlag(dataCenterId);
