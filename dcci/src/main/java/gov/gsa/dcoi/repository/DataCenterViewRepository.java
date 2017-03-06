@@ -167,6 +167,7 @@ public class DataCenterViewRepository {
 			dataCenterView.setFiscalQuarter(rs.getString("fiscal_quarter"));
 			dataCenterView.setIssPositionName(rs.getString("iss_position_name"));
 			dataCenterView.setIssProvider(rs.getString("iss_provider"));
+			dataCenterView.setFieldOffices(rs.getString("field_offices"));
 			dataCenterViews.add(dataCenterView);
 		}
 		return dataCenterViews;

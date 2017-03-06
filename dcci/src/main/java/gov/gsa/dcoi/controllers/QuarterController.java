@@ -82,7 +82,7 @@ public class QuarterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/init", method = RequestMethod.GET)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SERVER', 'FACILITY')")
 	public Map<String, Object> initQuarter() {
 		// call DB stored procedure to create new quarter
 		// return back fiscalQuarterInformation like quarter and fiscal year
@@ -117,7 +117,7 @@ public class QuarterController {
 	 * @return
 	 */
 	@RequestMapping(value = "view", method = RequestMethod.GET)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SERVER', 'FACILITY')")
 	public Map<String, Object> viewQuarter(Long quarterId) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		QuarterDto quarterDto = quarterService.viewQuarter(quarterId);
@@ -211,7 +211,7 @@ public class QuarterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SERVER', 'FACILITY')")
 	public Map<String, Object> save(@Valid @RequestBody ValidList<DataCenterDto> dataCenterDtos) {
 
 		Map<String, Object> returnMap;

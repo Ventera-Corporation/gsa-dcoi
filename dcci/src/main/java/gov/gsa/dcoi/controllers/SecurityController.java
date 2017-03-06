@@ -32,7 +32,7 @@ public class SecurityController {
 	 * Get the current logged in user account
 	 */
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SERVER', 'FACILITY')")
 	@ResponseBody
 	public User getUserAccount() {
 		User user = userRepository.findByEmailAddress(securityUtils.getCurrentLogin());
@@ -47,7 +47,7 @@ public class SecurityController {
 	 * @param response
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SERVER', 'FACILITY')")
 	@ResponseBody
 	public void logout(HttpServletRequest request, HttpServletResponse response) {
 		securityUtils.logout(request, response);

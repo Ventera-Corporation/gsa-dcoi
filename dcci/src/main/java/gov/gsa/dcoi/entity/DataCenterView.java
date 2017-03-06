@@ -54,6 +54,7 @@ public class DataCenterView {
 	private String fiscalQuarter;
 	private String issPositionName;
 	private String issProvider;
+	private String fieldOffices;
 
 	// Cost model
 	private String serverAmount;
@@ -533,6 +534,14 @@ public class DataCenterView {
 
 	public void setAvoidanceAmountYear3(String avoidanceAmountYear3) {
 		this.avoidanceAmountYear3 = avoidanceAmountYear3;
+	}
+
+	public String getFieldOffices() {
+		return (String) getDisplayValue(this.fieldOffices, DISPLAY_TYPE_STRING);
+	}
+
+	public void setFieldOffices(String fieldOffices) {
+		this.fieldOffices = fieldOffices;
 	}
 
 }
