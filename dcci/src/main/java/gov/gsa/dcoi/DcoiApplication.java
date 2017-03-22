@@ -7,7 +7,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 import gov.gsa.dcoi.service.CommonHelper;
 import gov.gsa.dcoi.service.ReferenceValueListService;
@@ -17,7 +16,6 @@ import gov.gsa.dcoi.service.ReferenceValueListService;
  */
 @SpringBootApplication
 @EnableCaching
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class DcoiApplication {
 
 	/**
