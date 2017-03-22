@@ -25,19 +25,9 @@
                         </div>
                     </div>
 
-                    <label for="user-id">Email Address</label>
-                    <input id="user-id" data-ng-model="lc.username" type="text" autocapitalize="off" autocorrect="off" autocomplete="off">
-
-                    <label for="password-id">Password</label>
-                    <input id="password-id" data-ng-model="lc.password" type="{{lc.loginPasswordType}}">
-
-                    <p class="usa-form-note">
-                        <a title="Show password" href="javascript:void(0);" class="usa-show_password" aria-controls="password" data-ng-click="lc.hideShowPassword()">
-                            Show password
-                        </a>
-                    </p>
-
-                    <input type="submit" value="Sign in" id="login-button-id" data-ng-click="lc.submitLogin()" class="usa-button">
+                    
+					<a href="/saml/login/" >Login</a>
+           
                 </fieldset>
             </form>
         </div>

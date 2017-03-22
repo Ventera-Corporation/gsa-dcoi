@@ -19,6 +19,14 @@ public class User {
 
 	private List<UserRole> roles;
 	private List<String> userFieldOffices;
+	
+	public User(){
+		
+	}
+	
+	public User(String email){
+		this.emailAddress = email;
+	}
 
 	public int getDcoiUserId() {
 		return dcoiUserId;

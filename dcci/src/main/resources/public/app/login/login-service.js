@@ -24,7 +24,7 @@ angular.module('dcoiApp').service('AuthenticationService', function($rootScope, 
 		getAccount : function() {
 		    $rootScope.loadingAccount = true;
 		    $http.get('/security/account').then(function(response) {
-		    	authService.loginConfirmed(response.data);
+		    	authService.loginConfirmed(response);
 		    });
 		},
 		

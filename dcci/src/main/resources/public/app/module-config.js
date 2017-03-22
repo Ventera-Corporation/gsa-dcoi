@@ -12,7 +12,7 @@
 			controller : "ErrorController",
 			controllerAs : 'ec',
 			access : {
-				loginRequired : true,
+				loginRequired : false,
 				authorizedRoles : [ USER_ROLES.all ]
 			}
 		}).when('/login', {

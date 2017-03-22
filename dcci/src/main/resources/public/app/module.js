@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'ui.select', 'http-auth-interceptor','datatables', 'ngAria']);
-	
+	//angular.module('dcoiApp', [ 'ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'ui.select', 'ngAria']);
 	angular.module('dcoiApp').constant('USER_ROLES', {
 	    all: '*',
 	    admin: 'ADMIN',
@@ -11,7 +11,7 @@
 	
 	
 	angular.module('dcoiApp').run(function ($rootScope, $location, $http, AuthenticationService, Session, $q, $timeout, DTDefaultOptions) {
-
+	//angular.module('dcoiApp').run(function ($rootScope, $location, $http, $q, $timeout) {
 	    $rootScope.settingsCollapse = false;
 	    $rootScope.$on('$routeChangeStart', function (event, next) {
 
@@ -24,7 +24,7 @@
 	            event.preventDefault();
 	            $rootScope.$broadcast("event:auth-forbidden", {});
 	        }
-	    });
+	   });
 
 	    $rootScope.$on('$routeChangeSuccess', function (scope, next, current) {
 	        $rootScope.$evalAsync(function () {
@@ -38,9 +38,9 @@
 	        var delay = ($location.path() === "/dashboard" ? 1000 : 0);
 
 	        $timeout(function () {
-	            Session.create(data);
-	            $rootScope.account = Session;
-	            $rootScope.authenticated = true;
+	          	Session.create(data.data);
+	          	$rootScope.account = Session;
+	          	$rootScope.authenticated = true;
 	            $location.path(nextLocation).replace();
 	        }, delay);
 
@@ -52,10 +52,10 @@
 	            $rootScope.requestedUrl = $location.path()
 	            $location.path('/dashboard');
 	        } else {
-	            Session.invalidate();
-	            $rootScope.authenticated = false;
-	            $rootScope.loadingAccount = false;
-	            $location.path('/login');
+	         	Session.invalidate();
+	          	$rootScope.authenticated = false;
+	          	$rootScope.loadingAccount = false;
+	          	$location.path('/login');
 	        }
 	    });
 
@@ -96,7 +96,7 @@
             "sSearch":         "Query:",
             "sZeroRecords":    "No records found",
 
-        }
+       }
 	    DTDefaultOptions.setOption("language", language);
 	});
 })();

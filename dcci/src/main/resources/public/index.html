@@ -58,7 +58,7 @@
 	</head>
 	
 	<body data-ng-cloak data-ng-controller="LoginController as lc">
-	
+	<!--  <body data-ng-cloak>-->
 	    <!-- NAVBAR -->
 	    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	        <div class="container-fluid">
@@ -75,7 +75,8 @@
 	
 	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse navbar-right" id="DCOi-nav" data-ng-if="authenticated">              
-	                <ul class="nav navbar-nav navbar-right" data-ng-controller="LoginController">
+	               <ul class="nav navbar-nav navbar-right" data-ng-controller="LoginController">
+	               <!--  <ul class="nav navbar-nav navbar-right">-->
 	                    <li>
 	                    	<a href="#/search/searchResults"><span class="glyphicon glyphicon-search" aria-hidden="true" role="button"></span>
 	            			&nbsp;Search</a>
@@ -87,7 +88,7 @@
 	                            <li data-ng-if="lc.isAdmin()"><a href="#/settings">Settings</a></li>
 	                            <li data-ng-if="lc.isAdmin()"><a href="#/metrics">Metrics</a></li>
 	                            <li data-ng-if="lc.isAdmin()"><a href="#/cost">Cost Calculation</a>
-	                            <li><a href="javascript:;" data-ng-click="lc.logout()">Logout</a></li>
+	                            <li><a href="/saml/logout?local=true">Logout</a></li>
 	                        </ul>
 	                    </li>
 	                </ul>
