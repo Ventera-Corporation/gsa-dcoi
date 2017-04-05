@@ -1,26 +1,26 @@
-#GSA - Data Center Organization Initiative (DCOI)
-##<a href="https://waffle.io/Ventera-Corporation/gsa-dcoi">Waffle</a>
+# GSA - Data Center Organization Initiative (DCOI)
+## <a href="https://waffle.io/Ventera-Corporation/gsa-dcoi">Waffle</a>
 [![Ready to be Worked](https://badge.waffle.io/Ventera-Corporation/gsa-dcoi.png?label=ready&title=Ready)](https://waffle.io/Ventera-Corporation/gsa-dcoi)&nbsp;
 [![Dev in Progress](https://badge.waffle.io/Ventera-Corporation/gsa-dcoi.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/Ventera-Corporation/gsa-dcoi)&nbsp;
 [![Code Review](https://badge.waffle.io/Ventera-Corporation/gsa-dcoi.png?label=Code%20Review&title=Code%20Review)](https://waffle.io/Ventera-Corporation/gsa-dcoi)&nbsp;
 [![QA Testing](https://badge.waffle.io/Ventera-Corporation/gsa-dcoi.png?label=qa&title=QA)](https://waffle.io/Ventera-Corporation/gsa-dcoi)&nbsp;
-###Master
+### Master
 <a href='https://www.versioneye.com/user/projects/58332761e7cea00045b89071'>
 <img src='https://www.versioneye.com/user/projects/58332761e7cea00045b89071/badge.svg?style=flat-square' alt="Dependency Status"/></a>
-###Stable
+### Stable
 <a href='https://www.versioneye.com/user/projects/5833276fe7cea00029198b96'>
 <img src='https://www.versioneye.com/user/projects/5833276fe7cea00029198b96/badge.svg?style=flat-square' alt="Dependency Status for Stable"/></a>
-###Working
+### Working
 <a href="http://codeclimate.com/github/Ventera-Corporation/gsa-dcoi"><img src="http://codeclimate.com/github/Ventera-Corporation/gsa-dcoi/badges/gpa.svg" /></a>&nbsp;
 <a href='https://www.versioneye.com/user/projects/583327d2e7cea00039353adc'>
 <img src='https://www.versioneye.com/user/projects/583327d2e7cea00039353adc/badge.svg?style=flat-square' alt="Dependency Status for Working"/></a>
 
-##Project Description
+## Project Description
 DCOI supports the GSA IT’s data center inventory management and consolidation effort, as well as the reporting of related metrics to OMB and GAO. DCOI streamlines the quarterly data collection process and automates the complex calculations of data center metrics, cost savings and avoidances. DCOi enables GSA IT to spend more time performing analysis and making decisions. 
 
 The application is a centralized portal where all staff offices input their quarterly data and updates inventory. To ensure data accuracy and integrity, the tool has built-in safeguards and validations to prevent human errors. The tool also records and displays an audit trail for each quarter to enhance transparency in the collaborative process and provide users with instant auditing. All data are captured in relational tables within MySql where they can now be queried, rearranged, and viewed for analysis. The users and administrators of the application could also query data and export reports from an easy-to-use user interface. Ultimately, the DCOi Application is designed to be flexible to changing OMB guidance and new government agency realities.
 
-##Project Approach
+## Project Approach
 During Sprint 0, the DCOi project team adopted a user centered design approach that aligns with the Digital Service Playbook.  Initially, the product team validated their understanding of the problem by conducting [] (https://github.com/Ventera-Corporation/gsa-dcoi/blob/working/Documentation/User%20Research/WorkingSession2_20161018.docx) [user research sessions] (https://github.com/Ventera-Corporation/gsa-dcoi/blob/working/Documentation/User%20Research/WorkingSession2_20161018.docx)  and focus groups.  During these sessions, participatory design techniques were used to update and validate [] (https://github.com/Ventera-Corporation/gsa-dcoi/tree/working/Documentation/Design/Wireframes) [wireframes] (https://github.com/Ventera-Corporation/gsa-dcoi/tree/working/Documentation/Design/Wireframes). The feedback from these sessions was incorporated into higher fidelity [] (https://github.com/Ventera-Corporation/gsa-dcoi/tree/working/Documentation/Design/Mockups) [mock ups] (https://github.com/Ventera-Corporation/gsa-dcoi/tree/working/Documentation/Design/Mockups).  
 
 Product owners participated in open card [] (https://github.com/Ventera-Corporation/gsa-dcoi/blob/working/Documentation/User%20Research/PO_Cardsort.png) [sorting] (https://github.com/Ventera-Corporation/gsa-dcoi/blob/working/Documentation/User%20Research/PO_Cardsort.png) exercise to logically group data on the form fields. In addition, the product owners worked closely with the team to identify and [] (https://github.com/Ventera-Corporation/gsa-dcoi/blob/working/Documentation/Scrum%20Artifacts/ITOfficer_UserStories_Prioritization.xlsx) [prioritize] (https://github.com/Ventera-Corporation/gsa-dcoi/blob/working/Documentation/Scrum%20Artifacts/ITOfficer_UserStories_Prioritization.xlsx) the user stories.  
