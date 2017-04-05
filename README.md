@@ -4,14 +4,16 @@
 [![Dev in Progress](https://badge.waffle.io/Ventera-Corporation/gsa-dcoi.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/Ventera-Corporation/gsa-dcoi)&nbsp;
 [![Code Review](https://badge.waffle.io/Ventera-Corporation/gsa-dcoi.png?label=Code%20Review&title=Code%20Review)](https://waffle.io/Ventera-Corporation/gsa-dcoi)&nbsp;
 [![QA Testing](https://badge.waffle.io/Ventera-Corporation/gsa-dcoi.png?label=qa&title=QA)](https://waffle.io/Ventera-Corporation/gsa-dcoi)&nbsp;
-## Master
+### Master
 <a href='https://www.versioneye.com/user/projects/58332761e7cea00045b89071'>
 <img src='https://www.versioneye.com/user/projects/58332761e7cea00045b89071/badge.svg?style=flat-square' alt="Dependency Status"/></a>
-## Stable
+
+### Stable
 <a href='https://www.versioneye.com/user/projects/5833276fe7cea00029198b96'>
 <img src='https://www.versioneye.com/user/projects/5833276fe7cea00029198b96/badge.svg?style=flat-square' alt="Dependency Status for Stable"/></a>
-## Working
-<a href="http://codeclimate.com/github/Ventera-Corporation/gsa-dcoi"><img src="http://codeclimate.com/github/Ventera-Corporation/gsa-dcoi/badges/gpa.svg" /></a>&nbsp;
+
+### Working
+<a href="https://codeclimate.com/github/Ventera-Corporation/gsa-dcoi"><img src="http://codeclimate.com/github/Ventera-Corporation/gsa-dcoi/badges/gpa.svg" /></a>&nbsp;
 <a href='https://www.versioneye.com/user/projects/583327d2e7cea00039353adc'>
 <img src='https://www.versioneye.com/user/projects/583327d2e7cea00039353adc/badge.svg?style=flat-square' alt="Dependency Status for Working"/></a>
 
