@@ -51,8 +51,7 @@ public interface ReferenceValueConstants {
 
 	// User roles
 	public static final Integer ADMIN_ROLE = ONE;
-	public static final Integer USER_ROLE = TWO;
-	public static final Integer FACILITY_ROLE = THREE;
-	public static final Integer SERVER_ROLE = FOUR;
+	public static final Integer FACILITY_ROLE = TWO;
+	public static final Integer SERVER_ROLE = THREE;
 
 }
